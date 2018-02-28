@@ -59,7 +59,7 @@
         <kotlin.version>1.1.60</kotlin.version>
         <spek.version>1.1.4</spek.version>
         <dokka.version>0.9.13</dokka.version>
-        <linguisticdescription.version>0.5.0</linguisticdescription.version>
+        <linguisticdescription.version>0.6.0</linguisticdescription.version>
         <neuraltokenizer.version>0.1.0</neuraltokenizer.version>
     </properties>
 
