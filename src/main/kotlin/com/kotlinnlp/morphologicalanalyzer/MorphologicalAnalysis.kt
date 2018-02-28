@@ -31,7 +31,7 @@ data class MorphologicalAnalysis(
   /**
    * @param tokenIndex the index of a token
    *
-   * @return the list of multi-words morphologies in which the given token is involved
+   * @return the list of multi-words morphologies in which the given token is involved or null if no one has been found
    */
   fun getInvolvedMultiWords(tokenIndex: Int): List<MultiWordsMorphology>? = this.tokensToMultiWords[tokenIndex]
 }
