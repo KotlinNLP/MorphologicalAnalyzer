@@ -60,6 +60,7 @@
         <spek.version>1.1.4</spek.version>
         <dokka.version>0.9.13</dokka.version>
         <linguisticdescription.version>0.5.0</linguisticdescription.version>
+        <neuraltokenizer.version>0.1.0</neuraltokenizer.version>
     </properties>
 
     <repositories>
@@ -76,7 +77,6 @@
             <url>https://jcenter.bintray.com/</url>
         </pluginRepository>
     </pluginRepositories>
-
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
@@ -221,6 +221,12 @@
             <groupId>com.kotlinnlp</groupId>
             <artifactId>linguisticdescription</artifactId>
             <version>${linguisticdescription.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
+            <artifactId>neuraltokenizer</artifactId>
+            <version>${neuraltokenizer.version}</version>
         </dependency>
     </dependencies>
 
