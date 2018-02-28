@@ -59,6 +59,7 @@
         <kotlin.version>1.1.60</kotlin.version>
         <spek.version>1.1.4</spek.version>
         <dokka.version>0.9.13</dokka.version>
+        <linguisticdescription.version>0.5.0</linguisticdescription.version>
     </properties>
 
     <repositories>
@@ -214,6 +215,12 @@
             <artifactId>spek-junit-platform-engine</artifactId>
             <version>${spek.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
+            <artifactId>linguisticdescription</artifactId>
+            <version>${linguisticdescription.version}</version>
         </dependency>
     </dependencies>
 
