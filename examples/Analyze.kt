@@ -81,7 +81,7 @@ private fun printAnalysis(forms: List<String>, analysis: MorphologicalAnalysis) 
 
   analysis.tokens.zip(forms).forEach { (entries, form) ->
     println("'$form'")
-    entries?.forEach { println("\t$it") } ?: println("No form found.")
+    entries?.forEach { println("\t$it") } ?: println("\tNo form found.")
   }
 
   println("\n*** Multi-words expressions ***\n")
