@@ -26,15 +26,15 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    */
   fun analyze(tokens: List<Token>) = MorphologicalAnalysis(
     tokens = tokens.map { this.dictionary[it.form]?.morphologies },
-    multiWords = this.extractMultiWordMorphologies(tokens)
+    multiWords = this.getMultiWordMorphologies(tokens)
   )
 
   /**
    * @param tokens a list of tokens
    *
-   * @return the list of morphologies of multi-words recognized in the given list of [tokens]
+   * @return the list of morphologies of the multi-words recognized in the given list of [tokens]
    */
-  private fun extractMultiWordMorphologies(tokens: List<Token>): List<MultiWordsMorphology> {
+  private fun getMultiWordMorphologies(tokens: List<Token>): List<MultiWordsMorphology> {
 
     val forms: List<String> = tokens.map { it.form }
     val morphologies = mutableListOf<MultiWordsMorphology>()
