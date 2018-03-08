@@ -46,11 +46,10 @@ fun main(args: Array<String>) {
 
       val sentences = tokenizer.tokenize(searchVal)
       val tokens = sentences.fold(mutableListOf<Token>()) { list, sentence -> list.addAll(sentence.tokens); list }
-      val notSpaceTokens = tokens.filterNot { it.isSpace }
 
-      val analysis = analyzer.analyze(notSpaceTokens)
+      val analysis = analyzer.analyze(tokens)
 
-      printAnalysis(forms = notSpaceTokens.map { it.form }, analysis = analysis)
+      printAnalysis(tokens = tokens, analysis = analysis)
     }
   }
 
@@ -72,23 +71,23 @@ private fun readValue(): String {
 /**
  * Print a given morphological analysis.
  *
- * @param forms the list of tokens forms
- * @param analysis a morphological analysis
+ * @param tokens the list of tokens
+ * @param analysis the morphological analysis of the [tokens]
  */
-private fun printAnalysis(forms: List<String>, analysis: MorphologicalAnalysis) {
+private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) {
 
   println("\n*** Tokens ***\n")
 
-  analysis.tokens.zip(forms).forEach { (entries, form) ->
-    println("'$form'")
-    entries?.forEach { println("\t$it") } ?: println("\tNo form found.")
+  analysis.tokens.zip(tokens).filterNot { (_, token) -> token.isSpace }.forEach { (morphoEntries, token) ->
+    println("`${token.form}`")
+    morphoEntries?.forEach { println("\t$it") } ?: println("\tNo morphology found.")
   }
 
   println("\n*** Multi-words expressions ***\n")
 
   if (analysis.multiWords.isNotEmpty())
     analysis.multiWords.forEach {
-      println("'%s'".format(forms.subList(it.startToken, it.endToken + 1).joinToString(separator = " ")))
+      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
       it.morphologies.forEach { println("\t$it") }
     }
   else
