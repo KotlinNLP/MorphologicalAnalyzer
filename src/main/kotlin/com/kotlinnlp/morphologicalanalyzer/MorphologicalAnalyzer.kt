@@ -38,9 +38,9 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     val morphologies = mutableListOf<MultiWordsMorphology>()
 
-    (0 until tokens.size).forEach { tokenIndex ->
+    tokens.forEachIndexed { tokenIndex, token ->
 
-      if (!tokens[tokenIndex].isSpace) {
+      if (!token.isSpace) {
         this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
           morphologies.add(
             MultiWordsMorphology(
