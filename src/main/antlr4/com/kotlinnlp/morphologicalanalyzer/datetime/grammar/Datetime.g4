@@ -1,7 +1,7 @@
 grammar Datetime;
 
-import Symbols, Dates, Times;
+import Dates, Times;
 
-root : datetime EOL? | EOF;
+root : datetime ;
 
 datetime : date | time | date time | time date ;
