@@ -59,6 +59,7 @@
         <kotlin.version>1.1.60</kotlin.version>
         <spek.version>1.1.4</spek.version>
         <dokka.version>0.9.13</dokka.version>
+        <antlr4.version>4.7.1</antlr4.version>
         <linguisticdescription.version>0.8.0</linguisticdescription.version>
         <neuraltokenizer.version>0.1.0</neuraltokenizer.version>
     </properties>
@@ -90,6 +91,7 @@
                 <executions>
                     <execution>
                         <id>compile</id>
+                        <phase>process-sources</phase>
                         <goals> <goal>compile</goal> </goals>
                     </execution>
 
@@ -180,6 +182,24 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.5</version>
+                <executions>
+                    <execution>
+                        <id>antlr</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <libDirectory>src/main/antlr4/com/kotlinnlp/morphologicalanalyzer/datetime/grammar</libDirectory>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -215,6 +235,12 @@
             <artifactId>spek-junit-platform-engine</artifactId>
             <version>${spek.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>${antlr4.version}</version>
         </dependency>
 
         <dependency>
