@@ -1,7 +1,6 @@
 lexer grammar Symbols;
 
-EOL       : '\r'? '\n' ;
-SPACE_SEP : [ ]+ ;
+SPACE_SEP : [ \n]+ ;
 DOT       : '.' ;
 
 APEX  : '\'' ;
