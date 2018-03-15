@@ -1,7 +1,12 @@
 lexer grammar FunctionWords;
 
-AND : A N D ;
-AT  : A T ;
+DAY_ST : S T ;
+DAY_ND : N D ;
+DAY_RD : R D ;
+DAY_TH : T H ;
+
+AND    : A N D ;
+AT     : A T ;
 
 // -----
 // -- Case insensitive letters

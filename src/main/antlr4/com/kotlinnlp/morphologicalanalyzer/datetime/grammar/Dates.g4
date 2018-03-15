@@ -1,8 +1,6 @@
 grammar Dates;
 
-import Symbols, Numbers, DateNames;
-
-DAY_TH : [Tt][Hh] ;
+import Symbols, Numbers, FunctionWords, DateNames;
 
 // -----
 // -- DATE
@@ -36,7 +34,14 @@ month_abbr : JAN_ABBR | FEB_ABBR | MAR_ABBR | APR_ABBR | MAY_ABBR | JUN_ABBR | J
 // -- DAY
 // -----
 
-day : d_0_31 DAY_TH? | day_week | day_week_abbr ;
+day
+    : ('1' | '01' | '21' | '31') DAY_ST?
+    | ('2' | '02' | '22') DAY_ND?
+    | ('3' | '03' | '23') DAY_RD?
+    | d_0_31 DAY_TH?
+    | day_week
+    | day_week_abbr
+    ;
 
 day_week : MON | TUE | WED | THU | FRI | SAT | SUN;
 day_week_abbr : MON_ABBR | TUE_ABBR | WED_ABBR | THU_ABBR | FRI_ABBR | SAT_ABBR | SUN_ABBR;
