@@ -1,7 +1,5 @@
 grammar Numbers;
 
-import Symbols;
-
 // -----
 // -- Numbers with 1 digit
 // -----
