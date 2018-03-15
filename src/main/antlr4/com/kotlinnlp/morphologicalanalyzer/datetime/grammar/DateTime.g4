@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import Symbols, FunctionalWords, Dates, Times, ImportLast;
+import Symbols, FunctionWords, Dates, Times, ImportLast;
 
 root : ws? text ws? EOF? ;
 

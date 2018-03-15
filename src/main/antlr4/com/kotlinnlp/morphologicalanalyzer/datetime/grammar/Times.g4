@@ -1,6 +1,6 @@
 grammar Times;
 
-import Symbols, FunctionalWords, Numbers;
+import Symbols, FunctionWords, Numbers;
 
 time : hour time_sep min (time_sep sec)? ;
 

@@ -1,4 +1,4 @@
-lexer grammar FunctionalWords;
+lexer grammar FunctionWords;
 
 AND : A N D ;
 AT  : A T ;
