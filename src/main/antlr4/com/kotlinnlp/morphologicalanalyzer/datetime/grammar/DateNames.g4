@@ -2,6 +2,10 @@ lexer grammar DateNames;
 
 import Symbols, FunctionWords;
 
+// -----
+// -- Days
+// -----
+
 MON : M O N D A Y ;
 TUE : T U E S D A Y  ;
 WED : W E D N E S D A T ;
@@ -17,6 +21,10 @@ THU_ABBR : T U E DOT? ;
 FRI_ABBR : F R I DOT? ;
 SAT_ABBR : S A T DOT? ;
 SUN_ABBR : S U N DOT? ;
+
+// -----
+// -- Months
+// -----
 
 JAN : J A N U A R Y ;
 FEB : F E B R U A R Y ;
