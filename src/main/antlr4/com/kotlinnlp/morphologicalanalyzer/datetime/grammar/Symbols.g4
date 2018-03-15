@@ -5,7 +5,7 @@ OTHER_SPACES : [\r\t] ;
 
 DOT       : '.' ;
 COMMA     : ',' ;
-APEX      : '\'' ;
+APEX      : ['’] ;
 COLON     : ':' ;
 SEMICOLON : ';' ;
 DASH      : '-' ;
