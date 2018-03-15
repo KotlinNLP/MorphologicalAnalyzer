@@ -27,16 +27,22 @@ object DateTimeProcessor {
    */
   fun getDateTimes(text: String, tokens: List<Token>): List<DateTime> {
 
-    val charStream: CharStream = CharStreams.fromString(text)
-    val lexer = DateTimeLexer(charStream)
-    val tokenStream = CommonTokenStream(lexer)
-    val parser = DateTimeParser(tokenStream)
-    val tree: RuleNode = parser.root()
-    val walker = ParseTreeWalker()
-    val listener = DateTimeListener(tokens)
+    return if (text.trim().isNotEmpty()) {
 
-    walker.walk(listener, tree)
+      val charStream: CharStream = CharStreams.fromString(text)
+      val lexer = DateTimeLexer(charStream)
+      val tokenStream = CommonTokenStream(lexer)
+      val parser = DateTimeParser(tokenStream)
+      val tree: RuleNode = parser.root()
+      val walker = ParseTreeWalker()
+      val listener = DateTimeListener(tokens)
 
-    return listener.getDateTimes()
+      walker.walk(listener, tree)
+
+      listener.getDateTimes()
+
+    } else {
+      listOf()
+    }
   }
 }
