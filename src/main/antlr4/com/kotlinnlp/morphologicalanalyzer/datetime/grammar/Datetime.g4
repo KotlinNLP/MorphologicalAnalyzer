@@ -1,7 +1,17 @@
 grammar Datetime;
 
-import Dates, Times;
+import Symbols, Dates, Times, ImportLast;
 
-root : datetime ;
+root : ws? text ws? EOF? ;
 
-datetime : date | time | date time | time date ;
+text : atomic_text | complex_text ;
+
+atomic_text  : datetime | string ;
+complex_text : text_ws+ atomic_text? ;
+
+text_ws : datetime ws | string ws ;
+
+datetime : date | time ;
+
+string : (CHAR_NO_WS | ~(SPACE_SEP | OTHER_SPACES))+ ;
+ws     : (SPACE_SEP | OTHER_SPACES)+ ;

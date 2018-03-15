@@ -2,7 +2,7 @@ grammar Dates;
 
 import Symbols, Numbers, DateNames;
 
-DAY_TH : 'th' ;
+DAY_TH : [Tt][Hh] ;
 
 // -----
 // -- DATE
@@ -13,7 +13,7 @@ date
     | year date_sep month date_sep day
     ;
 
-date_sep : SPACE_SEP | DASH | SLASH ;
+date_sep : SPACE_SEP | DASH | SLASH | DOT ;
 
 // -----
 // -- YEAR
