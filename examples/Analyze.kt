@@ -18,19 +18,24 @@ import java.io.FileInputStream
  * Analyze the morphology of a text.
  *
  * Command line arguments:
- *   1. The file path of the tokenizer serialized model.
- *   2. The file path of the serialized morphology dictionary.
+ *   1. The iso-a2 code of the language in which to analyze the input
+ *   2. The file path of the tokenizer serialized model.
+ *   3. The file path of the serialized morphology dictionary.
  */
 fun main(args: Array<String>) {
 
-  require(args.size == 2) { "Required 2 arguments: <tokenizer_model_filename> <morpho_dictionary_filename>." }
+  require(args.size == 3) {
+    "Required 3 arguments: <lang_code> <tokenizer_model_filename> <morpho_dictionary_filename>."
+  }
 
-  val tokenizer: NeuralTokenizer = args[0].let {
+  val langCode: String = args[0]
+
+  val tokenizer: NeuralTokenizer = args[1].let {
     println("Loading tokenizer model from '$it'...")
     NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))))
   }
 
-  val analyzer: MorphologicalAnalyzer = args[1].let {
+  val analyzer: MorphologicalAnalyzer = args[2].let {
     println("Loading serialized dictionary from '$it'...")
     MorphologicalAnalyzer(dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
   }
@@ -47,7 +52,7 @@ fun main(args: Array<String>) {
       val sentences = tokenizer.tokenize(inputText)
       val tokens = sentences.fold(mutableListOf<Token>()) { list, sentence -> list.addAll(sentence.tokens); list }
 
-      val analysis = analyzer.analyze(text = inputText, tokens = tokens)
+      val analysis = analyzer.analyze(text = inputText, tokens = tokens, langCode = langCode)
 
       printAnalysis(tokens = tokens, analysis = analysis)
     }

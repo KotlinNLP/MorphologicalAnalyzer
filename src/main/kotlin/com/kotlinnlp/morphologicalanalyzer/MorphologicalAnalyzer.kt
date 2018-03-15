@@ -23,14 +23,20 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    *
    * @param text the input text
    * @param tokens a list of tokens that compose the [text]
+   * @param langCode the iso-a2 code of the language in which to analyze the text
    *
    * @return the morphological analysis of the given text
    */
-  fun analyze(text: String, tokens: List<Token>) = MorphologicalAnalysis(
-    tokens = tokens.map { if (it.isSpace) null else this.dictionary[it.form]?.morphologies },
-    multiWords = this.getMultiWordMorphologies(tokens),
-    dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens)
-  )
+  fun analyze(text: String, tokens: List<Token>, langCode: String): MorphologicalAnalysis {
+
+    require(langCode.length == 2) { "The language code must have length 2." }
+
+    return MorphologicalAnalysis(
+      tokens = tokens.map { if (it.isSpace) null else this.dictionary[it.form]?.morphologies },
+      multiWords = this.getMultiWordMorphologies(tokens),
+      dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = langCode)
+    )
+  }
 
   /**
    * @param tokens a list of input tokens
