@@ -1,4 +1,4 @@
-grammar Datetime;
+grammar DateTime;
 
 import Symbols, Dates, Times, ImportLast;
 
