@@ -22,15 +22,16 @@ object DateTimeProcessor {
    *
    * @param text the input text
    * @param tokens the list of tokens that compose the [text]
+   * @param langCode the iso-a2 code of the language in which to analyze the text
    *
    * @return a list of date-time objects (empty if none has been found)
    */
-  fun getDateTimes(text: String, tokens: List<Token>): List<DateTime> {
+  fun getDateTimes(text: String, tokens: List<Token>, langCode: String): List<DateTime> {
 
     return if (text.trim().isNotEmpty()) {
 
       val charStream: CharStream = CharStreams.fromString(text)
-      val lexer = DateTimeLexer(charStream)
+      val lexer = this.buildLexer(charStream = charStream, langCode = langCode)
       val tokenStream = CommonTokenStream(lexer)
       val parser = DateTimeParser(tokenStream)
       val tree: RuleNode = parser.root()
@@ -44,5 +45,17 @@ object DateTimeProcessor {
     } else {
       listOf()
     }
+  }
+
+  /**
+   * @param charStream the input char stream
+   * @param langCode the language iso-a2 code
+   *
+   * @return a lexer for the given language
+   */
+  private fun buildLexer(charStream: CharStream, langCode: String): Lexer = when (langCode) {
+    "en" -> LexerEN(charStream)
+    "it" -> LexerIT(charStream)
+    else -> throw RuntimeException("Lexer not available for language '$langCode'")
   }
 }
