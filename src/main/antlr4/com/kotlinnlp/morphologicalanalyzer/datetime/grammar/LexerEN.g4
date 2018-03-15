@@ -1,6 +1,18 @@
-lexer grammar DateNames;
+lexer grammar LexerEN;
 
-import Symbols, FunctionWords;
+import Letters, Symbols;
+
+// -----
+// -- Functional words
+// -----
+
+DAY_ST : S T ;
+DAY_ND : N D ;
+DAY_RD : R D ;
+DAY_TH : T H ;
+
+AND : A N D ;
+AT  : A T ;
 
 // -----
 // -- Days

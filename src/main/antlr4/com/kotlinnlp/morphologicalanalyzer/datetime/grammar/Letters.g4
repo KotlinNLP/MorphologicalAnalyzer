@@ -1,16 +1,6 @@
-lexer grammar FunctionWords;
+lexer grammar Letters;
 
-DAY_ST : S T ;
-DAY_ND : N D ;
-DAY_RD : R D ;
-DAY_TH : T H ;
-
-AND    : A N D ;
-AT     : A T ;
-
-// -----
-// -- Case insensitive letters
-// -----
+import Symbols;
 
 fragment A : [Aa] ;
 fragment B : [Bb] ;
@@ -38,3 +28,9 @@ fragment W : [Ww] ;
 fragment X : [Xx] ;
 fragment Y : [Yy] ;
 fragment Z : [Zz] ;
+
+fragment AA : [ÀÁàá] | A APEX ;
+fragment EE : [ÈÉèé] | E APEX ;
+fragment II : [ÌÍìí] | I APEX ;
+fragment OO : [ÒÓòó] | O APEX ;
+fragment UU : [ÙÚùú] | U APEX ;
