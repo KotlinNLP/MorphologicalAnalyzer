@@ -8,16 +8,19 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
+import com.kotlinnlp.morphologicalanalyzer.datetime.DateTime
 
 /**
  * The morphological analysis of a tokenized text.
  *
  * @property tokens the list of tokens morphologies
  * @property multiWords the list of multi-words morphologies
+ * @property dateTimes the list of date-times found
  */
 data class MorphologicalAnalysis(
   val tokens: List<List<MorphologyEntry>?>,
-  val multiWords: List<MultiWordsMorphology>
+  val multiWords: List<MultiWordsMorphology>,
+  val dateTimes: List<DateTime>
 ) {
 
   /**

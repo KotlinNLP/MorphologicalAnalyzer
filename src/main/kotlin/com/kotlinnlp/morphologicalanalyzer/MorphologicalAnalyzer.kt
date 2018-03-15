@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
+import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.neuraltokenizer.Token
 
 /**
@@ -20,13 +21,15 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
   /**
    * Analyze the morphology of a text, given as a list of tokens.
    *
-   * @param tokens a list of tokens
+   * @param text the input text
+   * @param tokens a list of tokens that compose the [text]
    *
    * @return the morphological analysis of the given text
    */
-  fun analyze(tokens: List<Token>) = MorphologicalAnalysis(
+  fun analyze(text: String, tokens: List<Token>) = MorphologicalAnalysis(
     tokens = tokens.map { if (it.isSpace) null else this.dictionary[it.form]?.morphologies },
-    multiWords = this.getMultiWordMorphologies(tokens)
+    multiWords = this.getMultiWordMorphologies(tokens),
+    dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens)
   )
 
   /**
