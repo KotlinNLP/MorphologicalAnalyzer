@@ -1,6 +1,6 @@
 lexer grammar LexerEN;
 
-import Letters, Symbols, LexerImportLast;
+import Letters, Symbols, NumbersLexer, LexerImportLast;
 
 // -----
 // -- Functional words
