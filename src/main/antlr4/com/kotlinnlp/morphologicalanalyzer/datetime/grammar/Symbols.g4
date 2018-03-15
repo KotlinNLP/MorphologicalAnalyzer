@@ -10,5 +10,3 @@ COLON     : ':' ;
 SEMICOLON : ';' ;
 DASH      : '-' ;
 SLASH     : '/' ;
-
-AND : 'and' ;
