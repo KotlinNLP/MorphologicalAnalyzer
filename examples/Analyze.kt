@@ -37,17 +37,17 @@ fun main(args: Array<String>) {
 
   while (true) {
 
-    val searchVal = readValue()
+    val inputText = readValue()
 
-    if (searchVal.isEmpty()) {
+    if (inputText.isEmpty()) {
       break
 
     } else {
 
-      val sentences = tokenizer.tokenize(searchVal)
+      val sentences = tokenizer.tokenize(inputText)
       val tokens = sentences.fold(mutableListOf<Token>()) { list, sentence -> list.addAll(sentence.tokens); list }
 
-      val analysis = analyzer.analyze(tokens)
+      val analysis = analyzer.analyze(text = inputText, tokens = tokens)
 
       printAnalysis(tokens = tokens, analysis = analysis)
     }
@@ -89,6 +89,15 @@ private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) 
     analysis.multiWords.forEach {
       println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
       it.morphologies.forEach { println("\t$it") }
+    }
+  else
+    println("No one found.")
+
+  println("\n*** Date-time expressions ***\n")
+
+  if (analysis.dateTimes.isNotEmpty())
+    analysis.dateTimes.forEach {
+      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
     }
   else
     println("No one found.")
