@@ -11,6 +11,8 @@ DAY_TH : [Tt][Hh] ;
 date 
     : day date_sep month date_sep year
     | year date_sep month date_sep day
+    | month date_sep day
+    | day date_sep month
     ;
 
 date_sep : SPACE_SEP | DASH | SLASH | DOT ;
