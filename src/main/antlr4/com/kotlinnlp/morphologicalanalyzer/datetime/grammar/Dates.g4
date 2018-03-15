@@ -1,6 +1,6 @@
 grammar Dates;
 
-import Symbols, Numbers, LexerEN;
+import Numbers, LexerEN;
 
 // -----
 // -- DATE
