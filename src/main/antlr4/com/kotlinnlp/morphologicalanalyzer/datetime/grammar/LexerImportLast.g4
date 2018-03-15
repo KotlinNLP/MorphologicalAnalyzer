@@ -1,4 +1,4 @@
-lexer grammar ImportLast;
+lexer grammar LexerImportLast;
 
 /* This grammar must be imported as last. */
 
