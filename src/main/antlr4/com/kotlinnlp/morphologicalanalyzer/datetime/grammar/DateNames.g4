@@ -11,7 +11,7 @@ SAT : [Ss]'aturday' ;
 SUN : [Ss]'unday' ;
 
 MON_ABBR : [Mm]'on' DOT? ;
-TUE_ABBR : [Tt]'ue' DOT?  ;
+TUE_ABBR : [Tt]'ue' DOT? ;
 WED_ABBR : [Ww]'ed' DOT? ;
 THU_ABBR : [Tt]'hu' DOT? ;
 FRI_ABBR : [Ff]'ri' DOT? ;
