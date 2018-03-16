@@ -35,9 +35,9 @@ month_abbr : JAN_ABBR | FEB_ABBR | MAR_ABBR | APR_ABBR | MAY_ABBR | JUN_ABBR | J
 // -----
 
 day
-    : ('1' | '01' | '21' | '31') DAY_ST?
-    | ('2' | '02' | '22') DAY_ND?
-    | ('3' | '03' | '23') DAY_RD?
+    : (D_1 | D_0 D_1 | D_2 D_1 | D_3 D_1) DAY_ST?
+    | (D_2 | D_0 D_2 | D_2 D_2) DAY_ND?
+    | (D_3 | D_0 D_3 | D_2 D_3) DAY_RD?
     | d_0_31 DAY_TH?
     | day_week
     | day_week_abbr
