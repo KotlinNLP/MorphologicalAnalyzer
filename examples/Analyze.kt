@@ -102,7 +102,10 @@ private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) 
 
   if (analysis.dateTimes.isNotEmpty())
     analysis.dateTimes.forEach {
-      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
+      println("`%s` (%s)".format(
+        tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
+        it.toStandardFormat()
+      ))
     }
   else
     println("No one found.")
