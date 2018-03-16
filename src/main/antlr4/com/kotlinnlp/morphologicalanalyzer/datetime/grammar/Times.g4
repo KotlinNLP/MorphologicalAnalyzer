@@ -1,6 +1,6 @@
 grammar Times;
 
-import Symbols, NumbersParser, LexerEN;
+import LexerEN, Symbols, NumbersParser;
 
 time : hour time_sep min (time_sep sec)? ;
 

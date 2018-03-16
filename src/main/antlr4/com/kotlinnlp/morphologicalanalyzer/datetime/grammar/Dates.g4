@@ -1,6 +1,6 @@
 grammar Dates;
 
-import NumbersParser, LexerEN;
+import LexerEN, NumbersParser;
 
 // -----
 // -- DATE
