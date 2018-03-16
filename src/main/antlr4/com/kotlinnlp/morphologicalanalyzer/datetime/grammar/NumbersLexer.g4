@@ -6,6 +6,17 @@ lexer grammar NumbersLexer;
 
 DIGIT : [0-9] ;
 
+D_0 : '0' ;
+D_1 : '1' ;
+D_2 : '2' ;
+D_3 : '3' ;
+D_4 : '4' ;
+D_5 : '5' ;
+D_6 : '6' ;
+D_7 : '7' ;
+D_8 : '8' ;
+D_9 : '9' ;
+
 // -----
 // -- Numbers with 2 digits
 // -----
