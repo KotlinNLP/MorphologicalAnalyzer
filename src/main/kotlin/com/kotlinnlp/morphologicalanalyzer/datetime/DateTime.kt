@@ -12,6 +12,30 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
  *
  * @property startToken the index of the first token of the expression
  * @property endToken the index of the last token of the expression
- *
+ * @property year
+ * @property yearStr
+ * @property month
+ * @property monthStr
+ * @property day
+ * @property dayStr
  */
-data class DateTime(val startToken: Int, val endToken: Int)
+data class DateTime(
+  val startToken: Int,
+  val endToken: Int,
+  val year: Int?,
+  val yearStr: String?,
+  val month: Int?,
+  val monthStr: String?,
+  val day: Int?,
+  val dayStr: String?
+) {
+
+  /**
+   *
+   */
+  fun toStandardFormat(): String = "%s/%s/%s".format(
+    this.day?.let { "%02d".format(it) } ?: this.dayStr ?: "-",
+    this.month?.let { "%02d".format(it) } ?: this.monthStr ?: "-",
+    this.year?.let { "%02d".format(it) } ?: this.yearStr ?: "-"
+  )
+}
