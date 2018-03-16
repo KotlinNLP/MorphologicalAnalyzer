@@ -58,8 +58,6 @@ day
     | day_str
     ;
 
-
-
 day_num
     : (D_1 | D_01 | D_21 | D_31) (SPACE_SEP? DAY_ST)?
     | (D_2 | D_02 | D_22) (SPACE_SEP? DAY_ND)?
