@@ -315,4 +315,32 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
 
     this.dateTimeBuilder.setWeekDay(7)
   }
+
+  /**
+   * The listener of the 'exit hour' event.
+   *
+   * @param ctx the context of the 'hour' rule just parsed
+   */
+  override fun exitHour(ctx: DateTimeParser.HourContext) {
+
+    this.dateTimeBuilder.setHour(ctx.text.toInt())
+  }
+
+  /**
+   * The listener of the 'exit min' event.
+   *
+   * @param ctx the context of the 'min' rule just parsed
+   */
+  override fun exitMin(ctx: DateTimeParser.MinContext) {
+    this.dateTimeBuilder.setMin(ctx.text.toInt())
+  }
+
+  /**
+   * The listener of the 'exit sec' event.
+   *
+   * @param ctx the context of the 'sec' rule just parsed
+   */
+  override fun exitSec(ctx: DateTimeParser.SecContext) {
+    this.dateTimeBuilder.setSec(ctx.text.toInt())
+  }
 }

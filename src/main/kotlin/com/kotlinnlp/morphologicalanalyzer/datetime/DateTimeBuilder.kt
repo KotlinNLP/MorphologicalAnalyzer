@@ -17,29 +17,44 @@ import com.kotlinnlp.neuraltokenizer.Token
 internal class DateTimeBuilder(private val tokens: List<Token>) {
 
   /**
-   *
-   */
-  private var year: Int? = null
-
-  /**
-   *
+   * The year abbr. indication of the currently building date-time.
    */
   private var yearAbbr: Boolean = false
 
   /**
-   *
-   */
-  private var month: Int? = null
-
-  /**
-   *
+   * The day of the currently building date-time.
    */
   private var day: Int? = null
 
   /**
-   *
+   * The week day of the currently building date-time.
    */
   private var weekDay: Int? = null
+
+  /**
+   * The month of the currently building date-time.
+   */
+  private var month: Int? = null
+
+  /**
+   * The year of the currently building date-time.
+   */
+  private var year: Int? = null
+
+  /**
+   * The sec of the currently building date-time.
+   */
+  private var sec: Int? = null
+
+  /**
+   * The min of the currently building date-time.
+   */
+  private var min: Int? = null
+
+  /**
+   * The hour of the currently building date-time.
+   */
+  private var hour: Int? = null
 
   /**
    *
@@ -51,8 +66,32 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     weekDay = this.weekDay,
     month = this.month,
     year = this.year,
-    yearAbbr = this.yearAbbr
+    yearAbbr = this.yearAbbr,
+    sec = this.sec,
+    min = this.min,
+    hour = this.hour
   )
+
+  /**
+   *
+   */
+  fun setDay(value: Int) {
+    this.day = value
+  }
+
+  /**
+   *
+   */
+  fun setWeekDay(value: Int) {
+    this.weekDay = value
+  }
+
+  /**
+   *
+   */
+  fun setMonth(value: Int) {
+    this.month = value
+  }
 
   /**
    *
@@ -72,21 +111,21 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun setMonth(value: Int) {
-    this.month = value
+  fun setSec(value: Int) {
+    this.sec = value
   }
 
   /**
    *
    */
-  fun setDay(value: Int) {
-    this.day = value
+  fun setMin(value: Int) {
+    this.min = value
   }
 
   /**
    *
    */
-  fun setWeekDay(value: Int) {
-    this.weekDay = value
+  fun setHour(value: Int) {
+    this.hour = value
   }
 }
