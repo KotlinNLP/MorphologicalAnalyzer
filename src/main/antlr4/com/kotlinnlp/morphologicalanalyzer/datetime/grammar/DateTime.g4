@@ -6,7 +6,7 @@ import LexerEN, Dates, Times;
 // -- Input text
 // -----
 
-root : ws? text ws? EOF? ;
+root : ws? text EOF? ;
 
 text : text_atomic | text_complex ;
 
