@@ -10,7 +10,7 @@ root : ws? text ws? EOF? ;
 
 text : text_atomic | text_complex ;
 
-text_complex : text_ws+ text_atomic? ;
+text_complex : text_ws+? text_atomic? ;
 text_atomic  : datetime | string ;
 text_ws      : datetime punct* ws | string ws ;
 
