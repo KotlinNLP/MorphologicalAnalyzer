@@ -72,7 +72,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDate(ctx: DateTimeParser.DateContext) {
 
-    this.dateTimeBuilder.setDateTokens(start = ctx.start.startIndex, end = ctx.stop.stopIndex)
+    this.dateTimeBuilder.setDateTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
   }
 
   /**
@@ -82,7 +82,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitTime(ctx: DateTimeParser.TimeContext) {
 
-    this.dateTimeBuilder.setTimeTokens(start = ctx.start.startIndex, end = ctx.stop.stopIndex)
+    this.dateTimeBuilder.setTimeTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
   }
 
   /**

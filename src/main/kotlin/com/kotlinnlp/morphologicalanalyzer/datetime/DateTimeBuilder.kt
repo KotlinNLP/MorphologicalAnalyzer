@@ -102,17 +102,17 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun setDateTokens(start: Int, end: Int) {
-    this.dateStart = start
-    this.dateEnd = end
+  fun setDateTokens(startIndex: Int, endIndex: Int) {
+    this.dateStart = this.tokens.indexOfFirst { it.startAt == startIndex }
+    this.dateEnd = this.tokens.indexOfFirst { it.endAt == endIndex }
   }
 
   /**
    *
    */
-  fun setTimeTokens(start: Int, end: Int) {
-    this.timeStart = start
-    this.timeEnd = end
+  fun setTimeTokens(startIndex: Int, endIndex: Int) {
+    this.timeStart = this.tokens.indexOfFirst { it.startAt == startIndex }
+    this.timeEnd = this.tokens.indexOfFirst { it.endAt == endIndex }
   }
 
   /**
