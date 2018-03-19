@@ -82,31 +82,65 @@ private fun readValue(): String {
 private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) {
 
   println("\n*** Tokens ***\n")
+  printTokens(tokens = tokens, analysis = analysis)
+
+  println("\n*** Multi-words expressions ***\n")
+  printMultiWords(tokens = tokens, analysis = analysis)
+
+  println("\n*** Date-time expressions ***\n")
+  printDateTimes(tokens = tokens, analysis = analysis)
+}
+
+/**
+ * Print the tokens morphologies.
+ *
+ * @param tokens the list of tokens
+ * @param analysis the morphological analysis of the [tokens]
+ */
+private fun printTokens(tokens: List<Token>, analysis: MorphologicalAnalysis) {
 
   analysis.tokens.zip(tokens).filterNot { (_, token) -> token.isSpace }.forEach { (morphoEntries, token) ->
     println("`${token.form}`")
     morphoEntries?.forEach { println("\t$it") } ?: println("\tNo morphology found.")
   }
+}
 
-  println("\n*** Multi-words expressions ***\n")
+/**
+ * Print the multi-words morphologies.
+ *
+ * @param tokens the list of tokens
+ * @param analysis the morphological analysis of the [tokens]
+ */
+private fun printMultiWords(tokens: List<Token>, analysis: MorphologicalAnalysis) {
 
   if (analysis.multiWords.isNotEmpty())
+
     analysis.multiWords.forEach {
       println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
       it.morphologies.forEach { println("\t$it") }
     }
+
   else
     println("No one found.")
+}
 
-  println("\n*** Date-time expressions ***\n")
+/**
+ * Print the date-times.
+ *
+ * @param tokens the list of tokens
+ * @param analysis the morphological analysis of the [tokens]
+ */
+private fun printDateTimes(tokens: List<Token>, analysis: MorphologicalAnalysis) {
 
   if (analysis.dateTimes.isNotEmpty())
+
     analysis.dateTimes.forEach {
       println("`%s` [%s]".format(
         tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
         it
       ))
     }
+
   else
     println("No one found.")
 }
