@@ -8,6 +8,24 @@
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
 /**
- * A date-time object.
+ * A date-time expression.
  */
-interface DateTime
+interface DateTime {
+
+  /**
+   * The index of the first token of this date-time expression.
+   */
+  val startToken: Int
+
+  /**
+   * The index of the last token of this date-time expression.
+   */
+  val endToken: Int
+
+  /**
+   * Get the string representing this date-time in the standard format.
+   *
+   * @return the standard string representing this date-time
+   */
+  fun toStandardFormat(): String
+}
