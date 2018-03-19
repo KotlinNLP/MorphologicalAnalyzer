@@ -24,7 +24,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  private var yearStr: String? = null
+  private var yearAbbr: Boolean = false
 
   /**
    *
@@ -34,17 +34,12 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  private var monthStr: String? = null
-
-  /**
-   *
-   */
   private var day: Int? = null
 
   /**
    *
    */
-  private var dayStr: String? = null
+  private var weekDay: Int? = null
 
   /**
    *
@@ -52,46 +47,46 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun getDateTime(startIndex: Int, endIndex: Int) = DateTime(
     startToken = this.tokens.indexOfFirst { it.startAt == startIndex },
     endToken = this.tokens.indexOfFirst { it.endAt == endIndex },
-    year = this.year,
-    yearStr = this.yearStr,
-    month = this.month,
-    monthStr = this.monthStr,
     day = this.day,
-    dayStr = this.dayStr
+    weekDay = this.weekDay,
+    month = this.month,
+    year = this.year,
+    yearAbbr = this.yearAbbr
   )
 
   /**
    *
    */
-  fun setYearNum(tokenIndex: Int) {
-    this.year = this.tokens.first { it.startAt == tokenIndex }.form.trim('\'', '’').toInt()
+  fun setYear(value: Int) {
+    this.year = value
   }
 
   /**
    *
    */
-  fun setMonthNum(tokenIndex: Int) {
-    this.month = this.tokens.first { it.startAt == tokenIndex }.form.toInt()
+  fun setYearAbbr(value: Int) {
+    this.year = value
+    this.yearAbbr = true
   }
 
   /**
    *
    */
-  fun setMonthStr(tokenIndex: Int) {
-    this.monthStr = this.tokens.first { it.startAt == tokenIndex }.form
+  fun setMonth(value: Int) {
+    this.month = value
   }
 
   /**
    *
    */
-  fun setDayNum(tokenIndex: Int) {
-    this.day = this.tokens.first { it.startAt == tokenIndex }.form.takeWhile { it.isDigit() } .toInt()
+  fun setDay(value: Int) {
+    this.day = value
   }
 
   /**
    *
    */
-  fun setDayStr(tokenIndex: Int) {
-    this.dayStr = this.tokens.first { it.startAt == tokenIndex }.form
+  fun setWeekDay(value: Int) {
+    this.weekDay = value
   }
 }
