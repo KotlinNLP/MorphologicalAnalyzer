@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.tree.*

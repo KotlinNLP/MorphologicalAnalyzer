@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
-import com.kotlinnlp.morphologicalanalyzer.datetime.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 
 /**
  * The morphological analysis of a tokenized text.

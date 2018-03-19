@@ -7,6 +7,10 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.neuraltokenizer.Token
 
 /**
