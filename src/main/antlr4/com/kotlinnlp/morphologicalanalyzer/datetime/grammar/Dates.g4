@@ -8,19 +8,19 @@ import LexerEN, NumbersParser;
 
 date 
     : day date_sep month date_sep year // DMY
-    | day SPACE_SEP month_str SPACE_SEP year // DMY
+    | day SPACE_SEP OF? month_str SPACE_SEP OF? year // DMY
     | month date_sep day date_sep year // MDY
-    | month_str SPACE_SEP day SPACE_SEP year // MDY
+    | month_str SPACE_SEP day SPACE_SEP OF? year // MDY
     | year date_sep month date_sep day // YMD
-    | year SPACE_SEP month_str SPACE_SEP day // YMD
+    | year SPACE_SEP month_str SPACE_SEP OF? day // YMD
     | day date_sep month // DM
-    | day SPACE_SEP month_str // DM
+    | day SPACE_SEP OF? month_str // DM
     | month date_sep day // MD
     | month_str SPACE_SEP day // MD
     | year_APEX
     | year_modern
     | month_str
-    | day_str
+    | day_week
     ;
 
 date_sep : DASH | SLASH | DOT ;
@@ -79,11 +79,10 @@ month_dec : DEC | DEC_ABBR ;
 // -----
 
 day
-    : day_str SPACE_SEP? day_num
-    | day_str COMMA SPACE_SEP? day_num
-    | day_str SPACE_SEP COMMA day_num
+    : day_week (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_num_str)
+    | day_week SPACE_SEP? COMMA (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_num_str)
     | day_num
-    | day_str
+    | (THE SPACE_SEP)? day_num_str
     ;
 
 day_num
@@ -93,7 +92,23 @@ day_num
     | d_0_31 DAY_TH?
     ;
 
-day_str : day_mon | day_tue | day_wed | day_thu | day_fri | day_sat | day_sun ;
+day_num_str : day_num_str_card | day_num_str_ord ;
+
+day_num_str_card
+    : S_1  | S_2  | S_3  | S_4  | S_5  | S_6  | S_7  | S_8  | S_9  | S_10
+    | S_11 | S_12 | S_13 | S_14 | S_15 | S_16 | S_17 | S_18 | S_19 | S_20
+    | S_21 | S_22 | S_23 | S_24 | S_25 | S_26 | S_27 | S_28 | S_29 | S_30
+    | S_31
+    ;
+
+day_num_str_ord
+    : S_ORD_1  | S_ORD_2  | S_ORD_3  | S_ORD_4  | S_ORD_5  | S_ORD_6  | S_ORD_7  | S_ORD_8  | S_ORD_9  | S_ORD_10
+    | S_ORD_11 | S_ORD_12 | S_ORD_13 | S_ORD_14 | S_ORD_15 | S_ORD_16 | S_ORD_17 | S_ORD_18 | S_ORD_19 | S_ORD_20
+    | S_ORD_21 | S_ORD_22 | S_ORD_23 | S_ORD_24 | S_ORD_25 | S_ORD_26 | S_ORD_27 | S_ORD_28 | S_ORD_29 | S_ORD_30
+    | S_ORD_31
+    ;
+
+day_week : day_mon | day_tue | day_wed | day_thu | day_fri | day_sat | day_sun ;
 
 day_mon : MON | MON_ABBR ;
 day_tue : TUE | TUE_ABBR ;
