@@ -13,6 +13,8 @@ DAY_TH : T H ;
 
 AND : A N D ;
 AT  : A T ;
+THE : T H E ;
+OF : O F ;
 
 // -----
 // -- Days
@@ -63,3 +65,77 @@ SEP_ABBR : S E P T? DOT? ;
 OCT_ABBR : O C T DOT? ;
 NOV_ABBR : N O V DOT? ;
 DEC_ABBR : D E C DOT? ;
+
+// -----
+// -- Cardinal Numbers
+// -----
+
+S_1  : O N E ;
+S_2  : T W O ;
+S_3  : T H R E E ;
+S_4  : F O U R ;
+S_5  : F I V E ;
+S_6  : S I X ;
+S_7  : S E V E N ;
+S_8  : E I G H T ;
+S_9  : N I N E ;
+S_10 : T E N ;
+S_11 : E L E V E N ;
+S_12 : T W E L V E ;
+S_13 : T H I R T E E N ;
+S_14 : F O U R T E E N ;
+S_15 : F I F T E E N ;
+S_16 : S I X T E E N ;
+S_17 : S E V E N T E E N ;
+S_18 : E I G H T E E N ;
+S_19 : N I N E T E E N ;
+S_20 : T W E N T Y ;
+S_21 : T W E N T Y DASH? S_1 ;
+S_22 : T W E N T Y DASH? S_2 ;
+S_23 : T W E N T Y DASH? S_3 ;
+S_24 : T W E N T Y DASH? S_4 ;
+S_25 : T W E N T Y DASH? S_5 ;
+S_26 : T W E N T Y DASH? S_6 ;
+S_27 : T W E N T Y DASH? S_7 ;
+S_28 : T W E N T Y DASH? S_8 ;
+S_29 : T W E N T Y DASH? S_9 ;
+S_30 : T H I R T Y ;
+S_31 : T H I R T Y DASH? S_1 ;
+
+// -----
+// -- Ordinal Numbers
+// -----
+
+fragment TH : DAY_TH ;
+
+S_ORD_1  : F I R S T ;
+S_ORD_2  : S E C O N D ;
+S_ORD_3  : T H I R D ;
+S_ORD_4  : S_4 TH ;
+S_ORD_5  : F I F TH ;
+S_ORD_6  : S_6 TH ;
+S_ORD_7  : S_7 TH ;
+S_ORD_8  : E I G H TH ;
+S_ORD_9  : N I N TH | N I N E TH ; // actually 'nineth' is a mispelling
+S_ORD_10 : S_10 TH ;
+S_ORD_11 : S_11 TH ;
+S_ORD_12 : T W E L F TH ;
+S_ORD_13 : S_13 TH ;
+S_ORD_14 : S_14 TH ;
+S_ORD_15 : S_15 TH ;
+S_ORD_16 : S_16 TH ;
+S_ORD_17 : S_17 TH ;
+S_ORD_18 : S_18 TH ;
+S_ORD_19 : S_19 TH ;
+S_ORD_20 : T W E N T I E TH ;
+S_ORD_21 : S_20 S_ORD_1 ;
+S_ORD_22 : S_20 S_ORD_2 ;
+S_ORD_23 : S_20 S_ORD_3 ;
+S_ORD_24 : S_20 S_ORD_4 ;
+S_ORD_25 : S_20 S_ORD_5 ;
+S_ORD_26 : S_20 S_ORD_6 ;
+S_ORD_27 : S_20 S_ORD_7 ;
+S_ORD_28 : S_20 S_ORD_8 ;
+S_ORD_29 : S_20 S_ORD_9 ;
+S_ORD_30 : T H I R T I E TH ;
+S_ORD_31 : S_30 S_ORD_1 ;
