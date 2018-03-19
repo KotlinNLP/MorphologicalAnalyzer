@@ -29,10 +29,14 @@ date_sep : DASH | SLASH | DOT ;
 // -- YEAR
 // -----
 
-year : year_APEX | d_0_9999 ;
+year : year_APEX | year_num ;
 
 year_APEX : APEX d_0_99 ;
+
+year_num    : year_modern | year_abbr | year_full ;
 year_modern : D_1900_2099 ;
+year_abbr   : d_0_99 ;
+year_full   : d_100_9999 ;
 
 // -----
 // -- MONTH
@@ -41,10 +45,34 @@ year_modern : D_1900_2099 ;
 month : month_num | month_str ;
 
 month_num : d_0_12 ;
-month_str : month_abbr | month_full ;
 
-month_full : JAN | FEB | MAR | APR | MAY | JUN | JUL | AUG | SEP | OCT | NOV | DEC ;
-month_abbr : JAN_ABBR | FEB_ABBR | MAR_ABBR | APR_ABBR | MAY_ABBR | JUN_ABBR | JUL_ABBR | AUG_ABBR | SEP_ABBR | OCT_ABBR | NOV_ABBR | DEC_ABBR ;
+month_str
+    : month_jan
+    | month_feb
+    | month_mar
+    | month_apr
+    | month_may
+    | month_jun
+    | month_jul
+    | month_aug
+    | month_sep
+    | month_oct
+    | month_nov
+    | month_dec
+    ;
+
+month_jan : JAN | JAN_ABBR ;
+month_feb : FEB | FEB_ABBR ;
+month_mar : MAR | MAR_ABBR ;
+month_apr : APR | APR_ABBR ;
+month_may : MAY | MAY_ABBR ;
+month_jun : JUN | JUN_ABBR ;
+month_jul : JUL | JUL_ABBR ;
+month_aug : AUG | AUG_ABBR ;
+month_sep : SEP | SEP_ABBR ;
+month_oct : OCT | OCT_ABBR ;
+month_nov : NOV | NOV_ABBR ;
+month_dec : DEC | DEC_ABBR ;
 
 // -----
 // -- DAY
@@ -65,7 +93,12 @@ day_num
     | d_0_31 DAY_TH?
     ;
 
-day_str : day_week | day_week_abbr;
+day_str : day_mon | day_tue | day_wed | day_thu | day_fri | day_sat | day_sun ;
 
-day_week      : MON | TUE | WED | THU | FRI | SAT | SUN;
-day_week_abbr : MON_ABBR | TUE_ABBR | WED_ABBR | THU_ABBR | FRI_ABBR | SAT_ABBR | SUN_ABBR;
+day_mon : MON | MON_ABBR ;
+day_tue : TUE | TUE_ABBR ;
+day_wed : WED | WED_ABBR ;
+day_thu : THU | THU_ABBR ;
+day_fri : FRI | FRI_ABBR ;
+day_sat : SAT | SAT_ABBR ;
+day_sun : SUN | SUN_ABBR ;
