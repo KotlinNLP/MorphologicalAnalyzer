@@ -66,6 +66,26 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit date' event.
+   *
+   * @param ctx the context of the 'date' rule just parsed
+   */
+  override fun exitDate(ctx: DateTimeParser.DateContext) {
+
+    this.dateTimeBuilder.setDateTokens(start = ctx.start.startIndex, end = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit time' event.
+   *
+   * @param ctx the context of the 'time' rule just parsed
+   */
+  override fun exitTime(ctx: DateTimeParser.TimeContext) {
+
+    this.dateTimeBuilder.setTimeTokens(start = ctx.start.startIndex, end = ctx.stop.stopIndex)
+  }
+
+  /**
    * The listener of the 'exit year_full' event.
    *
    * @param ctx the context of the 'year_full' rule just parsed
