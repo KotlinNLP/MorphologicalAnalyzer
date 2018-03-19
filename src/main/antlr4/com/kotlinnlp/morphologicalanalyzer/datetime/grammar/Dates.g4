@@ -7,16 +7,19 @@ import LexerEN, NumbersParser;
 // -----
 
 date 
-    : day date_sep month date_sep year // DMY
-    | day SPACE_SEP of_sep? month_str SPACE_SEP of_sep? year // DMY
-    | month date_sep day date_sep year // MDY
-    | month_str SPACE_SEP day SPACE_SEP of_sep? year // MDY
-    | year date_sep month date_sep day // YMD
-    | year SPACE_SEP month_str SPACE_SEP of_sep? day // YMD
-    | day date_sep month // DM
-    | day SPACE_SEP of_sep? month_str // DM
-    | month date_sep day // MD
-    | month_str SPACE_SEP day // MD
+    : day date_sep month date_sep year // D/M/Y
+    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY
+    | day SPACE_SEP month_str SPACE_SEP year // D Month Y
+    | day SPACE_SEP of_sep? month_str SPACE_SEP of_sep? year // D of? Month of? Y
+    | month date_sep day date_sep year // M/D/Y
+    | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY
+    | month_str SPACE_SEP day SPACE_SEP of_sep? year // Month D of? Y
+    | year date_sep month date_sep day // Y/M/D
+    | year SPACE_SEP month_str of_sep? day // Y Month of? D
+    | day date_sep month // D/M
+    | day SPACE_SEP of_sep? month_str // D of? Month
+    | month date_sep day // M/D
+    | month_str SPACE_SEP day // Month D
     | year_APEX
     | year_modern
     | month_str
