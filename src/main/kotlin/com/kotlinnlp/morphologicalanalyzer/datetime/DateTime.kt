@@ -17,6 +17,9 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
  * @property month the number of the mont in the range [1, 12] (can be null)
  * @property year the number of the year in the range [0, 9999] (can be null)
  * @property yearAbbr whether the [year] is intended as abbreviated form (e.g. '98 stands for 1998)
+ * @property sec the number of the sec in the range [0, 59] (can be null)
+ * @property min the number of the min in the range [0, 59] (can be null)
+ * @property hour the number of the hour in the range [0, 23] (can be null)
  */
 data class DateTime(
   val startToken: Int,
@@ -25,7 +28,10 @@ data class DateTime(
   val weekDay: Int?,
   val month: Int?,
   val year: Int?,
-  val yearAbbr: Boolean
+  val yearAbbr: Boolean,
+  val sec: Int?,
+  val min: Int?,
+  val hour: Int?
 ) {
 
   companion object {
@@ -41,10 +47,14 @@ data class DateTime(
    *
    * @return the string representing this date-time
    */
-  fun toStandardFormat(): String = "%s/%s/%s".format(
+  fun toStandardFormat(): String = "%s/%s/%s %s:%s:%s".format(
     this.day?.let { "%02d".format(it) } ?: "-",
     this.month?.let { "%02d".format(it) } ?: "-",
-    this.year?.let { (if (this.yearAbbr) "%02d" else "%04d").format(it) } ?: "-")
+    this.year?.let { (if (this.yearAbbr) "%02d" else "%04d").format(it) } ?: "-",
+    this.hour?.let { "%02d".format(it) } ?: "-",
+    this.min?.let { "%02d".format(it) } ?: "-",
+    this.sec?.let { "%02d".format(it) } ?: "-"
+  )
 
   /**
    * @return the standard string representation of the [weekDay]
