@@ -23,5 +23,5 @@ ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 // -- Date-times
 // -----
 
-datetime : complex_datetime | date | time ;
+datetime : complex_datetime | time | date ;
 complex_datetime : date ws AT ws time ;
