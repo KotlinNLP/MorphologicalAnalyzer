@@ -10,7 +10,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 import com.kotlinnlp.neuraltokenizer.Token
 
 /**
- * The helper to build a [DateTime].
+ * The helper to build a [DateTimeSimple].
  *
  * @param tokens the list of tokens that compose the input text.
  */
@@ -59,7 +59,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun getDateTime(startIndex: Int, endIndex: Int) = DateTime(
+  fun getDateTime(startIndex: Int, endIndex: Int) = DateTimeSimple(
     startToken = this.tokens.indexOfFirst { it.startAt == startIndex },
     endToken = this.tokens.indexOfFirst { it.endAt == endIndex },
     day = this.day,
