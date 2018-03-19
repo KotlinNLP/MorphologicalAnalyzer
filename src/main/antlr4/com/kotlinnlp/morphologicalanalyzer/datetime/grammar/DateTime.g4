@@ -8,12 +8,11 @@ import LexerEN, Dates, Times;
 
 root : ws? text ws? EOF? ;
 
-text : atomic_text | complex_text ;
+text : text_atomic | text_complex ;
 
-atomic_text  : datetime | string ;
-complex_text : text_ws+ atomic_text? ;
-
-text_ws : datetime punct* ws | string ws ;
+text_complex : text_ws+ text_atomic? ;
+text_atomic  : datetime | string ;
+text_ws      : datetime punct* ws | string ws ;
 
 string : (CHAR_NO_WS | ~(SPACE_SEP | OTHER_SPACES))+ ;
 punct  : DOT | COMMA | COLON | SEMICOLON ;
