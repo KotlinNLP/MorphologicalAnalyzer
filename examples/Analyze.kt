@@ -102,9 +102,9 @@ private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) 
 
   if (analysis.dateTimes.isNotEmpty())
     analysis.dateTimes.forEach {
-      println("`%s` (%s)".format(
+      println("`%s` [%s]".format(
         tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
-        it.toStandardFormat()
+        it
       ))
     }
   else
