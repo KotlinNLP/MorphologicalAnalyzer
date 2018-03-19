@@ -1,0 +1,11 @@
+[
+  {"type": "date", "text": "march 3 2015", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "march 3rd 2015", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "march third 2015", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "3/3/2015", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "3/3/15", "D": 3, "M": 3, "Y": 15, "Y-abbr": true},
+  {"type": "date", "text": "2015-3-3", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "2015-03-03", "D": 3, "M": 3, "Y": 2015},
+  {"type": "date", "text": "the 15th of february", "D": 15, "M": 2},
+  {"type": "null", "text": "on the 15"}
+]
