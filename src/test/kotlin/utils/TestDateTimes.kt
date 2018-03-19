@@ -26,6 +26,16 @@ object TestDateTimes {
   /**
    *
    */
+  private val paddingBefore = "Some padding before "
+
+  /**
+   *
+   */
+  private val paddingAfter = " and some padding after."
+
+  /**
+   *
+   */
   val textsToDateTimes = mutableListOf<Pair<String, DateTime>>()
 
   /**
@@ -47,30 +57,57 @@ object TestDateTimes {
 
     val jsonList: JsonArray<*> = Parser().parse(resFilename) as JsonArray<*>
 
-    jsonList.map { this.buildDateTime(it as JsonObject ) }
+    jsonList.map { it as JsonObject
+
+      val type: String = it.string("type")!!
+      val text: String = it.string("text")!!
+
+      if (type == "null")
+        this.emptyDateTimesTexts.add(text)
+      else
+        this.addDateTimes(it)
+    }
   }
 
   /**
    *
    */
-  private fun buildDateTime(jsonObj: JsonObject) {
+  private fun addDateTimes(jsonObj: JsonObject) {
 
-    val type: String = jsonObj.string("type")!!
     val text: String = jsonObj.string("text")!!
 
-    if (type == "null") {
-      this.emptyDateTimesTexts.add(text)
+    this.addDateTime(jsonObj = jsonObj, text = text, start = 0, end = text.lastIndex)
 
-    } else {
-      this.textsToDateTimes.add(
-        text to when (type) {
-          "date" -> this.buildDate(jsonObj = jsonObj, startIndex = 0, endIndex = text.lastIndex)
-          "time" -> this.buildTime(jsonObj = jsonObj, startIndex = 0, endIndex = text.lastIndex)
-          "datetime" -> this.buildDateTime(jsonObj = jsonObj, startIndex = 0, endIndex = text.lastIndex)
-          else -> throw RuntimeException("Invalid DateTime type: $type")
-        }
-      )
-    }
+    this.addDateTime(jsonObj = jsonObj, text = text + this.paddingAfter, start = 0, end = text.lastIndex)
+
+    this.addDateTime(
+      jsonObj = jsonObj,
+      text = this.paddingBefore + text,
+      start = this.paddingBefore.length,
+      end = this.paddingBefore.length + text.lastIndex)
+
+    this.addDateTime(
+      jsonObj = jsonObj,
+      text = this.paddingBefore + text + this.paddingAfter,
+      start = this.paddingBefore.length,
+      end = this.paddingBefore.length + text.lastIndex)
+  }
+
+  /**
+   *
+   */
+  private fun addDateTime(jsonObj: JsonObject, text: String, start: Int, end: Int) {
+
+    val type: String = jsonObj.string("type")!!
+
+    this.textsToDateTimes.add(
+      text to when (type) {
+        "date" -> this.buildDate(jsonObj = jsonObj, startIndex = start, endIndex = end)
+        "time" -> this.buildTime(jsonObj = jsonObj, startIndex = start, endIndex = end)
+        "datetime" -> this.buildDateTime(jsonObj = jsonObj, startIndex = start, endIndex = end)
+        else -> throw RuntimeException("Invalid DateTime type: $type")
+      }
+    )
   }
 
   /**
