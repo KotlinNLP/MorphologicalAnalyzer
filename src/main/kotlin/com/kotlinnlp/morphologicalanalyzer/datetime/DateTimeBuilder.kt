@@ -23,22 +23,12 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  private var dateStart: Int = -1
+  private var dateTokens: IntRange? = null
 
   /**
    *
    */
-  private var dateEnd: Int = -1
-
-  /**
-   *
-   */
-  private var timeStart: Int = -1
-
-  /**
-   *
-   */
-  private var timeEnd: Int = -1
+  private var timeTokens: IntRange? = null
 
   /**
    * The day of the currently building date-time.
@@ -103,16 +93,22 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
    *
    */
   fun setDateTokens(startIndex: Int, endIndex: Int) {
-    this.dateStart = this.tokens.indexOfFirst { it.startAt == startIndex }
-    this.dateEnd = this.tokens.indexOfFirst { it.endAt == endIndex }
+
+    this.dateTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
+    )
   }
 
   /**
    *
    */
   fun setTimeTokens(startIndex: Int, endIndex: Int) {
-    this.timeStart = this.tokens.indexOfFirst { it.startAt == startIndex }
-    this.timeEnd = this.tokens.indexOfFirst { it.endAt == endIndex }
+
+    this.timeTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
+    )
   }
 
   /**
@@ -175,30 +171,28 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  private fun buildDate(): Date? = if (this.dateStart >= 0)
+  private fun buildDate(): Date? = this.dateTokens?.let {
     Date(
-      startToken = this.dateStart,
-      endToken = this.dateEnd,
+      startToken = it.start,
+      endToken = it.endInclusive,
       day = this.day,
       weekDay = this.weekDay,
       month = this.month,
       year = this.year,
       yearAbbr = this.yearAbbr
     )
-  else
-    null
+  }
 
   /**
    *
    */
-  private fun buildTime(): Time? =  if (this.timeStart >= 0)
+  private fun buildTime(): Time? = this.timeTokens?.let {
     Time(
-      startToken = this.timeStart,
-      endToken = this.timeEnd,
+      startToken = it.start,
+      endToken = it.endInclusive,
       sec = this.sec,
       min = this.min,
       hour = this.hour
     )
-  else
-    null
+  }
 }
