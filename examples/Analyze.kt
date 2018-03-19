@@ -8,7 +8,6 @@
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalyzer
-import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeSimple
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizerModel
 import com.kotlinnlp.neuraltokenizer.Token
@@ -136,12 +135,10 @@ private fun printDateTimes(tokens: List<Token>, analysis: MorphologicalAnalysis)
   if (analysis.dateTimes.isNotEmpty())
 
     analysis.dateTimes.forEach {
-      if (it is DateTimeSimple) {
-        println("`%s` [%s]".format(
-          tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
-          it
-        ))
-      }
+      println("`%s` [%s]".format(
+        tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
+        it
+      ))
     }
 
   else
