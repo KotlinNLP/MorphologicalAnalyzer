@@ -8,13 +8,13 @@ import LexerEN, NumbersParser;
 
 date 
     : day date_sep month date_sep year // DMY
-    | day SPACE_SEP OF? month_str SPACE_SEP OF? year // DMY
+    | day SPACE_SEP of_sep? month_str SPACE_SEP of_sep? year // DMY
     | month date_sep day date_sep year // MDY
-    | month_str SPACE_SEP day SPACE_SEP OF? year // MDY
+    | month_str SPACE_SEP day SPACE_SEP of_sep? year // MDY
     | year date_sep month date_sep day // YMD
-    | year SPACE_SEP month_str SPACE_SEP OF? day // YMD
+    | year SPACE_SEP month_str SPACE_SEP of_sep? day // YMD
     | day date_sep month // DM
-    | day SPACE_SEP OF? month_str // DM
+    | day SPACE_SEP of_sep? month_str // DM
     | month date_sep day // MD
     | month_str SPACE_SEP day // MD
     | year_APEX
@@ -24,6 +24,7 @@ date
     ;
 
 date_sep : DASH | SLASH | DOT ;
+of_sep : OF SPACE_SEP ;
 
 // -----
 // -- YEAR
@@ -31,7 +32,7 @@ date_sep : DASH | SLASH | DOT ;
 
 year : year_APEX | year_num ;
 
-year_APEX : APEX d_0_99 ;
+year_APEX : APEX SPACE_SEP? d_0_99 ;
 
 year_num    : year_modern | year_abbr | year_full ;
 year_modern : D_1900_2099 ;
@@ -81,8 +82,7 @@ month_dec : DEC | DEC_ABBR ;
 day
     : day_week (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_num_str)
     | day_week SPACE_SEP? COMMA (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_num_str)
-    | day_num
-    | (THE SPACE_SEP)? day_num_str
+    | (THE SPACE_SEP)? (day_num | day_num_str)
     ;
 
 day_num
