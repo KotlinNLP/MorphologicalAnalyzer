@@ -17,9 +17,24 @@ import com.kotlinnlp.neuraltokenizer.Token
 internal class DateTimeBuilder(private val tokens: List<Token>) {
 
   /**
-   * The year abbr. indication of the currently building date-time.
+   *
    */
-  private var yearAbbr: Boolean = false
+  private var dateStart: Int = -1
+
+  /**
+   *
+   */
+  private var dateEnd: Int = -1
+
+  /**
+   *
+   */
+  private var timeStart: Int = -1
+
+  /**
+   *
+   */
+  private var timeEnd: Int = -1
 
   /**
    * The day of the currently building date-time.
@@ -42,6 +57,11 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   private var year: Int? = null
 
   /**
+   * The year abbr. indication of the currently building date-time.
+   */
+  private var yearAbbr: Boolean = false
+
+  /**
    * The sec of the currently building date-time.
    */
   private var sec: Int? = null
@@ -59,18 +79,37 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun getDateTime(startIndex: Int, endIndex: Int) = DateTimeSimple(
-    startToken = this.tokens.indexOfFirst { it.startAt == startIndex },
-    endToken = this.tokens.indexOfFirst { it.endAt == endIndex },
-    day = this.day,
-    weekDay = this.weekDay,
-    month = this.month,
-    year = this.year,
-    yearAbbr = this.yearAbbr,
-    sec = this.sec,
-    min = this.min,
-    hour = this.hour
-  )
+  fun getDateTime(startIndex: Int, endIndex: Int): DateTime {
+
+    val start: Int = this.tokens.indexOfFirst { it.startAt == startIndex }
+    val end: Int = this.tokens.indexOfFirst { it.endAt == endIndex }
+
+    val date: Date? = this.buildDate()
+    val time: Time? = this.buildTime()
+
+    return when {
+      date != null && time != null -> DateTimeSimple(startToken = start, endToken = end, date = date, time = time)
+      date != null -> date
+      time != null -> time
+      else -> throw RuntimeException("Invalid date-time: missing date and time.")
+    }
+  }
+
+  /**
+   *
+   */
+  fun setDateTokens(start: Int, end: Int) {
+    this.dateStart = start
+    this.dateEnd = end
+  }
+
+  /**
+   *
+   */
+  fun setTimeTokens(start: Int, end: Int) {
+    this.timeStart = start
+    this.timeEnd = end
+  }
 
   /**
    *
@@ -128,4 +167,34 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setHour(value: Int) {
     this.hour = value
   }
+
+  /**
+   *
+   */
+  private fun buildDate(): Date? = if (this.dateStart >= 0)
+    Date(
+      startToken = this.dateStart,
+      endToken = this.dateEnd,
+      day = this.day,
+      weekDay = this.weekDay,
+      month = this.month,
+      year = this.year,
+      yearAbbr = this.yearAbbr
+    )
+  else
+    null
+
+  /**
+   *
+   */
+  private fun buildTime(): Time? =  if (this.timeStart >= 0)
+    Time(
+      startToken = this.timeStart,
+      endToken = this.timeEnd,
+      sec = this.sec,
+      min = this.min,
+      hour = this.hour
+    )
+  else
+    null
 }
