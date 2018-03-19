@@ -258,6 +258,316 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit day_s_1' event.
+   *
+   * @param ctx the context of the 'day_s_1' rule just parsed
+   */
+  override fun exitDay_s_1(ctx: DateTimeParser.Day_s_1Context) {
+
+    this.dateTimeBuilder.setDay(1)
+  }
+
+  /**
+   * The listener of the 'exit day_s_2' event.
+   *
+   * @param ctx the context of the 'day_s_2' rule just parsed
+   */
+  override fun exitDay_s_2(ctx: DateTimeParser.Day_s_2Context) {
+
+    this.dateTimeBuilder.setDay(2)
+  }
+
+  /**
+   * The listener of the 'exit day_s_3' event.
+   *
+   * @param ctx the context of the 'day_s_3' rule just parsed
+   */
+  override fun exitDay_s_3(ctx: DateTimeParser.Day_s_3Context) {
+
+    this.dateTimeBuilder.setDay(3)
+  }
+
+  /**
+   * The listener of the 'exit day_s_4' event.
+   *
+   * @param ctx the context of the 'day_s_4' rule just parsed
+   */
+  override fun exitDay_s_4(ctx: DateTimeParser.Day_s_4Context) {
+
+    this.dateTimeBuilder.setDay(4)
+  }
+
+  /**
+   * The listener of the 'exit day_s_5' event.
+   *
+   * @param ctx the context of the 'day_s_5' rule just parsed
+   */
+  override fun exitDay_s_5(ctx: DateTimeParser.Day_s_5Context) {
+
+    this.dateTimeBuilder.setDay(5)
+  }
+
+  /**
+   * The listener of the 'exit day_s_6' event.
+   *
+   * @param ctx the context of the 'day_s_6' rule just parsed
+   */
+  override fun exitDay_s_6(ctx: DateTimeParser.Day_s_6Context) {
+
+    this.dateTimeBuilder.setDay(6)
+  }
+
+  /**
+   * The listener of the 'exit day_s_7' event.
+   *
+   * @param ctx the context of the 'day_s_7' rule just parsed
+   */
+  override fun exitDay_s_7(ctx: DateTimeParser.Day_s_7Context) {
+
+    this.dateTimeBuilder.setDay(7)
+  }
+
+  /**
+   * The listener of the 'exit day_s_8' event.
+   *
+   * @param ctx the context of the 'day_s_8' rule just parsed
+   */
+  override fun exitDay_s_8(ctx: DateTimeParser.Day_s_8Context) {
+
+    this.dateTimeBuilder.setDay(8)
+  }
+
+  /**
+   * The listener of the 'exit day_s_9' event.
+   *
+   * @param ctx the context of the 'day_s_9' rule just parsed
+   */
+  override fun exitDay_s_9(ctx: DateTimeParser.Day_s_9Context) {
+
+    this.dateTimeBuilder.setDay(9)
+  }
+
+  /**
+   * The listener of the 'exit day_s_10' event.
+   *
+   * @param ctx the context of the 'day_s_10' rule just parsed
+   */
+  override fun exitDay_s_10(ctx: DateTimeParser.Day_s_10Context) {
+
+    this.dateTimeBuilder.setDay(10)
+  }
+
+  /**
+   * The listener of the 'exit day_s_11' event.
+   *
+   * @param ctx the context of the 'day_s_11' rule just parsed
+   */
+  override fun exitDay_s_11(ctx: DateTimeParser.Day_s_11Context) {
+
+    this.dateTimeBuilder.setDay(11)
+  }
+
+  /**
+   * The listener of the 'exit day_s_12' event.
+   *
+   * @param ctx the context of the 'day_s_12' rule just parsed
+   */
+  override fun exitDay_s_12(ctx: DateTimeParser.Day_s_12Context) {
+
+    this.dateTimeBuilder.setDay(12)
+  }
+
+  /**
+   * The listener of the 'exit day_s_13' event.
+   *
+   * @param ctx the context of the 'day_s_13' rule just parsed
+   */
+  override fun exitDay_s_13(ctx: DateTimeParser.Day_s_13Context) {
+
+    this.dateTimeBuilder.setDay(13)
+  }
+
+  /**
+   * The listener of the 'exit day_s_14' event.
+   *
+   * @param ctx the context of the 'day_s_14' rule just parsed
+   */
+  override fun exitDay_s_14(ctx: DateTimeParser.Day_s_14Context) {
+
+    this.dateTimeBuilder.setDay(14)
+  }
+
+  /**
+   * The listener of the 'exit day_s_15' event.
+   *
+   * @param ctx the context of the 'day_s_15' rule just parsed
+   */
+  override fun exitDay_s_15(ctx: DateTimeParser.Day_s_15Context) {
+
+    this.dateTimeBuilder.setDay(15)
+  }
+
+  /**
+   * The listener of the 'exit day_s_16' event.
+   *
+   * @param ctx the context of the 'day_s_16' rule just parsed
+   */
+  override fun exitDay_s_16(ctx: DateTimeParser.Day_s_16Context) {
+
+    this.dateTimeBuilder.setDay(16)
+  }
+
+  /**
+   * The listener of the 'exit day_s_17' event.
+   *
+   * @param ctx the context of the 'day_s_17' rule just parsed
+   */
+  override fun exitDay_s_17(ctx: DateTimeParser.Day_s_17Context) {
+
+    this.dateTimeBuilder.setDay(17)
+  }
+
+  /**
+   * The listener of the 'exit day_s_18' event.
+   *
+   * @param ctx the context of the 'day_s_18' rule just parsed
+   */
+  override fun exitDay_s_18(ctx: DateTimeParser.Day_s_18Context) {
+
+    this.dateTimeBuilder.setDay(18)
+  }
+
+  /**
+   * The listener of the 'exit day_s_19' event.
+   *
+   * @param ctx the context of the 'day_s_19' rule just parsed
+   */
+  override fun exitDay_s_19(ctx: DateTimeParser.Day_s_19Context) {
+
+    this.dateTimeBuilder.setDay(19)
+  }
+
+  /**
+   * The listener of the 'exit day_s_20' event.
+   *
+   * @param ctx the context of the 'day_s_20' rule just parsed
+   */
+  override fun exitDay_s_20(ctx: DateTimeParser.Day_s_20Context) {
+
+    this.dateTimeBuilder.setDay(20)
+  }
+
+  /**
+   * The listener of the 'exit day_s_21' event.
+   *
+   * @param ctx the context of the 'day_s_21' rule just parsed
+   */
+  override fun exitDay_s_21(ctx: DateTimeParser.Day_s_21Context) {
+
+    this.dateTimeBuilder.setDay(21)
+  }
+
+  /**
+   * The listener of the 'exit day_s_22' event.
+   *
+   * @param ctx the context of the 'day_s_22' rule just parsed
+   */
+  override fun exitDay_s_22(ctx: DateTimeParser.Day_s_22Context) {
+
+    this.dateTimeBuilder.setDay(22)
+  }
+
+  /**
+   * The listener of the 'exit day_s_23' event.
+   *
+   * @param ctx the context of the 'day_s_23' rule just parsed
+   */
+  override fun exitDay_s_23(ctx: DateTimeParser.Day_s_23Context) {
+
+    this.dateTimeBuilder.setDay(23)
+  }
+
+  /**
+   * The listener of the 'exit day_s_24' event.
+   *
+   * @param ctx the context of the 'day_s_24' rule just parsed
+   */
+  override fun exitDay_s_24(ctx: DateTimeParser.Day_s_24Context) {
+
+    this.dateTimeBuilder.setDay(24)
+  }
+
+  /**
+   * The listener of the 'exit day_s_25' event.
+   *
+   * @param ctx the context of the 'day_s_25' rule just parsed
+   */
+  override fun exitDay_s_25(ctx: DateTimeParser.Day_s_25Context) {
+
+    this.dateTimeBuilder.setDay(25)
+  }
+
+  /**
+   * The listener of the 'exit day_s_26' event.
+   *
+   * @param ctx the context of the 'day_s_26' rule just parsed
+   */
+  override fun exitDay_s_26(ctx: DateTimeParser.Day_s_26Context) {
+
+    this.dateTimeBuilder.setDay(26)
+  }
+
+  /**
+   * The listener of the 'exit day_s_27' event.
+   *
+   * @param ctx the context of the 'day_s_27' rule just parsed
+   */
+  override fun exitDay_s_27(ctx: DateTimeParser.Day_s_27Context) {
+
+    this.dateTimeBuilder.setDay(27)
+  }
+
+  /**
+   * The listener of the 'exit day_s_28' event.
+   *
+   * @param ctx the context of the 'day_s_28' rule just parsed
+   */
+  override fun exitDay_s_28(ctx: DateTimeParser.Day_s_28Context) {
+
+    this.dateTimeBuilder.setDay(28)
+  }
+
+  /**
+   * The listener of the 'exit day_s_29' event.
+   *
+   * @param ctx the context of the 'day_s_29' rule just parsed
+   */
+  override fun exitDay_s_29(ctx: DateTimeParser.Day_s_29Context) {
+
+    this.dateTimeBuilder.setDay(29)
+  }
+
+  /**
+   * The listener of the 'exit day_s_30' event.
+   *
+   * @param ctx the context of the 'day_s_30' rule just parsed
+   */
+  override fun exitDay_s_30(ctx: DateTimeParser.Day_s_30Context) {
+
+    this.dateTimeBuilder.setDay(30)
+  }
+
+  /**
+   * The listener of the 'exit day_s_31' event.
+   *
+   * @param ctx the context of the 'day_s_31' rule just parsed
+   */
+  override fun exitDay_s_31(ctx: DateTimeParser.Day_s_31Context) {
+
+    this.dateTimeBuilder.setDay(31)
+  }
+
+  /**
    * The listener of the 'exit day_num' event.
    *
    * @param ctx the context of the 'day_num' rule just parsed
