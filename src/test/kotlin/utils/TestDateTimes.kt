@@ -14,46 +14,45 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 
 /**
- *
+ * Contains list of [DateTime]s for tests.
  */
 object TestDateTimes {
 
   /**
+   * The name of the JSON file containing the test date times, placed in the 'resources'.
+   * The JSON in it is a list of objects representing a test.
    *
+   * All tests have 'text' and 'type' fields. Depending on the value of 'type' they can contain adding specific fields.
+   *
+   * The 'type' field represents the type of [DateTime] contained in the 'text' and it can have one of the following
+   * values: 'date', 'time', 'datetime', 'null'.
    */
   private const val RES_FILENAME = "test_date_times.json"
 
   /**
-   *
+   * A padding text to put before a date-time text.
    */
   private const val PADDING_BEFORE = "Some padding before "
 
   /**
-   *
+   * A padding text to put after a date-time text.
    */
   private const val PADDING_AFTER = " and some padding after."
 
   /**
-   *
+   * A list of pairs with a text and the date-time object contained in it.
    */
   val textsToDateTimes = mutableListOf<Pair<String, DateTime>>()
 
   /**
-   *
+   * A list of texts that do not contain any date-time.
    */
   val emptyDateTimesTexts = mutableListOf<String>()
 
   /**
-   *
+   * Initialize the lists of texts and date-times.
    */
   init {
-    this.readDateTimes()
-  }
-
-  /**
-   *
-   */
-  private fun readDateTimes() {
 
     val absResFilename: String = TestDateTimes::class.java.classLoader.getResource(this.RES_FILENAME).file
     val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
@@ -66,14 +65,17 @@ object TestDateTimes {
       if (type == "null")
         this.emptyDateTimesTexts.add(text)
       else
-        this.addDateTimes(it)
+        this.addDateTimeTests(it)
     }
   }
 
   /**
+   * Add tests related to an object of the test file.
+   * For each object 4 tests are added, applying combinations of padding texts before and after the 'text'.
    *
+   * @param jsonObj a JSON object read from the test resource file
    */
-  private fun addDateTimes(jsonObj: JsonObject) {
+  private fun addDateTimeTests(jsonObj: JsonObject) {
 
     val text: String = jsonObj.string("text")!!
     val startWithPad: Int = this.PADDING_BEFORE.length
@@ -87,7 +89,12 @@ object TestDateTimes {
   }
 
   /**
+   * Add a [DateTime] test.
    *
+   * @param jsonObj the JSON object of the test
+   * @param text the text of the test
+   * @param start the char index at which the expected date-time starts in the [text] (inclusive)
+   * @param end the char index at which the expected date-time ends in the [text] (inclusive)
    */
   private fun addDateTime(jsonObj: JsonObject, text: String, start: Int, end: Int) {
 
@@ -95,20 +102,26 @@ object TestDateTimes {
 
     this.textsToDateTimes.add(
       text to when (type) {
-        "date" -> this.buildDate(jsonObj = jsonObj, startIndex = start, endIndex = end)
-        "time" -> this.buildTime(jsonObj = jsonObj, startIndex = start, endIndex = end)
-        "datetime" -> this.buildDateTime(jsonObj = jsonObj, startIndex = start, endIndex = end)
+        "date" -> this.buildDate(jsonObj = jsonObj, start = start, end = end)
+        "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
+        "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
         else -> throw RuntimeException("Invalid DateTime type: $type")
       }
     )
   }
 
   /**
+   * Build a [Date] object.
    *
+   * @param jsonObj the JSON object containing the information of the date
+   * @param start the char index at which the expected date starts in the text (inclusive)
+   * @param end the char index at which the expected date ends in the text (inclusive)
+   *
+   * @return a date object
    */
-  private fun buildDate(jsonObj: JsonObject, startIndex: Int, endIndex: Int) = Date(
-    startToken = startIndex,
-    endToken = endIndex,
+  private fun buildDate(jsonObj: JsonObject, start: Int, end: Int) = Date(
+    startToken = start,
+    endToken = end,
     day = jsonObj.int("D"),
     weekDay = jsonObj.int("week-D"),
     month = jsonObj.int("M"),
@@ -117,36 +130,48 @@ object TestDateTimes {
   )
 
   /**
+   * Build a [Time] object.
    *
+   * @param jsonObj the JSON object containing the information of the time
+   * @param start the char index at which the expected time starts in the text (inclusive)
+   * @param end the char index at which the expected time ends in the text (inclusive)
+   *
+   * @return a time object
    */
-  private fun buildTime(jsonObj: JsonObject, startIndex: Int, endIndex: Int) = Time(
-    startToken = startIndex,
-    endToken = endIndex,
+  private fun buildTime(jsonObj: JsonObject, start: Int, end: Int) = Time(
+    startToken = start,
+    endToken = end,
     sec = jsonObj.int("s"),
     min = jsonObj.int("m"),
     hour = jsonObj.int("h")
   )
 
   /**
+   * Build a [DateTimeSimple] object.
    *
+   * @param jsonObj the JSON object containing the information of the date-time
+   * @param start the char index at which the expected date-time starts in the text (inclusive)
+   * @param end the char index at which the expected date-time ends in the text (inclusive)
+   *
+   * @return a date-time object
    */
-  private fun buildDateTime(jsonObj: JsonObject, startIndex: Int, endIndex: Int): DateTimeSimple {
+  private fun buildDateTime(jsonObj: JsonObject, start: Int, end: Int): DateTimeSimple {
 
     val dateObj: JsonObject = jsonObj.obj("date")!!
     val timeObj: JsonObject = jsonObj.obj("time")!!
 
     return DateTimeSimple(
-      startToken = startIndex,
-      endToken = endIndex,
+      startToken = start,
+      endToken = end,
       date = this.buildDate(
         jsonObj = dateObj,
-        startIndex = dateObj.int("start")!!,
-        endIndex = dateObj.int("end")!!
+        start = dateObj.int("start")!!,
+        end = dateObj.int("end")!!
       ),
       time = this.buildTime(
         jsonObj = timeObj,
-        startIndex = timeObj.int("start")!!,
-        endIndex = timeObj.int("end")!!
+        start = timeObj.int("start")!!,
+        end = timeObj.int("end")!!
       )
     )
   }
