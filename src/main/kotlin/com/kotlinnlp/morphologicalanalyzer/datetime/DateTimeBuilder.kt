@@ -34,52 +34,52 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    * The day of the currently building date-time.
    */
-  private var day: Int? = null
+  var day: Int? = null
 
   /**
    * The week day of the currently building date-time.
    */
-  private var weekDay: Int? = null
+  var weekDay: Int? = null
 
   /**
    * The month of the currently building date-time.
    */
-  private var month: Int? = null
+  var month: Int? = null
 
   /**
    * The year of the currently building date-time.
    */
-  private var year: Int? = null
+  var year: Int? = null
 
   /**
    * The year abbr. indication of the currently building date-time.
    */
-  private var yearAbbr: Boolean = false
+  var yearAbbr: Boolean = false
 
   /**
    * The hour of the currently building date-time.
    */
-  private var hour: Int? = null
+  var hour: Int? = null
 
   /**
    * The minute of the currently building date-time.
    */
-  private var min: Int? = null
+  var min: Int? = null
 
   /**
    * The second of the currently building date-time.
    */
-  private var sec: Int? = null
+  var sec: Int? = null
 
   /**
    * The millisecond of the currently building date-time.
    */
-  private var millisec: Int? = null
+  var millisec: Int? = null
 
   /**
    * The timezone of the currently building date-time.
    */
-  private var timezone: TimeZone? = null
+  var timezone: TimeZone? = null
 
   /**
    *
@@ -120,77 +120,6 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
       this.tokens.indexOfFirst { it.startAt == startIndex },
       this.tokens.indexOfFirst { it.endAt == endIndex }
     )
-  }
-
-  /**
-   *
-   */
-  fun setDay(value: Int) {
-    this.day = value
-  }
-
-  /**
-   *
-   */
-  fun setWeekDay(value: Int) {
-    this.weekDay = value
-  }
-
-  /**
-   *
-   */
-  fun setMonth(value: Int) {
-    this.month = value
-  }
-
-  /**
-   *
-   */
-  fun setYear(value: Int) {
-    this.year = value
-  }
-
-  /**
-   *
-   */
-  fun setYearAbbr(value: Int) {
-    this.year = value
-    this.yearAbbr = true
-  }
-
-  /**
-   *
-   */
-  fun setHour(value: Int) {
-    this.hour = value
-  }
-
-  /**
-   *
-   */
-  fun setMin(value: Int) {
-    this.min = value
-  }
-
-  /**
-   *
-   */
-  fun setSec(value: Int) {
-    this.sec = value
-  }
-
-  /**
-   *
-   */
-  fun setMillisec(value: Int) {
-    this.millisec = value
-  }
-
-  /**
-   *
-   */
-  fun setTimezone(value: TimeZone) {
-    this.timezone = value
   }
 
   /**
