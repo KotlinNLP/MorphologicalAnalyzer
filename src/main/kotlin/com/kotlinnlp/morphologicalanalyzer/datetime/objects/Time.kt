@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 
+import java.util.*
+
 /**
  * A time object.
  * At least one of [sec], [min] and [hour] is not null.
@@ -17,6 +19,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
  * @property min the number of the minute in the range [0, 59] (can be null)
  * @property sec the number of the second in the range [0, 59] (can be null)
  * @property millisec the number of the millisecond in the range [0, 999] (can be null)
+ * @property timezone the timezone (can be null)
  */
 data class Time(
   override val startToken: Int,
@@ -24,7 +27,8 @@ data class Time(
   val hour: Int?,
   val min: Int?,
   val sec: Int?,
-  val millisec: Int?
+  val millisec: Int?,
+  val timezone: TimeZone?
 ) : DateTime {
 
   /**
@@ -35,15 +39,16 @@ data class Time(
   }
 
   /**
-   * Get the string representing this time in the following standard format: hh:mm:ss.ms.
+   * Get the string representing this time in the following standard format: hh:mm:ss.ms[ (TIMEZONE)].
    *
    * @return the string representing this time
    */
-  override fun toStandardFormat(): String = "%s:%s:%s.%s".format(
+  override fun toStandardFormat(): String = "%s:%s:%s.%s%s".format(
     this.hour?.let { "%02d".format(it) } ?: "-",
     this.min?.let { "%02d".format(it) } ?: "-",
     this.sec?.let { "%02d".format(it) } ?: "-",
-    this.millisec?.let { "%02d".format(it) } ?: "-"
+    this.millisec?.let { "%02d".format(it) } ?: "-",
+    this.timezone?.let { " ${it.toZoneId()}" } ?: ""
   )
 
   /**

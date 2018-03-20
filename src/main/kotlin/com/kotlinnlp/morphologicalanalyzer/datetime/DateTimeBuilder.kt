@@ -12,6 +12,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.neuraltokenizer.Token
+import java.util.*
 
 /**
  * The helper to build a [DateTimeSimple].
@@ -74,6 +75,11 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
    * The millisecond of the currently building date-time.
    */
   private var millisec: Int? = null
+
+  /**
+   * The timezone of the currently building date-time.
+   */
+  private var timezone: TimeZone? = null
 
   /**
    *
@@ -183,6 +189,13 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
+  fun setTimezone(value: TimeZone) {
+    this.timezone = value
+  }
+
+  /**
+   *
+   */
   private fun buildDate(): Date? = this.dateTokens?.let {
     Date(
       startToken = it.start,
@@ -205,7 +218,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
       hour = this.hour,
       min = this.min,
       sec = this.sec,
-      millisec = this.millisec
+      millisec = this.millisec,
+      timezone = this.timezone
     )
   }
 }

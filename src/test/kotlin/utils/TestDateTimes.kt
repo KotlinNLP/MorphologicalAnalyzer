@@ -12,6 +12,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
+import java.util.*
 
 /**
  * Contains list of [DateTime]s for tests.
@@ -144,7 +145,8 @@ object TestDateTimes {
     hour = jsonObj.int("h"),
     min = jsonObj.int("m"),
     sec = jsonObj.int("s"),
-    millisec = jsonObj.int("ms")
+    millisec = jsonObj.int("ms"),
+    timezone = jsonObj.string("tz")?.let { TimeZone.getTimeZone(it) }
   )
 
   /**
