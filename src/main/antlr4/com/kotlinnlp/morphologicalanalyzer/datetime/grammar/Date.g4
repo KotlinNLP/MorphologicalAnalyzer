@@ -7,16 +7,16 @@ import LexerEN, NumbersParser;
 // -----
 
 date 
-    : day date_sep month date_sep year // D/M/Y
-    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num // WeekDay ,? Month D
-    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY(19XX-20XX)
-    | day SPACE_SEP? month_str SPACE_SEP? year // D Month Y
-    | day SPACE_SEP of_sep month_str SPACE_SEP of_sep year // D of? Month of? Y
+    : date_canonical // Y-M-D
+    | day date_sep month date_sep year // D/M/Y
     | month date_sep day date_sep year // M/D/Y
+    | year date_sep month date_sep day // Y/M/D
+    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num ((SPACE_SEP? COMMA)? SPACE_SEP year)? // WeekDay ,? Month D Y?
+    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY(19XX-20XX)
+    | day (SPACE_SEP of_sep?)? month_str (SPACE_SEP? COMMA)? (SPACE_SEP of_sep?)? year // D of? Month ,? of? Y
     | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY(19XX-20XX)
     | month_str SPACE_SEP day (SPACE_SEP? COMMA SPACE_SEP? | SPACE_SEP) of_sep? year // Month D ,? of? Y
-    | year date_sep month date_sep day // Y/M/D
-    | year SPACE_SEP month_str of_sep? day // Y Month of? D
+    | year SPACE_SEP month_str (SPACE_SEP of_sep)? day // Y Month of? D
     | day date_sep month // D/M
     | month date_sep day // M/D
     | day SPACE_SEP of_sep? month_str // D of? Month
@@ -30,6 +30,8 @@ date
 
 date_sep : DASH | SLASH | DOT ;
 of_sep : OF SPACE_SEP ;
+
+date_canonical : year_num DASH month_num DASH day_num_canonical ;
 
 // -----
 // -- YEAR
@@ -90,11 +92,19 @@ day
     | (THE SPACE_SEP)? (day_num | day_s_str)
     ;
 
-day_num
-    : (D_1 | D_01 | D_21 | D_31) (SPACE_SEP? DAY_ST)?
-    | (D_2 | D_02 | D_22) (SPACE_SEP? DAY_ND)?
-    | (D_3 | D_03 | D_23) (SPACE_SEP? DAY_RD)?
-    | d_0_31 (SPACE_SEP? DAY_TH)?
+day_num : day_num_th | day_num_canonical | d_0_31 ;
+
+day_num_canonical
+    : D_01 | D_21 | D_31
+    | D_02 | D_22
+    | D_03 | D_23
+    ;
+
+day_num_th
+    : (D_1 | D_01 | D_21 | D_31) SPACE_SEP? DAY_ST
+    | (D_2 | D_02 | D_22) SPACE_SEP? DAY_ND
+    | (D_3 | D_03 | D_23) SPACE_SEP? DAY_RD
+    | d_0_31 SPACE_SEP? DAY_TH
     ;
 
 day_s_str
