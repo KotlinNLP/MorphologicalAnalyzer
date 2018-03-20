@@ -21,6 +21,7 @@ OF : D I | D E L ;
 // -----
 
 O_CLOCK : I N SPACE_SEP P U N T O ;
+TIME_H : H | O R E ;
 
 // -----
 // -- Days

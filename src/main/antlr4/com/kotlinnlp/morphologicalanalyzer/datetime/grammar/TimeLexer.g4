@@ -2,7 +2,6 @@ lexer grammar TimeLexer;
 
 import Letters;
 
-TIME_H : H ;
 TIME_T : T ;
 TIME_Z : Z ;
 

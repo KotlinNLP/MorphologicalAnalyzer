@@ -21,6 +21,7 @@ OF : O F ;
 // -----
 
 O_CLOCK : O SPACE_SEP? APEX? SPACE_SEP? C L O C K ;
+TIME_H : H ;
 
 // -----
 // -- Days
