@@ -165,13 +165,13 @@ object TestDateTimes {
       endToken = end,
       date = this.buildDate(
         jsonObj = dateObj,
-        start = dateObj.int("start")!!,
-        end = dateObj.int("end")!!
+        start = start + dateObj.int("start")!!, // the field in the object is an offset
+        end = start + dateObj.int("end")!! // the field in the object is an offset
       ),
       time = this.buildTime(
         jsonObj = timeObj,
-        start = timeObj.int("start")!!,
-        end = timeObj.int("end")!!
+        start = start + timeObj.int("start")!!, // the field in the object is an offset
+        end = start + timeObj.int("end")!! // the field in the object is an offset
       )
     )
   }
