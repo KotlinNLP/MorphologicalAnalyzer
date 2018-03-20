@@ -8,22 +8,24 @@ import LexerEN, NumbersParser;
 
 date 
     : day date_sep month date_sep year // D/M/Y
-    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY
-    | day SPACE_SEP month_str SPACE_SEP year // D Month Y
-    | day SPACE_SEP of_sep? month_str SPACE_SEP of_sep? year // D of? Month of? Y
+    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num // WeekDay ,? Month D
+    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY(19XX-20XX)
+    | day SPACE_SEP? month_str SPACE_SEP? year // D Month Y
+    | day SPACE_SEP of_sep month_str SPACE_SEP of_sep year // D of? Month of? Y
     | month date_sep day date_sep year // M/D/Y
-    | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY
-    | month_str SPACE_SEP day SPACE_SEP of_sep? year // Month D of? Y
+    | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY(19XX-20XX)
+    | month_str SPACE_SEP day (SPACE_SEP? COMMA SPACE_SEP? | SPACE_SEP) of_sep? year // Month D ,? of? Y
     | year date_sep month date_sep day // Y/M/D
     | year SPACE_SEP month_str of_sep? day // Y Month of? D
     | day date_sep month // D/M
-    | day SPACE_SEP of_sep? month_str // D of? Month
     | month date_sep day // M/D
-    | month_str SPACE_SEP day // Month D
-    | year_APEX
-    | year_modern
-    | month_str
-    | day_week
+    | day SPACE_SEP of_sep? month_str // D of? Month
+    | month_str SPACE_SEP? day // Month D
+    | month_str SPACE_SEP? year // Month Y
+    | year_APEX // 'YY
+    | year_modern // YYYY(19XX-20XX)
+    | month_str // Month
+    | day_week // WeekDay
     ;
 
 date_sep : DASH | SLASH | DOT ;
@@ -92,7 +94,7 @@ day_num
     : (D_1 | D_01 | D_21 | D_31) (SPACE_SEP? DAY_ST)?
     | (D_2 | D_02 | D_22) (SPACE_SEP? DAY_ND)?
     | (D_3 | D_03 | D_23) (SPACE_SEP? DAY_RD)?
-    | d_0_31 DAY_TH?
+    | d_0_31 (SPACE_SEP? DAY_TH)?
     ;
 
 day_s_str
