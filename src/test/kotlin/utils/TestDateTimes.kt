@@ -75,22 +75,14 @@ object TestDateTimes {
   private fun addDateTimes(jsonObj: JsonObject) {
 
     val text: String = jsonObj.string("text")!!
+    val startWithPad: Int = this.paddingBefore.length
+    val endWithPad: Int = this.paddingBefore.length + text.lastIndex
+    val allPaddedText: String = this.paddingBefore + text + this.paddingAfter
 
     this.addDateTime(jsonObj = jsonObj, text = text, start = 0, end = text.lastIndex)
-
     this.addDateTime(jsonObj = jsonObj, text = text + this.paddingAfter, start = 0, end = text.lastIndex)
-
-    this.addDateTime(
-      jsonObj = jsonObj,
-      text = this.paddingBefore + text,
-      start = this.paddingBefore.length,
-      end = this.paddingBefore.length + text.lastIndex)
-
-    this.addDateTime(
-      jsonObj = jsonObj,
-      text = this.paddingBefore + text + this.paddingAfter,
-      start = this.paddingBefore.length,
-      end = this.paddingBefore.length + text.lastIndex)
+    this.addDateTime(jsonObj = jsonObj, text = this.paddingBefore + text, start = startWithPad, end = endWithPad)
+    this.addDateTime(jsonObj = jsonObj, text = allPaddedText, start = startWithPad, end = endWithPad)
   }
 
   /**
