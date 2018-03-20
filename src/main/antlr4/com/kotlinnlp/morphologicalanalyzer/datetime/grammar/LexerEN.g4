@@ -31,7 +31,7 @@ SUN : S U N D A Y ;
 MON_ABBR : M O N DOT? ;
 TUE_ABBR : T U E DOT? ;
 WED_ABBR : W E D DOT? ;
-THU_ABBR : T U E DOT? ;
+THU_ABBR : T H U DOT? ;
 FRI_ABBR : F R I DOT? ;
 SAT_ABBR : S A T DOT? ;
 SUN_ABBR : S U N DOT? ;
