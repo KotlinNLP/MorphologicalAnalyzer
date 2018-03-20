@@ -29,6 +29,8 @@ complex_datetime
     | date ws AT ws time
     | datetime_utc
     | date TIME_T time
+    | time SPACE_SEP OF SPACE_SEP date
+    | time SPACE_SEP ON SPACE_SEP date // specific for EN
     ;
 
 datetime_utc : date TIME_T time TIME_Z ;
