@@ -21,17 +21,17 @@ object TestDateTimes {
   /**
    *
    */
-  private val resFilename: String = TestDateTimes::class.java.classLoader.getResource("test_date_times.json").file
+  private const val RES_FILENAME = "test_date_times.json"
 
   /**
    *
    */
-  private val paddingBefore = "Some padding before "
+  private const val PADDING_BEFORE = "Some padding before "
 
   /**
    *
    */
-  private val paddingAfter = " and some padding after."
+  private const val PADDING_AFTER = " and some padding after."
 
   /**
    *
@@ -55,7 +55,8 @@ object TestDateTimes {
    */
   private fun readDateTimes() {
 
-    val jsonList: JsonArray<*> = Parser().parse(resFilename) as JsonArray<*>
+    val absResFilename: String = TestDateTimes::class.java.classLoader.getResource(this.RES_FILENAME).file
+    val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
 
     jsonList.map { it as JsonObject
 
@@ -75,13 +76,13 @@ object TestDateTimes {
   private fun addDateTimes(jsonObj: JsonObject) {
 
     val text: String = jsonObj.string("text")!!
-    val startWithPad: Int = this.paddingBefore.length
-    val endWithPad: Int = this.paddingBefore.length + text.lastIndex
-    val allPaddedText: String = this.paddingBefore + text + this.paddingAfter
+    val startWithPad: Int = this.PADDING_BEFORE.length
+    val endWithPad: Int = this.PADDING_BEFORE.length + text.lastIndex
+    val allPaddedText: String = this.PADDING_BEFORE + text + this.PADDING_AFTER
 
     this.addDateTime(jsonObj = jsonObj, text = text, start = 0, end = text.lastIndex)
-    this.addDateTime(jsonObj = jsonObj, text = text + this.paddingAfter, start = 0, end = text.lastIndex)
-    this.addDateTime(jsonObj = jsonObj, text = this.paddingBefore + text, start = startWithPad, end = endWithPad)
+    this.addDateTime(jsonObj = jsonObj, text = text + this.PADDING_AFTER, start = 0, end = text.lastIndex)
+    this.addDateTime(jsonObj = jsonObj, text = this.PADDING_BEFORE + text, start = startWithPad, end = endWithPad)
     this.addDateTime(jsonObj = jsonObj, text = allPaddedText, start = startWithPad, end = endWithPad)
   }
 
