@@ -97,6 +97,21 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit time_suffix' event.
+   *
+   * @param ctx the context of the 'time_suffix' rule just parsed
+   */
+  override fun exitTime_suffix(ctx: DateTimeParser.Time_suffixContext) {
+
+    this.dateTimeBuilder.hour?.let {
+      when (ctx.text.toLowerCase()) {
+        "am" -> if (it == 12) this.dateTimeBuilder.hour = 0
+        "pm" -> if (it <= 11) this.dateTimeBuilder.hour = it + 12
+      }
+    }
+  }
+
+  /**
    * The listener of the 'exit year_num' event.
    *
    * @param ctx the context of the 'year_num' rule just parsed
