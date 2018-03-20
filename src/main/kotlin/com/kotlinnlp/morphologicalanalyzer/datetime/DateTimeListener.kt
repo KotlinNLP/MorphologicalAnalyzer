@@ -11,6 +11,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.neuraltokenizer.Token
+import java.util.*
 
 /**
  * An event listener for an ANTRL DateTime Parser.
@@ -63,6 +64,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
     this.dateTimes.add(
       this.dateTimeBuilder.getDateTime(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
     )
+  }
+
+  /**
+   * The listener of the 'exit datetime_utc' event.
+   *
+   * @param ctx the context of the 'datetime_utc' rule just parsed
+   */
+  override fun exitDatetime_utc(ctx: DateTimeParser.Datetime_utcContext) {
+
+    this.dateTimeBuilder.setTimezone(TimeZone.getTimeZone("UTC"))
   }
 
   /**
