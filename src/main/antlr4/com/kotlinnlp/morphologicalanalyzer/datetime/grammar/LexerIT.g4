@@ -15,6 +15,7 @@ AND : E ;
 AT  : A L | A L L E ;
 THE : I L ;
 OF : D I | D E L ;
+ON : DOT ; // not defined for IT
 
 // -----
 // -- Special expressions

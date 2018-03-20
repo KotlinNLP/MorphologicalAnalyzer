@@ -15,6 +15,7 @@ AND : A N D ;
 AT  : A T ;
 THE : T H E ;
 OF : O F ;
+ON : O N ;
 
 // -----
 // -- Special expressions
