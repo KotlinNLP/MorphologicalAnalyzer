@@ -86,6 +86,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit year_num' event.
+   *
+   * @param ctx the context of the 'year_num' rule just parsed
+   */
+  override fun exitYear_num(ctx: DateTimeParser.Year_numContext) {
+
+    this.dateTimeBuilder.setYear(ctx.text.toInt())
+  }
+
+  /**
    * The listener of the 'exit year_full' event.
    *
    * @param ctx the context of the 'year_full' rule just parsed
@@ -255,6 +265,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitMonth_dec(ctx: DateTimeParser.Month_decContext) {
 
     this.dateTimeBuilder.setMonth(11)
+  }
+
+  /**
+   * The listener of the 'exit day_num_canonical' event.
+   *
+   * @param ctx the context of the 'day_num_canonical' rule just parsed
+   */
+  override fun exitDay_num_canonical(ctx: DateTimeParser.Day_num_canonicalContext) {
+
+    this.dateTimeBuilder.setDay(ctx.text.toInt())
   }
 
   /**
@@ -578,6 +598,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit day_num_th' event.
+   *
+   * @param ctx the context of the 'day_num_th' rule just parsed
+   */
+  override fun exitDay_num_th(ctx: DateTimeParser.Day_num_thContext) {
+
+    this.dateTimeBuilder.setDay(ctx.text.takeWhile { it.isDigit() }.toInt()) // e.g. trim the non-digit part of '21st'
+  }
+
+  /**
    * The listener of the 'exit day_mon' event.
    *
    * @param ctx the context of the 'day_mon' rule just parsed
@@ -658,6 +688,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit hour_00' event.
+   *
+   * @param ctx the context of the 'hour_00' rule just parsed
+   */
+  override fun exitHour_00(ctx: DateTimeParser.Hour_00Context) {
+
+    this.dateTimeBuilder.setHour(ctx.text.toInt())
+  }
+
+  /**
    * The listener of the 'exit min' event.
    *
    * @param ctx the context of the 'min' rule just parsed
@@ -667,11 +707,47 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit min_00' event.
+   *
+   * @param ctx the context of the 'min_00' rule just parsed
+   */
+  override fun exitMin_00(ctx: DateTimeParser.Min_00Context) {
+    this.dateTimeBuilder.setMin(ctx.text.toInt())
+  }
+
+  /**
+   * The listener of the 'exit sec_00' event.
+   *
+   * @param ctx the context of the 'sec_00' rule just parsed
+   */
+  override fun exitSec_00(ctx: DateTimeParser.Sec_00Context) {
+    this.dateTimeBuilder.setSec(ctx.text.toInt())
+  }
+
+  /**
    * The listener of the 'exit sec' event.
    *
    * @param ctx the context of the 'sec' rule just parsed
    */
   override fun exitSec(ctx: DateTimeParser.SecContext) {
     this.dateTimeBuilder.setSec(ctx.text.toInt())
+  }
+
+  /**
+   * The listener of the 'exit millisec' event.
+   *
+   * @param ctx the context of the 'millisec' rule just parsed
+   */
+  override fun exitMillisec(ctx: DateTimeParser.MillisecContext) {
+    this.dateTimeBuilder.setMillisec(ctx.text.toInt())
+  }
+
+  /**
+   * The listener of the 'exit millisec_000' event.
+   *
+   * @param ctx the context of the 'millisec_000' rule just parsed
+   */
+  override fun exitMillisec_000(ctx: DateTimeParser.Millisec_000Context) {
+    this.dateTimeBuilder.setMillisec(ctx.text.toInt())
   }
 }
