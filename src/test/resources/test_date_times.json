@@ -97,6 +97,12 @@
     "date": {"D": 20, "week-D": 5, "M": 9, "start": 11, "end": 21},
     "time": {"h": 19, "m": 30, "start": 0, "end": 6}
   },
+  {
+    "type": "datetime",
+    "text": "9am on Saturday",
+    "date": {"week-D": 6, "start": 7, "end": 14},
+    "time": {"h": 9, "start": 0, "end": 2}
+  },
   {"type": "null", "text": "on the 15"},
   {"type": "null", "text": "h9"}
 ]
