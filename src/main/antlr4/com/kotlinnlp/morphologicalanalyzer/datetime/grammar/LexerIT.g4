@@ -17,6 +17,12 @@ THE : I L ;
 OF : D I | D E L ;
 
 // -----
+// -- Special expressions
+// -----
+
+O_CLOCK : I N SPACE_SEP P U N T O ;
+
+// -----
 // -- Days
 // -----
 

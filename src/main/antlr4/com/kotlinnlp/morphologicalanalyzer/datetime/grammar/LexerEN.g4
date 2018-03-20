@@ -17,6 +17,12 @@ THE : T H E ;
 OF : O F ;
 
 // -----
+// -- Special expressions
+// -----
+
+O_CLOCK : O SPACE_SEP? APEX? SPACE_SEP? C L O C K ;
+
+// -----
 // -- Days
 // -----
 
