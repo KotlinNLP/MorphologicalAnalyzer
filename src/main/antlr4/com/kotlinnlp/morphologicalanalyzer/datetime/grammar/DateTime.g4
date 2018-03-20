@@ -27,5 +27,8 @@ datetime : complex_datetime | time | date ;
 complex_datetime
     : date SPACE_SEP time
     | date ws AT ws time
-    | date TIME_T time TIME_Z?
+    | datetime_utc
+    | date TIME_T time
     ;
+
+datetime_utc : date TIME_T time TIME_Z ;
