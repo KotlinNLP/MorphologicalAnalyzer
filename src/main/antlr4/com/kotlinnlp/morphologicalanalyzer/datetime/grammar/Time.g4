@@ -1,4 +1,4 @@
-grammar Times;
+grammar Time;
 
 import LexerEN, NumbersParser;
 

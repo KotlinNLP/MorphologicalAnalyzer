@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import LexerEN, Dates, Times;
+import LexerEN, Date, Time;
 
 // -----
 // -- Input text

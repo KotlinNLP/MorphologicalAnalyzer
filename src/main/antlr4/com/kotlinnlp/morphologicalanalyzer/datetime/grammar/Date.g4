@@ -1,4 +1,4 @@
-grammar Dates;
+grammar Date;
 
 import LexerEN, NumbersParser;
 
