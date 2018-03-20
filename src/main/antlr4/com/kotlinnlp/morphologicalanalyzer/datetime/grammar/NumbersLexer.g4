@@ -44,6 +44,7 @@ D_60_99 : [6-9] DIGIT ;
 // -- Numbers with more then 2 digits
 // -----
 
+D_000_099   : D_0 DIGIT DIGIT ;
 D_100_999   : [1-9] DIGIT DIGIT ;
 D_1000_1899 : D_1 [0-8] DIGIT DIGIT ;
 D_1900_2099 : (D_1 D_9 | D_2 D_0) DIGIT DIGIT ;
