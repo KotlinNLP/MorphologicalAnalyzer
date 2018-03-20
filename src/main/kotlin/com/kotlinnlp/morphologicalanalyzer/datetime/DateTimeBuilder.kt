@@ -56,19 +56,24 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   private var yearAbbr: Boolean = false
 
   /**
-   * The sec of the currently building date-time.
+   * The hour of the currently building date-time.
    */
-  private var sec: Int? = null
+  private var hour: Int? = null
 
   /**
-   * The min of the currently building date-time.
+   * The minute of the currently building date-time.
    */
   private var min: Int? = null
 
   /**
-   * The hour of the currently building date-time.
+   * The second of the currently building date-time.
    */
-  private var hour: Int? = null
+  private var sec: Int? = null
+
+  /**
+   * The millisecond of the currently building date-time.
+   */
+  private var millisec: Int? = null
 
   /**
    *
@@ -150,8 +155,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun setSec(value: Int) {
-    this.sec = value
+  fun setHour(value: Int) {
+    this.hour = value
   }
 
   /**
@@ -164,8 +169,15 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun setHour(value: Int) {
-    this.hour = value
+  fun setSec(value: Int) {
+    this.sec = value
+  }
+
+  /**
+   *
+   */
+  fun setMillisec(value: Int) {
+    this.millisec = value
   }
 
   /**
@@ -190,9 +202,10 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     Time(
       startToken = it.start,
       endToken = it.endInclusive,
-      sec = this.sec,
+      hour = this.hour,
       min = this.min,
-      hour = this.hour
+      sec = this.sec,
+      millisec = this.millisec
     )
   }
 }

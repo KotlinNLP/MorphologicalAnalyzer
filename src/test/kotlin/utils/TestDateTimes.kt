@@ -141,9 +141,10 @@ object TestDateTimes {
   private fun buildTime(jsonObj: JsonObject, start: Int, end: Int) = Time(
     startToken = start,
     endToken = end,
-    sec = jsonObj.int("s"),
+    hour = jsonObj.int("h"),
     min = jsonObj.int("m"),
-    hour = jsonObj.int("h")
+    sec = jsonObj.int("s"),
+    millisec = jsonObj.int("ms")
   )
 
   /**

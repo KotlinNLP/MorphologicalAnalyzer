@@ -31,9 +31,10 @@ All the following fields are optional, but at least one of `D`, `week-D`, `M` or
 
 All the following fields are optional, but at least one must be present. 
 
-* `s`: the seconds as int number in the range [0, 59]
-* `m`: the minutes as int number in the range [0, 59]
 * `h`: the hours as int number in the range [0, 23]
+* `m`: the minutes as int number in the range [0, 59]
+* `s`: the seconds as int number in the range [0, 59]
+* `ms`: the milliseconds as int number in the range [0, 999]
 
 #### Adding fields for the `type` "datetime"
 
