@@ -8,7 +8,10 @@ TIME_Z : Z ;
 TIME_SUFFIX
     : A DOT? M DOT?
     | P DOT? M DOT?
-    | U T C
+    ;
+
+TIME_ZONE
+    : U T C
     | G M T
     | C E T
     | C E S T
