@@ -5,8 +5,10 @@ OTHER_SPACES : [\r\t] ;
 
 DOT       : '.' ;
 COMMA     : ',' ;
-APEX      : ['’] ;
 COLON     : ':' ;
 SEMICOLON : ';' ;
+APEX      : ['’] ;
 DASH      : '-' ;
 SLASH     : '/' ;
+
+OTHER_SYMBOLS : [<>()[\]{}!?|\\^"“”‘] ;
