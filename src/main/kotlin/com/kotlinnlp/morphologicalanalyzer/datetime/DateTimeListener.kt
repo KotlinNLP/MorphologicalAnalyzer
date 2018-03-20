@@ -73,7 +73,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDatetime_utc(ctx: DateTimeParser.Datetime_utcContext) {
 
-    this.dateTimeBuilder.setTimezone(TimeZone.getTimeZone("UTC"))
+    this.dateTimeBuilder.timezone = TimeZone.getTimeZone("UTC")
   }
 
   /**
@@ -103,7 +103,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitYear_num(ctx: DateTimeParser.Year_numContext) {
 
-    this.dateTimeBuilder.setYear(ctx.text.toInt())
+    this.dateTimeBuilder.year = ctx.text.toInt()
   }
 
   /**
@@ -113,7 +113,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitYear_full(ctx: DateTimeParser.Year_fullContext) {
 
-    this.dateTimeBuilder.setYear(ctx.text.toInt())
+    this.dateTimeBuilder.year = ctx.text.toInt()
   }
 
   /**
@@ -123,7 +123,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitYear_modern(ctx: DateTimeParser.Year_modernContext) {
 
-    this.dateTimeBuilder.setYear(ctx.text.toInt())
+    this.dateTimeBuilder.year = ctx.text.toInt()
   }
 
   /**
@@ -133,7 +133,8 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitYear_abbr(ctx: DateTimeParser.Year_abbrContext) {
 
-    this.dateTimeBuilder.setYearAbbr(ctx.text.toInt())
+    this.dateTimeBuilder.year = ctx.text.toInt()
+    this.dateTimeBuilder.yearAbbr = true
   }
 
   /**
@@ -145,7 +146,8 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
 
     val numYear: Int = ctx.text.trim('\'', '’').toInt()
 
-    this.dateTimeBuilder.setYearAbbr(numYear)
+    this.dateTimeBuilder.year = numYear
+    this.dateTimeBuilder.yearAbbr = true
   }
 
   /**
@@ -155,7 +157,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_num(ctx: DateTimeParser.Month_numContext) {
 
-    this.dateTimeBuilder.setMonth(ctx.text.toInt())
+    this.dateTimeBuilder.month = ctx.text.toInt()
   }
 
   /**
@@ -165,7 +167,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_jan(ctx: DateTimeParser.Month_janContext) {
 
-    this.dateTimeBuilder.setMonth(1)
+    this.dateTimeBuilder.month = 1
   }
 
   /**
@@ -175,7 +177,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_feb(ctx: DateTimeParser.Month_febContext) {
 
-    this.dateTimeBuilder.setMonth(2)
+    this.dateTimeBuilder.month = 2
   }
 
   /**
@@ -185,7 +187,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_mar(ctx: DateTimeParser.Month_marContext) {
 
-    this.dateTimeBuilder.setMonth(3)
+    this.dateTimeBuilder.month = 3
   }
 
   /**
@@ -195,7 +197,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_apr(ctx: DateTimeParser.Month_aprContext) {
 
-    this.dateTimeBuilder.setMonth(4)
+    this.dateTimeBuilder.month = 4
   }
 
   /**
@@ -205,7 +207,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_may(ctx: DateTimeParser.Month_mayContext) {
 
-    this.dateTimeBuilder.setMonth(5)
+    this.dateTimeBuilder.month = 5
   }
 
   /**
@@ -215,7 +217,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_jun(ctx: DateTimeParser.Month_junContext) {
 
-    this.dateTimeBuilder.setMonth(6)
+    this.dateTimeBuilder.month = 6
   }
 
   /**
@@ -225,7 +227,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_jul(ctx: DateTimeParser.Month_julContext) {
 
-    this.dateTimeBuilder.setMonth(7)
+    this.dateTimeBuilder.month = 7
   }
 
   /**
@@ -235,7 +237,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_aug(ctx: DateTimeParser.Month_augContext) {
 
-    this.dateTimeBuilder.setMonth(8)
+    this.dateTimeBuilder.month = 8
   }
 
   /**
@@ -245,7 +247,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_sep(ctx: DateTimeParser.Month_sepContext) {
 
-    this.dateTimeBuilder.setMonth(9)
+    this.dateTimeBuilder.month = 9
   }
 
   /**
@@ -255,7 +257,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_oct(ctx: DateTimeParser.Month_octContext) {
 
-    this.dateTimeBuilder.setMonth(10)
+    this.dateTimeBuilder.month = 10
   }
 
   /**
@@ -265,7 +267,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_nov(ctx: DateTimeParser.Month_novContext) {
 
-    this.dateTimeBuilder.setMonth(11)
+    this.dateTimeBuilder.month = 11
   }
 
   /**
@@ -275,7 +277,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_dec(ctx: DateTimeParser.Month_decContext) {
 
-    this.dateTimeBuilder.setMonth(11)
+    this.dateTimeBuilder.month = 11
   }
 
   /**
@@ -285,7 +287,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_num_canonical(ctx: DateTimeParser.Day_num_canonicalContext) {
 
-    this.dateTimeBuilder.setDay(ctx.text.toInt())
+    this.dateTimeBuilder.day = ctx.text.toInt()
   }
 
   /**
@@ -295,7 +297,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_1(ctx: DateTimeParser.Day_s_1Context) {
 
-    this.dateTimeBuilder.setDay(1)
+    this.dateTimeBuilder.day = 1
   }
 
   /**
@@ -305,7 +307,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_2(ctx: DateTimeParser.Day_s_2Context) {
 
-    this.dateTimeBuilder.setDay(2)
+    this.dateTimeBuilder.day = 2
   }
 
   /**
@@ -315,7 +317,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_3(ctx: DateTimeParser.Day_s_3Context) {
 
-    this.dateTimeBuilder.setDay(3)
+    this.dateTimeBuilder.day = 3
   }
 
   /**
@@ -325,7 +327,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_4(ctx: DateTimeParser.Day_s_4Context) {
 
-    this.dateTimeBuilder.setDay(4)
+    this.dateTimeBuilder.day = 4
   }
 
   /**
@@ -335,7 +337,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_5(ctx: DateTimeParser.Day_s_5Context) {
 
-    this.dateTimeBuilder.setDay(5)
+    this.dateTimeBuilder.day = 5
   }
 
   /**
@@ -345,7 +347,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_6(ctx: DateTimeParser.Day_s_6Context) {
 
-    this.dateTimeBuilder.setDay(6)
+    this.dateTimeBuilder.day = 6
   }
 
   /**
@@ -355,7 +357,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_7(ctx: DateTimeParser.Day_s_7Context) {
 
-    this.dateTimeBuilder.setDay(7)
+    this.dateTimeBuilder.day = 7
   }
 
   /**
@@ -365,7 +367,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_8(ctx: DateTimeParser.Day_s_8Context) {
 
-    this.dateTimeBuilder.setDay(8)
+    this.dateTimeBuilder.day = 8
   }
 
   /**
@@ -375,7 +377,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_9(ctx: DateTimeParser.Day_s_9Context) {
 
-    this.dateTimeBuilder.setDay(9)
+    this.dateTimeBuilder.day = 9
   }
 
   /**
@@ -385,7 +387,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_10(ctx: DateTimeParser.Day_s_10Context) {
 
-    this.dateTimeBuilder.setDay(10)
+    this.dateTimeBuilder.day = 10
   }
 
   /**
@@ -395,7 +397,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_11(ctx: DateTimeParser.Day_s_11Context) {
 
-    this.dateTimeBuilder.setDay(11)
+    this.dateTimeBuilder.day = 11
   }
 
   /**
@@ -405,7 +407,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_12(ctx: DateTimeParser.Day_s_12Context) {
 
-    this.dateTimeBuilder.setDay(12)
+    this.dateTimeBuilder.day = 12
   }
 
   /**
@@ -415,7 +417,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_13(ctx: DateTimeParser.Day_s_13Context) {
 
-    this.dateTimeBuilder.setDay(13)
+    this.dateTimeBuilder.day = 13
   }
 
   /**
@@ -425,7 +427,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_14(ctx: DateTimeParser.Day_s_14Context) {
 
-    this.dateTimeBuilder.setDay(14)
+    this.dateTimeBuilder.day = 14
   }
 
   /**
@@ -435,7 +437,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_15(ctx: DateTimeParser.Day_s_15Context) {
 
-    this.dateTimeBuilder.setDay(15)
+    this.dateTimeBuilder.day = 15
   }
 
   /**
@@ -445,7 +447,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_16(ctx: DateTimeParser.Day_s_16Context) {
 
-    this.dateTimeBuilder.setDay(16)
+    this.dateTimeBuilder.day = 16
   }
 
   /**
@@ -455,7 +457,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_17(ctx: DateTimeParser.Day_s_17Context) {
 
-    this.dateTimeBuilder.setDay(17)
+    this.dateTimeBuilder.day = 17
   }
 
   /**
@@ -465,7 +467,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_18(ctx: DateTimeParser.Day_s_18Context) {
 
-    this.dateTimeBuilder.setDay(18)
+    this.dateTimeBuilder.day = 18
   }
 
   /**
@@ -475,7 +477,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_19(ctx: DateTimeParser.Day_s_19Context) {
 
-    this.dateTimeBuilder.setDay(19)
+    this.dateTimeBuilder.day = 19
   }
 
   /**
@@ -485,7 +487,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_20(ctx: DateTimeParser.Day_s_20Context) {
 
-    this.dateTimeBuilder.setDay(20)
+    this.dateTimeBuilder.day = 20
   }
 
   /**
@@ -495,7 +497,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_21(ctx: DateTimeParser.Day_s_21Context) {
 
-    this.dateTimeBuilder.setDay(21)
+    this.dateTimeBuilder.day = 21
   }
 
   /**
@@ -505,7 +507,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_22(ctx: DateTimeParser.Day_s_22Context) {
 
-    this.dateTimeBuilder.setDay(22)
+    this.dateTimeBuilder.day = 22
   }
 
   /**
@@ -515,7 +517,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_23(ctx: DateTimeParser.Day_s_23Context) {
 
-    this.dateTimeBuilder.setDay(23)
+    this.dateTimeBuilder.day = 23
   }
 
   /**
@@ -525,7 +527,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_24(ctx: DateTimeParser.Day_s_24Context) {
 
-    this.dateTimeBuilder.setDay(24)
+    this.dateTimeBuilder.day = 24
   }
 
   /**
@@ -535,7 +537,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_25(ctx: DateTimeParser.Day_s_25Context) {
 
-    this.dateTimeBuilder.setDay(25)
+    this.dateTimeBuilder.day = 25
   }
 
   /**
@@ -545,7 +547,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_26(ctx: DateTimeParser.Day_s_26Context) {
 
-    this.dateTimeBuilder.setDay(26)
+    this.dateTimeBuilder.day = 26
   }
 
   /**
@@ -555,7 +557,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_27(ctx: DateTimeParser.Day_s_27Context) {
 
-    this.dateTimeBuilder.setDay(27)
+    this.dateTimeBuilder.day = 27
   }
 
   /**
@@ -565,7 +567,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_28(ctx: DateTimeParser.Day_s_28Context) {
 
-    this.dateTimeBuilder.setDay(28)
+    this.dateTimeBuilder.day = 28
   }
 
   /**
@@ -575,7 +577,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_29(ctx: DateTimeParser.Day_s_29Context) {
 
-    this.dateTimeBuilder.setDay(29)
+    this.dateTimeBuilder.day = 29
   }
 
   /**
@@ -585,7 +587,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_30(ctx: DateTimeParser.Day_s_30Context) {
 
-    this.dateTimeBuilder.setDay(30)
+    this.dateTimeBuilder.day = 30
   }
 
   /**
@@ -595,7 +597,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_s_31(ctx: DateTimeParser.Day_s_31Context) {
 
-    this.dateTimeBuilder.setDay(31)
+    this.dateTimeBuilder.day = 31
   }
 
   /**
@@ -605,7 +607,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_num(ctx: DateTimeParser.Day_numContext) {
 
-    this.dateTimeBuilder.setDay(ctx.text.takeWhile { it.isDigit() }.toInt()) // e.g. trim the non-digit part of '21st'
+    this.dateTimeBuilder.day = ctx.text.takeWhile { it.isDigit() }.toInt() // e.g. trim the non-digit part of '21st'
   }
 
   /**
@@ -615,7 +617,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_num_th(ctx: DateTimeParser.Day_num_thContext) {
 
-    this.dateTimeBuilder.setDay(ctx.text.takeWhile { it.isDigit() }.toInt()) // e.g. trim the non-digit part of '21st'
+    this.dateTimeBuilder.day = ctx.text.takeWhile { it.isDigit() }.toInt() // e.g. trim the non-digit part of '21st'
   }
 
   /**
@@ -625,7 +627,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_mon(ctx: DateTimeParser.Day_monContext) {
 
-    this.dateTimeBuilder.setWeekDay(1)
+    this.dateTimeBuilder.weekDay = 1
   }
 
   /**
@@ -635,7 +637,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_tue(ctx: DateTimeParser.Day_tueContext) {
 
-    this.dateTimeBuilder.setWeekDay(2)
+    this.dateTimeBuilder.weekDay = 2
   }
 
   /**
@@ -645,7 +647,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_wed(ctx: DateTimeParser.Day_wedContext) {
 
-    this.dateTimeBuilder.setWeekDay(3)
+    this.dateTimeBuilder.weekDay = 3
   }
 
   /**
@@ -655,7 +657,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_thu(ctx: DateTimeParser.Day_thuContext) {
 
-    this.dateTimeBuilder.setWeekDay(4)
+    this.dateTimeBuilder.weekDay = 4
   }
 
   /**
@@ -665,7 +667,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_fri(ctx: DateTimeParser.Day_friContext) {
 
-    this.dateTimeBuilder.setWeekDay(5)
+    this.dateTimeBuilder.weekDay = 5
   }
 
   /**
@@ -675,7 +677,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_sat(ctx: DateTimeParser.Day_satContext) {
 
-    this.dateTimeBuilder.setWeekDay(6)
+    this.dateTimeBuilder.weekDay = 6
   }
 
   /**
@@ -685,7 +687,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_sun(ctx: DateTimeParser.Day_sunContext) {
 
-    this.dateTimeBuilder.setWeekDay(7)
+    this.dateTimeBuilder.weekDay = 7
   }
 
   /**
@@ -695,7 +697,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitHour(ctx: DateTimeParser.HourContext) {
 
-    this.dateTimeBuilder.setHour(ctx.text.toInt())
+    this.dateTimeBuilder.hour = ctx.text.toInt()
   }
 
   /**
@@ -705,7 +707,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitHour_00(ctx: DateTimeParser.Hour_00Context) {
 
-    this.dateTimeBuilder.setHour(ctx.text.toInt())
+    this.dateTimeBuilder.hour = ctx.text.toInt()
   }
 
   /**
@@ -714,7 +716,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'min' rule just parsed
    */
   override fun exitMin(ctx: DateTimeParser.MinContext) {
-    this.dateTimeBuilder.setMin(ctx.text.toInt())
+    this.dateTimeBuilder.min = ctx.text.toInt()
   }
 
   /**
@@ -723,7 +725,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'min_00' rule just parsed
    */
   override fun exitMin_00(ctx: DateTimeParser.Min_00Context) {
-    this.dateTimeBuilder.setMin(ctx.text.toInt())
+    this.dateTimeBuilder.min = ctx.text.toInt()
   }
 
   /**
@@ -732,7 +734,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'sec_00' rule just parsed
    */
   override fun exitSec_00(ctx: DateTimeParser.Sec_00Context) {
-    this.dateTimeBuilder.setSec(ctx.text.toInt())
+    this.dateTimeBuilder.sec = ctx.text.toInt()
   }
 
   /**
@@ -741,7 +743,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'sec' rule just parsed
    */
   override fun exitSec(ctx: DateTimeParser.SecContext) {
-    this.dateTimeBuilder.setSec(ctx.text.toInt())
+    this.dateTimeBuilder.sec = ctx.text.toInt()
   }
 
   /**
@@ -750,7 +752,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'millisec' rule just parsed
    */
   override fun exitMillisec(ctx: DateTimeParser.MillisecContext) {
-    this.dateTimeBuilder.setMillisec(ctx.text.toInt())
+    this.dateTimeBuilder.millisec = ctx.text.toInt()
   }
 
   /**
@@ -759,6 +761,6 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'millisec_000' rule just parsed
    */
   override fun exitMillisec_000(ctx: DateTimeParser.Millisec_000Context) {
-    this.dateTimeBuilder.setMillisec(ctx.text.toInt())
+    this.dateTimeBuilder.millisec = ctx.text.toInt()
   }
 }
