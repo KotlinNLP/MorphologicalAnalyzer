@@ -94,11 +94,7 @@ day
 
 day_num : day_num_th | day_num_canonical | n_0_31 ;
 
-day_num_canonical
-    : N_01 | N_21 | N_31
-    | N_02 | N_22
-    | N_03 | N_23
-    ;
+day_num_canonical : n_00_31 ;
 
 day_num_th
     : (N_1 | N_01 | N_21 | N_31) SPACE_SEP? DAY_ST
