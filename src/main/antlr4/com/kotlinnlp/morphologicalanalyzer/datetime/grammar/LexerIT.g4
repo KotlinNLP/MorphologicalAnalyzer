@@ -30,7 +30,6 @@ FROM : D A | D A L ;
 // -----
 
 O_CLOCK : I N SPACE_SEP P U N T O ;
-TIME_H : H | O R E ;
 
 // -----
 // -- Words
