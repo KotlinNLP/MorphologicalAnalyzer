@@ -666,6 +666,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'min' rule just parsed
    */
   override fun exitMin(ctx: DateTimeParser.MinContext) {
+
     this.dateTimeBuilder.min = ctx.text.toInt()
   }
 
@@ -675,6 +676,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'min_00' rule just parsed
    */
   override fun exitMin_00(ctx: DateTimeParser.Min_00Context) {
+
     this.dateTimeBuilder.min = ctx.text.toInt()
   }
 
@@ -684,6 +686,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * @param ctx the context of the 'sec_00' rule just parsed
    */
   override fun exitSec_00(ctx: DateTimeParser.Sec_00Context) {
+
     this.dateTimeBuilder.sec = ctx.text.toInt()
   }
 
@@ -712,6 +715,26 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMillisec_000(ctx: DateTimeParser.Millisec_000Context) {
     this.dateTimeBuilder.millisec = ctx.text.toInt()
+  }
+
+  /**
+   * The listener of the 'exit offset_units_digits' event.
+   *
+   * @param ctx the context of the 'offset_units_digits' rule just parsed
+   */
+  override fun exitOffset_units_digits(ctx: DateTimeParser.Offset_units_digitsContext) {
+
+    this.dateTimeBuilder.offsetUnits = ctx.text.toInt()
+  }
+
+  /**
+   * The listener of the 'exit offset_units_str' event.
+   *
+   * @param ctx the context of the 'offset_units_str' rule just parsed
+   */
+  override fun exitOffset_units_str(ctx: DateTimeParser.Offset_units_strContext) {
+
+    this.dateTimeBuilder.offsetUnits = this.strNumber
   }
 
   /**
