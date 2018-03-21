@@ -1,6 +1,6 @@
 grammar NumbersParser;
 
-import NumbersLexer;
+import LexerEN, NumbersLexer;
 
 // -----
 // -- Parsed numbers
@@ -24,3 +24,35 @@ d_00_99 : d_00_59 | D_60_99 ;
 d_000_999 : D_000_099 | D_100_999 ;
 
 d_100_9999 : D_100_999 | D_1000_1899 | D_1900_2099 | D_2100_9999 ;
+
+n_s_1 : S_1 | S_ORD_1 ;
+n_s_2 : S_2 | S_ORD_2 ;
+n_s_3 : S_3 | S_ORD_3 ;
+n_s_4 : S_4 | S_ORD_4 ;
+n_s_5 : S_5 | S_ORD_5 ;
+n_s_6 : S_6 | S_ORD_6 ;
+n_s_7 : S_7 | S_ORD_7 ;
+n_s_8 : S_8 | S_ORD_8 ;
+n_s_9 : S_9 | S_ORD_9 ;
+n_s_10 : S_10 | S_ORD_10 ;
+n_s_11 : S_11 | S_ORD_11 ;
+n_s_12 : S_12 | S_ORD_12 ;
+n_s_13 : S_13 | S_ORD_13 ;
+n_s_14 : S_14 | S_ORD_14 ;
+n_s_15 : S_15 | S_ORD_15 ;
+n_s_16 : S_16 | S_ORD_16 ;
+n_s_17 : S_17 | S_ORD_17 ;
+n_s_18 : S_18 | S_ORD_18 ;
+n_s_19 : S_19 | S_ORD_19 ;
+n_s_20 : S_20 | S_ORD_20 ;
+n_s_21 : S_21 | S_ORD_21 ;
+n_s_22 : S_22 | S_ORD_22 ;
+n_s_23 : S_23 | S_ORD_23 ;
+n_s_24 : S_24 | S_ORD_24 ;
+n_s_25 : S_25 | S_ORD_25 ;
+n_s_26 : S_26 | S_ORD_26 ;
+n_s_27 : S_27 | S_ORD_27 ;
+n_s_28 : S_28 | S_ORD_28 ;
+n_s_29 : S_29 | S_ORD_29 ;
+n_s_30 : S_30 | S_ORD_30 ;
+n_s_31 : S_31 | S_ORD_31 ;
