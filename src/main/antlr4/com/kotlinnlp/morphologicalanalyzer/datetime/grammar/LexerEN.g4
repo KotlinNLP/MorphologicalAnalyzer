@@ -15,8 +15,8 @@ AND : A N D ;
 AT  : A T ;
 THE : T H E ;
 OF : O F (SPACE_SEP THE)? ;
-ON : O N ;
-IN : I N ;
+ON : O N (SPACE_SEP THE)? ;
+IN : I N (SPACE_SEP THE)? ;
 
 // -----
 // -- Special expressions
