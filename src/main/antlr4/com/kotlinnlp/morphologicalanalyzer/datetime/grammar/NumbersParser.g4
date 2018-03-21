@@ -29,15 +29,15 @@ n_100_9999 : N_100_999 | N_1000_1899 | N_1900_2099 | N_2100_9999 ;
 // -- String numbers (ordinal and cardinal)
 // -----
 
-ns_1 : NS_1 | NS_ORD_1 ;
-ns_2 : NS_2 | NS_ORD_2 ;
-ns_3 : NS_3 | NS_ORD_3 ;
-ns_4 : NS_4 | NS_ORD_4 ;
-ns_5 : NS_5 | NS_ORD_5 ;
-ns_6 : NS_6 | NS_ORD_6 ;
-ns_7 : NS_7 | NS_ORD_7 ;
-ns_8 : NS_8 | NS_ORD_8 ;
-ns_9 : NS_9 | NS_ORD_9 ;
+ns_1  : NS_1  | NS_ORD_1 ;
+ns_2  : NS_2  | NS_ORD_2 ;
+ns_3  : NS_3  | NS_ORD_3 ;
+ns_4  : NS_4  | NS_ORD_4 ;
+ns_5  : NS_5  | NS_ORD_5 ;
+ns_6  : NS_6  | NS_ORD_6 ;
+ns_7  : NS_7  | NS_ORD_7 ;
+ns_8  : NS_8  | NS_ORD_8 ;
+ns_9  : NS_9  | NS_ORD_9 ;
 ns_10 : NS_10 | NS_ORD_10 ;
 ns_11 : NS_11 | NS_ORD_11 ;
 ns_12 : NS_12 | NS_ORD_12 ;
