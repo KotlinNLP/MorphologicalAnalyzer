@@ -5,7 +5,7 @@ import LexerEN, NumbersParser;
 time
     : time_canonical (SPACE_SEP? (time_suffix | time_zone))?
     | hour COLON min (SPACE_SEP? (time_suffix | time_zone))?
-    | TIME_H SPACE_SEP hour
+    | (TIME_H | HOUR) SPACE_SEP hour
     | hour DOT min (DOT sec (DOT millisec)?)?
     | (hour | hour_str) SPACE_SEP? (time_suffix | O_CLOCK) (SPACE_SEP? time_suffix | O_CLOCK)? (SPACE_SEP? time_zone)?
     ;
