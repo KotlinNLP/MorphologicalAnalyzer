@@ -14,13 +14,13 @@ DAY_TH : T H ;
 AND : A N D ;
 AT  : A T ;
 THE : T H E ;
-OF : O F (SPACE_SEP THE)? ;
-ON : O N (SPACE_SEP THE)? ;
-IN : I N (SPACE_SEP THE)? ;
+OF  : O F (SPACE_SEP THE)? ;
+ON  : O N (SPACE_SEP THE)? ;
+IN  : I N (SPACE_SEP THE)? ;
 
 THIS : T H I S ;
 LAST : L A S T ;
-PREV : P R E V | P R E V I O U S ;
+PREV : P R E V DOT? | P R E V I O U S ;
 NEXT : N E X T | C O M I N G ;
 
 // -----
