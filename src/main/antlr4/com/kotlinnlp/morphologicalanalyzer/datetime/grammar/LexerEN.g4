@@ -14,8 +14,9 @@ DAY_TH : T H ;
 AND : A N D ;
 AT  : A T ;
 THE : T H E ;
-OF : O F ;
+OF : O F (SPACE_SEP THE)? ;
 ON : O N ;
+IN : I N ;
 
 // -----
 // -- Special expressions
