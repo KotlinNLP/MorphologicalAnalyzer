@@ -28,6 +28,13 @@ n_100_9999 : N_100_999 | N_1000_1899 | N_1900_2099 | N_2100_9999 ;
 // -- String numbers (ordinal and cardinal)
 // -----
 
+ns_all
+    : ns_1  | ns_2  | ns_3  | ns_4  | ns_5  | ns_6  | ns_7  | ns_8  | ns_9  | ns_10
+    | ns_11 | ns_12 | ns_13 | ns_14 | ns_15 | ns_16 | ns_17 | ns_18 | ns_19 | ns_20
+    | ns_21 | ns_22 | ns_23 | ns_24 | ns_25 | ns_26 | ns_27 | ns_28 | ns_29 | ns_30
+    | ns_31
+    ;
+
 ns_1  : NS_1  | NS_ORD_1 ;
 ns_2  : NS_2  | NS_ORD_2 ;
 ns_3  : NS_3  | NS_ORD_3 ;
