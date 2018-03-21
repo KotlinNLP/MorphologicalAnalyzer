@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import LexerEN, Date, Time;
+import LexerEN, Date, Time, Offset;
 
 // -----
 // -- Input text
@@ -22,9 +22,17 @@ ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 // -- Date-times
 // -----
 
-datetime : complex_datetime | time | date ;
+datetime
+    : date_offset
+    | offset
+    | date_time_simple
+    | time
+    | date
+    ;
 
-complex_datetime
+date_offset : date SPACE_SEP OF SPACE_SEP offset ;
+
+date_time_simple
     : date SPACE_SEP time
     | date ws AT ws time
     | datetime_utc
