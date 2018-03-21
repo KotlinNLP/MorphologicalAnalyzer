@@ -7,12 +7,11 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
+import kotlin.reflect.KClass
 
 /**
  * The helper to build a [DateTimeSimple].
@@ -22,14 +21,35 @@ import java.util.*
 internal class DateTimeBuilder(private val tokens: List<Token>) {
 
   /**
+   * The type of date unit.
    *
+   * @property Hour the hour unit
+   * @property Minute the minute unit
+   * @property Second the second unit
+   * @property Day the day unit
+   * @property Week the week unit
+   * @property Weekend the weekend unit
+   * @property Month the month unit
+   * @property Year the year unit
    */
-  private var dateTokens: IntRange? = null
+  enum class DateUnitType { Hour, Minute, Second, Day, Week, Weekend, Month, Year }
 
-  /**
-   *
-   */
-  private var timeTokens: IntRange? = null
+  companion object {
+
+    /**
+     * A map of date unit types to [Offset] k-classes.
+     */
+    private val dateUnitToOffsetClasses: Map<DateUnitType, KClass<*>> = mapOf(
+      DateUnitType.Hour to Offset.Hours::class,
+      DateUnitType.Minute to Offset.Minutes::class,
+      DateUnitType.Second to Offset.Seconds::class,
+      DateUnitType.Day to Offset.Days::class,
+      DateUnitType.Week to Offset.Weeks::class,
+      DateUnitType.Weekend to Offset.Weekends::class,
+      DateUnitType.Month to Offset.Months::class,
+      DateUnitType.Year to Offset.Years::class
+    )
+  }
 
   /**
    * The day of the currently building date-time.
@@ -82,23 +102,108 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   var timezone: TimeZone? = null
 
   /**
+   * The date unit type.
+   */
+  var dateUnit: DateUnitType? = null
+
+  /**
+   * Whether the currently building offset is positive (default true).
+   */
+  var positiveOffset: Boolean = true
+
+  /**
+   * The length of the currently building offset (default 1).
+   */
+  var offsetUnits: Int = 1
+
+  /**
+   * The range of token indices related to the currently parsing 'date' rule.
+   */
+  private lateinit var dateTokens: IntRange
+
+  /**
+   * The range of token indices related to the currently parsing 'time' rule.
+   */
+  private lateinit var timeTokens: IntRange
+
+  /**
+   * The range of token indices related to the currently parsing 'date_time_simple' rule.
+   */
+  private lateinit var dateTimeSimpleTokens: IntRange
+
+  /**
+   * The range of token indices related to the currently parsing 'offset' rule.
+   */
+  private lateinit var offsetTokens: IntRange
+
+  /**
+   * The range of token indices related to the currently parsing 'date_offset' rule.
+   */
+  private lateinit var dateOffsetTokens: IntRange
+
+  /**
    *
    */
-  fun getDateTime(startIndex: Int, endIndex: Int): DateTime {
+  fun buildDate(): Date = Date(
+    startToken = this.dateTokens.start,
+    endToken = this.dateTokens.endInclusive,
+    day = this.day,
+    weekDay = this.weekDay,
+    month = this.month,
+    year = this.year,
+    yearAbbr = this.yearAbbr
+  )
 
-    val start: Int = this.tokens.indexOfFirst { it.startAt == startIndex }
-    val end: Int = this.tokens.indexOfFirst { it.endAt == endIndex }
+  /**
+   *
+   */
+  fun buildTime() = Time(
+    startToken = this.timeTokens.start,
+    endToken = this.timeTokens.endInclusive,
+    hour = this.hour,
+    min = this.min,
+    sec = this.sec,
+    millisec = this.millisec,
+    timezone = this.timezone
+  )
 
-    val date: Date? = this.buildDate()
-    val time: Time? = this.buildTime()
+  /**
+   *
+   */
+  fun buildDateTimeSimple() = DateTimeSimple(
+    startToken = this.dateTimeSimpleTokens.start,
+    endToken = this.dateTimeSimpleTokens.endInclusive,
+    date = this.buildDate(),
+    time = this.buildTime()
+  )
 
-    return when {
-      date != null && time != null -> DateTimeSimple(startToken = start, endToken = end, date = date, time = time)
-      date != null -> date
-      time != null -> time
-      else -> throw RuntimeException("Invalid date-time: missing date and time.")
-    }
-  }
+  /**
+   *
+   */
+  fun buildOffset(): Offset = this.dateUnit?.let {
+    dateUnitToOffsetClasses.getValue(it).constructors.first().call(
+      this.offsetTokens.start,
+      this.offsetTokens.endInclusive,
+      this.positiveOffset,
+      this.offsetUnits
+    ) as Offset
+  } ?: Offset.Date(
+    startToken = this.offsetTokens.start,
+    endToken = this.offsetTokens.endInclusive,
+    positive = this.positiveOffset,
+    units = this.offsetUnits,
+    value = this.buildDate()
+  )
+
+  /**
+   *
+   */
+  fun buildDateOffset() = DateOffset(
+    startToken = this.dateOffsetTokens.start,
+    endToken = this.dateOffsetTokens.endInclusive,
+    date = this.buildDate(),
+    offset = this.buildOffset()
+  )
 
   /**
    *
@@ -125,30 +230,33 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  private fun buildDate(): Date? = this.dateTokens?.let {
-    Date(
-      startToken = it.start,
-      endToken = it.endInclusive,
-      day = this.day,
-      weekDay = this.weekDay,
-      month = this.month,
-      year = this.year,
-      yearAbbr = this.yearAbbr
+  fun setDateTimeSimpleTokens(startIndex: Int, endIndex: Int) {
+
+    this.dateTimeSimpleTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
     )
   }
 
   /**
    *
    */
-  private fun buildTime(): Time? = this.timeTokens?.let {
-    Time(
-      startToken = it.start,
-      endToken = it.endInclusive,
-      hour = this.hour,
-      min = this.min,
-      sec = this.sec,
-      millisec = this.millisec,
-      timezone = this.timezone
+  fun setOffsetTokens(startIndex: Int, endIndex: Int) {
+
+    this.offsetTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
+    )
+  }
+
+  /**
+   *
+   */
+  fun setDateOffsetTokens(startIndex: Int, endIndex: Int) {
+
+    this.dateOffsetTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
     )
   }
 }
