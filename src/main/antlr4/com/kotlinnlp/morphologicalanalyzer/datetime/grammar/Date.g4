@@ -39,12 +39,12 @@ date_canonical : year_num DASH month_num DASH day_num_canonical ;
 
 year : year_APEX | year_num ;
 
-year_APEX : APEX SPACE_SEP? d_0_99 ;
+year_APEX : APEX SPACE_SEP? n_0_99 ;
 
 year_num    : year_modern | year_abbr | year_full ;
-year_modern : D_1900_2099 ;
-year_abbr   : d_0_99 ;
-year_full   : d_100_9999 ;
+year_modern : N_1900_2099 ;
+year_abbr   : n_0_99 ;
+year_full   : n_100_9999 ;
 
 // -----
 // -- MONTH
@@ -52,7 +52,7 @@ year_full   : d_100_9999 ;
 
 month : month_num | month_str ;
 
-month_num : d_0_12 ;
+month_num : n_0_12 ;
 
 month_str
     : month_jan
@@ -92,26 +92,26 @@ day
     | (THE SPACE_SEP)? (day_num | day_str)
     ;
 
-day_num : day_num_th | day_num_canonical | d_0_31 ;
+day_num : day_num_th | day_num_canonical | n_0_31 ;
 
 day_num_canonical
-    : D_01 | D_21 | D_31
-    | D_02 | D_22
-    | D_03 | D_23
+    : N_01 | N_21 | N_31
+    | N_02 | N_22
+    | N_03 | N_23
     ;
 
 day_num_th
-    : (D_1 | D_01 | D_21 | D_31) SPACE_SEP? DAY_ST
-    | (D_2 | D_02 | D_22) SPACE_SEP? DAY_ND
-    | (D_3 | D_03 | D_23) SPACE_SEP? DAY_RD
-    | d_0_31 SPACE_SEP? DAY_TH
+    : (N_1 | N_01 | N_21 | N_31) SPACE_SEP? DAY_ST
+    | (N_2 | N_02 | N_22) SPACE_SEP? DAY_ND
+    | (N_3 | N_03 | NS_23) SPACE_SEP? DAY_RD
+    | n_0_31 SPACE_SEP? DAY_TH
     ;
 
 day_str
-    : n_s_1  | n_s_2  | n_s_3  | n_s_4  | n_s_5  | n_s_6  | n_s_7  | n_s_8  | n_s_9 | n_s_10
-    | n_s_11 | n_s_12 | n_s_13 | n_s_14 | n_s_15 | n_s_16 | n_s_17 | n_s_18 | n_s_19 | n_s_20
-    | n_s_21 | n_s_22 | n_s_23 | n_s_24 | n_s_25 | n_s_26 | n_s_27 | n_s_28 | n_s_29 | n_s_30
-    | n_s_31
+    : ns_1  | ns_2  | ns_3  | ns_4  | ns_5  | ns_6  | ns_7  | ns_8  | ns_9  | ns_10
+    | ns_11 | ns_12 | ns_13 | ns_14 | ns_15 | ns_16 | ns_17 | ns_18 | ns_19 | ns_20
+    | ns_21 | ns_22 | ns_23 | ns_24 | ns_25 | ns_26 | ns_27 | ns_28 | ns_29 | ns_30
+    | ns_31
     ;
 
 day_week : day_mon | day_tue | day_wed | day_thu | day_fri | day_sat | day_sun ;
