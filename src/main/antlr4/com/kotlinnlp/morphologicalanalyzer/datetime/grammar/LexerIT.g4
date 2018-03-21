@@ -31,6 +31,16 @@ O_CLOCK : I N SPACE_SEP P U N T O ;
 TIME_H : H | O R E ;
 
 // -----
+// -- Words
+// -----
+
+YEAR : A N N (O | I) ;
+MONTH : M E S (E | I) ;
+WEEK : S E T T I M A N (A | E) ;
+WEEKEND : F I N E SPACE_SEP WEEK ;
+DAY : G I O R N (O | I) ;
+
+// -----
 // -- Days
 // -----
 
