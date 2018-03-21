@@ -34,6 +34,18 @@ of_sep : OF SPACE_SEP ;
 date_canonical : year_num DASH month_num DASH day_num_canonical ;
 
 // -----
+// -- LITERALS
+// -----
+
+date_unit_literal : day_lit | week_lit | weekend_lit | month_lit | year_lit ;
+
+day_lit     : DAY ;
+week_lit    : WEEK ;
+weekend_lit : WEEKEND ;
+month_lit   : MONTH ;
+year_lit    : YEAR ;
+
+// -----
 // -- YEAR
 // -----
 
