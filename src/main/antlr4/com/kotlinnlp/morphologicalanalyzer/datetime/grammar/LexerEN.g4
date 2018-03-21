@@ -36,11 +36,14 @@ TIME_H : H ;
 // -- Words
 // -----
 
-YEAR : Y E A R S? ;
-MONTH : M O N T H S? ;
-WEEK : W E E K S? ;
+YEAR    : Y E A R S? ;
+MONTH   : M O N T H S? ;
+WEEK    : W E E K S? ;
 WEEKEND : W E E K DASH? E N D S? ;
-DAY : D A Y S? ;
+DAY     : D A Y S? ;
+HOUR    : H O U R S? ;
+MIN     : M I N U T E S? ;
+SEC     : S E C O N D S? ;
 
 // -----
 // -- Days
