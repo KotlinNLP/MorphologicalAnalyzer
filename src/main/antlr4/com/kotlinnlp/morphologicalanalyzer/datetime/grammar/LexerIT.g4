@@ -23,6 +23,8 @@ LAST : U L T I M (O | I | A | E) ;
 PREV : P R E C E D E N T (E | I) ;
 NEXT : P R O S S I M (O | I | A | E) ;
 
+FROM : D A | D A L ;
+
 // -----
 // -- Special expressions
 // -----

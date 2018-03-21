@@ -23,6 +23,8 @@ LAST : L A S T ;
 PREV : P R E V DOT? | P R E V I O U S ;
 NEXT : N E X T | C O M I N G ;
 
+FROM : F R O M ;
+
 // -----
 // -- Special expressions
 // -----
