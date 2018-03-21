@@ -14,9 +14,9 @@ DAY_TH : E S I M O ;
 AND : E ;
 AT  : A L | A L L E ;
 THE : I L ;
-OF : D I | D E L ;
-ON : NOT_DEFINED ;
-IN : I N | N E (L | I | G L I | L L A | L L E) ;
+OF  : D I | D E (L | L L O | I | G L I | L L A | L L E) ;
+ON  : NOT_DEFINED ;
+IN  : I N | N E (L | I | G L I | L L A | L L E) ;
 
 THIS : Q U E S T (O | I | A | E) ;
 LAST : U L T I M (O | I | A | E) ;
