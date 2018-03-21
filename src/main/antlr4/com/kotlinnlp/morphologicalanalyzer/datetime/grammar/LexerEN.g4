@@ -18,6 +18,11 @@ OF : O F (SPACE_SEP THE)? ;
 ON : O N (SPACE_SEP THE)? ;
 IN : I N (SPACE_SEP THE)? ;
 
+THIS : T H I S ;
+LAST : L A S T ;
+PREV : P R E V | P R E V I O U S ;
+NEXT : N E X T | C O M I N G ;
+
 // -----
 // -- Special expressions
 // -----
