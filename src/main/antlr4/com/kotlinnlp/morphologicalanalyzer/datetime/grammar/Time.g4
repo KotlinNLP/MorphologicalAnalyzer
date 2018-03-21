@@ -30,3 +30,13 @@ hour_str
     | ns_11 | ns_12 | ns_13 | ns_14 | ns_15 | ns_16 | ns_17 | ns_18 | ns_19 | ns_20
     | ns_21 | ns_22 | ns_23 | ns_24
     ;
+
+// -----
+// -- LITERALS
+// -----
+
+time_unit_literal : hour_lit | min_lit | sec_lit ;
+
+hour_lit : HOUR ;
+min_lit  : MIN ;
+sec_lit  : SEC ;
