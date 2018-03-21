@@ -36,6 +36,31 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   private var strNumber: Int = -1
 
   /**
+   * Whether in the currently building date-time there is an 'offset'.
+   */
+  private var isOffset: Boolean = false
+
+  /**
+   * Whether in the currently building date-time there is a 'date_offset'.
+   */
+  private var isDateOffset: Boolean = false
+
+  /**
+   * Whether in the currently building date-time there is a 'date_time_simple'.
+   */
+  private var isDateTimeSimple: Boolean = false
+
+  /**
+   * Whether in the currently building date-time there is a 'date'.
+   */
+  private var isDate: Boolean = false
+
+  /**
+   * Whether in the currently building date-time there is a 'time'.
+   */
+  private var isTime: Boolean = false
+
+  /**
    * @return the list of date-times recognized during the last parsing
    */
   fun getDateTimes(): List<DateTime> = this.dateTimes
@@ -61,6 +86,56 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'enter offset' event.
+   *
+   * @param ctx the context of the 'offset' rule that is being parsed
+   */
+  override fun enterOffset(ctx: DateTimeParser.OffsetContext) {
+
+    this.isOffset = true
+  }
+
+  /**
+   * The listener of the 'enter date_offset' event.
+   *
+   * @param ctx the context of the 'date_offset' rule that is being parsed
+   */
+  override fun enterDate_offset(ctx: DateTimeParser.Date_offsetContext) {
+
+    this.isDateOffset = true
+  }
+
+  /**
+   * The listener of the 'enter date_time_simple' event.
+   *
+   * @param ctx the context of the 'date_time_simple' rule that is being parsed
+   */
+  override fun enterDate_time_simple(ctx: DateTimeParser.Date_time_simpleContext) {
+
+    this.isDateTimeSimple = true
+  }
+
+  /**
+   * The listener of the 'enter date' event.
+   *
+   * @param ctx the context of the 'date' rule that is being parsed
+   */
+  override fun enterDate(ctx: DateTimeParser.DateContext) {
+
+    this.isDate = true
+  }
+
+  /**
+   * The listener of the 'enter time' event.
+   *
+   * @param ctx the context of the 'time' rule that is being parsed
+   */
+  override fun enterTime(ctx: DateTimeParser.TimeContext) {
+
+    this.isTime = true
+  }
+
+  /**
    * The listener of the 'exit datetime' event.
    *
    * @param ctx the context of the 'datetime' rule just parsed
@@ -68,18 +143,21 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitDatetime(ctx: DateTimeParser.DatetimeContext) {
 
     this.dateTimes.add(
-      this.dateTimeBuilder.getDateTime(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+      when { // the order of the conditions is very important!
+        this.isDateOffset -> this.dateTimeBuilder.buildDateOffset()
+        this.isOffset -> this.dateTimeBuilder.buildOffset()
+        this.isDateTimeSimple -> this.dateTimeBuilder.buildDateTimeSimple()
+        this.isDate -> this.dateTimeBuilder.buildDate()
+        this.isTime -> this.dateTimeBuilder.buildTime()
+        else -> throw RuntimeException("Expected date-time object but no 'enter' event has been triggered.")
+      }
     )
-  }
 
-  /**
-   * The listener of the 'exit datetime_utc' event.
-   *
-   * @param ctx the context of the 'datetime_utc' rule just parsed
-   */
-  override fun exitDatetime_utc(ctx: DateTimeParser.Datetime_utcContext) {
-
-    this.dateTimeBuilder.timezone = TimeZone.getTimeZone("UTC")
+    this.isDateOffset = false
+    this.isOffset = false
+    this.isDateTimeSimple = false
+    this.isDate = false
+    this.isTime = false
   }
 
   /**
@@ -103,18 +181,143 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
-   * The listener of the 'exit time_suffix' event.
+   * The listener of the 'exit date_time_simple' event.
    *
-   * @param ctx the context of the 'time_suffix' rule just parsed
+   * @param ctx the context of the 'date_time_simple' rule that is being parsed
    */
-  override fun exitTime_suffix(ctx: DateTimeParser.Time_suffixContext) {
+  override fun exitDate_time_simple(ctx: DateTimeParser.Date_time_simpleContext) {
 
-    this.dateTimeBuilder.hour?.let {
-      when (ctx.text.toLowerCase()) {
-        "am" -> if (it == 12) this.dateTimeBuilder.hour = 0
-        "pm" -> if (it <= 11) this.dateTimeBuilder.hour = it + 12
-      }
-    }
+    this.dateTimeBuilder.setDateTimeSimpleTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit offset' event.
+   *
+   * @param ctx the context of the 'offset' rule that is being parsed
+   */
+  override fun exitOffset(ctx: DateTimeParser.OffsetContext) {
+
+    this.dateTimeBuilder.setOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit date_offset' event.
+   *
+   * @param ctx the context of the 'date_offset' rule that is being parsed
+   */
+  override fun exitDate_offset(ctx: DateTimeParser.Date_offsetContext) {
+
+    this.dateTimeBuilder.setDateOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'enter offset_unit_neg_prefix' event.
+   *
+   * @param ctx the context of the 'offset_unit_neg_prefix' rule that is being parsed
+   */
+  override fun enterOffset_unit_neg_prefix(ctx: DateTimeParser.Offset_unit_neg_prefixContext) {
+
+    this.dateTimeBuilder.positiveOffset = false
+  }
+
+  /**
+   * The listener of the 'enter offset_neg_prefix' event.
+   *
+   * @param ctx the context of the 'offset_neg_prefix' rule that is being parsed
+   */
+  override fun enterOffset_neg_prefix(ctx: DateTimeParser.Offset_neg_prefixContext) {
+
+    this.dateTimeBuilder.positiveOffset = false
+  }
+
+  /**
+   * The listener of the 'exit datetime_utc' event.
+   *
+   * @param ctx the context of the 'datetime_utc' rule just parsed
+   */
+  override fun exitDatetime_utc(ctx: DateTimeParser.Datetime_utcContext) {
+
+    this.dateTimeBuilder.timezone = TimeZone.getTimeZone("UTC")
+  }
+
+  /**
+   * The listener of the 'exit sec_lit' event.
+   *
+   * @param ctx the context of the 'sec_lit' rule just parsed
+   */
+  override fun exitSec_lit(ctx: DateTimeParser.Sec_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Second
+  }
+
+  /**
+   * The listener of the 'exit min_lit' event.
+   *
+   * @param ctx the context of the 'min_lit' rule just parsed
+   */
+  override fun exitMin_lit(ctx: DateTimeParser.Min_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Minute
+  }
+
+  /**
+   * The listener of the 'exit hour_lit' event.
+   *
+   * @param ctx the context of the 'hour_lit' rule just parsed
+   */
+  override fun exitHour_lit(ctx: DateTimeParser.Hour_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Hour
+  }
+
+  /**
+   * The listener of the 'exit day_lit' event.
+   *
+   * @param ctx the context of the 'day_lit' rule just parsed
+   */
+  override fun exitDay_lit(ctx: DateTimeParser.Day_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Day
+  }
+
+  /**
+   * The listener of the 'exit week_lit' event.
+   *
+   * @param ctx the context of the 'week_lit' rule just parsed
+   */
+  override fun exitWeek_lit(ctx: DateTimeParser.Week_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Week
+  }
+
+  /**
+   * The listener of the 'exit weekend_lit' event.
+   *
+   * @param ctx the context of the 'weekend_lit' rule just parsed
+   */
+  override fun exitWeekend_lit(ctx: DateTimeParser.Weekend_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Weekend
+  }
+
+  /**
+   * The listener of the 'exit month_lit' event.
+   *
+   * @param ctx the context of the 'month_lit' rule just parsed
+   */
+  override fun exitMonth_lit(ctx: DateTimeParser.Month_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Month
+  }
+
+  /**
+   * The listener of the 'exit year_lit' event.
+   *
+   * @param ctx the context of the 'year_lit' rule just parsed
+   */
+  override fun exitYear_lit(ctx: DateTimeParser.Year_litContext) {
+
+    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Year
   }
 
   /**
@@ -410,6 +613,21 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitDay_sun(ctx: DateTimeParser.Day_sunContext) {
 
     this.dateTimeBuilder.weekDay = 7
+  }
+
+  /**
+   * The listener of the 'exit time_suffix' event.
+   *
+   * @param ctx the context of the 'time_suffix' rule just parsed
+   */
+  override fun exitTime_suffix(ctx: DateTimeParser.Time_suffixContext) {
+
+    this.dateTimeBuilder.hour?.let {
+      when (ctx.text.toLowerCase()) {
+        "am" -> if (it == 12) this.dateTimeBuilder.hour = 0
+        "pm" -> if (it <= 11) this.dateTimeBuilder.hour = it + 12
+      }
+    }
   }
 
   /**
