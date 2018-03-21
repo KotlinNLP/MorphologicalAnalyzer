@@ -108,43 +108,11 @@ day_num_th
     ;
 
 day_s_str
-    : day_s_1  | day_s_2  | day_s_3  | day_s_4  | day_s_5  | day_s_6  | day_s_7  | day_s_8  | day_s_9 | day_s_10
-    | day_s_11 | day_s_12 | day_s_13 | day_s_14 | day_s_15 | day_s_16 | day_s_17 | day_s_18 | day_s_19 | day_s_20
-    | day_s_21 | day_s_22 | day_s_23 | day_s_24 | day_s_25 | day_s_26 | day_s_27 | day_s_28 | day_s_29 | day_s_30
-    | day_s_31
+    : n_s_1  | n_s_2  | n_s_3  | n_s_4  | n_s_5  | n_s_6  | n_s_7  | n_s_8  | n_s_9 | n_s_10
+    | n_s_11 | n_s_12 | n_s_13 | n_s_14 | n_s_15 | n_s_16 | n_s_17 | n_s_18 | n_s_19 | n_s_20
+    | n_s_21 | n_s_22 | n_s_23 | n_s_24 | n_s_25 | n_s_26 | n_s_27 | n_s_28 | n_s_29 | n_s_30
+    | n_s_31
     ;
-
-day_s_1 : S_1 | S_ORD_1 ;
-day_s_2 : S_2 | S_ORD_2 ;
-day_s_3 : S_3 | S_ORD_3 ;
-day_s_4 : S_4 | S_ORD_4 ;
-day_s_5 : S_5 | S_ORD_5 ;
-day_s_6 : S_6 | S_ORD_6 ;
-day_s_7 : S_7 | S_ORD_7 ;
-day_s_8 : S_8 | S_ORD_8 ;
-day_s_9 : S_9 | S_ORD_9 ;
-day_s_10 : S_10 | S_ORD_10 ;
-day_s_11 : S_11 | S_ORD_11 ;
-day_s_12 : S_12 | S_ORD_12 ;
-day_s_13 : S_13 | S_ORD_13 ;
-day_s_14 : S_14 | S_ORD_14 ;
-day_s_15 : S_15 | S_ORD_15 ;
-day_s_16 : S_16 | S_ORD_16 ;
-day_s_17 : S_17 | S_ORD_17 ;
-day_s_18 : S_18 | S_ORD_18 ;
-day_s_19 : S_19 | S_ORD_19 ;
-day_s_20 : S_20 | S_ORD_20 ;
-day_s_21 : S_21 | S_ORD_21 ;
-day_s_22 : S_22 | S_ORD_22 ;
-day_s_23 : S_23 | S_ORD_23 ;
-day_s_24 : S_24 | S_ORD_24 ;
-day_s_25 : S_25 | S_ORD_25 ;
-day_s_26 : S_26 | S_ORD_26 ;
-day_s_27 : S_27 | S_ORD_27 ;
-day_s_28 : S_28 | S_ORD_28 ;
-day_s_29 : S_29 | S_ORD_29 ;
-day_s_30 : S_30 | S_ORD_30 ;
-day_s_31 : S_31 | S_ORD_31 ;
 
 day_week : day_mon | day_tue | day_wed | day_thu | day_fri | day_sat | day_sun ;
 
