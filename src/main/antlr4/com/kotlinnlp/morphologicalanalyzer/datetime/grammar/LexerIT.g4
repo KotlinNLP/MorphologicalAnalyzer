@@ -6,16 +6,16 @@ import Letters, Symbols, NumbersLexer, TimeLexer, LexerImportLast;
 // -- Functional words
 // -----
 
-DAY_ST : DOT ; // not defined for IT
-DAY_ND : DOT ; // not defined for IT
-DAY_RD : DOT ; // not defined for IT
+DAY_ST : NOT_DEFINED ;
+DAY_ND : NOT_DEFINED ;
+DAY_RD : NOT_DEFINED ;
 DAY_TH : E S I M O ;
 
 AND : E ;
 AT  : A L | A L L E ;
 THE : I L ;
 OF : D I | D E L ;
-ON : DOT ; // not defined for IT
+ON : NOT_DEFINED ;
 
 // -----
 // -- Special expressions
