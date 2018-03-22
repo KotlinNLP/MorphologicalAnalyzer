@@ -11,7 +11,7 @@ All tests have `text` and `type` fields. Depending on the value of `type` they c
 * `text`: the text that can contain a date-time expression and will be evaluated by the `DateTimeProcessor`.
 
 * `type`: represents the type of `DateTime` contained in the `text` and it can have one of the following
-values: "date", "time", "datetime", "null".
+values: "date", "time", "datetime", "offset", "null".
 
 #### The `type` "null"
 
@@ -40,7 +40,7 @@ All the following fields are optional, but at least one of `h`, `m` or `s` must 
 
 #### Adding fields for the `type` "datetime"
 
-All the following fields are required. 
+The following fields are required. 
 
 * `date` 
 * `time` 
@@ -49,3 +49,13 @@ Both contain the same adding fields of the test with `type` equal to their name,
 
 * `start`: the index of the char at which it starts in the `text`
 * `end`: the index of the char at which it ends in the `text`
+
+#### Adding fields for the `type` "offset"
+
+The following fields are required. 
+
+* `offset-type`: the type of the offset (possible values: "date", "hour", "min", "sec", "day", "month", "year")
+* `units`: the units of the offset length as int in the range [0, +inf]
+* `positive`: a boolean indicating if the offset is positive
+
+If `offset-type` is "date" then the same adding fields of the test with `type` "date" are required.

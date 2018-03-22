@@ -8,10 +8,8 @@
 package utils
 
 import com.beust.klaxon.*
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTimeSimple
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import java.util.*
 
 /**
@@ -106,6 +104,7 @@ object TestDateTimes {
         "date" -> this.buildDate(jsonObj = jsonObj, start = start, end = end)
         "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
         "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
+        "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
         else -> throw RuntimeException("Invalid DateTime type: $type")
       }
     )
@@ -180,5 +179,45 @@ object TestDateTimes {
         end = start + timeObj.int("end")!! // the field in the object is an offset
       )
     )
+  }
+
+  /**
+   * Build an [Offset] object.
+   *
+   * @param jsonObj the JSON object containing the information of the offset
+   * @param start the char index at which the expected offset starts in the text (inclusive)
+   * @param end the char index at which the expected offset ends in the text (inclusive)
+   *
+   * @return an offset object
+   */
+  private fun buildOffset(jsonObj: JsonObject, start: Int, end: Int): Offset {
+
+    val type: String = jsonObj.string("offset-type")!!
+    val positive: Boolean = jsonObj.boolean("positive")!!
+    val units: Int = jsonObj.int("units")!!
+
+    return when (type) {
+
+      "date" -> {
+
+        val dateObj: JsonObject = jsonObj.obj("date")!!
+        val date: Date = this.buildDate(
+          jsonObj = dateObj,
+          start = start + dateObj.int("start")!!, // the field in the object is an offset
+          end = start + dateObj.int("end")!! // the field in the object is an offset
+        )
+
+        Offset.Date(startToken = start, endToken = end, positive = positive, units = units, value = date)
+      }
+
+      "hour" -> Offset.Hours(startToken = start, endToken = end, positive = positive, units = units)
+      "min" -> Offset.Minutes(startToken = start, endToken = end, positive = positive, units = units)
+      "sec" -> Offset.Seconds(startToken = start, endToken = end, positive = positive, units = units)
+      "day" -> Offset.Days(startToken = start, endToken = end, positive = positive, units = units)
+      "month" -> Offset.Months(startToken = start, endToken = end, positive = positive, units = units)
+      "year" -> Offset.Years(startToken = start, endToken = end, positive = positive, units = units)
+
+      else -> throw RuntimeException("Invalid offset type: $type")
+    }
   }
 }

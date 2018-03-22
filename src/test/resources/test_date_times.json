@@ -110,6 +110,14 @@
     "date": {"week-D": 6, "start": 7, "end": 14},
     "time": {"h": 9, "start": 0, "end": 2}
   },
+  {
+    "type": "offset",
+    "text": "next August",
+    "offset-type": "date",
+    "positive": true,
+    "units": 1,
+    "date": {"M": 8, "start": 5, "end": 10}
+  },
   {"type": "null", "text": "on the 15"},
   {"type": "null", "text": "h9"}
 ]
