@@ -11,6 +11,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
 
@@ -359,7 +360,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitSec_lit(ctx: DateTimeParser.Sec_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Second
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Second
   }
 
   /**
@@ -369,7 +370,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMin_lit(ctx: DateTimeParser.Min_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Minute
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Minute
   }
 
   /**
@@ -379,7 +380,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitHour_lit(ctx: DateTimeParser.Hour_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Hour
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Hour
   }
 
   /**
@@ -389,7 +390,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDay_lit(ctx: DateTimeParser.Day_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Day
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
   }
 
   /**
@@ -399,7 +400,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitWeek_lit(ctx: DateTimeParser.Week_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Week
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Week
   }
 
   /**
@@ -409,7 +410,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitWeekend_lit(ctx: DateTimeParser.Weekend_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Weekend
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Weekend
   }
 
   /**
@@ -419,7 +420,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMonth_lit(ctx: DateTimeParser.Month_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Month
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Month
   }
 
   /**
@@ -429,7 +430,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitYear_lit(ctx: DateTimeParser.Year_litContext) {
 
-    this.dateTimeBuilder.dateUnit = DateTimeBuilder.DateUnitType.Year
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Year
   }
 
   /**
