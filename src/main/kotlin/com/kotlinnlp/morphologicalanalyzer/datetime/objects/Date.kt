@@ -9,7 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 
 /**
  * A date object.
- * At least one of [day], [weekDay], [month] and [year] is not null.
+ * At least one of [day], [weekDay], [month], [year] or [holiday] is not null.
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
@@ -18,6 +18,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
  * @property month the number of the mont in the range [1, 12] (can be null)
  * @property year the number of the year in the range [0, 9999] (can be null)
  * @property yearAbbr whether the [year] is intended as abbreviated form (e.g. '98 stands for 1998)
+ * @property holiday a holiday name (can be null)
  */
 data class Date(
   override val startToken: Int,
@@ -26,7 +27,8 @@ data class Date(
   val weekDay: Int?,
   val month: Int?,
   val year: Int?,
-  val yearAbbr: Boolean
+  val yearAbbr: Boolean,
+  val holiday: Holiday?
 ) : DateTime {
 
   companion object {
@@ -38,10 +40,15 @@ data class Date(
   }
 
   /**
+   * A holiday name.
+   */
+  enum class Holiday { Christmas, ChristmasEve, Easter }
+
+  /**
    * Check that at least one property is defined.
    */
   init {
-    require(listOf(this.day, this.weekDay, this.month, this.year).any { it != null })
+    require(listOf(this.day, this.weekDay, this.month, this.year, this.holiday).any { it != null })
   }
 
   /**
@@ -63,9 +70,10 @@ data class Date(
   /**
    * @return a string representation of this date-time object
    */
-  override fun toString(): String = "%s %s%s".format(
+  override fun toString(): String = "%s %s%s%s".format(
     this.weekDayToString(),
     this.toStandardFormat(),
-    if (this.yearAbbr) " (year abbr.)" else ""
+    if (this.yearAbbr) " (year abbr.)" else "",
+    this.holiday?.let { " [$it]" } ?: ""
   )
 }

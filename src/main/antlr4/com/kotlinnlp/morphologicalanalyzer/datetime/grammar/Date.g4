@@ -11,27 +11,38 @@ date
     | day date_sep month date_sep year // D/M/Y
     | month date_sep day date_sep year // M/D/Y
     | year date_sep month date_sep day // Y/M/D
-    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num ((SPACE_SEP? COMMA)? SPACE_SEP year)? // WeekDay ,? Month D Y?
+    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num ((SPACE_SEP? COMMA)? SPACE_SEP year)? // WEEKDAY ,? MONTH D Y?
     | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY(19XX-20XX)
-    | day (SPACE_SEP of_sep?)? month_str (SPACE_SEP? COMMA)? (SPACE_SEP of_sep?)? year // D of? Month ,? of? Y
+    | day (SPACE_SEP of_sep?)? month_str (SPACE_SEP? COMMA)? (SPACE_SEP of_sep?)? year // D of? MONTH ,? of? Y
     | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY(19XX-20XX)
-    | month_str SPACE_SEP day (SPACE_SEP? COMMA SPACE_SEP? | SPACE_SEP) of_sep? year // Month D ,? of? Y
-    | year SPACE_SEP month_str (SPACE_SEP of_sep)? day // Y Month of? D
+    | month_str SPACE_SEP day (SPACE_SEP? COMMA SPACE_SEP? | SPACE_SEP) of_sep? year // MONTH D ,? of? Y
+    | year SPACE_SEP month_str (SPACE_SEP of_sep)? day // Y MONTH of? D
     | day date_sep month // D/M
     | month date_sep day // M/D
-    | day SPACE_SEP of_sep? month_str // D of? Month
-    | month_str SPACE_SEP? (THE SPACE_SEP)? day // Month the? D
-    | month_str SPACE_SEP? of_sep? year // Month of? Y
+    | day SPACE_SEP of_sep? month_str // D of? MONTH
+    | month_str SPACE_SEP? (THE SPACE_SEP)? day // MONTH the? D
+    | month_str SPACE_SEP? of_sep? year // MONTH of? Y
     | year_APEX // 'YY
     | year_modern // YYYY(19XX-20XX)
-    | month_str // Month
-    | day_week // WeekDay
+    | month_str // MONTH
+    | day_week // WEEKDAY
+    | (day_week SPACE_SEP of_sep?)? holiday_name (SPACE_SEP of_sep? year)? // WEEKDAY? of? HOLIDAY of? Y?
     ;
 
 date_sep : DASH | SLASH | DOT ;
 of_sep : OF SPACE_SEP ;
 
 date_canonical : year_num DASH month_num DASH day_num_canonical ;
+
+// -----
+// -- HOLIDAYS
+// -----
+
+holiday_name : christmas_eve | christmas | easter ;
+
+christmas_eve : CHRISTMAS_EVE ;
+christmas     : CHRISTMAS ;
+easter        : EASTER ;
 
 // -----
 // -- LITERALS

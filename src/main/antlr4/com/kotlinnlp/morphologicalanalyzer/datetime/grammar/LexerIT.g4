@@ -48,6 +48,14 @@ MIN     : M I N U T (O | I) ;
 SEC     : S E C ; // 'secondo' is also an ordinal number
 
 // -----
+// -- Holidays
+// -----
+
+CHRISTMAS     : N A T A L E ;
+CHRISTMAS_EVE : V I G I L I A SPACE_SEP OF SPACE_SEP CHRISTMAS ;
+EASTER        : P A S Q U A ;
+
+// -----
 // -- Days
 // -----
 

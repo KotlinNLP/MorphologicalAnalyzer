@@ -88,6 +88,11 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   var yearAbbr: Boolean = false
 
   /**
+   * The holiday name of the currently building date-time.
+   */
+  var holiday: Date.Holiday? = null
+
+  /**
    * The hour of the currently building date-time.
    */
   var hour: Int? = null
@@ -189,7 +194,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
       weekDay = this.weekDay,
       month = this.month,
       year = this.year,
-      yearAbbr = this.yearAbbr
+      yearAbbr = this.yearAbbr,
+      holiday = this.holiday
     )
 
     this.day = null
@@ -197,6 +203,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     this.month = null
     this.year = null
     this.yearAbbr = false
+    this.holiday = null
 
     return date
   }

@@ -48,6 +48,14 @@ MIN     : M I N (U T E) S? ;
 SEC     : S E C S? ; // 'second' is also an ordinal number
 
 // -----
+// -- Holidays
+// -----
+
+CHRISTMAS     : C H R I S T M A S ;
+CHRISTMAS_EVE : CHRISTMAS SPACE_SEP E V E ;
+EASTER        : E A S T E R ;
+
+// -----
 // -- Days
 // -----
 
