@@ -5,7 +5,7 @@ import LexerEN, Date, Time;
 offset
     : offset_single_prefix SPACE_SEP offset_ref
     | offset_prefix SPACE_SEP offset_units SPACE_SEP offset_ref
-    | offset_ref SPACE_SEP offset_double_pos_suffix
+    | offset_ref SPACE_SEP offset_double_suffix
     ;
 
 // -----
