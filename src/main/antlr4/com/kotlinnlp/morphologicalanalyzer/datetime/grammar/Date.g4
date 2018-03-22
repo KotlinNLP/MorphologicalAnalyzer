@@ -22,11 +22,11 @@ date
     | day SPACE_SEP of_sep? month_str // D of? MONTH
     | month_str SPACE_SEP? (THE SPACE_SEP)? day // MONTH the? D
     | month_str SPACE_SEP? of_sep? year // MONTH of? Y
+    | (day_week SPACE_SEP of_sep?)? holiday_name (SPACE_SEP of_sep? year)? // WEEKDAY? of? HOLIDAY of? Y?
     | year_APEX // 'YY
     | year_modern // YYYY(19XX-20XX)
     | month_str // MONTH
     | day_week // WEEKDAY
-    | (day_week SPACE_SEP of_sep?)? holiday_name (SPACE_SEP of_sep? year)? // WEEKDAY? of? HOLIDAY of? Y?
     ;
 
 date_sep : DASH | SLASH | DOT ;
