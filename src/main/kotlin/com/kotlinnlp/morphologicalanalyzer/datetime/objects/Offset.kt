@@ -7,6 +7,9 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 
+import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateObj
+import com.kotlinnlp.morphologicalanalyzer.datetime.utils.TimeObj
+
 /**
  * An offset object.
  *
@@ -48,17 +51,12 @@ sealed class Offset(
   override fun toString(): String = this.toStandardFormat()
 
   /**
-   * An offset of [com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date].
+   * An offset of [DateObj].
    *
    * @property value the Date value
    */
-  class Date(
-    startToken: Int,
-    endToken: Int,
-    positive: Boolean,
-    units: Int,
-    val value: com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
-  ) : Offset(startToken = startToken, endToken = endToken, positive = positive, units = units) {
+  class Date(startToken: Int, endToken: Int, positive: Boolean, units: Int, val value: DateObj)
+    : Offset(startToken = startToken, endToken = endToken, positive = positive, units = units) {
 
     /**
      * Get the string representing this offset in the following standard format:
@@ -70,17 +68,12 @@ sealed class Offset(
   }
 
   /**
-   * An offset of [com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time].
+   * An offset of [TimeObj].
    *
    * @property value the Time value
    */
-  class Time(
-    startToken: Int,
-    endToken: Int,
-    positive: Boolean,
-    units: Int,
-    val value: com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
-  ) : Offset(startToken = startToken, endToken = endToken, positive = positive, units = units) {
+  class Time(startToken: Int, endToken: Int, positive: Boolean, units: Int, val value: TimeObj)
+    : Offset(startToken = startToken, endToken = endToken, positive = positive, units = units) {
 
     /**
      * Get the string representing this offset in the following standard format:
