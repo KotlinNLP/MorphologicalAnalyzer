@@ -12,17 +12,9 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateTimeObj
 /**
  * An ordinal date object (e.g. "The second week of 2015").
  *
- * @property startToken the index of the first token of this expression
- * @property endToken the index of the last token of this expression
- * @property position the ordinal position of the date unit
- * @property dateTime the reference date-time
+ * @property dateUnit the date unit as string
  */
-sealed class DateOrdinal(
-  override val startToken: Int,
-  override val endToken: Int,
-  val position: Position,
-  val dateTime: DateTimeObj
-) : DateTime {
+sealed class DateOrdinal(private val dateUnit: String) : DateTime {
 
   /**
    * The position.
@@ -53,9 +45,14 @@ sealed class DateOrdinal(
   }
 
   /**
-   * The date unit as string.
+   * The ordinal position of the date unit.
    */
-  abstract protected val dateUnit: String
+  abstract val position: Position
+
+  /**
+   * The reference date-time.
+   */
+  abstract val dateTime: DateTimeObj
 
   /**
    * Get the string representing this ordinal date in the following standard format:
@@ -75,54 +72,61 @@ sealed class DateOrdinal(
    *
    * @property value the date-time value (can be a date or an offset)
    */
-  class DateTime(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj, val value: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = this.value.toString()
-  }
+  class DateTime(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj,
+    val value: DateTimeObj
+  ) : DateOrdinal(dateUnit = value.toString())
 
   /**
    * An ordinal date of 'day' units.
    */
-  class Day(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = "day"
-  }
+  class Day(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj
+  ) : DateOrdinal(dateUnit = "day")
 
   /**
    * An ordinal date of 'week' units.
    */
-  class Week(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = "week"
-  }
+  class Week(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj
+  ) : DateOrdinal(dateUnit = "week")
 
   /**
    * An ordinal date of 'weekend' units.
    */
-  class Weekend(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = "weekend"
-  }
+  class Weekend(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj
+  ) : DateOrdinal(dateUnit = "weekend")
 
   /**
    * An ordinal date of 'month' units.
    */
-  class Month(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = "month"
-  }
+  class Month(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj
+  ) : DateOrdinal(dateUnit = "month")
 
   /**
    * An ordinal date of 'year' units.
    */
-  class Year(startToken: Int, endToken: Int, position: Position, dateTime: DateTimeObj)
-    : DateOrdinal(startToken = startToken, endToken = endToken, position = position, dateTime = dateTime) {
-
-    override val dateUnit: String = "year"
-  }
+  class Year(
+    override val startToken: Int,
+    override val endToken: Int,
+    override val position: Position,
+    override val dateTime: DateTimeObj
+  ) : DateOrdinal(dateUnit = "year")
 }
