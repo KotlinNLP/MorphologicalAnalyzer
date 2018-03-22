@@ -63,9 +63,9 @@ data class Date(
   /**
    * @return a string representation of this date-time object
    */
-  override fun toString(): String = "%s (week day: %s, year abbr.: %s)".format(
-    this.toStandardFormat(),
+  override fun toString(): String = "%s %s%s".format(
     this.weekDayToString(),
-    this.yearAbbr
+    this.toStandardFormat(),
+    if (this.yearAbbr) " (year abbr.)" else ""
   )
 }
