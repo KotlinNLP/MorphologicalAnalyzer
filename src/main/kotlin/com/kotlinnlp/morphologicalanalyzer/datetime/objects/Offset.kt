@@ -43,7 +43,7 @@ sealed class Offset(
    *
    * @return the string representing this offset
    */
-  override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this::class.simpleName)
+  override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this::class.simpleName!!.toLowerCase())
 
   /**
    * @return a string representation of this offset object
