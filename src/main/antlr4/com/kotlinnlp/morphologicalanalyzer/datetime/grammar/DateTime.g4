@@ -23,12 +23,12 @@ ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 // -----
 
 datetime
-    : date_ordinal
-    | date_offset
+    : date_offset
     | offset
     | date_time_simple
     | time
     | date
+    | date_ordinal
     ;
 
 date_offset : date SPACE_SEP OF SPACE_SEP offset ;
