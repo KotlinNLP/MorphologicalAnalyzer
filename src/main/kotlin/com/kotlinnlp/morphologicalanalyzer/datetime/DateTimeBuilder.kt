@@ -9,9 +9,9 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
-import kotlin.reflect.KClass
 
 /**
  * The helper to build a [DateTimeSimple].
@@ -19,48 +19,6 @@ import kotlin.reflect.KClass
  * @param tokens the list of tokens that compose the input text.
  */
 internal class DateTimeBuilder(private val tokens: List<Token>) {
-
-  /**
-   * The type of date unit.
-   *
-   * @property Hour the hour unit
-   * @property Minute the minute unit
-   * @property Second the second unit
-   * @property Day the day unit
-   * @property Week the week unit
-   * @property Weekend the weekend unit
-   * @property Month the month unit
-   * @property Year the year unit
-   */
-  enum class DateUnitType { Hour, Minute, Second, Day, Week, Weekend, Month, Year }
-
-  companion object {
-
-    /**
-     * A map of date unit types to [Offset] k-classes.
-     */
-    private val dateUnitToOffsetClasses: Map<DateUnitType, KClass<*>> = mapOf(
-      DateUnitType.Hour to Offset.Hours::class,
-      DateUnitType.Minute to Offset.Minutes::class,
-      DateUnitType.Second to Offset.Seconds::class,
-      DateUnitType.Day to Offset.Days::class,
-      DateUnitType.Week to Offset.Weeks::class,
-      DateUnitType.Weekend to Offset.Weekends::class,
-      DateUnitType.Month to Offset.Months::class,
-      DateUnitType.Year to Offset.Years::class
-    )
-
-    /**
-     * A map of date unit types to [DateOrdinal] k-classes.
-     */
-    private val dateUnitToDateOrdinalClasses: Map<DateUnitType, KClass<*>> = mapOf(
-      DateUnitType.Day to DateOrdinal.Day::class,
-      DateUnitType.Week to DateOrdinal.Week::class,
-      DateUnitType.Weekend to DateOrdinal.Weekend::class,
-      DateUnitType.Month to DateOrdinal.Month::class,
-      DateUnitType.Year to DateOrdinal.Year::class
-    )
-  }
 
   /**
    * The day of the currently building date-time.
@@ -120,7 +78,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    * The date unit type.
    */
-  var dateUnit: DateUnitType? = null
+  var dateUnit: DateUnit.Type? = null
 
   /**
    * Whether the currently building offset is positive (default true).
@@ -242,7 +200,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
       units = this.offsetUnits,
       value = it
     )
-  } ?: dateUnitToOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(
+  } ?: DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(
     this.offsetTokens.start,
     this.offsetTokens.endInclusive,
     this.positiveOffset,
@@ -277,7 +235,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
         value = it,
         dateTime = ordinalDateTimeRef
       )
-    } ?: dateUnitToDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first().call(
+    } ?: DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first().call(
       this.dateOrdinalTokens.start,
       this.dateOrdinalTokens.endInclusive,
       pos,
