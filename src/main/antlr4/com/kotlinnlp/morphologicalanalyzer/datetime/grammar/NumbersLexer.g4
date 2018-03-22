@@ -1,5 +1,13 @@
 lexer grammar NumbersLexer;
 
+import Symbols, Letters;
+
+// -----
+// -- Ordinal suffix
+// -----
+
+ORD_SUFFIX : (O | A | DEGREE | CIRCUMFLEX) ;
+
 // -----
 // -- Numbers with 1 digit
 // -----
