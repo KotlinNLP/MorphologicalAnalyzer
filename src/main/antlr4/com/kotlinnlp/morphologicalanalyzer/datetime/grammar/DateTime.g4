@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import LexerEN, Date, Time, Offset;
+import LexerEN, Date, Time, DateOrdinal, Offset;
 
 // -----
 // -- Input text
@@ -15,7 +15,7 @@ text_atomic  : datetime | string ;
 text_ws      : datetime punct* ws | string ws ;
 
 string : (CHAR_NO_WS | ~(SPACE_SEP | OTHER_SPACES))+ ;
-punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | OTHER_SYMBOLS ;
+punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | DEGREE | CIRCUMFLEX | OTHER_SYMBOLS ;
 ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 
 // -----
@@ -23,7 +23,8 @@ ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 // -----
 
 datetime
-    : date_offset
+    : date_ordinal
+    | date_offset
     | offset
     | date_time_simple
     | time
