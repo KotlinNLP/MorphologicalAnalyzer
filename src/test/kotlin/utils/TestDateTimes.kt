@@ -127,7 +127,10 @@ object TestDateTimes {
     weekDay = jsonObj.int("week-D"),
     month = jsonObj.int("M"),
     year = jsonObj.int("Y"),
-    yearAbbr = jsonObj.boolean("Y-abbr") ?: false
+    yearAbbr = jsonObj.boolean("Y-abbr") ?: false,
+    holiday = jsonObj.string("holiday")?.let {
+      Date.Holiday.values().first { h -> h.toString().toLowerCase() == it.toLowerCase() }
+    }
   )
 
   /**

@@ -19,13 +19,14 @@ Tests of this type have not adding fields, given that their `text` does not cont
 
 #### Adding fields for the `type` "date"
 
-All the following fields are optional, but at least one of `D`, `week-D`, `M` or `Y` must be present. 
+All the following fields are optional, but at least one of `D`, `week-D`, `M`, `Y` or `holiday` must be present. 
 
 * `D`: the day as int number in the range [1, 31]
 * `week-D`: the week day as int number in the range [1, 7]
 * `M`: the month as int number in the range [1, 12]
 * `Y`: the year as int number in the range [0, 9999]
 * `Y-abbr`: a boolean indicating whether the year is intended as abbreviation
+* `holiday`: a string indicating an holiday among the following: "Christmas", "ChristmasEve", "Easter"
 
 #### Adding fields for the `type` "time"
 
