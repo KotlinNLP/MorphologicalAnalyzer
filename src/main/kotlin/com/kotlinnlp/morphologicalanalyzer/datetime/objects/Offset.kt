@@ -28,7 +28,7 @@ sealed class Offset(
   /**
    * The string prefix: "(+|-) UNITS".
    */
-  protected val stringPrefix: String = "%s %d".format(if (this.positive) "+" else "-", this.units)
+  protected val stringPrefix: String by lazy { "%s %d".format(if (this.positive) "+" else "-", this.units) }
 
   /**
    * Check requirements.
