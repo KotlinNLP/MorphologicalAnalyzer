@@ -9,6 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
@@ -724,6 +725,40 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitDay_sun(ctx: DateTimeParser.Day_sunContext) {
 
     this.dateTimeBuilder.weekDay = 7
+  }
+
+  /**
+   * The listener of the 'exit christmas' event.
+   *
+   * @param ctx the context of the 'christmas' rule just parsed
+   */
+  override fun exitChristmas(ctx: DateTimeParser.ChristmasContext) {
+
+    this.dateTimeBuilder.day = 25
+    this.dateTimeBuilder.month = 12
+    this.dateTimeBuilder.holiday = Date.Holiday.Christmas
+  }
+
+  /**
+   * The listener of the 'exit christmas_eve' event.
+   *
+   * @param ctx the context of the 'christmas_eve' rule just parsed
+   */
+  override fun exitChristmas_eve(ctx: DateTimeParser.Christmas_eveContext) {
+
+    this.dateTimeBuilder.day = 24
+    this.dateTimeBuilder.month = 12
+    this.dateTimeBuilder.holiday = Date.Holiday.ChristmasEve
+  }
+
+  /**
+   * The listener of the 'exit easter' event.
+   *
+   * @param ctx the context of the 'easter' rule just parsed
+   */
+  override fun exitEaster(ctx: DateTimeParser.EasterContext) {
+
+    this.dateTimeBuilder.holiday = Date.Holiday.Easter
   }
 
   /**
