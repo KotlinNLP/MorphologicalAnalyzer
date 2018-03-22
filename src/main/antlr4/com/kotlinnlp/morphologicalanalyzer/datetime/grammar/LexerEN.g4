@@ -53,7 +53,7 @@ SEC     : S E C S? ; // 'second' is also an ordinal number
 
 MON : M O N D A Y ;
 TUE : T U E S D A Y  ;
-WED : W E D N E S D A T ;
+WED : W E D N E S D A Y ;
 THU : T H U R S D A Y ;
 FRI : F R I D A Y ;
 SAT : S A T U R D A Y ;
