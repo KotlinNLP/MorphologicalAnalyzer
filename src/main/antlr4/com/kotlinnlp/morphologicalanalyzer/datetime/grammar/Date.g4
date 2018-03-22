@@ -20,8 +20,8 @@ date
     | day date_sep month // D/M
     | month date_sep day // M/D
     | day SPACE_SEP of_sep? month_str // D of? Month
-    | month_str SPACE_SEP? day // Month D
-    | month_str SPACE_SEP? year // Month Y
+    | month_str SPACE_SEP? (THE SPACE_SEP)? day // Month the? D
+    | month_str SPACE_SEP? of_sep? year // Month of? Y
     | year_APEX // 'YY
     | year_modern // YYYY(19XX-20XX)
     | month_str // Month
