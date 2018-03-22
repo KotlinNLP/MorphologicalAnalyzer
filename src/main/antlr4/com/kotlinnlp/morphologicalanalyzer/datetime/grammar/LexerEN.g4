@@ -23,6 +23,9 @@ LAST : L A S T ;
 PREV : P R E V DOT? | P R E V I O U S ;
 NEXT : N E X T | C O M I N (APEX | G)? ;
 
+AFTER : A F T E R ;
+BEFORE : B E F O R E ;
+
 FROM : F R O M ;
 
 // -----

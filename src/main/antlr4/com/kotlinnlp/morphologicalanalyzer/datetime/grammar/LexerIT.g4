@@ -23,6 +23,9 @@ LAST : U L T I M (O | I | A | E) ;
 PREV : P R E C E D E N T (E | I) ;
 NEXT : P R O S S I M (O | I | A | E) ;
 
+AFTER : D O P O SPACE_SEP THE ;
+BEFORE : P R I M A SPACE_SEP OF ;
+
 FROM : D A | D A L ;
 
 // -----
