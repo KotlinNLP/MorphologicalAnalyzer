@@ -49,6 +49,17 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
       DateUnitType.Month to Offset.Months::class,
       DateUnitType.Year to Offset.Years::class
     )
+
+    /**
+     * A map of date unit types to [DateOrdinal] k-classes.
+     */
+    private val dateUnitToDateOrdinalClasses: Map<DateUnitType, KClass<*>> = mapOf(
+      DateUnitType.Day to DateOrdinal.Day::class,
+      DateUnitType.Week to DateOrdinal.Week::class,
+      DateUnitType.Weekend to DateOrdinal.Weekend::class,
+      DateUnitType.Month to DateOrdinal.Month::class,
+      DateUnitType.Year to DateOrdinal.Year::class
+    )
   }
 
   /**
@@ -117,6 +128,26 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   var offsetUnits: Int = 1
 
   /**
+   * The ordinal position of a [DateOrdinal].
+   */
+  var ordinalPosition: Int = 0
+
+  /**
+   * The reference date of an offset (null if the reference is a date unit - e.g. "days", "weeks").
+   */
+  var offsetDateRef: Date? = null
+
+  /**
+   * The date as unit of an ordinal date (null if the reference is a date unit - e.g. "days", "weeks").
+   */
+  var ordinalDateUnit: Date? = null
+
+  /**
+   * The reference date-time of an ordinal date (can be a [Date] or an [Offset]).
+   */
+  lateinit var ordinalDateTimeRef: DateTime
+
+  /**
    * The range of token indices related to the currently parsing 'date' rule.
    */
   private lateinit var dateTokens: IntRange
@@ -142,17 +173,33 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   private lateinit var dateOffsetTokens: IntRange
 
   /**
+   * The range of token indices related to the currently parsing 'date_ordinal' rule.
+   */
+  private lateinit var dateOrdinalTokens: IntRange
+
+  /**
    *
    */
-  fun buildDate(): Date = Date(
-    startToken = this.dateTokens.start,
-    endToken = this.dateTokens.endInclusive,
-    day = this.day,
-    weekDay = this.weekDay,
-    month = this.month,
-    year = this.year,
-    yearAbbr = this.yearAbbr
-  )
+  fun buildDate(): Date {
+
+    val date = Date(
+      startToken = this.dateTokens.start,
+      endToken = this.dateTokens.endInclusive,
+      day = this.day,
+      weekDay = this.weekDay,
+      month = this.month,
+      year = this.year,
+      yearAbbr = this.yearAbbr
+    )
+
+    this.day = null
+    this.weekDay = null
+    this.month = null
+    this.year = null
+    this.yearAbbr = false
+
+    return date
+  }
 
   /**
    *
@@ -180,20 +227,20 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun buildOffset(): Offset = this.dateUnit?.let {
-    dateUnitToOffsetClasses.getValue(it).constructors.first().call(
-      this.offsetTokens.start,
-      this.offsetTokens.endInclusive,
-      this.positiveOffset,
-      this.offsetUnits
-    ) as Offset
-  } ?: Offset.Date(
-    startToken = this.offsetTokens.start,
-    endToken = this.offsetTokens.endInclusive,
-    positive = this.positiveOffset,
-    units = this.offsetUnits,
-    value = this.buildDate()
-  )
+  fun buildOffset(): Offset = this.offsetDateRef?.let {
+    Offset.Date(
+      startToken = this.offsetTokens.start,
+      endToken = this.offsetTokens.endInclusive,
+      positive = this.positiveOffset,
+      units = this.offsetUnits,
+      value = it
+    )
+  } ?: dateUnitToOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(
+    this.offsetTokens.start,
+    this.offsetTokens.endInclusive,
+    this.positiveOffset,
+    this.offsetUnits
+  ) as Offset
 
   /**
    *
@@ -204,6 +251,32 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     date = this.buildDate(),
     offset = this.buildOffset()
   )
+
+  /**
+   *
+   */
+  fun buildDateOrdinal(): DateOrdinal {
+
+    val pos: DateOrdinal.Position = if (this.ordinalPosition > 0)
+      DateOrdinal.Position.Ordinal(count = this.ordinalPosition)
+    else
+      DateOrdinal.Position.Last()
+
+    return this.ordinalDateUnit?.let {
+      DateOrdinal.DateTime(
+        startToken = this.dateOrdinalTokens.start,
+        endToken = this.dateOrdinalTokens.endInclusive,
+        position = pos,
+        value = it,
+        dateTime = ordinalDateTimeRef
+      )
+    } ?: dateUnitToDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first().call(
+      this.dateOrdinalTokens.start,
+      this.dateOrdinalTokens.endInclusive,
+      pos,
+      ordinalDateTimeRef
+    ) as DateOrdinal
+  }
 
   /**
    *
@@ -255,6 +328,17 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateOffsetTokens(startIndex: Int, endIndex: Int) {
 
     this.dateOffsetTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
+    )
+  }
+
+  /**
+   *
+   */
+  fun setDateOrdinalTokens(startIndex: Int, endIndex: Int) {
+
+    this.dateOrdinalTokens = IntRange(
       this.tokens.indexOfFirst { it.startAt == startIndex },
       this.tokens.indexOfFirst { it.endAt == endIndex }
     )

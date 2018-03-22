@@ -36,6 +36,11 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   private var strNumber: Int = -1
 
   /**
+   * Whether in the currently building date-time there is a 'date_ordinal'.
+   */
+  private var isDateOrdinal: Boolean = false
+
+  /**
    * Whether in the currently building date-time there is an 'offset'.
    */
   private var isOffset: Boolean = false
@@ -83,6 +88,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun enterDatetime(ctx: DateTimeParser.DatetimeContext) {
 
     this.dateTimeBuilder = DateTimeBuilder(this.tokens)
+  }
+
+  /**
+   * The listener of the 'enter date_ordinal' event.
+   *
+   * @param ctx the context of the 'date_ordinal' rule that is being parsed
+   */
+  override fun enterDate_ordinal(ctx: DateTimeParser.Date_ordinalContext) {
+
+    this.isDateOrdinal = true
   }
 
   /**
@@ -144,6 +159,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
 
     this.dateTimes.add(
       when { // the order of the conditions is very important!
+        this.isDateOrdinal -> this.dateTimeBuilder.buildDateOrdinal()
         this.isDateOffset -> this.dateTimeBuilder.buildDateOffset()
         this.isOffset -> this.dateTimeBuilder.buildOffset()
         this.isDateTimeSimple -> this.dateTimeBuilder.buildDateTimeSimple()
@@ -208,6 +224,56 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitDate_offset(ctx: DateTimeParser.Date_offsetContext) {
 
     this.dateTimeBuilder.setDateOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit date_ordinal' event.
+   *
+   * @param ctx the context of the 'date_ordinal' rule that is being parsed
+   */
+  override fun exitDate_ordinal(ctx: DateTimeParser.Date_ordinalContext) {
+
+    this.dateTimeBuilder.setDateOrdinalTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit offset_date_ref' event.
+   *
+   * @param ctx the context of the 'offset_date_ref' rule that is being parsed
+   */
+  override fun exitOffset_date_ref(ctx: DateTimeParser.Offset_date_refContext) {
+
+    this.dateTimeBuilder.offsetDateRef = this.dateTimeBuilder.buildDate()
+  }
+
+  /**
+   * The listener of the 'exit ordinal_date_ref' event.
+   *
+   * @param ctx the context of the 'ordinal_date_ref' rule that is being parsed
+   */
+  override fun exitOrdinal_date_ref(ctx: DateTimeParser.Ordinal_date_refContext) {
+
+    this.dateTimeBuilder.ordinalDateTimeRef = this.dateTimeBuilder.buildDate()
+  }
+
+  /**
+   * The listener of the 'exit ordinal_offset_ref' event.
+   *
+   * @param ctx the context of the 'ordinal_offset_ref' rule that is being parsed
+   */
+  override fun exitOrdinal_offset_ref(ctx: DateTimeParser.Ordinal_offset_refContext) {
+
+    this.dateTimeBuilder.ordinalDateTimeRef = this.dateTimeBuilder.buildOffset()
+  }
+
+  /**
+   * The listener of the 'exit ordinal_date_unit' event.
+   *
+   * @param ctx the context of the 'ordinal_date_unit' rule that is being parsed
+   */
+  override fun exitOrdinal_date_unit(ctx: DateTimeParser.Ordinal_date_unitContext) {
+
+    this.dateTimeBuilder.ordinalDateUnit = this.dateTimeBuilder.buildDate()
   }
 
   /**
@@ -735,6 +801,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitOffset_units_str(ctx: DateTimeParser.Offset_units_strContext) {
 
     this.dateTimeBuilder.offsetUnits = this.strNumber
+  }
+
+  /**
+   * The listener of the 'exit ordinal_prefix_number' event.
+   *
+   * @param ctx the context of the 'ordinal_prefix_number' rule just parsed
+   */
+  override fun exitOrdinal_prefix_number(ctx: DateTimeParser.Ordinal_prefix_numberContext) {
+
+    this.dateTimeBuilder.ordinalPosition = this.strNumber
   }
 
   /**
