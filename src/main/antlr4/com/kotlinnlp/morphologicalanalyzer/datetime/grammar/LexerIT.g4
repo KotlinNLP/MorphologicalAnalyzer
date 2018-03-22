@@ -9,7 +9,7 @@ import Letters, Symbols, NumbersLexer, TimeLexer, LexerImportLast;
 DAY_ST : NOT_DEFINED ;
 DAY_ND : NOT_DEFINED ;
 DAY_RD : NOT_DEFINED ;
-DAY_TH : E S I M O ;
+DAY_TH : E S I M (O | I | A | E) ;
 
 AND : E ;
 AT  : A L | A L L E ;
@@ -136,16 +136,16 @@ NS_31 : T R E N T NS_1 ;
 
 fragment TH : DAY_TH ;
 
-NS_ORD_1  : P R I M O ;
-NS_ORD_2  : S E C O N D O ;
-NS_ORD_3  : T E R Z O ;
-NS_ORD_4  : Q U A R T O ;
-NS_ORD_5  : Q U I N T O ;
-NS_ORD_6  : S E S T O ;
-NS_ORD_7  : S E T T I M O ;
-NS_ORD_8  : O T T A V O ;
-NS_ORD_9  : N O N O ;
-NS_ORD_10 : D E C I M O ;
+NS_ORD_1  : P R I M (O | I | A | E) ;
+NS_ORD_2  : S E C O N D (O | I | A | E) ;
+NS_ORD_3  : T E R Z (O | I | A | E) ;
+NS_ORD_4  : Q U A R T (O | I | A | E) ;
+NS_ORD_5  : Q U I N T (O | I | A | E) ;
+NS_ORD_6  : S E S T (O | I | A | E) ;
+NS_ORD_7  : S E T T I M (O | I | A | E) ;
+NS_ORD_8  : O T T A V (O | I | A | E) ;
+NS_ORD_9  : N O N (O | I | A | E) ;
+NS_ORD_10 : D E C I M (O | I | A | E) ;
 NS_ORD_11 : U N D I C TH ;
 NS_ORD_12 : D O D I C TH ;
 NS_ORD_13 : T R E D I C TH ;
