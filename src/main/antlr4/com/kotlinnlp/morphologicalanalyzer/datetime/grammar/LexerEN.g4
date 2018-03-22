@@ -41,8 +41,8 @@ WEEK    : W E E K S? ;
 WEEKEND : W E E K DASH? E N D S? ;
 DAY     : D A Y S? ;
 HOUR    : H O U R S? ;
-MIN     : M I N U T E S? ;
-SEC     : S E C O N D S? ;
+MIN     : M I N (U T E) S? ;
+SEC     : S E C S? ; // 'second' is also an ordinal number
 
 // -----
 // -- Days
