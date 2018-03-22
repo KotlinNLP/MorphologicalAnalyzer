@@ -3,9 +3,11 @@ grammar Offset;
 import LexerEN, Date, Time;
 
 offset
-    : offset_unit_prefix SPACE_SEP (date | date_time_literal)
+    : offset_unit_prefix SPACE_SEP (offset_date_ref | date_time_literal)
     | offset_prefix SPACE_SEP offset_units SPACE_SEP date_time_literal
     ;
+
+offset_date_ref : date ;
 
 offset_unit_prefix : offset_unit_pos_prefix | offset_unit_neg_prefix ;
 offset_unit_pos_prefix : NEXT | THIS ; // a prefix that means implicitly a single positive offset unit (+1)
