@@ -277,12 +277,57 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
-   * The listener of the 'enter offset_unit_neg_prefix' event.
+   * The listener of the 'enter offset_single_zero_prefix' event.
    *
-   * @param ctx the context of the 'offset_unit_neg_prefix' rule that is being parsed
+   * @param ctx the context of the 'offset_single_zero_prefix' rule that is being parsed
    */
-  override fun enterOffset_unit_neg_prefix(ctx: DateTimeParser.Offset_unit_neg_prefixContext) {
+  override fun enterOffset_single_zero_prefix(ctx: DateTimeParser.Offset_single_zero_prefixContext) {
 
+    this.dateTimeBuilder.offsetUnits = 0
+    this.dateTimeBuilder.positiveOffset = true
+  }
+
+  /**
+   * The listener of the 'enter offset_single_pos_prefix' event.
+   *
+   * @param ctx the context of the 'offset_single_pos_prefix' rule that is being parsed
+   */
+  override fun enterOffset_single_pos_prefix(ctx: DateTimeParser.Offset_single_pos_prefixContext) {
+
+    this.dateTimeBuilder.offsetUnits = 1
+    this.dateTimeBuilder.positiveOffset = true
+  }
+
+  /**
+   * The listener of the 'enter offset_single_neg_prefix' event.
+   *
+   * @param ctx the context of the 'offset_single_neg_prefix' rule that is being parsed
+   */
+  override fun enterOffset_single_neg_prefix(ctx: DateTimeParser.Offset_single_neg_prefixContext) {
+
+    this.dateTimeBuilder.offsetUnits = 1
+    this.dateTimeBuilder.positiveOffset = false
+  }
+
+  /**
+   * The listener of the 'enter offset_double_pos_suffix' event.
+   *
+   * @param ctx the context of the 'offset_double_pos_suffix' rule that is being parsed
+   */
+  override fun enterOffset_double_pos_suffix(ctx: DateTimeParser.Offset_double_pos_suffixContext) {
+
+    this.dateTimeBuilder.offsetUnits = 2
+    this.dateTimeBuilder.positiveOffset = true
+  }
+
+  /**
+   * The listener of the 'enter offset_double_neg_suffix' event.
+   *
+   * @param ctx the context of the 'offset_double_neg_suffix' rule that is being parsed
+   */
+  override fun enterOffset_double_neg_suffix(ctx: DateTimeParser.Offset_double_neg_suffixContext) {
+
+    this.dateTimeBuilder.offsetUnits = 2
     this.dateTimeBuilder.positiveOffset = false
   }
 
