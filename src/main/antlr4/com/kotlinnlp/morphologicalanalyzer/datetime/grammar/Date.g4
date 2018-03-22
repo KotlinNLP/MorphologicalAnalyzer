@@ -52,7 +52,8 @@ year_lit    : YEAR ;
 day
     : day_week (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_str)
     | day_week SPACE_SEP? COMMA (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_str)
-    | (THE SPACE_SEP)? (day_num | day_str)
+    | day_num
+    | day_str
     ;
 
 day_num : day_num_th | day_num_canonical | n_0_31 ;
