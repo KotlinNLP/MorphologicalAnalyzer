@@ -3,13 +3,18 @@ grammar Offset;
 import LexerEN, Date, Time;
 
 offset
-    : offset_single_prefix SPACE_SEP (offset_date_ref | date_time_literal)
-    | offset_prefix SPACE_SEP offset_units SPACE_SEP (offset_date_ref | date_time_literal)
-    | offset_date_ref SPACE_SEP offset_double_pos_suffix
+    : offset_single_prefix SPACE_SEP offset_ref
+    | offset_prefix SPACE_SEP offset_units SPACE_SEP offset_ref
+    | offset_ref SPACE_SEP offset_double_pos_suffix
     ;
 
-offset_date_ref : date ;
+// -----
+// -- Offset Reference
+// -----
 
+offset_ref : offset_date_ref | date_time_literal ;
+
+offset_date_ref : date ;
 date_time_literal : date_unit_literal | time_unit_literal ;
 
 // -----
