@@ -13,7 +13,7 @@ DAY_TH : E S I M (O | I | A | E) ;
 
 AND : E ;
 AT  : A L | A L L E ;
-THE : I L ;
+THE : I L | L APEX | L A | L O ;
 OF  : D I | D E (L | L L APEX | L L O | I | G L I | L L A | L L E) ;
 ON  : NOT_DEFINED ;
 IN  : I N | N E (L | I | G L I | L L A | L L E) | T R A | F R A ;
