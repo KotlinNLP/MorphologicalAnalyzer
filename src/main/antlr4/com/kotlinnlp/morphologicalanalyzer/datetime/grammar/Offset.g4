@@ -4,7 +4,7 @@ import LexerEN, Date, Time;
 
 offset
     : offset_single_prefix WS offset_ref
-    | offset_prefix WS offset_units WS offset_ref
+    | offset_pos_prefix WS offset_units WS offset_ref
     | offset_ref WS offset_double_suffix
     | offset_units WS offset_ref WS (offset_pos_suffix | offset_neg_suffix)
     ;
@@ -50,6 +50,4 @@ offset_units_str : ns_all ;
 // -- Prefix
 // -----
 
-offset_prefix : offset_pos_prefix | offset_neg_prefix ;
 offset_pos_prefix : IN ;
-offset_neg_prefix : FROM ;
