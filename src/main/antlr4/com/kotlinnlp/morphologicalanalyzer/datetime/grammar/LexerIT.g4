@@ -31,6 +31,7 @@ AFTER : D O P O SPACE_SEP THE ;
 BEFORE : P R I M A SPACE_SEP OF ;
 
 FROM : D A | D A L ;
+TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
 // -----
 // -- Special expressions
