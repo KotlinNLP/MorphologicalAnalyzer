@@ -1,3 +1,37 @@
 [
-
+  {
+    "text": "wednesday of next week",
+    "date": {"week-D": 3, "start": 0, "end": 8},
+    "offset": {"offset-type": "week", "units": 1, "start": 13, "end": 21}
+  },
+  {
+    "text": "wednesday next week",
+    "date": {"week-D": 3, "start": 0, "end": 8},
+    "offset": {"offset-type": "week", "units": 1, "start": 10, "end": 18}
+  },
+  {
+    "text": "monday of this week",
+    "date": {"week-D": 1, "start": 0, "end": 5},
+    "offset": {"offset-type": "week", "units": 0, "start": 10, "end": 18}
+  },
+  {
+    "text": "tuesday of this week",
+    "date": {"week-D": 2, "start": 0, "end": 6},
+    "offset": {"offset-type": "week", "units": 0, "start": 11, "end": 19}
+  },
+  {
+    "text": "10th Aug. of last year",
+    "date": {"D": 10, "M": 8, "start": 0, "end": 8},
+    "offset": {"offset-type": "year", "units": -1, "start": 13, "end": 21}
+  },
+  {
+    "text": "10th Aug. of past year",
+    "date": {"D": 10, "M": 8, "start": 0, "end": 8},
+    "offset": {"offset-type": "year", "units": -1, "start": 13, "end": 21}
+  },
+  {
+    "text": "Monday of the next August",
+    "date": {"week-D": 1, "start": 0, "end": 5},
+    "offset": {"offset-type": "date", "units": 1, "date": {"M": 8, "start": 5, "end": 10}, "start": 14, "end": 24}
+  }
 ]
