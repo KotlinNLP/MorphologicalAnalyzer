@@ -6,6 +6,7 @@ offset
     : offset_single_prefix SPACE_SEP offset_ref
     | offset_prefix SPACE_SEP offset_units SPACE_SEP offset_ref
     | offset_ref SPACE_SEP offset_double_suffix
+    | offset_units SPACE_SEP offset_ref SPACE_SEP offset_neg_suffix
     ;
 
 // -----
@@ -18,7 +19,7 @@ offset_date_ref : date ;
 date_time_literal : date_unit_literal | time_unit_literal ;
 
 // -----
-// -- Unit Prefix
+// -- Prefix
 // -----
 
 offset_single_prefix : offset_single_pos_prefix | offset_single_neg_prefix | offset_single_zero_prefix ;
@@ -27,12 +28,14 @@ offset_single_pos_prefix  : NEXT ; // a prefix that means implicitly a positive 
 offset_single_neg_prefix  : LAST | PREV ; // a prefix that means implicitly a negative offset of 1 unit (-1)
 
 // -----
-// -- Dobule Prefix
+// -- Suffix
 // -----
 
 offset_double_suffix : offset_double_pos_suffix | offset_double_neg_suffix ;
 offset_double_pos_suffix : AFTER SPACE_SEP NEXT ; // a prefix that means implicitly a positive offset of 2 units (+2)
 offset_double_neg_suffix : BEFORE SPACE_SEP LAST ; // a prefix that means implicitly a negative offset of 2 units (-2)
+
+offset_neg_suffix : AGO ;
 
 // -----
 // -- Units
