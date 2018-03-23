@@ -344,6 +344,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit offset_neg_suffix' event.
+   *
+   * @param ctx the context of the 'offset_neg_suffix' rule that is being parsed
+   */
+  override fun exitOffset_neg_suffix(ctx: DateTimeParser.Offset_neg_suffixContext) {
+
+    this.dateTimeBuilder.positiveOffset = false
+  }
+
+  /**
    * The listener of the 'exit datetime_utc' event.
    *
    * @param ctx the context of the 'datetime_utc' rule just parsed
