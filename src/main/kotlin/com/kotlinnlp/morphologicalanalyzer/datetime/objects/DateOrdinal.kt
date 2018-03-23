@@ -72,7 +72,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
    *
    * @property value the date-time value (can be a date or an offset)
    */
-  class DateTime(
+  data class DateTime(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
@@ -83,7 +83,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   /**
    * An ordinal date of 'day' units.
    */
-  class Day(
+  data class Day(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
@@ -93,7 +93,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   /**
    * An ordinal date of 'week' units.
    */
-  class Week(
+  data class Week(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
@@ -103,7 +103,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   /**
    * An ordinal date of 'weekend' units.
    */
-  class Weekend(
+  data class Weekend(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
@@ -113,7 +113,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   /**
    * An ordinal date of 'month' units.
    */
-  class Month(
+  data class Month(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
@@ -123,7 +123,7 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   /**
    * An ordinal date of 'year' units.
    */
-  class Year(
+  data class Year(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
