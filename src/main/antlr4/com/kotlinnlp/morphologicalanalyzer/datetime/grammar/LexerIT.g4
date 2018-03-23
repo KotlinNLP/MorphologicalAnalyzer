@@ -6,23 +6,26 @@ import Letters, Symbols, NumbersLexer, TimeLexer, LexerImportLast;
 // -- Functional words
 // -----
 
+fragment ART_SUFFIX : L | L L APEX | L L O | I | G L I | L L A | L L E ;
+fragment VOCAL_SUFFIX : O | I | A | E ;
+
 DAY_ST : NOT_DEFINED ;
 DAY_ND : NOT_DEFINED ;
 DAY_RD : NOT_DEFINED ;
-DAY_TH : E S I M (O | I | A | E) ;
+DAY_TH : E S I M VOCAL_SUFFIX ;
 
 AND : E ;
 AT  : A L | A L L E ;
 THE : I L | L APEX | L A | L O ;
-OF  : D I | D E (L | L L APEX | L L O | I | G L I | L L A | L L E) ;
+OF  : D I | D E ART_SUFFIX ;
 ON  : NOT_DEFINED ;
-IN  : I N | N E (L | I | G L I | L L A | L L E) | T R A | F R A ;
+IN  : I N | N E ART_SUFFIX | T R A | F R A ;
 
-THIS : Q U E S T (O | I | A | E) ;
-LAST : U L T I M (O | I | A | E) ;
+THIS : Q U E S T VOCAL_SUFFIX ;
+LAST : U L T I M VOCAL_SUFFIX ;
 PREV : P R E C E D E N T (E | I) ;
-NEXT : P R O S S I M (O | I | A | E) ;
-PAST : P A S S A T (O | I | A | E) ;
+NEXT : P R O S S I M VOCAL_SUFFIX ;
+PAST : P A S S A T VOCAL_SUFFIX ;
 
 AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
 HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
@@ -30,7 +33,7 @@ HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
 AFTER : D O P O WS THE ;
 BEFORE : P R I M A WS OF ;
 
-FROM : D A | D A L ;
+FROM : D A ART_SUFFIX;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
 // -----
@@ -152,16 +155,16 @@ NS_31 : T R E N T NS_1 ;
 
 fragment TH : DAY_TH ;
 
-NS_ORD_1  : P R I M (O | I | A | E) ;
-NS_ORD_2  : S E C O N D (O | I | A | E) ;
-NS_ORD_3  : T E R Z (O | I | A | E) ;
-NS_ORD_4  : Q U A R T (O | I | A | E) ;
-NS_ORD_5  : Q U I N T (O | I | A | E) ;
-NS_ORD_6  : S E S T (O | I | A | E) ;
-NS_ORD_7  : S E T T I M (O | I | A | E) ;
-NS_ORD_8  : O T T A V (O | I | A | E) ;
-NS_ORD_9  : N O N (O | I | A | E) ;
-NS_ORD_10 : D E C I M (O | I | A | E) ;
+NS_ORD_1  : P R I M VOCAL_SUFFIX ;
+NS_ORD_2  : S E C O N D VOCAL_SUFFIX ;
+NS_ORD_3  : T E R Z VOCAL_SUFFIX ;
+NS_ORD_4  : Q U A R T VOCAL_SUFFIX ;
+NS_ORD_5  : Q U I N T VOCAL_SUFFIX ;
+NS_ORD_6  : S E S T VOCAL_SUFFIX ;
+NS_ORD_7  : S E T T I M VOCAL_SUFFIX ;
+NS_ORD_8  : O T T A V VOCAL_SUFFIX ;
+NS_ORD_9  : N O N VOCAL_SUFFIX ;
+NS_ORD_10 : D E C I M VOCAL_SUFFIX ;
 NS_ORD_11 : U N D I C TH ;
 NS_ORD_12 : D O D I C TH ;
 NS_ORD_13 : T R E D I C TH ;
