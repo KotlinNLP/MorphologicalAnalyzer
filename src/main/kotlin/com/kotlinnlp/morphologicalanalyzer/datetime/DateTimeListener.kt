@@ -279,12 +279,13 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
-   * The listener of the 'exit ordinal_date_unit' event.
+   * The listener of the 'exit ordinal_day_week_unit' event.
    *
-   * @param ctx the context of the 'ordinal_date_unit' rule that is being parsed
+   * @param ctx the context of the 'ordinal_day_week_unit' rule that is being parsed
    */
-  override fun exitOrdinal_date_unit(ctx: DateTimeParser.Ordinal_date_unitContext) {
+  override fun exitOrdinal_day_week_unit(ctx: DateTimeParser.Ordinal_day_week_unitContext) {
 
+    this.dateTimeBuilder.setDateTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
     this.dateTimeBuilder.ordinalDateUnit = this.dateTimeBuilder.buildDate()
   }
 
