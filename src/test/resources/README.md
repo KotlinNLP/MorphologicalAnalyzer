@@ -10,6 +10,14 @@ Each JSON file contains a list of objects, each representing a test for the `Dat
 
 All tests have the `text` field. Depending on the test `TYPE` they can contain adding specific fields.
 
+The following types are supported:
+* "null"
+* "date"
+* "time"
+* "datetime"
+* "offset"
+* "date_offset"
+
 ### Common Fields
 
 * `text`: the text that can contain a date-time expression and will be evaluated by the `DateTimeProcessor`.
@@ -61,3 +69,15 @@ The following fields are required.
 * `positive`: a boolean indicating if the offset is positive
 
 If `offset-type` is "date" then the same adding fields of the test of `TYPE` "date" are required.
+
+#### Adding fields for the `TYPE` "date_offset"
+
+The following fields are required. 
+
+* `date` 
+* `offset` 
+
+Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
+
+* `start`: the index of the char at which it starts in the `text`
+* `end`: the index of the char at which it ends in the `text`

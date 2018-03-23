@@ -10,6 +10,7 @@ package utils
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import java.io.FileNotFoundException
 import java.nio.file.Paths
 import java.util.*
 
@@ -67,7 +68,7 @@ object TestDateTimes {
   init {
 
     val testLangs = listOf("en")
-    val testTypes = listOf("date", "time", "offset", "null")
+    val testTypes = listOf("null", "date", "time", "offset", "date_offset")
 
     this.tests = testLangs.associate { lang ->
       lang to testTypes.map { type -> TestGroup(type = type, tests = loadTests(type = type, langCode = lang)) }
@@ -86,7 +87,12 @@ object TestDateTimes {
 
     val formattedResName: String = this.RES_UNFORMATTED.format(type)
     val simpleResFilename: String = Paths.get(langCode, formattedResName).toString()
-    val absResFilename: String = TestDateTimes::class.java.classLoader.getResource(simpleResFilename).file
+
+    val absResFilename: String = try {
+      TestDateTimes::class.java.classLoader.getResource(simpleResFilename).file
+    } catch (e: NullPointerException) {
+      throw FileNotFoundException(simpleResFilename)
+    }
 
     val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
 
@@ -142,6 +148,7 @@ object TestDateTimes {
       "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
       "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
       "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
+      "date_offset" -> this.buildDateOffset(jsonObj = jsonObj, start = start, end = end)
       else -> throw RuntimeException("Invalid DateTime type: $type")
     }
   )
@@ -257,5 +264,35 @@ object TestDateTimes {
 
       else -> throw RuntimeException("Invalid offset type: $type")
     }
+  }
+
+  /**
+   * Build a [DateOffset] object.
+   *
+   * @param jsonObj the JSON object containing the information of the date-offset
+   * @param start the char index at which the expected date-offset starts in the text (inclusive)
+   * @param end the char index at which the expected date-offset ends in the text (inclusive)
+   *
+   * @return a date-offset object
+   */
+  private fun buildDateOffset(jsonObj: JsonObject, start: Int, end: Int): DateOffset{
+
+    val dateObj: JsonObject = jsonObj.obj("date")!!
+    val offsetObj: JsonObject = jsonObj.obj("offset")!!
+
+    return DateOffset(
+      startToken = start,
+      endToken = end,
+      date = this.buildDate(
+        jsonObj = dateObj,
+        start = start + dateObj.int("start")!!, // the field in the object is an offset
+        end = start + dateObj.int("end")!! // the field in the object is an offset
+      ),
+      offset = this.buildOffset(
+        jsonObj = offsetObj,
+        start = start + offsetObj.int("start")!!, // the field in the object is an offset
+        end = start + offsetObj.int("end")!! // the field in the object is an offset
+      )
+    )
   }
 }
