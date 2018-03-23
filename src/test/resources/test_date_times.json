@@ -110,6 +110,30 @@
     "date": {"week-D": 6, "start": 7, "end": 14},
     "time": {"h": 9, "start": 0, "end": 2}
   },
+  {"type": "offset", "text": "this week", "offset-type": "week", "positive": true, "units": 0},
+  {"type": "offset", "text": "this year", "offset-type": "year", "positive": true, "units": 0},
+  {"type": "offset", "text": "next week", "offset-type": "week", "positive": true, "units": 1},
+  {"type": "offset", "text": "in 4 weeks", "offset-type": "week", "positive": true, "units": 4},
+  {"type": "offset", "text": "next month", "offset-type": "month", "positive": true, "units": 1},
+  {"type": "offset", "text": "next year", "offset-type": "year", "positive": true, "units": 1},
+  {"type": "offset", "text": "in 10 years", "offset-type": "year", "positive": true, "units": 10},
+  {"type": "offset", "text": "coming week", "offset-type": "week", "positive": true, "units": 1},
+  {"type": "offset", "text": "last week", "offset-type": "week", "positive": false, "units": 1},
+  {"type": "offset", "text": "last weekend", "offset-type": "weekend", "positive": false, "units": 1},
+  {"type": "offset", "text": "last month", "offset-type": "month", "positive": false, "units": 1},
+  {"type": "offset", "text": "last year", "offset-type": "year", "positive": false, "units": 1},
+  {"type": "offset", "text": "from six months", "offset-type": "month", "positive": false, "units": 6},
+  {"type": "offset", "text": "2 weekends ago", "offset-type": "weekend", "positive": false, "units": 2},
+  {"type": "offset", "text": "three years ago", "offset-type": "year", "positive": false, "units": 3},
+  {
+    "type": "offset",
+    "text": "this monday",
+    "offset-type": "date",
+    "positive": true,
+    "units": 0,
+    "date": {"week-D": 1, "start": 5, "end": 10}
+  },
+
   {
     "type": "offset",
     "text": "next August",
@@ -117,6 +141,54 @@
     "positive": true,
     "units": 1,
     "date": {"M": 8, "start": 5, "end": 10}
+  },
+  {
+    "type": "offset",
+    "text": "next March",
+    "offset-type": "date",
+    "positive": true,
+    "units": 1,
+    "date": {"M": 3, "start": 5, "end": 9}
+  },
+  {
+    "type": "offset",
+    "text": "next tuesday",
+    "offset-type": "date",
+    "positive": true,
+    "units": 1,
+    "date": {"week-D": 2, "start": 5, "end": 11}
+  },
+  {
+    "type": "offset",
+    "text": "last sunday",
+    "offset-type": "date",
+    "positive": false,
+    "units": 1,
+    "date": {"week-D": 7, "start": 5, "end": 10}
+  },
+  {
+    "type": "offset",
+    "text": "last tuesday",
+    "offset-type": "date",
+    "positive": false,
+    "units": 1,
+    "date": {"week-D": 2, "start": 5, "end": 11}
+  },
+  {
+    "type": "offset",
+    "text": "friday after next",
+    "offset-type": "date",
+    "positive": true,
+    "units": 2,
+    "date": {"week-D": 5, "start": 0, "end": 5}
+  },
+  {
+    "type": "offset",
+    "text": "March after next",
+    "offset-type": "date",
+    "positive": true,
+    "units": 2,
+    "date": {"M": 3, "start": 0, "end": 4}
   },
   {"type": "null", "text": "on the 15"},
   {"type": "null", "text": "h9"}
