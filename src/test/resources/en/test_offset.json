@@ -1,82 +1,27 @@
 [
-  {"text": "this week", "offset-type": "week", "positive": true, "units": 0},
-  {"text": "this year", "offset-type": "year", "positive": true, "units": 0},
-  {"text": "next week", "offset-type": "week", "positive": true, "units": 1},
-  {"text": "in 4 weeks", "offset-type": "week", "positive": true, "units": 4},
-  {"text": "next month", "offset-type": "month", "positive": true, "units": 1},
-  {"text": "next year", "offset-type": "year", "positive": true, "units": 1},
-  {"text": "next year", "offset-type": "year", "positive": true, "units": 1},
-  {"text": "in 10 years", "offset-type": "year", "positive": true, "units": 10},
-  {"text": "coming week", "offset-type": "week", "positive": true, "units": 1},
-  {"text": "last week", "offset-type": "week", "positive": false, "units": 1},
-  {"text": "last weekend", "offset-type": "weekend", "positive": false, "units": 1},
-  {"text": "last month", "offset-type": "month", "positive": false, "units": 1},
-  {"text": "last year", "offset-type": "year", "positive": false, "units": 1},
-  {"text": "from six months", "offset-type": "month", "positive": false, "units": 6},
-  {"text": "2 weekends ago", "offset-type": "weekend", "positive": false, "units": 2},
-  {"text": "three years ago", "offset-type": "year", "positive": false, "units": 3},
-  {
-    "text": "this monday",
-    "offset-type": "date",
-    "positive": true,
-    "units": 0,
-    "date": {"week-D": 1, "start": 5, "end": 10}
-  },
-
-  {
-    "text": "next August",
-    "offset-type": "date",
-    "positive": true,
-    "units": 1,
-    "date": {"M": 8, "start": 5, "end": 10}
-  },
-  {
-    "text": "next March",
-    "offset-type": "date",
-    "positive": true,
-    "units": 1,
-    "date": {"M": 3, "start": 5, "end": 9}
-  },
-  {
-    "text": "next tuesday",
-    "offset-type": "date",
-    "positive": true,
-    "units": 1,
-    "date": {"week-D": 2, "start": 5, "end": 11}
-  },
-  {
-    "text": "last sunday",
-    "offset-type": "date",
-    "positive": false,
-    "units": 1,
-    "date": {"week-D": 7, "start": 5, "end": 10}
-  },
-  {
-    "text": "last tuesday",
-    "offset-type": "date",
-    "positive": false,
-    "units": 1,
-    "date": {"week-D": 2, "start": 5, "end": 11}
-  },
-  {
-    "text": "wednesday after next",
-    "offset-type": "date",
-    "positive": true,
-    "units": 2,
-    "date": {"week-D": 3, "start": 0, "end": 8}
-  },
-  {
-    "text": "friday after next",
-    "offset-type": "date",
-    "positive": true,
-    "units": 2,
-    "date": {"week-D": 5, "start": 0, "end": 5}
-  },
-  {
-    "text": "March after next",
-    "offset-type": "date",
-    "positive": true,
-    "units": 2,
-    "date": {"M": 3, "start": 0, "end": 4}
-  }
+  {"text": "this week", "offset-type": "week", "units": 0},
+  {"text": "this year", "offset-type": "year", "units": 0},
+  {"text": "next week", "offset-type": "week", "units": 1},
+  {"text": "in 4 weeks", "offset-type": "week", "units": 4},
+  {"text": "next month", "offset-type": "month", "units": 1},
+  {"text": "next year", "offset-type": "year", "units": 1},
+  {"text": "next year", "offset-type": "year", "units": 1},
+  {"text": "in 10 years", "offset-type": "year", "units": 10},
+  {"text": "coming week", "offset-type": "week", "units": 1},
+  {"text": "last week", "offset-type": "week", "units": -1},
+  {"text": "last weekend", "offset-type": "weekend", "units": -1},
+  {"text": "last month", "offset-type": "month", "units": -1},
+  {"text": "last year", "offset-type": "year", "units": -1},
+  {"text": "from six months", "offset-type": "month", "units": -6},
+  {"text": "2 weekends ago", "offset-type": "weekend", "units": -2},
+  {"text": "three years ago", "offset-type": "year", "units": -3},
+  {"text": "this monday", "offset-type": "date", "units": 0, "date": {"week-D": 1, "start": 5, "end": 10}},
+  {"text": "next August", "offset-type": "date", "units": 1, "date": {"M": 8, "start": 5, "end": 10}},
+  {"text": "next March", "offset-type": "date", "units": 1, "date": {"M": 3, "start": 5, "end": 9}},
+  {"text": "next tuesday", "offset-type": "date", "units": 1, "date": {"week-D": 2, "start": 5, "end": 11}},
+  {"text": "last sunday", "offset-type": "date", "units": -1, "date": {"week-D": 7, "start": 5, "end": 10}},
+  {"text": "last tuesday", "offset-type": "date", "units": -1, "date": {"week-D": 2, "start": 5, "end": 11}},
+  {"text": "wednesday after next", "offset-type": "date", "units": 2, "date": {"week-D": 3, "start": 0, "end": 8}},
+  {"text": "friday after next", "offset-type": "date", "units": 2, "date": {"week-D": 5, "start": 0, "end": 5}},
+  {"text": "March after next", "offset-type": "date", "units": 2, "date": {"M": 3, "start": 0, "end": 4}}
 ]

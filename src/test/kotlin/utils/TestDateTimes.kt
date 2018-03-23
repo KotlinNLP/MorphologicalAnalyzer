@@ -252,7 +252,6 @@ object TestDateTimes {
   private fun buildOffset(jsonObj: JsonObject, start: Int, end: Int): Offset {
 
     val type: String = jsonObj.string("offset-type")!!
-    val positive: Boolean = jsonObj.boolean("positive")!!
     val units: Int = jsonObj.int("units")!!
 
     return when (type) {
@@ -266,17 +265,17 @@ object TestDateTimes {
           end = start + dateObj.int("end")!! // the field in the object is an offset
         )
 
-        Offset.Date(startToken = start, endToken = end, positive = positive, units = units, value = date)
+        Offset.Date(startToken = start, endToken = end, units = units, value = date)
       }
 
-      "hour" -> Offset.Hours(startToken = start, endToken = end, positive = positive, units = units)
-      "min" -> Offset.Minutes(startToken = start, endToken = end, positive = positive, units = units)
-      "sec" -> Offset.Seconds(startToken = start, endToken = end, positive = positive, units = units)
-      "day" -> Offset.Days(startToken = start, endToken = end, positive = positive, units = units)
-      "week" -> Offset.Weeks(startToken = start, endToken = end, positive = positive, units = units)
-      "weekend" -> Offset.Weekends(startToken = start, endToken = end, positive = positive, units = units)
-      "month" -> Offset.Months(startToken = start, endToken = end, positive = positive, units = units)
-      "year" -> Offset.Years(startToken = start, endToken = end, positive = positive, units = units)
+      "hour" -> Offset.Hours(startToken = start, endToken = end, units = units)
+      "min" -> Offset.Minutes(startToken = start, endToken = end, units = units)
+      "sec" -> Offset.Seconds(startToken = start, endToken = end, units = units)
+      "day" -> Offset.Days(startToken = start, endToken = end, units = units)
+      "week" -> Offset.Weeks(startToken = start, endToken = end, units = units)
+      "weekend" -> Offset.Weekends(startToken = start, endToken = end, units = units)
+      "month" -> Offset.Months(startToken = start, endToken = end, units = units)
+      "year" -> Offset.Years(startToken = start, endToken = end, units = units)
 
       else -> throw RuntimeException("Invalid offset type: $type")
     }
