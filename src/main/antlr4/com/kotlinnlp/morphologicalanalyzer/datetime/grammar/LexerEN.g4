@@ -47,6 +47,8 @@ HOUR    : H O U R S? ;
 MIN     : M I N (U T E) S? ;
 SEC     : S E C S? ; // 'second' is also an ordinal number
 
+AGO : A G O ;
+
 // -----
 // -- Holidays
 // -----

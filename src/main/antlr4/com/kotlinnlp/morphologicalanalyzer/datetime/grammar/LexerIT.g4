@@ -47,6 +47,8 @@ HOUR    : O R (A | E) ;
 MIN     : M I N U T (O | I) ;
 SEC     : S E C ; // 'secondo' is also an ordinal number
 
+AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
+
 // -----
 // -- Holidays
 // -----
