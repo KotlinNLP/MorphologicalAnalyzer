@@ -56,8 +56,8 @@ The following fields are required.
 
 Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
 
-* `start`: the index of the char at which it starts in the `text`
-* `end`: the index of the char at which it ends in the `text`
+* `start`: the index of the char at which it starts respect to the date-time start index
+* `end`: the index of the char at which it ends respect to the date-time start index
 
 #### Adding fields for the `TYPE` "offset"
 
@@ -68,7 +68,11 @@ The following fields are required.
 * `units`: the units of the offset length as int in the range [0, +inf]
 * `positive`: a boolean indicating if the offset is positive
 
-If `offset-type` is "date" then the same adding fields of the test of `TYPE` "date" are required.
+If `offset-type` is "date" then the same adding fields of the test of `TYPE` "date" are required, and two fields more:
+
+* `start`: the index of the char at which it starts respect to the offset start index
+* `end`: the index of the char at which it ends respect to the offset start index
+
 
 #### Adding fields for the `TYPE` "date_offset"
 
@@ -79,5 +83,5 @@ The following fields are required.
 
 Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
 
-* `start`: the index of the char at which it starts in the `text`
-* `end`: the index of the char at which it ends in the `text`
+* `start`: the index of the char at which it starts respect to the date-offset start index
+* `end`: the index of the char at which it ends respect to the date-offset start index
