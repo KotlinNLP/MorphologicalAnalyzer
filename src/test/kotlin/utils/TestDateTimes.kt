@@ -219,26 +219,12 @@ object TestDateTimes {
    *
    * @return a date-time object
    */
-  private fun buildDateTime(jsonObj: JsonObject, start: Int, end: Int): DateTimeSimple {
-
-    val dateObj: JsonObject = jsonObj.obj("date")!!
-    val timeObj: JsonObject = jsonObj.obj("time")!!
-
-    return DateTimeSimple(
-      startToken = start,
-      endToken = end,
-      date = this.buildDate(
-        jsonObj = dateObj,
-        start = start + dateObj.int("start")!!, // the field in the object is an offset
-        end = start + dateObj.int("end")!! // the field in the object is an offset
-      ),
-      time = this.buildTime(
-        jsonObj = timeObj,
-        start = start + timeObj.int("start")!!, // the field in the object is an offset
-        end = start + timeObj.int("end")!! // the field in the object is an offset
-      )
-    )
-  }
+  private fun buildDateTime(jsonObj: JsonObject, start: Int, end: Int) = DateTimeSimple(
+    startToken = start,
+    endToken = end,
+    date = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start),
+    time = this.buildInnerTime(jsonObj = jsonObj.obj("time")!!, offset = start)
+  )
 
   /**
    * Build an [Offset] object.
@@ -255,19 +241,12 @@ object TestDateTimes {
     val units: Int = jsonObj.int("units")!!
 
     return when (type) {
-
-      "date" -> {
-
-        val dateObj: JsonObject = jsonObj.obj("date")!!
-        val date: Date = this.buildDate(
-          jsonObj = dateObj,
-          start = start + dateObj.int("start")!!, // the field in the object is an offset
-          end = start + dateObj.int("end")!! // the field in the object is an offset
-        )
-
-        Offset.Date(startToken = start, endToken = end, units = units, value = date)
-      }
-
+      "date" -> Offset.Date(
+        startToken = start,
+        endToken = end,
+        units = units,
+        value = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start)
+      )
       "hour" -> Offset.Hours(startToken = start, endToken = end, units = units)
       "min" -> Offset.Minutes(startToken = start, endToken = end, units = units)
       "sec" -> Offset.Seconds(startToken = start, endToken = end, units = units)
@@ -276,7 +255,6 @@ object TestDateTimes {
       "weekend" -> Offset.Weekends(startToken = start, endToken = end, units = units)
       "month" -> Offset.Months(startToken = start, endToken = end, units = units)
       "year" -> Offset.Years(startToken = start, endToken = end, units = units)
-
       else -> throw RuntimeException("Invalid offset type: $type")
     }
   }
@@ -290,24 +268,52 @@ object TestDateTimes {
    *
    * @return a date-offset object
    */
-  private fun buildDateOffset(jsonObj: JsonObject, start: Int, end: Int): DateOffset{
+  private fun buildDateOffset(jsonObj: JsonObject, start: Int, end: Int) = DateOffset(
+    startToken = start,
+    endToken = end,
+    date = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start),
+    offset = this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = start)
+  )
 
-    val dateObj: JsonObject = jsonObj.obj("date")!!
-    val offsetObj: JsonObject = jsonObj.obj("offset")!!
+  /**
+   * Build a [Date] that is part of an outer [DateTime] object.
+   *
+   * @param jsonObj the JSON object containing the information of the date
+   * @param offset the start char index of the outer object (added as offset to the start-end indices of the [jsonObj])
+   *
+   * @return a date object
+   */
+  private fun buildInnerDate(jsonObj: JsonObject, offset: Int): Date = this.buildDate(
+    jsonObj = jsonObj,
+    start = offset + jsonObj.int("start")!!,
+    end = offset + jsonObj.int("end")!!
+  )
 
-    return DateOffset(
-      startToken = start,
-      endToken = end,
-      date = this.buildDate(
-        jsonObj = dateObj,
-        start = start + dateObj.int("start")!!, // the field in the object is an offset
-        end = start + dateObj.int("end")!! // the field in the object is an offset
-      ),
-      offset = this.buildOffset(
-        jsonObj = offsetObj,
-        start = start + offsetObj.int("start")!!, // the field in the object is an offset
-        end = start + offsetObj.int("end")!! // the field in the object is an offset
-      )
-    )
-  }
+  /**
+   * Build a [Time] that is part of an outer [DateTime] object.
+   *
+   * @param jsonObj the JSON object containing the information of the time
+   * @param offset the start char index of the outer object (added as offset to the start-end indices of the [jsonObj])
+   *
+   * @return a time object
+   */
+  private fun buildInnerTime(jsonObj: JsonObject, offset: Int): Time = this.buildTime(
+    jsonObj = jsonObj,
+    start = offset + jsonObj.int("start")!!,
+    end = offset + jsonObj.int("end")!!
+  )
+
+  /**
+   * Build an [Offset] that is part of an outer [DateTime] object.
+   *
+   * @param jsonObj the JSON object containing the information of the offset
+   * @param offset the start char index of the outer object (added as offset to the start-end indices of the [jsonObj])
+   *
+   * @return an offset object
+   */
+  private fun buildInnerOffset(jsonObj: JsonObject, offset: Int): Offset = this.buildOffset(
+    jsonObj = jsonObj,
+    start = offset + jsonObj.int("start")!!,
+    end = offset + jsonObj.int("end")!!
+  )
 }
