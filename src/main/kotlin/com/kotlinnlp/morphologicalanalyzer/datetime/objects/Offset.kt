@@ -74,7 +74,7 @@ sealed class Offset : DateTime {
    *
    * @property value the Time value
    */
-  class Time(
+  data class Time(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -94,7 +94,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of hours.
    */
-  class Hours(
+  data class Hours(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -104,7 +104,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of minutes.
    */
-  class Minutes(
+  data class Minutes(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -114,7 +114,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of seconds.
    */
-  class Seconds(
+  data class Seconds(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -124,7 +124,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of days.
    */
-  class Days(
+  data class Days(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -134,7 +134,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of weeks.
    */
-  class Weeks(
+  data class Weeks(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -144,7 +144,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of weekends.
    */
-  class Weekends(
+  data class Weekends(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -154,7 +154,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of months.
    */
-  class Months(
+  data class Months(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
@@ -164,7 +164,7 @@ sealed class Offset : DateTime {
   /**
    * An offset of years.
    */
-  class Years(
+  data class Years(
     override val startToken: Int,
     override val endToken: Int,
     override val positive: Boolean,
