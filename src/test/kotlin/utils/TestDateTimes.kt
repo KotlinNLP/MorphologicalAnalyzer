@@ -214,6 +214,8 @@ object TestDateTimes {
       "min" -> Offset.Minutes(startToken = start, endToken = end, positive = positive, units = units)
       "sec" -> Offset.Seconds(startToken = start, endToken = end, positive = positive, units = units)
       "day" -> Offset.Days(startToken = start, endToken = end, positive = positive, units = units)
+      "week" -> Offset.Weeks(startToken = start, endToken = end, positive = positive, units = units)
+      "weekend" -> Offset.Weekends(startToken = start, endToken = end, positive = positive, units = units)
       "month" -> Offset.Months(startToken = start, endToken = end, positive = positive, units = units)
       "year" -> Offset.Years(startToken = start, endToken = end, positive = positive, units = units)
 

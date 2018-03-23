@@ -54,7 +54,8 @@ Both contain the same adding fields of the test with `type` equal to their name,
 
 The following fields are required. 
 
-* `offset-type`: the type of the offset (possible values: "date", "hour", "min", "sec", "day", "month", "year")
+* `offset-type`: the type of the offset (possible values: "date", "hour", "min", "sec", "day", "week", "weekend", 
+"month", "year")
 * `units`: the units of the offset length as int in the range [0, +inf]
 * `positive`: a boolean indicating if the offset is positive
 
