@@ -18,19 +18,9 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.utils.TimeObj
 sealed class Offset : DateTime {
 
   /**
-   * Whether this offset is positive or negative.
-   */
-  abstract val positive: Boolean
-
-  /**
    * The count of offset units, in the range [0, +inf] (e.g. + 2 weeks).
    */
   abstract val units: Int
-
-  /**
-   * The string prefix: "(+|-) UNITS".
-   */
-  protected val stringPrefix: String by lazy { "%s %d".format(if (this.positive) "+" else "-", this.units) }
 
   /**
    * Get the string representing this offset in the following standard format:
@@ -38,21 +28,19 @@ sealed class Offset : DateTime {
    *
    * @return the string representing this offset
    */
-  override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this::class.simpleName!!.toLowerCase())
+  override fun toStandardFormat(): String = "%+d %s".format(this.units, this::class.simpleName!!.toLowerCase())
 
   /**
    * An offset of [DateObj].
    *
    * @property startToken the index of the first token of this expression
    * @property endToken the index of the last token of this expression
-   * @property positive whether this offset is positive or negative
    * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    * @property value the Date value
    */
   data class Date(
     override val startToken: Int,
     override val endToken: Int,
-    override val positive: Boolean,
     override val units: Int,
     val value: DateObj
   ) : Offset() {
@@ -63,7 +51,7 @@ sealed class Offset : DateTime {
      *
      * @return the string representing this offset
      */
-    override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this.value)
+    override fun toStandardFormat(): String = "%+d %s".format(this.units, this.value)
 
     override fun toString(): String = this.toStandardFormat()
   }
@@ -71,12 +59,14 @@ sealed class Offset : DateTime {
   /**
    * An offset of [TimeObj].
    *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    * @property value the Time value
    */
   data class Time(
     override val startToken: Int,
     override val endToken: Int,
-    override val positive: Boolean,
     override val units: Int,
     val value: TimeObj
   ) : Offset() {
@@ -87,111 +77,103 @@ sealed class Offset : DateTime {
      *
      * @return the string representing this offset
      */
-    override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this.value)
+    override fun toStandardFormat(): String = "%+d %s".format(this.units, this.value)
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of hours.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Hours(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Hours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of minutes.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Minutes(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Minutes(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of seconds.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Seconds(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Seconds(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of days.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Days(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Days(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of weeks.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Weeks(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Weeks(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of weekends.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Weekends(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Weekends(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of months.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Months(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset() {
+  data class Months(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
 
   /**
    * An offset of years.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
    */
-  data class Years(
-    override val startToken: Int,
-    override val endToken: Int,
-    override val positive: Boolean,
-    override val units: Int
-  ) : Offset(){
+  data class Years(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
 
     override fun toString(): String = this.toStandardFormat()
   }
