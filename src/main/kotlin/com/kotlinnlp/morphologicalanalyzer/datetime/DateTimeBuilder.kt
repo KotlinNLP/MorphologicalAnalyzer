@@ -88,7 +88,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    * The length of the currently building offset (default 1).
    */
-  var offsetUnits: Int = 1
+  var offsetLength: Int = 1
 
   /**
    * The ordinal position of a [DateOrdinal].
@@ -197,20 +197,19 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun buildOffset(): Offset = this.offsetDateRef?.let {
-    Offset.Date(
-      startToken = this.offsetTokens.start,
-      endToken = this.offsetTokens.endInclusive,
-      positive = this.positiveOffset,
-      units = this.offsetUnits,
-      value = it
-    )
-  } ?: DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(
-    this.offsetTokens.start,
-    this.offsetTokens.endInclusive,
-    this.positiveOffset,
-    this.offsetUnits
-  ) as Offset
+  fun buildOffset(): Offset {
+
+    val start: Int = this.offsetTokens.start
+    val end: Int = this.offsetTokens.endInclusive
+
+    val unitsFactor: Int = if (this.positiveOffset) 1 else -1
+    val units: Int = unitsFactor * this.offsetLength
+
+    return this.offsetDateRef?.let {
+      Offset.Date(startToken = start, endToken = end, units = units, value = it)
+    } ?:
+      DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(start, end, units) as Offset
+  }
 
   /**
    *
