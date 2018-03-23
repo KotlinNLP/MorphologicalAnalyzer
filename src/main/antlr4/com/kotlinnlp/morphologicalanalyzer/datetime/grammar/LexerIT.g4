@@ -33,7 +33,7 @@ HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
 AFTER : D O P O WS THE ;
 BEFORE : P R I M A WS OF ;
 
-FROM : D A ART_SUFFIX;
+FROM : D A ART_SUFFIX ;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
 // -----
@@ -117,8 +117,8 @@ DEC_ABBR : D I C DOT? ;
 // -- Cardinal Numbers
 // -----
 
-NS_1  : U N O ;
-NS_2  : D U E ;
+NS_1  : U N (O | A)? ;
+NS_2  : D U E | U N WS P A I O (WS D I)? ;
 NS_3  : T R E ;
 NS_4  : Q U A T T R O ;
 NS_5  : C I N Q U E ;

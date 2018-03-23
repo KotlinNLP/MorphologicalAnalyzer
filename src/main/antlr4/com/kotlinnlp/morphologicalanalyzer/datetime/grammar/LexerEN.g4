@@ -114,8 +114,8 @@ DEC_ABBR : D E C DOT? ;
 // -- Cardinal Numbers
 // -----
 
-NS_1  : O N E ;
-NS_2  : T W O ;
+NS_1  : O N E | A N | A ;
+NS_2  : T W O | A WS (P A I R | C O U P L E) WS O F ;
 NS_3  : T H R E E ;
 NS_4  : F O U R ;
 NS_5  : F I V E ;
