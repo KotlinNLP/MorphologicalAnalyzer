@@ -1,0 +1,81 @@
+[
+  {
+    "text": "last Monday of March",
+    "type": "date",
+    "position": -1,
+    "ref": {"date": {"M": 3, "start": 15, "end": 19}},
+    "date-unit": {"week-D": 1, "start": 5, "end": 10}
+  },
+  {
+    "text": "last Sunday of March 2014",
+    "type": "date",
+    "position": -1,
+    "ref": {"date": {"M": 3, "Y": 2014, "start": 15, "end": 24}},
+    "date-unit": {"week-D": 7, "start": 5, "end": 10}
+  },
+  {
+    "text": "third tuesday of september 2014",
+    "type": "date",
+    "position": 3,
+    "ref": {"date": {"M": 9, "Y": 2014, "start": 17, "end": 30}},
+    "date-unit": {"week-D": 2, "start": 6, "end": 12}
+  },
+  {
+    "text": "first wednesday of october 2014",
+    "type": "date",
+    "position": 1,
+    "ref": {"date": {"M": 10, "Y": 2014, "start": 19, "end": 30}},
+    "date-unit": {"week-D": 3, "start": 6, "end": 14}
+  },
+  {
+    "text": "second wednesday of october 2014",
+    "type": "date",
+    "position": 2,
+    "ref": {"date": {"M": 10, "Y": 2014, "start": 20, "end": 31}},
+    "date-unit": {"week-D": 3, "start": 7, "end": 15}
+  },
+  {
+    "text": "first tuesday of october",
+    "type": "date",
+    "position": 1,
+    "ref": {"date": {"M": 10, "start": 17, "end": 23}},
+    "date-unit": {"week-D": 2, "start": 6, "end": 12}
+  },
+  {
+    "text": "first tuesday in october",
+    "type": "date",
+    "position": 1,
+    "ref": {"date": {"M": 10, "start": 17, "end": 23}},
+    "date-unit": {"week-D": 2, "start": 6, "end": 12}
+  },
+  {
+    "text": "third day of october",
+    "type": "day",
+    "position": 3,
+    "ref": {"date": {"M": 10, "start": 13, "end": 19}}
+  },
+  {
+    "text": "first week of october 2014",
+    "type": "week",
+    "position": 1,
+    "ref": {"date": {"M": 10, "Y": 2014, "start": 14, "end": 25}}
+  },
+  {
+    "text": "last day of october 2015",
+    "type": "day",
+    "position": -1,
+    "ref": {"date": {"M": 10, "Y": 2015, "start": 12, "end": 23}}
+  },
+  {
+    "text": "last day in october 2015",
+    "type": "day",
+    "position": -1,
+    "ref": {"date": {"M": 10, "Y": 2015, "start": 12, "end": 23}}
+  },
+  {
+    "text": "last week of september 2014",
+    "type": "week",
+    "position": -1,
+    "ref": {"date": {"M": 9, "Y": 2014, "start": 13, "end": 26}}
+  }
+]

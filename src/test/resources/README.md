@@ -17,6 +17,7 @@ The following types are supported:
 * "datetime"
 * "offset"
 * "date_offset"
+* "date_ordinal"
 
 ### Common Fields
 
@@ -51,8 +52,8 @@ All the following fields are optional, but at least one of `h`, `m` or `s` must 
 
 The following fields are required. 
 
-* `date` 
-* `time` 
+* `date`: an inner "date" object
+* `time`: an inner "time" object
 
 Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
 
@@ -72,15 +73,32 @@ If `offset-type` is "date" then the same adding fields of the test of `TYPE` "da
 * `start`: the index of the char at which it starts respect to the offset start index
 * `end`: the index of the char at which it ends respect to the offset start index
 
-
 #### Adding fields for the `TYPE` "date_offset"
 
 The following fields are required. 
 
-* `date` 
-* `offset` 
+* `date`: an inner "date" object
+* `offset`: an inner "offset" object
 
 Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
 
 * `start`: the index of the char at which it starts respect to the date-offset start index
 * `end`: the index of the char at which it ends respect to the date-offset start index
+
+#### Adding fields for the `TYPE` "date_ordinal"
+
+The following fields are required. 
+
+* `type`: the type of ordinal date (possible values: "date", "day", "week", "weekend", "month", "year")
+* `ref`: the reference date-time object that can contains one of the following fields:
+    * `date`: an inner "date" object that represents a week day (e.g. "Monday")
+    * `offset`: an inner "offset" object
+
+Both `ref.date` and `ref.offset` contain the same adding fields of the test with `TYPE` equal to their name, and two 
+fields more: 
+
+* `start`: the index of the char at which it starts respect to the date-offset start index
+* `end`: the index of the char at which it ends respect to the date-offset start index
+
+If `type` is "date" then the same adding fields of the test of `TYPE` "date" are required, and the same `start` and 
+`end` adding fields.

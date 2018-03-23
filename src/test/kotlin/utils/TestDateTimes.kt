@@ -71,7 +71,8 @@ object TestDateTimes {
     "time",
     "datetime",
     "offset",
-    "date_offset"
+    "date_offset",
+    "date_ordinal"
   )
 
   /**
@@ -165,6 +166,7 @@ object TestDateTimes {
       "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
       "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
       "date_offset" -> this.buildDateOffset(jsonObj = jsonObj, start = start, end = end)
+      "date_ordinal" -> this.buildDateOrdinal(jsonObj = jsonObj, start = start, end = end)
       else -> throw RuntimeException("Invalid DateTime type: $type")
     }
   )
@@ -274,6 +276,54 @@ object TestDateTimes {
     date = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start),
     offset = this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = start)
   )
+
+  /**
+   * Build a [DateOrdinal] object.
+   *
+   * @param jsonObj the JSON object containing the information of the ordinal date
+   * @param start the char index at which the expected ordinal date starts in the text (inclusive)
+   * @param end the char index at which the expected ordinal date ends in the text (inclusive)
+   *
+   * @return an ordinal date object
+   */
+  private fun buildDateOrdinal(jsonObj: JsonObject, start: Int, end: Int): DateOrdinal {
+
+    val type: String = jsonObj.string("type")!!
+    val refDateTime: DateTime = this.getInnerDateTime(jsonObj = jsonObj.obj("ref")!!, offset = start)
+    val pos: DateOrdinal.Position = jsonObj.int("position")!!.let {
+      if (it < 0) DateOrdinal.Position.Last() else DateOrdinal.Position.Ordinal(count = it)
+    }
+
+    return when (type) {
+      "date" -> DateOrdinal.Date(
+        startToken = start,
+        endToken = end,
+        position = pos,
+        dateTime = refDateTime,
+        value = this.buildInnerDate(jsonObj = jsonObj.obj("date-unit")!!, offset = start)
+      )
+      "day" -> DateOrdinal.Day(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      "week" -> DateOrdinal.Week(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      "weekend" -> DateOrdinal.Weekend(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      "month" -> DateOrdinal.Month(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      "year" -> DateOrdinal.Year(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      else -> throw RuntimeException("Invalid offset type: $type")
+    }
+  }
+
+  /**
+   * Build a generic [DateTime] that is part of an outer [DateTime] object.
+   *
+   * @param jsonObj the JSON object containing the information of the date-time
+   * @param offset the start char index of the outer object (added as offset to the start-end indices of the [jsonObj])
+   *
+   * @return a date-time object
+   */
+  private fun getInnerDateTime(jsonObj: JsonObject, offset: Int): DateTime = when {
+    "date" in jsonObj -> this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = offset)
+    "offset" in jsonObj -> this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = offset)
+    else -> throw RuntimeException("Missing a valid inner date-time.")
+  }
 
   /**
    * Build a [Date] that is part of an outer [DateTime] object.
