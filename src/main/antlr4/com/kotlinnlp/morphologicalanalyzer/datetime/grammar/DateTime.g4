@@ -31,7 +31,8 @@ datetime
     | date_ordinal
     ;
 
-date_offset : date SPACE_SEP (OF SPACE_SEP)? offset ;
+date_offset : date_offset_date_ref SPACE_SEP (OF SPACE_SEP)? offset ;
+date_offset_date_ref : date ;
 
 date_time_simple
     : date SPACE_SEP time
