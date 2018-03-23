@@ -1,0 +1,37 @@
+[
+  {
+    "text": "Fri, Jul 18, 2014 07:00 AM",
+    "date": {"week-D": 5, "D": 18, "M": 7, "Y": 2014, "start": 0, "end": 16},
+    "time": {"h": 7, "m": 0, "start": 18, "end": 25}
+  },
+  {
+    "text": "Fri, Jul 18, 2014 07:00 PM",
+    "date": {"week-D": 5, "D": 18, "M": 7, "Y": 2014, "start": 0, "end": 16},
+    "time": {"h": 19, "m": 0, "start": 18, "end": 25}
+  },
+  {
+    "text": "Fri, Jul 18, 2014 12:00 AM",
+    "date": {"week-D": 5, "D": 18, "M": 7, "Y": 2014, "start": 0, "end": 16},
+    "time": {"h": 0, "m": 0, "start": 18, "end": 25}
+  },
+  {
+    "text": "2013-10-06T21:15:13Z",
+    "date": {"D": 6, "M": 10, "Y": 2013, "start": 0, "end": 9},
+    "time": {"h": 21, "m": 15, "s": 13, "tz": "UTC", "start": 11, "end": 18}
+  },
+  {
+    "text": "2011-08-12T20:17:46.384Z",
+    "date": {"D": 12, "M": 8, "Y": 2011, "start": 0, "end": 9},
+    "time": {"h": 20, "m": 17, "s": 46, "ms": 384, "tz": "UTC", "start": 11, "end": 22}
+  },
+  {
+    "text": "7:30 PM on Fri, Sep 20",
+    "date": {"D": 20, "week-D": 5, "M": 9, "start": 11, "end": 21},
+    "time": {"h": 19, "m": 30, "start": 0, "end": 6}
+  },
+  {
+    "text": "9am on Saturday",
+    "date": {"week-D": 6, "start": 7, "end": 14},
+    "time": {"h": 9, "start": 0, "end": 2}
+  }
+]

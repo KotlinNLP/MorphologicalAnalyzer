@@ -1,0 +1,11 @@
+[
+  {"text": "9.15", "h": 9, "m": 15},
+  {"text": "9:15", "h": 9, "m": 15},
+  {"text": "9 o clock", "h": 9},
+  {"text": "9 o' clock", "h": 9},
+  {"text": "9 o'clock", "h": 9},
+  {"text": "9 o 'clock", "h": 9},
+  {"text": "9 o ' clock", "h": 9},
+  {"text": "fifteen o' clock", "h": 15},
+  {"text": "h 9", "h": 9}
+]
