@@ -68,7 +68,7 @@ object TestDateTimes {
   init {
 
     val testLangs = listOf("en")
-    val testTypes = listOf("null", "date", "time", "offset", "date_offset")
+    val testTypes = listOf("null", "date", "time", "datetime", "offset", "date_offset")
 
     this.tests = testLangs.associate { lang ->
       lang to testTypes.map { type -> TestGroup(type = type, tests = loadTests(type = type, langCode = lang)) }
