@@ -25,7 +25,7 @@ date_time_literal : date_unit_literal | time_unit_literal ;
 offset_single_prefix : offset_single_pos_prefix | offset_single_neg_prefix | offset_single_zero_prefix ;
 offset_single_zero_prefix : THIS ; // a prefix that means implicitly an offset of 0 units (+0)
 offset_single_pos_prefix  : NEXT ; // a prefix that means implicitly a positive offset of 1 unit (+1)
-offset_single_neg_prefix  : LAST | PREV ; // a prefix that means implicitly a negative offset of 1 unit (-1)
+offset_single_neg_prefix  : LAST | PREV | PAST ; // a prefix that means implicitly a negative offset of 1 unit (-1)
 
 // -----
 // -- Suffix
