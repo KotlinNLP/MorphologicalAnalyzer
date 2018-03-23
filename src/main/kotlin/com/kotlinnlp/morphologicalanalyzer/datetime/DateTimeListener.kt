@@ -295,7 +295,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_single_zero_prefix(ctx: DateTimeParser.Offset_single_zero_prefixContext) {
 
-    this.dateTimeBuilder.offsetUnits = 0
+    this.dateTimeBuilder.offsetLength = 0
     this.dateTimeBuilder.positiveOffset = true
   }
 
@@ -306,7 +306,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_single_pos_prefix(ctx: DateTimeParser.Offset_single_pos_prefixContext) {
 
-    this.dateTimeBuilder.offsetUnits = 1
+    this.dateTimeBuilder.offsetLength = 1
     this.dateTimeBuilder.positiveOffset = true
   }
 
@@ -317,7 +317,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_single_neg_prefix(ctx: DateTimeParser.Offset_single_neg_prefixContext) {
 
-    this.dateTimeBuilder.offsetUnits = 1
+    this.dateTimeBuilder.offsetLength = 1
     this.dateTimeBuilder.positiveOffset = false
   }
 
@@ -328,7 +328,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_double_pos_suffix(ctx: DateTimeParser.Offset_double_pos_suffixContext) {
 
-    this.dateTimeBuilder.offsetUnits = 2
+    this.dateTimeBuilder.offsetLength = 2
     this.dateTimeBuilder.positiveOffset = true
   }
 
@@ -339,7 +339,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_double_neg_suffix(ctx: DateTimeParser.Offset_double_neg_suffixContext) {
 
-    this.dateTimeBuilder.offsetUnits = 2
+    this.dateTimeBuilder.offsetLength = 2
     this.dateTimeBuilder.positiveOffset = false
   }
 
@@ -891,7 +891,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_units_digits(ctx: DateTimeParser.Offset_units_digitsContext) {
 
-    this.dateTimeBuilder.offsetUnits = ctx.text.toInt()
+    this.dateTimeBuilder.offsetLength = ctx.text.toInt()
   }
 
   /**
@@ -901,7 +901,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitOffset_units_str(ctx: DateTimeParser.Offset_units_strContext) {
 
-    this.dateTimeBuilder.offsetUnits = this.strNumber
+    this.dateTimeBuilder.offsetLength = this.strNumber
   }
 
   /**
