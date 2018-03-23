@@ -22,12 +22,12 @@ punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | DEGREE | CIRCUM
 // -----
 
 datetime
-    : date_offset
+    : date_ordinal
+    | date_offset
     | offset
     | date_time_simple
     | time
     | date
-    | date_ordinal
     ;
 
 date_offset : date_offset_date_ref WS (OF WS)? offset ;
