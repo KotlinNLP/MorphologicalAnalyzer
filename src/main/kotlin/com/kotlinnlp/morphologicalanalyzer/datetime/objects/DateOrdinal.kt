@@ -10,7 +10,9 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateTimeObj
 
 /**
- * An ordinal date object (e.g. "The second week of 2015").
+ * An ordinal date object.
+ *
+ * E.g. "The second week of 2015".
  *
  * @property dateUnit the date unit as string
  */

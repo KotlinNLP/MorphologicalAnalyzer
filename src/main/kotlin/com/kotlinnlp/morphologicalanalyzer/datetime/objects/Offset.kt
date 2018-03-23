@@ -12,6 +12,8 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.utils.TimeObj
 
 /**
  * An offset object.
+ *
+ * E.g. "Next year", "In three weeks", "The next 10th August".
  */
 sealed class Offset : DateTime {
 

@@ -13,6 +13,8 @@ import java.util.*
  * A time object.
  * At least one of [sec], [min] and [hour] is not null.
  *
+ * E.g. "9:15", "h 9", "09:15:45".
+ *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
  * @property hour the number of the hour in the range [0, 23] (can be null)

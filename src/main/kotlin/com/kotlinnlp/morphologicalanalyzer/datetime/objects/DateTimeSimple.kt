@@ -10,6 +10,8 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 /**
  * A simple date-time object.
  *
+ * E.g. "Monday 10th August at 9:15".
+ *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
  * @property date the date that compose this date-time
