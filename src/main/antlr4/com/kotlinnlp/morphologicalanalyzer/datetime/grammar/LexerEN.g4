@@ -22,6 +22,7 @@ THIS : T H I S ;
 LAST : L A S T ;
 PREV : P R E V DOT? | P R E V I O U S ;
 NEXT : N E X T | C O M I N (APEX | G)? ;
+PAST : P A S T ;
 
 AFTER : A F T E R ;
 BEFORE : B E F O R E ;
