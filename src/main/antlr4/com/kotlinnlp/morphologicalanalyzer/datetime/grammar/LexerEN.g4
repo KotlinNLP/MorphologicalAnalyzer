@@ -24,6 +24,9 @@ PREV : P R E V DOT? | P R E V I O U S ;
 NEXT : N E X T | C O M I N (APEX | G)? ;
 PAST : P A S T ;
 
+AGO : A G O ;
+HENCE : H E N C E ;
+
 AFTER : A F T E R ;
 BEFORE : B E F O R E ;
 
@@ -47,8 +50,6 @@ DAY     : D A Y S? ;
 HOUR    : H O U R S? ;
 MIN     : M I N (U T E) S? ;
 SEC     : S E C S? ; // 'second' is also an ordinal number
-
-AGO : A G O ;
 
 // -----
 // -- Holidays

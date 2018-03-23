@@ -24,6 +24,9 @@ PREV : P R E C E D E N T (E | I) ;
 NEXT : P R O S S I M (O | I | A | E) ;
 PAST : P A S S A T (O | I | A | E) ;
 
+AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
+HENCE : (A SPACE_SEP P A R T I R E)? D A SPACE_SEP A D E S S O ;
+
 AFTER : D O P O SPACE_SEP THE ;
 BEFORE : P R I M A SPACE_SEP OF ;
 
@@ -47,8 +50,6 @@ DAY     : G I O R N (O | I) ;
 HOUR    : O R (A | E) ;
 MIN     : M I N U T (O | I) ;
 SEC     : S E C ; // 'secondo' is also an ordinal number
-
-AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
 
 // -----
 // -- Holidays
