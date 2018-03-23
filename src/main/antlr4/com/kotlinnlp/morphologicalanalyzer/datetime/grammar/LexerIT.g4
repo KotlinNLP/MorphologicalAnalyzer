@@ -33,7 +33,7 @@ HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
 AFTER : D O P O WS THE ;
 BEFORE : P R I M A WS OF ;
 
-FROM : D A ART_SUFFIX ;
+FROM : D A ART_SUFFIX? ;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
 // -----
