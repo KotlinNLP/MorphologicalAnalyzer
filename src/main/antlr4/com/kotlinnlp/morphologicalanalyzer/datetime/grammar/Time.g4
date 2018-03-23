@@ -3,11 +3,11 @@ grammar Time;
 import LexerEN, NumbersParser;
 
 time
-    : time_canonical (SPACE_SEP? (time_suffix | time_zone))?
-    | hour COLON min (SPACE_SEP? (time_suffix | time_zone))?
-    | (TIME_H | HOUR) SPACE_SEP hour
+    : time_canonical (WS? (time_suffix | time_zone))?
+    | hour COLON min (WS? (time_suffix | time_zone))?
+    | (TIME_H | HOUR) WS hour
     | hour DOT min (DOT sec (DOT millisec)?)?
-    | (hour | hour_str) SPACE_SEP? (time_suffix | O_CLOCK) (SPACE_SEP? time_suffix | O_CLOCK)? (SPACE_SEP? time_zone)?
+    | (hour | hour_str) WS? (time_suffix | O_CLOCK) (WS? time_suffix | O_CLOCK)? (WS? time_zone)?
     ;
 
 time_canonical : hour_00 COLON min_00 COLON sec_00 (DOT millisec_000)? ;

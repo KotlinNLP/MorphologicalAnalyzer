@@ -11,18 +11,18 @@ date
     | day date_sep month date_sep year // D/M/Y
     | month date_sep day date_sep year // M/D/Y
     | year date_sep month date_sep day // Y/M/D
-    | day_week COMMA? SPACE_SEP? month_str SPACE_SEP? day_num ((SPACE_SEP? COMMA)? SPACE_SEP year)? // WEEKDAY ,? MONTH D Y?
-    | day SPACE_SEP month SPACE_SEP year_modern // D M YYYY(19XX-20XX)
-    | day (SPACE_SEP of_sep?)? month_str (SPACE_SEP? COMMA)? (SPACE_SEP of_sep?)? year // D of? MONTH ,? of? Y
-    | month SPACE_SEP day SPACE_SEP year_modern // M D YYYY(19XX-20XX)
-    | month_str SPACE_SEP day (SPACE_SEP? COMMA SPACE_SEP? | SPACE_SEP) of_sep? year // MONTH D ,? of? Y
-    | year SPACE_SEP month_str (SPACE_SEP of_sep)? day // Y MONTH of? D
+    | day_week COMMA? WS? month_str WS? day_num ((WS? COMMA)? WS year)? // WEEKDAY ,? MONTH D Y?
+    | day WS month WS year_modern // D M YYYY(19XX-20XX)
+    | day (WS of_sep?)? month_str (WS? COMMA)? (WS of_sep?)? year // D of? MONTH ,? of? Y
+    | month WS day WS year_modern // M D YYYY(19XX-20XX)
+    | month_str WS day (WS? COMMA WS? | WS) of_sep? year // MONTH D ,? of? Y
+    | year WS month_str (WS of_sep)? day // Y MONTH of? D
     | day date_sep month // D/M
     | month date_sep day // M/D
-    | day SPACE_SEP of_sep? month_str // D of? MONTH
-    | month_str SPACE_SEP? (THE SPACE_SEP)? day // MONTH the? D
-    | month_str SPACE_SEP? of_sep? year // MONTH of? Y
-    | (day_week SPACE_SEP of_sep?)? holiday_name (SPACE_SEP of_sep? year)? // WEEKDAY? of? HOLIDAY of? Y?
+    | day WS of_sep? month_str // D of? MONTH
+    | month_str WS? (THE WS)? day // MONTH the? D
+    | month_str WS? of_sep? year // MONTH of? Y
+    | (day_week WS of_sep?)? holiday_name (WS of_sep? year)? // WEEKDAY? of? HOLIDAY of? Y?
     | year_APEX // 'YY
     | year_modern // YYYY(19XX-20XX)
     | month_str // MONTH
@@ -30,7 +30,7 @@ date
     ;
 
 date_sep : DASH | SLASH | DOT ;
-of_sep : OF SPACE_SEP ;
+of_sep : OF WS ;
 
 date_canonical : year_num DASH month_num DASH day_num_canonical ;
 
@@ -61,8 +61,8 @@ year_lit    : YEAR ;
 // -----
 
 day
-    : day_week (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_str)
-    | day_week SPACE_SEP? COMMA (SPACE_SEP (THE SPACE_SEP)?)? (day_num | day_str)
+    : day_week (WS (THE WS)?)? (day_num | day_str)
+    | day_week WS? COMMA (WS (THE WS)?)? (day_num | day_str)
     | day_num
     | day_str
     ;
@@ -72,10 +72,10 @@ day_num : day_num_th | day_num_canonical | n_0_31 ;
 day_num_canonical : n_00_31 ;
 
 day_num_th
-    : (N_1 | N_01 | N_21 | N_31) SPACE_SEP? DAY_ST
-    | (N_2 | N_02 | N_22) SPACE_SEP? DAY_ND
-    | (N_3 | N_03 | NS_23) SPACE_SEP? DAY_RD
-    | n_0_31 SPACE_SEP? DAY_TH
+    : (N_1 | N_01 | N_21 | N_31) WS? DAY_ST
+    | (N_2 | N_02 | N_22) WS? DAY_ND
+    | (N_3 | N_03 | NS_23) WS? DAY_RD
+    | n_0_31 WS? DAY_TH
     ;
 
 day_str
@@ -137,7 +137,7 @@ month_dec : DEC | DEC_ABBR ;
 
 year : year_APEX | year_num ;
 
-year_APEX : APEX SPACE_SEP? n_0_99 ;
+year_APEX : APEX WS? n_0_99 ;
 
 year_num    : year_modern | year_abbr | year_full ;
 year_modern : N_1900_2099 ;

@@ -3,10 +3,10 @@ grammar Offset;
 import LexerEN, Date, Time;
 
 offset
-    : offset_single_prefix SPACE_SEP offset_ref
-    | offset_prefix SPACE_SEP offset_units SPACE_SEP offset_ref
-    | offset_ref SPACE_SEP offset_double_suffix
-    | offset_units SPACE_SEP offset_ref SPACE_SEP (offset_pos_suffix | offset_neg_suffix)
+    : offset_single_prefix WS offset_ref
+    | offset_prefix WS offset_units WS offset_ref
+    | offset_ref WS offset_double_suffix
+    | offset_units WS offset_ref WS (offset_pos_suffix | offset_neg_suffix)
     ;
 
 // -----
@@ -32,8 +32,8 @@ offset_single_neg_prefix  : LAST | PREV | PAST ; // a prefix that means implicit
 // -----
 
 offset_double_suffix : offset_double_pos_suffix | offset_double_neg_suffix ;
-offset_double_pos_suffix : AFTER SPACE_SEP NEXT ; // a prefix that means implicitly a positive offset of 2 units (+2)
-offset_double_neg_suffix : BEFORE SPACE_SEP LAST ; // a prefix that means implicitly a negative offset of 2 units (-2)
+offset_double_pos_suffix : AFTER WS NEXT ; // a prefix that means implicitly a positive offset of 2 units (+2)
+offset_double_neg_suffix : BEFORE WS LAST ; // a prefix that means implicitly a negative offset of 2 units (-2)
 
 offset_pos_suffix : HENCE ;
 offset_neg_suffix : AGO ;

@@ -14,9 +14,9 @@ DAY_TH : T H ;
 AND : A N D ;
 AT  : A T ;
 THE : T H E ;
-OF  : O F (SPACE_SEP THE)? ;
-ON  : O N (SPACE_SEP THE)? ;
-IN  : I N (SPACE_SEP THE)? ;
+OF  : O F (WS THE)? ;
+ON  : O N (WS THE)? ;
+IN  : I N (WS THE)? ;
 
 THIS : T H I S ;
 LAST : L A S T ;
@@ -37,7 +37,7 @@ TO   : T O ;
 // -- Special expressions
 // -----
 
-O_CLOCK : O SPACE_SEP? APEX? SPACE_SEP? C L O C K ;
+O_CLOCK : O WS? APEX? WS? C L O C K ;
 
 // -----
 // -- Words
@@ -57,7 +57,7 @@ SEC     : S E C S? ; // 'second' is also an ordinal number
 // -----
 
 CHRISTMAS     : C H R I S T M A S ;
-CHRISTMAS_EVE : CHRISTMAS SPACE_SEP E V E ;
+CHRISTMAS_EVE : CHRISTMAS WS E V E ;
 EASTER        : E A S T E R ;
 
 // -----

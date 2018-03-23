@@ -25,10 +25,10 @@ NEXT : P R O S S I M (O | I | A | E) ;
 PAST : P A S S A T (O | I | A | E) ;
 
 AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
-HENCE : (A SPACE_SEP P A R T I R E)? D A SPACE_SEP A D E S S O ;
+HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
 
-AFTER : D O P O SPACE_SEP THE ;
-BEFORE : P R I M A SPACE_SEP OF ;
+AFTER : D O P O WS THE ;
+BEFORE : P R I M A WS OF ;
 
 FROM : D A | D A L ;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
@@ -37,7 +37,7 @@ TO   : A ; // can have the same values of AT in Italian, but for this usage is s
 // -- Special expressions
 // -----
 
-O_CLOCK : I N SPACE_SEP P U N T O ;
+O_CLOCK : I N WS P U N T O ;
 
 // -----
 // -- Words
@@ -46,7 +46,7 @@ O_CLOCK : I N SPACE_SEP P U N T O ;
 YEAR    : A N N (O | I) ;
 MONTH   : M E S (E | I) ;
 WEEK    : S E T T I M A N (A | E) ;
-WEEKEND : F I N E SPACE_SEP WEEK ;
+WEEKEND : F I N E WS WEEK ;
 DAY     : G I O R N (O | I) ;
 HOUR    : O R (A | E) ;
 MIN     : M I N U T (O | I) ;
@@ -57,7 +57,7 @@ SEC     : S E C ; // 'secondo' is also an ordinal number
 // -----
 
 CHRISTMAS     : N A T A L E ;
-CHRISTMAS_EVE : V I G I L I A SPACE_SEP OF SPACE_SEP CHRISTMAS ;
+CHRISTMAS_EVE : V I G I L I A WS OF WS CHRISTMAS ;
 EASTER        : P A S Q U A ;
 
 // -----

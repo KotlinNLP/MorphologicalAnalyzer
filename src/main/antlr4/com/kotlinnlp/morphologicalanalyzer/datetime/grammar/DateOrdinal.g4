@@ -3,7 +3,7 @@ grammar DateOrdinal;
 import LexerEN, NumbersParser, Date, Offset;
 
 // E.g. "The second week of Sep. 2015", "The last week of August", "The first day of the next year"
-date_ordinal : ordinal_prefix SPACE_SEP ordinal_unit SPACE_SEP (OF | IN) SPACE_SEP ordinal_ref ;
+date_ordinal : ordinal_prefix WS ordinal_unit WS (OF | IN) WS ordinal_ref ;
 
 // -----
 // -- Prefix

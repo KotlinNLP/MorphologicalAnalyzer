@@ -1,6 +1,6 @@
 lexer grammar Symbols;
 
-SPACE_SEP : [ \n\r\t]+ ;
+WS : [ \n\r\t]+ ;
 
 DOT        : '.' ;
 COMMA      : ',' ;
