@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 
+import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateObj
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateTimeObj
 
 /**
@@ -65,16 +66,16 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   override fun toStandardFormat(): String = "the $position '$dateUnit' of '$dateTime'"
 
   /**
-   * An ordinal date of [DateTimeObj] units.
+   * An ordinal date of [DateObj] units.
    *
-   * @property value the date-time value (can be a date or an offset)
+   * @property value the date unit value
    */
-  data class DateTime(
+  data class Date(
     override val startToken: Int,
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj,
-    val value: DateTimeObj
+    val value: DateObj
   ) : DateOrdinal(dateUnit = value.toString()) {
 
     override fun toString(): String = this.toStandardFormat()

@@ -226,25 +226,19 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
    */
   fun buildDateOrdinal(): DateOrdinal {
 
+    val start: Int = this.dateOrdinalTokens.start
+    val end: Int = this.dateOrdinalTokens.endInclusive
+
     val pos: DateOrdinal.Position = if (this.ordinalPosition > 0)
       DateOrdinal.Position.Ordinal(count = this.ordinalPosition)
     else
       DateOrdinal.Position.Last()
 
     return this.ordinalDateUnit?.let {
-      DateOrdinal.DateTime(
-        startToken = this.dateOrdinalTokens.start,
-        endToken = this.dateOrdinalTokens.endInclusive,
-        position = pos,
-        value = it,
-        dateTime = ordinalDateTimeRef
-      )
-    } ?: DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first().call(
-      this.dateOrdinalTokens.start,
-      this.dateOrdinalTokens.endInclusive,
-      pos,
-      ordinalDateTimeRef
-    ) as DateOrdinal
+      DateOrdinal.Date(startToken = start, endToken = end, position = pos, dateTime = ordinalDateTimeRef, value = it)
+    } ?:
+      DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first()
+        .call(start, end, pos, this.ordinalDateTimeRef) as DateOrdinal
   }
 
   /**
