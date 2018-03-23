@@ -10,6 +10,7 @@ package utils
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import java.nio.file.Paths
 import java.util.*
 
 /**
@@ -18,7 +19,24 @@ import java.util.*
 object TestDateTimes {
 
   /**
-   * The name of the JSON file containing the test date times, placed in the 'resources'.
+   * A group of tests.
+   *
+   * @property type the type of tests ("date", "time", "offset", etc.)
+   * @property tests the list of tests
+   */
+  data class TestGroup(val type: String, val tests: List<Test>)
+
+  /**
+   * A date-time test.
+   *
+   * @property text a text that can contain a date-time
+   * @property dateTime the expected date-time (can be null)
+   */
+  data class Test(val text: String, val dateTime: DateTime? = null)
+
+  /**
+   * The name of the JSON file containing the test date times, placed in the 'resources', to be formatted with the
+   * type of tests that contains.
    * The JSON in it is a list of objects representing a test.
    *
    * All tests have 'text' and 'type' fields. Depending on the value of 'type' they can contain adding specific fields.
@@ -26,7 +44,7 @@ object TestDateTimes {
    * The 'type' field represents the type of [DateTime] contained in the 'text' and it can have one of the following
    * values: 'date', 'time', 'datetime', 'null'.
    */
-  private const val RES_FILENAME = "test_date_times.json"
+  private const val RES_UNFORMATTED = "test_%s.json"
 
   /**
    * A padding text to put before a date-time text.
@@ -39,76 +57,94 @@ object TestDateTimes {
   private const val PADDING_AFTER = " and some padding after."
 
   /**
-   * A list of pairs with a text and the date-time object contained in it.
+   * List of test groups associated by language.
    */
-  val textsToDateTimes = mutableListOf<Pair<String, DateTime>>()
+  val tests: Map<String, List<TestGroup>>
 
   /**
-   * A list of texts that do not contain any date-time.
-   */
-  val emptyDateTimesTexts = mutableListOf<String>()
-
-  /**
-   * Initialize the lists of texts and date-times.
+   * Initialize the tests.
    */
   init {
 
-    val absResFilename: String = TestDateTimes::class.java.classLoader.getResource(this.RES_FILENAME).file
-    val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
+    val testLangs = listOf("en")
+    val testTypes = listOf("date", "time", "offset", "null")
 
-    jsonList.map { it as JsonObject
-
-      val type: String = it.string("type")!!
-      val text: String = it.string("text")!!
-
-      if (type == "null")
-        this.emptyDateTimesTexts.add(text)
-      else
-        this.addDateTimeTests(it)
+    this.tests = testLangs.associate { lang ->
+      lang to testTypes.map { type -> TestGroup(type = type, tests = loadTests(type = type, langCode = lang)) }
     }
   }
 
   /**
-   * Add tests related to an object of the test file.
+   * Load tests of a given type and language from the resources.
+   *
+   * @param type the type of test ("date", "time", "offset", etc.)
+   * @param langCode the language iso-a2 code
+   *
+   * @return a list of tests
+   */
+  private fun loadTests(type: String, langCode: String): List<Test> {
+
+    val formattedResName: String = this.RES_UNFORMATTED.format(type)
+    val simpleResFilename: String = Paths.get(langCode, formattedResName).toString()
+    val absResFilename: String = TestDateTimes::class.java.classLoader.getResource(simpleResFilename).file
+
+    val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
+
+    return jsonList.flatMap { it as JsonObject
+
+      if (type == "null")
+        listOf(Test(text = it.string("text")!!))
+      else
+        this.getTests(jsonObj = it, type = type)
+    }
+
+  }
+
+  /**
+   * Get tests related to an object of the test file.
    * For each object 4 tests are added, applying combinations of padding texts before and after the 'text'.
    *
    * @param jsonObj a JSON object read from the test resource file
+   * @param type the test type
+   *
+   * @return a list of tests
    */
-  private fun addDateTimeTests(jsonObj: JsonObject) {
+  private fun getTests(jsonObj: JsonObject, type: String): List<Test> {
 
     val text: String = jsonObj.string("text")!!
     val startWithPad: Int = this.PADDING_BEFORE.length
     val endWithPad: Int = this.PADDING_BEFORE.length + text.lastIndex
     val allPaddedText: String = this.PADDING_BEFORE + text + this.PADDING_AFTER
 
-    this.addDateTime(jsonObj = jsonObj, text = text, start = 0, end = text.lastIndex)
-    this.addDateTime(jsonObj = jsonObj, text = text + this.PADDING_AFTER, start = 0, end = text.lastIndex)
-    this.addDateTime(jsonObj = jsonObj, text = this.PADDING_BEFORE + text, start = startWithPad, end = endWithPad)
-    this.addDateTime(jsonObj = jsonObj, text = allPaddedText, start = startWithPad, end = endWithPad)
+    return listOf(
+      this.buildTest(jsonObj, type = type, text = text, start = 0, end = text.lastIndex),
+      this.buildTest(jsonObj, type = type, text = text + this.PADDING_AFTER, start = 0, end = text.lastIndex),
+      this.buildTest(jsonObj, type = type, text = this.PADDING_BEFORE + text, start = startWithPad, end = endWithPad),
+      this.buildTest(jsonObj, type = type, text = allPaddedText, start = startWithPad, end = endWithPad)
+    )
   }
 
   /**
-   * Add a [DateTime] test.
+   * Build a [Test].
    *
    * @param jsonObj the JSON object of the test
+   * @param type the test type
    * @param text the text of the test
    * @param start the char index at which the expected date-time starts in the [text] (inclusive)
    * @param end the char index at which the expected date-time ends in the [text] (inclusive)
+   *
+   * @return a test object
    */
-  private fun addDateTime(jsonObj: JsonObject, text: String, start: Int, end: Int) {
-
-    val type: String = jsonObj.string("type")!!
-
-    this.textsToDateTimes.add(
-      text to when (type) {
-        "date" -> this.buildDate(jsonObj = jsonObj, start = start, end = end)
-        "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
-        "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
-        "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
-        else -> throw RuntimeException("Invalid DateTime type: $type")
-      }
-    )
-  }
+  private fun buildTest(jsonObj: JsonObject, type: String, text: String, start: Int, end: Int) = Test(
+    text = text,
+    dateTime = when (type) {
+      "date" -> this.buildDate(jsonObj = jsonObj, start = start, end = end)
+      "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
+      "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
+      "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
+      else -> throw RuntimeException("Invalid DateTime type: $type")
+    }
+  )
 
   /**
    * Build a [Date] object.

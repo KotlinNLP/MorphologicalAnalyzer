@@ -28,34 +28,36 @@ class DateTimeProcessorSpec : Spek({
 
   describe("a DateTimeProcessor") {
 
-    context("English language") {
+    TestDateTimes.tests.forEach { lang, testGroups ->
+      testGroups.forEach { (testType, tests) ->
 
-      TestDateTimes.textsToDateTimes.forEach { (text, expectedDateTime) ->
+        context("[%s] %s".format(lang, testType)) {
 
-        on("text: '$text'") {
+          tests.forEach { (text, expectedDateTime) ->
 
-          val tokens: List<Token> = SimpleTokenizer.tokenize(text)
-          val dateTimes: List<DateTime> = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = "en")
+            on("text: '$text'") {
 
-          it("should return 1 DateTime object") {
-            assertEquals(1, dateTimes.size)
-          }
+              val tokens: List<Token> = SimpleTokenizer.tokenize(text)
+              val dateTimes: List<DateTime> =
+                DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = lang)
 
-          it("should return the expected DateTime object") {
-            assertEquals(expectedDateTime, dateTimes.first())
-          }
-        }
-      }
+              if (expectedDateTime != null) {
 
-      TestDateTimes.emptyDateTimesTexts.forEach { text ->
+                it("should return 1 DateTime object") {
+                  assertEquals(1, dateTimes.size)
+                }
 
-        on("text: '$text'") {
+                it("should return the expected DateTime object") {
+                  assertEquals(expectedDateTime, dateTimes.first())
+                }
 
-          val tokens: List<Token> = SimpleTokenizer.tokenize(text)
-          val dateTimes: List<DateTime> = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = "en")
+              } else {
 
-          it("should return an empty DateTimes list") {
-            assertTrue { dateTimes.isEmpty() }
+                it("should return an empty DateTimes list") {
+                  assertTrue { dateTimes.isEmpty() }
+                }
+              }
+            }
           }
         }
       }
