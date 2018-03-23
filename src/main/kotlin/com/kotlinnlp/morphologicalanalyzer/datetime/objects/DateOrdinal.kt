@@ -65,11 +65,6 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
   override fun toStandardFormat(): String = "the $position '$dateUnit' of '$dateTime'"
 
   /**
-   * @return a string representation of this ordinal date object
-   */
-  override fun toString(): String = this.toStandardFormat()
-
-  /**
    * An ordinal date of [DateTimeObj] units.
    *
    * @property value the date-time value (can be a date or an offset)
@@ -80,7 +75,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val position: Position,
     override val dateTime: DateTimeObj,
     val value: DateTimeObj
-  ) : DateOrdinal(dateUnit = value.toString())
+  ) : DateOrdinal(dateUnit = value.toString()) {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An ordinal date of 'day' units.
@@ -90,7 +88,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "day")
+  ) : DateOrdinal(dateUnit = "day") {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An ordinal date of 'week' units.
@@ -100,7 +101,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "week")
+  ) : DateOrdinal(dateUnit = "week") {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An ordinal date of 'weekend' units.
@@ -110,7 +114,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "weekend")
+  ) : DateOrdinal(dateUnit = "weekend") {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An ordinal date of 'month' units.
@@ -120,7 +127,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "month")
+  ) : DateOrdinal(dateUnit = "month") {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An ordinal date of 'year' units.
@@ -130,5 +140,8 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
     override val endToken: Int,
     override val position: Position,
     override val dateTime: DateTimeObj
-  ) : DateOrdinal(dateUnit = "year")
+  ) : DateOrdinal(dateUnit = "year") {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 }

@@ -41,11 +41,6 @@ sealed class Offset : DateTime {
   override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this::class.simpleName!!.toLowerCase())
 
   /**
-   * @return a string representation of this offset object
-   */
-  override fun toString(): String = this.toStandardFormat()
-
-  /**
    * An offset of [DateObj].
    *
    * @property startToken the index of the first token of this expression
@@ -69,6 +64,8 @@ sealed class Offset : DateTime {
      * @return the string representing this offset
      */
     override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this.value)
+
+    override fun toString(): String = this.toStandardFormat()
   }
 
   /**
@@ -91,6 +88,8 @@ sealed class Offset : DateTime {
      * @return the string representing this offset
      */
     override fun toStandardFormat(): String = "%s %s".format(this.stringPrefix, this.value)
+
+    override fun toString(): String = this.toStandardFormat()
   }
 
   /**
@@ -101,7 +100,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of minutes.
@@ -111,7 +113,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of seconds.
@@ -121,7 +126,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of days.
@@ -131,7 +139,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of weeks.
@@ -141,7 +152,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of weekends.
@@ -151,7 +165,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of months.
@@ -161,7 +178,10 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 
   /**
    * An offset of years.
@@ -171,5 +191,8 @@ sealed class Offset : DateTime {
     override val endToken: Int,
     override val positive: Boolean,
     override val units: Int
-  ) : Offset()
+  ) : Offset(){
+
+    override fun toString(): String = this.toStandardFormat()
+  }
 }
