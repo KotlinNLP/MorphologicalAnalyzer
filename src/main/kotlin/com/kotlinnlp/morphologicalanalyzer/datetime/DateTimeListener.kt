@@ -249,6 +249,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit date_offset_date_ref' event.
+   *
+   * @param ctx the context of the 'date_offset_date_ref' rule that is being parsed
+   */
+  override fun exitDate_offset_date_ref(ctx: DateTimeParser.Date_offset_date_refContext) {
+
+    this.dateTimeBuilder.dateOffsetDateRef = this.dateTimeBuilder.buildDate()
+  }
+
+  /**
    * The listener of the 'exit ordinal_date_ref' event.
    *
    * @param ctx the context of the 'ordinal_date_ref' rule that is being parsed
