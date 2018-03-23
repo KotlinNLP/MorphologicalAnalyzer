@@ -6,17 +6,16 @@ import LexerEN, Date, Time, DateOrdinal, Offset;
 // -- Input text
 // -----
 
-root : ws? text EOF? ;
+root : SPACE_SEP? text EOF? ;
 
 text : text_atomic | text_complex ;
 
 text_complex : text_ws+? text_atomic? ;
 text_atomic  : datetime | string ;
-text_ws      : datetime punct* ws | string ws ;
+text_ws      : datetime punct* SPACE_SEP | string SPACE_SEP ;
 
-string : (CHAR_NO_WS | ~(SPACE_SEP | OTHER_SPACES))+ ;
+string : (CHAR_NO_WS | ~SPACE_SEP)+ ;
 punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | DEGREE | CIRCUMFLEX | OTHER_SYMBOLS ;
-ws     : (SPACE_SEP | OTHER_SPACES)+ ;
 
 // -----
 // -- Date-times
@@ -36,7 +35,7 @@ date_offset_date_ref : date ;
 
 date_time_simple
     : date SPACE_SEP time
-    | date ws AT ws time
+    | date SPACE_SEP AT SPACE_SEP time
     | datetime_utc
     | date TIME_T time
     | time SPACE_SEP OF SPACE_SEP date
