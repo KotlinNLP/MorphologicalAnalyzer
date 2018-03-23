@@ -58,6 +58,23 @@ object TestDateTimes {
   private const val PADDING_AFTER = " and some padding after."
 
   /**
+   * The list of supported test languages.
+   */
+  private val supportedLanguages: List<String> = listOf("en")
+
+  /**
+   * The list of supported test types.
+   */
+  private val supportedTypes: List<String> = listOf(
+    "null",
+    "date",
+    "time",
+    "datetime",
+    "offset",
+    "date_offset"
+  )
+
+  /**
    * List of test groups associated by language.
    */
   val tests: Map<String, List<TestGroup>>
@@ -67,11 +84,10 @@ object TestDateTimes {
    */
   init {
 
-    val testLangs = listOf("en")
-    val testTypes = listOf("null", "date", "time", "datetime", "offset", "date_offset")
-
-    this.tests = testLangs.associate { lang ->
-      lang to testTypes.map { type -> TestGroup(type = type, tests = loadTests(type = type, langCode = lang)) }
+    this.tests = this.supportedLanguages.associate { lang ->
+      lang to this.supportedTypes.map { type ->
+        TestGroup(type = type, tests = loadTests(type = type, langCode = lang))
+      }
     }
   }
 
