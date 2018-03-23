@@ -5,6 +5,7 @@
   {"text": "in 4 weeks", "offset-type": "week", "positive": true, "units": 4},
   {"text": "next month", "offset-type": "month", "positive": true, "units": 1},
   {"text": "next year", "offset-type": "year", "positive": true, "units": 1},
+  {"text": "next year", "offset-type": "year", "positive": true, "units": 1},
   {"text": "in 10 years", "offset-type": "year", "positive": true, "units": 10},
   {"text": "coming week", "offset-type": "week", "positive": true, "units": 1},
   {"text": "last week", "offset-type": "week", "positive": false, "units": 1},
@@ -56,6 +57,13 @@
     "positive": false,
     "units": 1,
     "date": {"week-D": 2, "start": 5, "end": 11}
+  },
+  {
+    "text": "wednesday after next",
+    "offset-type": "date",
+    "positive": true,
+    "units": 2,
+    "date": {"week-D": 3, "start": 0, "end": 8}
   },
   {
     "text": "friday after next",
