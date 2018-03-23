@@ -21,15 +21,17 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
 
   /**
    * The position.
+   *
+   * @property count the number that represent the ordinal position (-1 = last, 1 = first, 2 = second, etc.)
    */
-  sealed class Position {
+  sealed class Position(open val count: Int) {
 
     /**
      * The ordinal position.
      *
      * @property count the number that represent the ordinal position (1 = first, 2 = second, etc.)
      */
-    class Ordinal(val count: Int) : Position() {
+    data class Ordinal(override val count: Int) : Position(count) {
 
       init {
         require(this.count > 0)
@@ -40,8 +42,10 @@ sealed class DateOrdinal(private val dateUnit: String) : DateTime {
 
     /**
      * The 'last' position.
+     *
+     * @property count the number that represent the ordinal position (always -1)
      */
-    class Last : Position() {
+    data class Last(override val count: Int = -1) : Position(-1) {
 
       override fun toString() = "last"
     }
