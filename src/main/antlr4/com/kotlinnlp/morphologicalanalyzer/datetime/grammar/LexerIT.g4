@@ -46,11 +46,12 @@ O_CLOCK : I N WS P U N T O ;
 // -- Words
 // -----
 
-NOW                : A D E S S O ; // 'ora' (= 'now') is equal to HOUR
-TODAY              : O G G I ;
-YESTERDAY          : I E R I ;
-TOMORROW           : D O M A N I ;
-DAY_AFTER_TOMORROW : D O P O WS? D O M A N I ;
+NOW                  : A D E S S O ; // 'ora' (= 'now') is equal to HOUR
+TODAY                : O G G I ;
+YESTERDAY            : I E R I ;
+TOMORROW             : D O M A N I ;
+DAY_AFTER_TOMORROW   : D O P O WS? TOMORROW ;
+DAY_BEFORE_YESTERDAY : L APEX? WS? A L T R O WS YESTERDAY ;
 
 YEAR         : A N N (O | I) ;
 MONTH        : M E S (E | I) ;
