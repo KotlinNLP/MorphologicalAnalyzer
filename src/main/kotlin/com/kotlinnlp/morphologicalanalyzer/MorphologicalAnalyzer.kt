@@ -7,7 +7,10 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
+import com.kotlinnlp.linguisticdescription.morphology.dictionary.Entry
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
+import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.neuraltokenizer.Token
 
@@ -17,6 +20,23 @@ import com.kotlinnlp.neuraltokenizer.Token
  * @param dictionary a morphology dictionary
  */
 class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
+
+  companion object {
+
+    /**
+     * A regex that matches a punctuation token.
+     */
+    private val punctRegex = Regex("^[.,;:#!?|/\\\\$%&=~*\\-_\"“”‘'`^()\\[\\]{}]+$")
+
+    /**
+     * Build the default morphology entries list for punctuation tokens (it contains only one single morphology).
+     *
+     * @return a morphology entries list
+     */
+    private fun buildPunctMorpho(form: String): List<MorphologyEntry> = listOf(
+      MorphologyEntry(type = MorphologyEntry.Type.Single, list = listOf(Punctuation(lemma = form)))
+    )
+  }
 
   /**
    * Analyze the morphology of a text, given as a list of tokens.
@@ -32,10 +52,27 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     require(langCode.length == 2) { "The language code must have length 2." }
 
     return MorphologicalAnalysis(
-      tokens = tokens.map { if (it.isSpace) null else this.dictionary[it.form]?.morphologies },
+      tokens = tokens.map { this.getTokenMorphology(it) },
       multiWords = this.getMultiWordMorphologies(tokens),
       dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = langCode)
     )
+  }
+
+  /**
+   * @param token a token
+   *
+   * @return the list of morphology entries of the given [token] or null if no one has been found
+   */
+  private fun getTokenMorphology(token: Token): List<MorphologyEntry>? {
+
+    val dictionaryEntry: Entry? = this.dictionary[token.form]
+
+    return when {
+      token.isSpace -> null
+      token.isPunct() -> buildPunctMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
+      dictionaryEntry != null -> dictionaryEntry.morphologies
+      else -> null
+    }
   }
 
   /**
@@ -99,6 +136,11 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     return validMultiWords
   }
+
+  /**
+   * @return a boolean indicating if this token contains a punctuation form
+   */
+  private fun Token.isPunct(): Boolean = punctRegex.matches(this.form)
 
   /**
    * @return the number of space chars (' ') in this string
