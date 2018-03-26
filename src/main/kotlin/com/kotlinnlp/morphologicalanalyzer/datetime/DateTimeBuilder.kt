@@ -71,6 +71,11 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   var millisec: Int? = null
 
   /**
+   * The generic time of the currently building date-time.
+   */
+  var genericTime: Time.Generic? = null
+
+  /**
    * The timezone of the currently building date-time.
    */
   var timezone: TimeZone? = null
@@ -181,6 +186,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     min = this.min,
     sec = this.sec,
     millisec = this.millisec,
+    generic = this.genericTime,
     timezone = this.timezone
   )
 
