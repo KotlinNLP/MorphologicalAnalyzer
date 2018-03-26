@@ -10,17 +10,18 @@ offset
     | special_offset
     ;
 
-special_offset : now | today | yesterday | tomorrow | day_after_tomorrow;
+special_offset : now | today | yesterday | tomorrow | day_after_tomorrow | day_before_yesterday ;
 
 now
     : NOW
     | HOUR // only for IT
     ;
 
-today              : TODAY ;
-yesterday          : YESTERDAY ;
-tomorrow           : TOMORROW ;
-day_after_tomorrow : DAY_AFTER_TOMORROW ;
+today                : TODAY ;
+yesterday            : YESTERDAY ;
+tomorrow             : TOMORROW ;
+day_after_tomorrow   : DAY_AFTER_TOMORROW ;
+day_before_yesterday : DAY_BEFORE_YESTERDAY ;
 
 
 // -----

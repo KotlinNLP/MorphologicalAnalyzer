@@ -984,6 +984,18 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit day_before_yesterday' event.
+   *
+   * @param ctx the context of the 'day_before_yesterday' rule just parsed
+   */
+  override fun exitDay_before_yesterday(ctx: DateTimeParser.Day_before_yesterdayContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.positiveOffset = false
+    this.dateTimeBuilder.offsetLength = 2
+  }
+
+  /**
    * The listener of the 'exit offset_units_digits' event.
    *
    * @param ctx the context of the 'offset_units_digits' rule just parsed
