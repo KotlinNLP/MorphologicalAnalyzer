@@ -66,6 +66,12 @@ QUARTER_HOUR : Q U A R T (O | I) WS D APEX? WS HOUR ;
 MIN          : M I N U T (O | I) ;
 SEC          : S E C ; // 'secondo' is also an ordinal number
 
+MORNING   : M A T T I N (O | A) ;
+LUNCH     : P R A N Z O ;
+AFTERNOON : P O M E R I G G I O ;
+EVENING   : S E R A ;
+NIGHT     : N O T T E ;
+
 // -----
 // -- Holidays
 // -----

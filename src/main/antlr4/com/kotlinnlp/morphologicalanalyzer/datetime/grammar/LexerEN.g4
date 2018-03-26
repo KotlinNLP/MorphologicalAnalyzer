@@ -63,6 +63,12 @@ QUARTER_HOUR : Q U A R T E R S? WS OF (WS A N)? WS HOUR ;
 MIN          : M I N (U T E) S? ;
 SEC          : S E C S? ; // 'second' is also an ordinal number
 
+MORNING   : M O R N I N G ;
+LUNCH     : L U N C H ;
+AFTERNOON : A F T E R N O O N ;
+EVENING   : E V E N I N G ;
+NIGHT     : N I G H T ;
+
 // -----
 // -- Holidays
 // -----
