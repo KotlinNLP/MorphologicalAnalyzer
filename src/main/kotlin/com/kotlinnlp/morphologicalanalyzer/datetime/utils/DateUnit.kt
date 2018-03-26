@@ -20,6 +20,8 @@ internal object DateUnit {
    * The type of date unit.
    *
    * @property Hour the hour unit
+   * @property QuarterHour the quarter of an hour unit
+   * @property HalfHour the half-hour unit
    * @property Minute the minute unit
    * @property Second the second unit
    * @property Day the day unit
@@ -28,13 +30,15 @@ internal object DateUnit {
    * @property Month the month unit
    * @property Year the year unit
    */
-  enum class Type { Hour, Minute, Second, Day, Week, Weekend, Month, Year }
+  enum class Type { Hour, QuarterHour, HalfHour, Minute, Second, Day, Week, Weekend, Month, Year }
 
   /**
    * A map of date unit types to [Offset] k-classes.
    */
   val toOffsetClasses: Map<Type, KClass<*>> = mapOf(
     Type.Hour to Offset.Hours::class,
+    Type.HalfHour to Offset.HalfHours::class,
+    Type.QuarterHour to Offset.QuarterHours::class,
     Type.Minute to Offset.Minutes::class,
     Type.Second to Offset.Seconds::class,
     Type.Day to Offset.Days::class,
