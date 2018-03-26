@@ -11,6 +11,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
@@ -925,6 +926,56 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitMillisec_000(ctx: DateTimeParser.Millisec_000Context) {
     this.dateTimeBuilder.millisec = ctx.text.toInt()
+  }
+
+  /**
+   * The listener of the 'exit morning' event.
+   *
+   * @param ctx the context of the 'morning' rule just parsed
+   */
+  override fun exitMorning(ctx: DateTimeParser.MorningContext) {
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Morning
+  }
+
+  /**
+   * The listener of the 'exit lunch' event.
+   *
+   * @param ctx the context of the 'lunch' rule just parsed
+   */
+  override fun exitLunch(ctx: DateTimeParser.LunchContext) {
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Lunch
+  }
+
+  /**
+   * The listener of the 'exit afternoon' event.
+   *
+   * @param ctx the context of the 'afternoon' rule just parsed
+   */
+  override fun exitAfternoon(ctx: DateTimeParser.AfternoonContext) {
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Afternoon
+  }
+
+  /**
+   * The listener of the 'exit evening' event.
+   *
+   * @param ctx the context of the 'evening' rule just parsed
+   */
+  override fun exitEvening(ctx: DateTimeParser.EveningContext) {
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Evening
+  }
+
+  /**
+   * The listener of the 'exit night' event.
+   *
+   * @param ctx the context of the 'night' rule just parsed
+   */
+  override fun exitNight(ctx: DateTimeParser.NightContext) {
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Night
   }
 
   /**
