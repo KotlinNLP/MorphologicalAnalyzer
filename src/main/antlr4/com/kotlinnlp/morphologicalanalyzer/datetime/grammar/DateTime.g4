@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import LexerEN, Date, Time, DateOrdinal, Offset;
+import LexerEN, Date, Time, DateOrdinal, Offset, DateOffset;
 
 // -----
 // -- Input text
@@ -29,9 +29,6 @@ datetime
     | time
     | date
     ;
-
-date_offset : date_offset_date_ref WS (OF WS)? offset ;
-date_offset_date_ref : date ;
 
 date_time_simple
     : date WS time
