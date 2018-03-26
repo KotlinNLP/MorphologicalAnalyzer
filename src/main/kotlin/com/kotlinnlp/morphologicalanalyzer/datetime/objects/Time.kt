@@ -11,9 +11,9 @@ import java.util.*
 
 /**
  * A time object.
- * At least one of [sec], [min] and [hour] is not null.
+ * At least one of [sec], [min], [hour] or [generic] is not null.
  *
- * E.g. "9:15", "h 9", "09:15:45".
+ * E.g. "9:15", "h 9", "09:15:45", "Morning".
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
@@ -21,6 +21,7 @@ import java.util.*
  * @property min the number of the minute in the range [0, 59] (can be null)
  * @property sec the number of the second in the range [0, 59] (can be null)
  * @property millisec the number of the millisecond in the range [0, 999] (can be null)
+ * @property generic the generic time
  * @property timezone the timezone (can be null)
  */
 data class Time(
@@ -30,18 +31,24 @@ data class Time(
   val min: Int?,
   val sec: Int?,
   val millisec: Int?,
+  val generic: Generic?,
   val timezone: TimeZone?
 ) : DateTime {
 
   /**
-   * Check that at least one property is defined.
+   * A generic time.
+   */
+  enum class Generic { Morning, Lunch, Afternoon, Evening, Night }
+
+  /**
+   * Check that at least one required property is defined.
    */
   init {
-    require(listOf(this.sec, this.min, this.hour).any { it != null })
+    require(listOf(this.sec, this.min, this.hour, this.generic).any { it != null })
   }
 
   /**
-   * Get the string representing this time in the following standard format: hh:mm:ss.ms[ (TIMEZONE)].
+   * Get the string representing this time in the following standard format: hh:mm:ss.ms[ TIMEZONE][ (GENERIC)].
    *
    * @return the string representing this time
    */
@@ -50,7 +57,8 @@ data class Time(
     this.min?.let { "%02d".format(it) } ?: "-",
     this.sec?.let { "%02d".format(it) } ?: "-",
     this.millisec?.let { "%02d".format(it) } ?: "-",
-    this.timezone?.let { " ${it.toZoneId()}" } ?: ""
+    this.timezone?.let { " ${it.toZoneId()}" } ?: "",
+    this.generic?.let { " (${it.toString().toLowerCase()})" } ?: ""
   )
 
   /**
