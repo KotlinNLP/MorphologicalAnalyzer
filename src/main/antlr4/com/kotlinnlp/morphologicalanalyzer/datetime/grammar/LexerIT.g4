@@ -46,14 +46,16 @@ O_CLOCK : I N WS P U N T O ;
 // -- Words
 // -----
 
-YEAR    : A N N (O | I) ;
-MONTH   : M E S (E | I) ;
-WEEK    : S E T T I M A N (A | E) ;
-WEEKEND : F I N E WS WEEK ;
-DAY     : G I O R N (O | I) ;
-HOUR    : O R (A | E) ;
-MIN     : M I N U T (O | I) ;
-SEC     : S E C ; // 'secondo' is also an ordinal number
+YEAR         : A N N (O | I) ;
+MONTH        : M E S (E | I) ;
+WEEK         : S E T T I M A N (A | E) ;
+WEEKEND      : F I N E WS WEEK ;
+DAY          : G I O R N (O | I) ;
+HOUR         : O R (A | E) ;
+HALF_HOUR    : M E Z Z APEX? WS? HOUR ;
+QUARTER_HOUR : Q U A R T (O | I) WS D APEX? WS HOUR ;
+MIN          : M I N U T (O | I) ;
+SEC          : S E C ; // 'secondo' is also an ordinal number
 
 // -----
 // -- Holidays

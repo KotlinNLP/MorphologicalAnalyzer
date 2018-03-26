@@ -43,14 +43,16 @@ O_CLOCK : O WS? APEX? WS? C L O C K ;
 // -- Words
 // -----
 
-YEAR    : Y E A R S? ;
-MONTH   : M O N T H S? ;
-WEEK    : W E E K S? ;
-WEEKEND : W E E K DASH? E N D S? ;
-DAY     : D A Y S? ;
-HOUR    : H O U R S? ;
-MIN     : M I N (U T E) S? ;
-SEC     : S E C S? ; // 'second' is also an ordinal number
+YEAR         : Y E A R S? ;
+MONTH        : M O N T H S? ;
+WEEK         : W E E K S? ;
+WEEKEND      : W E E K DASH? E N D S? ;
+DAY          : D A Y S? ;
+HOUR         : H O U R S? ;
+HALF_HOUR    : H A L F (WS A N)? WS H O U R ;
+QUARTER_HOUR : Q U A R T E R S? WS OF (WS A N)? WS HOUR ;
+MIN          : M I N (U T E) S? ;
+SEC          : S E C S? ; // 'second' is also an ordinal number
 
 // -----
 // -- Holidays
