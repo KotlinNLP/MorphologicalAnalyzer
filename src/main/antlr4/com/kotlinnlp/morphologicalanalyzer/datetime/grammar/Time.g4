@@ -40,7 +40,7 @@ hour_str
 // -- GENERIC
 // -----
 
-generic_time : ;
+generic_time : morning | lunch | afternoon | evening | night ;
 
 morning : MORNING ;
 lunch : LUNCH ;
