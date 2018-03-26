@@ -7,7 +7,21 @@ offset
     | offset_pos_prefix WS offset_units WS offset_ref
     | offset_ref WS offset_double_suffix
     | offset_units WS offset_ref WS (offset_pos_suffix | offset_neg_suffix)
+    | special_offset
     ;
+
+special_offset : now | today | yesterday | tomorrow | day_after_tomorrow;
+
+now
+    : NOW
+    | HOUR // only for IT
+    ;
+
+today              : TODAY ;
+yesterday          : YESTERDAY ;
+tomorrow           : TOMORROW ;
+day_after_tomorrow : DAY_AFTER_TOMORROW ;
+
 
 // -----
 // -- Offset Reference
