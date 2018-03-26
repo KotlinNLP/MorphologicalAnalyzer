@@ -33,5 +33,15 @@
     "text": "Monday of the next August",
     "date": {"week-D": 1, "start": 0, "end": 5},
     "offset": {"offset-type": "date", "units": 1, "date": {"M": 8, "start": 5, "end": 10}, "start": 14, "end": 24}
+  },
+  {
+    "text": "sunday from last week",
+    "date": {"week-D": 7, "start": 0, "end": 5},
+    "offset": {"offset-type": "week", "units": -1, "start": 12, "end": 20}
+  },
+  {
+    "text": "last week's sunday",
+    "date": {"week-D": 7, "start": 12, "end": 17},
+    "offset": {"offset-type": "week", "units": -1, "start": 0, "end": 8}
   }
 ]
