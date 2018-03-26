@@ -11,7 +11,7 @@ time
     | half_hour
     | quarter_hour
     | three_quarters_hour
-    | IN WS THE WS generic_time // specific for EN with generic time (e.g. "in the morning")
+    | IN WS generic_time // specific for EN with generic time (e.g. "in the morning")
     | OF WS generic_time // specific for IT with generic time (e.g. "di sera")
     ;
 
