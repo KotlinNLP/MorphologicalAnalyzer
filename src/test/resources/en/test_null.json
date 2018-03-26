@@ -1,4 +1,9 @@
 [
+  {"text": "morning", "generic": "morning"},
+  {"text": "lunch", "generic": "lunch"},
+  {"text": "afternoon", "generic": "afternoon"},
+  {"text": "evening", "generic": "evening"},
+  {"text": "night", "generic": "night"},
   {"text": "on the 15"},
   {"text": "h9"}
 ]

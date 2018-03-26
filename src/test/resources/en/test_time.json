@@ -1,4 +1,9 @@
 [
+  {"text": "in the morning", "generic": "morning"},
+  {"text": "at lunch", "generic": "lunch"},
+  {"text": "in the afternoon", "generic": "afternoon"},
+  {"text": "in the evening", "generic": "evening"},
+  {"text": "at night", "generic": "night"},
   {"text": "9.15", "h": 9, "m": 15},
   {"text": "9:15", "h": 9, "m": 15},
   {"text": "9 o clock", "h": 9},
