@@ -43,6 +43,12 @@ O_CLOCK : O WS? APEX? WS? C L O C K ;
 // -- Words
 // -----
 
+NOW                : N O W ;
+TODAY              : T O D A Y ;
+YESTERDAY          : Y E S T E R D A Y ;
+TOMORROW           : T O M O R R O W ;
+DAY_AFTER_TOMORROW : T H E WS D A Y WS A F T E R WS T O M O R R O W ;
+
 YEAR         : Y E A R S? ;
 MONTH        : M O N T H S? ;
 WEEK         : W E E K S? ;
