@@ -36,6 +36,8 @@ BEFORE : P R I M A WS OF ;
 FROM : D A ART_SUFFIX? ;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
+EN_POSSESSIVE : NOT_DEFINED ;
+
 // -----
 // -- Special expressions
 // -----

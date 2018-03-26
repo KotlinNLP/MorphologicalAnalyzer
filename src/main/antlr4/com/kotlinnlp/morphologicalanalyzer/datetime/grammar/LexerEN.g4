@@ -33,6 +33,8 @@ BEFORE : B E F O R E ;
 FROM : F R O M ;
 TO   : T O ;
 
+EN_POSSESSIVE : APEX WS? S ;
+
 // -----
 // -- Special expressions
 // -----
