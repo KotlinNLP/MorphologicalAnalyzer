@@ -928,6 +928,62 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit now' event.
+   *
+   * @param ctx the context of the 'now' rule just parsed
+   */
+  override fun exitNow(ctx: DateTimeParser.NowContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Second
+    this.dateTimeBuilder.offsetLength = 0
+  }
+
+  /**
+   * The listener of the 'exit today' event.
+   *
+   * @param ctx the context of the 'today' rule just parsed
+   */
+  override fun exitToday(ctx: DateTimeParser.TodayContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.offsetLength = 0
+  }
+
+  /**
+   * The listener of the 'exit yesterday' event.
+   *
+   * @param ctx the context of the 'yesterday' rule just parsed
+   */
+  override fun exitYesterday(ctx: DateTimeParser.YesterdayContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.positiveOffset = false
+    this.dateTimeBuilder.offsetLength = 1
+  }
+
+  /**
+   * The listener of the 'exit tomorrow' event.
+   *
+   * @param ctx the context of the 'tomorrow' rule just parsed
+   */
+  override fun exitTomorrow(ctx: DateTimeParser.TomorrowContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.offsetLength = 1
+  }
+
+  /**
+   * The listener of the 'exit day_after_tomorrow' event.
+   *
+   * @param ctx the context of the 'day_after_tomorrow' rule just parsed
+   */
+  override fun exitDay_after_tomorrow(ctx: DateTimeParser.Day_after_tomorrowContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.offsetLength = 2
+  }
+
+  /**
    * The listener of the 'exit offset_units_digits' event.
    *
    * @param ctx the context of the 'offset_units_digits' rule just parsed
