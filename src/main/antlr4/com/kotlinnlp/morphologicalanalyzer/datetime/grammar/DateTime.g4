@@ -15,7 +15,7 @@ text_atomic  : datetime | string ;
 text_ws      : datetime punct* WS | string WS ;
 
 string : (CHAR_NO_WS | ~WS)+ ;
-punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | DEGREE | CIRCUMFLEX | OTHER_SYMBOLS ;
+punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | BACKSLASH | DEGREE | CIRCUMFLEX | OTHER_SYMBOLS ;
 
 // -----
 // -- Date-times
