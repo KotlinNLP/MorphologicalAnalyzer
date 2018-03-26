@@ -395,6 +395,28 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit quarter_hour_lit' event.
+   *
+   * @param ctx the context of the 'quarter_hour_lit' rule just parsed
+   */
+  override fun exitQuarter_hour_lit(ctx: DateTimeParser.Quarter_hour_litContext) {
+
+    this.dateTimeBuilder.min = 15
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.QuarterHour
+  }
+
+  /**
+   * The listener of the 'exit half_hour_lit' event.
+   *
+   * @param ctx the context of the 'half_hour_lit' rule just parsed
+   */
+  override fun exitHalf_hour_lit(ctx: DateTimeParser.Half_hour_litContext) {
+
+    this.dateTimeBuilder.min = 30
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.HalfHour
+  }
+
+  /**
    * The listener of the 'exit day_lit' event.
    *
    * @param ctx the context of the 'day_lit' rule just parsed
@@ -816,6 +838,36 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitHour_00(ctx: DateTimeParser.Hour_00Context) {
 
     this.dateTimeBuilder.hour = ctx.text.toInt()
+  }
+
+  /**
+   * The listener of the 'exit half_hour' event.
+   *
+   * @param ctx the context of the 'half_hour' rule just parsed
+   */
+  override fun exitHalf_hour(ctx: DateTimeParser.Half_hourContext) {
+
+    this.dateTimeBuilder.min = 30
+  }
+
+  /**
+   * The listener of the 'exit quarter_hour' event.
+   *
+   * @param ctx the context of the 'quarter_hour' rule just parsed
+   */
+  override fun exitQuarter_hour(ctx: DateTimeParser.Quarter_hourContext) {
+
+    this.dateTimeBuilder.min = 15
+  }
+
+  /**
+   * The listener of the 'exit three_quarters_hour' event.
+   *
+   * @param ctx the context of the 'three_quarters_hour' rule just parsed
+   */
+  override fun exitThree_quarters_hour(ctx: DateTimeParser.Three_quarters_hourContext) {
+
+    this.dateTimeBuilder.min = 45
   }
 
   /**
