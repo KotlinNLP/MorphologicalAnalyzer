@@ -95,6 +95,30 @@ sealed class Offset : DateTime {
   }
 
   /**
+   * An offset of quarters of an hour.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
+   */
+  data class QuarterHours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
+
+  /**
+   * An offset of half-hours.
+   *
+   * @property startToken the index of the first token of this expression
+   * @property endToken the index of the last token of this expression
+   * @property units the count of offset units, in the range [0, +inf] (e.g. + 2 weeks)
+   */
+  data class HalfHours(override val startToken: Int, override val endToken: Int, override val units: Int) : Offset() {
+
+    override fun toString(): String = this.toStandardFormat()
+  }
+
+  /**
    * An offset of minutes.
    *
    * @property startToken the index of the first token of this expression
