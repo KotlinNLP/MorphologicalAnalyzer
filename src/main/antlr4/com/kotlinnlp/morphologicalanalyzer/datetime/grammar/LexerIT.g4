@@ -16,7 +16,7 @@ DAY_TH : E S I M VOCAL_SUFFIX ;
 
 AND : E ;
 AT  : A (L | L L A | L L E) ;
-THE : I L | L APEX | L A | L O ;
+THE : I L | L APEX | L A | L O | L E ;
 OF  : D I | D E ART_SUFFIX ;
 ON  : NOT_DEFINED ;
 IN  : I N | N E ART_SUFFIX | T R A | F R A ;
@@ -36,7 +36,7 @@ BEFORE : P R I M A WS OF ;
 FROM : D A ART_SUFFIX? ;
 TO   : A ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
 
-ABOUT : C I R C A WS (A | AT) ;
+ABOUT : (C I R C A | I N T O R N O) WS (A | AT) | V E R S O WS THE ;
 
 EN_POSSESSIVE : NOT_DEFINED ;
 
