@@ -29,8 +29,7 @@ data class OpenToInterval(
    *
    * @return the string representing this interval
    */
-  override fun toStandardFormat(): String = "".format(
-  )
+  override fun toStandardFormat(): String = "from ${this.from}"
 
   /**
    * @return a string representation of this interval object

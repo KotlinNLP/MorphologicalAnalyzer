@@ -31,8 +31,7 @@ data class CloseInterval(
    *
    * @return the string representing this interval
    */
-  override fun toStandardFormat(): String = "".format(
-  )
+  override fun toStandardFormat(): String = "from ${this.from} to ${this.to}"
 
   /**
    * @return a string representation of this interval object
