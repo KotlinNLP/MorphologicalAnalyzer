@@ -992,13 +992,13 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
-   * The listener of the 'exit lunch' event.
+   * The listener of the 'exit noon' event.
    *
-   * @param ctx the context of the 'lunch' rule just parsed
+   * @param ctx the context of the 'noon' rule just parsed
    */
-  override fun exitLunch(ctx: DateTimeParser.LunchContext) {
+  override fun exitNoon(ctx: DateTimeParser.NoonContext) {
 
-    this.dateTimeBuilder.genericTime = Time.Generic.Lunch
+    this.dateTimeBuilder.genericTime = Time.Generic.Noon
   }
 
   /**

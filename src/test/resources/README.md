@@ -46,7 +46,7 @@ All the following fields are optional, but at least one of `h`, `m`, `s` or `gen
 * `m`: the minutes as int number in the range [0, 59]
 * `s`: the seconds as int number in the range [0, 59]
 * `ms`: the milliseconds as int number in the range [0, 999]
-* `generic`: a generic time (one of the following values: "morning", "lunch", "afternoon", "evening", "night")
+* `generic`: a generic time (one of the following values: "morning", "noon", "afternoon", "evening", "night")
 * `tz`: the timezone (e.g. "UTC")
 
 #### Adding fields for the `TYPE` "date_time_simple"

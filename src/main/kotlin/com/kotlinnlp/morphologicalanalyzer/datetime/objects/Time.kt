@@ -38,7 +38,7 @@ data class Time(
   /**
    * A generic time.
    */
-  enum class Generic { Morning, Lunch, Afternoon, Evening, Night }
+  enum class Generic { Morning, Noon, Afternoon, Evening, Night }
 
   /**
    * Check that at least one required property is defined.
