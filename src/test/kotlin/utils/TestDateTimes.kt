@@ -36,17 +36,6 @@ object TestDateTimes {
   data class Test(val text: String, val dateTime: DateTime? = null)
 
   /**
-   * A map of annotations to generic times.
-   */
-  private val genericTimeMap: Map<String, Time.Generic> = mapOf(
-    "morning" to Time.Generic.Morning,
-    "lunch" to Time.Generic.Lunch,
-    "afternoon" to Time.Generic.Afternoon,
-    "evening" to Time.Generic.Evening,
-    "night" to Time.Generic.Night
-  )
-
-  /**
    * The name of the JSON file containing the test date times, placed in the 'resources', to be formatted with the
    * type of tests that contains.
    * The JSON in it is a list of objects representing a test.
@@ -220,7 +209,9 @@ object TestDateTimes {
     min = jsonObj.int("m"),
     sec = jsonObj.int("s"),
     millisec = jsonObj.int("ms"),
-    generic = jsonObj.string("generic")?.let { genericTimeMap.getValue(it) },
+    generic = jsonObj.string("generic")?.let { gTime ->
+      Time.Generic.values().first { it.toString().toLowerCase() == gTime }
+    },
     timezone = jsonObj.string("tz")?.let { TimeZone.getTimeZone(it) }
   )
 
