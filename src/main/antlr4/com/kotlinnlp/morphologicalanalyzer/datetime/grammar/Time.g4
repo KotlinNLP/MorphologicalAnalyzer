@@ -46,10 +46,10 @@ generic_time_expr
     | ABOUT WS generic_time // e.g. "about dinner"
     ;
 
-generic_time : morning | lunch | afternoon | evening | night ;
+generic_time : morning | noon | afternoon | evening | night ;
 
 morning : MORNING ;
-lunch : LUNCH ;
+noon : NOON ;
 afternoon : AFTERNOON ;
 evening : EVENING ;
 night : NIGHT ;
