@@ -256,7 +256,50 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    */
   override fun exitDate_offset_date_ref(ctx: DateTimeParser.Date_offset_date_refContext) {
 
-    this.dateTimeBuilder.dateOffsetDateRef = this.dateTimeBuilder.buildDate()
+    this.dateTimeBuilder.dateOffsetDateTimeRef = this.dateTimeBuilder.buildDate()
+  }
+
+  /**
+   * The listener of the 'exit date_offset_time_ref' event.
+   *
+   * @param ctx the context of the 'date_offset_time_ref' rule that is being parsed
+   */
+  override fun exitDate_offset_time_ref(ctx: DateTimeParser.Date_offset_time_refContext) {
+
+    this.dateTimeBuilder.setTimeTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+
+    this.dateTimeBuilder.dateOffsetDateTimeRef = this.dateTimeBuilder.buildTime()
+  }
+
+  /**
+   * The listener of the 'exit date_offset_time' event.
+   *
+   * @param ctx the context of the 'date_offset_time' rule that is being parsed
+   */
+  override fun exitDate_offset_time(ctx: DateTimeParser.Date_offset_timeContext) {
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.setOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit date_offset_tonight' event.
+   *
+   * @param ctx the context of the 'date_offset_tonight' rule that is being parsed
+   */
+  override fun exitDate_offset_tonight(ctx: DateTimeParser.Date_offset_tonightContext) {
+
+    val start: Int = ctx.start.startIndex
+    val end: Int = ctx.stop.stopIndex
+
+    this.dateTimeBuilder.dateUnit = DateUnit.Type.Day
+    this.dateTimeBuilder.offsetLength = 0
+    this.dateTimeBuilder.setOffsetTokens(startIndex = start, endIndex = end)
+
+    this.dateTimeBuilder.genericTime = Time.Generic.Night
+    this.dateTimeBuilder.setTimeTokens(startIndex = start, endIndex = end)
+
+    this.dateTimeBuilder.dateOffsetDateTimeRef = this.dateTimeBuilder.buildTime()
   }
 
   /**
