@@ -43,6 +43,7 @@ generic_time_expr
     : AT WS generic_time // specific for EN with generic time (e.g. "at lunch")
     | IN WS generic_time // specific for EN with generic time (e.g. "in the morning")
     | OF WS generic_time // specific for IT with generic time (e.g. "di sera")
+    | ABOUT WS generic_time // e.g. "about dinner"
     ;
 
 generic_time : morning | lunch | afternoon | evening | night ;
