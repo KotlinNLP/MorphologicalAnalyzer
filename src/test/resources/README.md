@@ -18,6 +18,7 @@ The following types are supported:
 * "offset"
 * "date_offset"
 * "date_ordinal"
+* "interval"
 
 ### Common Fields
 
@@ -108,3 +109,20 @@ fields more:
 
 If `type` is "date" then the same adding fields of the test of `TYPE` "date" are required, and the same `start` and 
 `end` adding fields.
+
+#### Adding fields for the `TYPE` "interval"
+
+The following fields are required: 
+
+* `from`: the lower bound of the interval, an inner "date-time" object that can contain one of the following fields:
+    * `time`: an inner "time" object
+    * `date`: an inner "date" object
+    * `offset`: an inner "offset" object
+
+* `to`: the upper bound of the interval, an inner "date-time" object that can contain the same field of `from`
+
+`offset`, `date` and `time` contain the same adding fields of the test with `TYPE` equal to their name, and two fields 
+more: 
+
+* `start`: the index of the char at which it starts respect to the interval start index
+* `end`: the index of the char at which it ends respect to the interval start index

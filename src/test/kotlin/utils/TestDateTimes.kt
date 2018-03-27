@@ -10,6 +10,10 @@ package utils
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.CloseInterval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.Interval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenFromInterval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenToInterval
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 import java.util.*
@@ -72,7 +76,8 @@ object TestDateTimes {
     "date_time_simple",
     "offset",
     "date_offset",
-    "date_ordinal"
+    "date_ordinal",
+    "interval"
   )
 
   /**
@@ -167,6 +172,7 @@ object TestDateTimes {
       "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
       "date_offset" -> this.buildDateOffset(jsonObj = jsonObj, start = start, end = end)
       "date_ordinal" -> this.buildDateOrdinal(jsonObj = jsonObj, start = start, end = end)
+      "interval" -> this.buildInterval(jsonObj = jsonObj, start = start, end = end)
       else -> throw RuntimeException("Invalid DateTime type: $type")
     }
   )
@@ -311,6 +317,33 @@ object TestDateTimes {
       "month" -> DateOrdinal.Month(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
       "year" -> DateOrdinal.Year(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
       else -> throw RuntimeException("Invalid offset type: $type")
+    }
+  }
+
+  /**
+   * Build an [Interval] object.
+   *
+   * @param jsonObj the JSON object containing the information of the interval
+   * @param start the char index at which the expected interval starts in the text (inclusive)
+   * @param end the char index at which the expected interval ends in the text (inclusive)
+   *
+   * @return an interval object
+   */
+  private fun buildInterval(jsonObj: JsonObject, start: Int, end: Int): Interval {
+
+    val from: SingleDateTime? = jsonObj.obj("from")?.let {
+      this.getInnerDateTime(jsonObj = it, offset = start)
+    }
+
+    val to: SingleDateTime? = jsonObj.obj("to")?.let {
+      this.getInnerDateTime(jsonObj = it, offset = start)
+    }
+
+    return when {
+      from != null && to != null -> CloseInterval(startToken = start, endToken = end, from = from, to = to)
+      from != null -> OpenToInterval(startToken = start, endToken = end, from = from)
+      to != null -> OpenFromInterval(startToken = start, endToken = end, to = to)
+      else -> throw RuntimeException("Missing 'from' or 'to' interval properties.")
     }
   }
 
