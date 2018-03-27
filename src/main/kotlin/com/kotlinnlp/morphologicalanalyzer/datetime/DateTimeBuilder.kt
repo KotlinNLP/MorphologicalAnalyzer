@@ -9,6 +9,10 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.CloseInterval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.Interval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenFromInterval
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenToInterval
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
 import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
@@ -121,6 +125,16 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   lateinit var ordinalDateTimeRef: SingleDateTime
 
   /**
+   * The lower bound date-time of an interval (usually it is a [Date], a [Time] or an [Offset]).
+   */
+  var intervalFromDateTime: SingleDateTime? = null
+
+  /**
+   * The upper bound date-time of an interval (usually it is a [Date], a [Time] or an [Offset]).
+   */
+  var intervalToDateTime: SingleDateTime? = null
+
+  /**
    * The range of token indices related to the currently parsing 'date' rule.
    */
   private lateinit var dateTokens: IntRange
@@ -149,6 +163,11 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
    * The range of token indices related to the currently parsing 'date_ordinal' rule.
    */
   private lateinit var dateOrdinalTokens: IntRange
+
+  /**
+   * The range of token indices related to the currently parsing 'interval' rule.
+   */
+  private lateinit var intervalTokens: IntRange
 
   /**
    *
@@ -250,6 +269,25 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
+  fun buildInterval(): Interval {
+
+    val start: Int = this.intervalTokens.start
+    val end: Int = this.intervalTokens.endInclusive
+
+    val from: SingleDateTime? = this.intervalFromDateTime
+    val to: SingleDateTime? = this.intervalToDateTime
+
+    return when {
+      from != null && to != null -> CloseInterval(startToken = start, endToken = end, from = from, to = to)
+      from != null -> OpenToInterval(startToken = start, endToken = end, from = from)
+      to != null -> OpenFromInterval(startToken = start, endToken = end, to = to)
+      else -> throw RuntimeException("Missing 'from' or 'to' date-time to build an interval.")
+    }
+  }
+
+  /**
+   *
+   */
   fun setDateTokens(startIndex: Int, endIndex: Int) {
 
     this.dateTokens = IntRange(
@@ -308,6 +346,17 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateOrdinalTokens(startIndex: Int, endIndex: Int) {
 
     this.dateOrdinalTokens = IntRange(
+      this.tokens.indexOfFirst { it.startAt == startIndex },
+      this.tokens.indexOfFirst { it.endAt == endIndex }
+    )
+  }
+
+  /**
+   *
+   */
+  fun setIntervalTokens(startIndex: Int, endIndex: Int) {
+
+    this.intervalTokens = IntRange(
       this.tokens.indexOfFirst { it.startAt == startIndex },
       this.tokens.indexOfFirst { it.endAt == endIndex }
     )
