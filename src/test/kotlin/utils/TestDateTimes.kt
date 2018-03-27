@@ -285,7 +285,7 @@ object TestDateTimes {
   private fun buildDateOffset(jsonObj: JsonObject, start: Int, end: Int) = DateOffset(
     startToken = start,
     endToken = end,
-    date = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start),
+    dateTime = this.getInnerDateTime(jsonObj = jsonObj, offset = start),
     offset = this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = start)
   )
 
@@ -333,6 +333,7 @@ object TestDateTimes {
    */
   private fun getInnerDateTime(jsonObj: JsonObject, offset: Int): DateTime = when {
     "date" in jsonObj -> this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = offset)
+    "time" in jsonObj -> this.buildInnerTime(jsonObj = jsonObj.obj("time")!!, offset = offset)
     "offset" in jsonObj -> this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = offset)
     else -> throw RuntimeException("Missing a valid inner date-time.")
   }

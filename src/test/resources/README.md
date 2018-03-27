@@ -76,12 +76,17 @@ If `offset-type` is "date" then the same adding fields of the test of `TYPE` "da
 
 #### Adding fields for the `TYPE` "date_offset"
 
-The following fields are required. 
+The following field is required: 
 
-* `date`: an inner "date" object
 * `offset`: an inner "offset" object
 
-Both contain the same adding fields of the test with `TYPE` equal to their name, and two fields more: 
+And one of the following ones:
+
+* `date`: an inner "date" object
+* `time`: an inner "time" object
+
+`offset`, `date` and `time` contain the same adding fields of the test with `TYPE` equal to their name, and two fields 
+more: 
 
 * `start`: the index of the char at which it starts respect to the date-offset start index
 * `end`: the index of the char at which it ends respect to the date-offset start index
