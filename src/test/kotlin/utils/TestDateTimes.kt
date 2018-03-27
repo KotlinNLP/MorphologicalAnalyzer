@@ -292,7 +292,7 @@ object TestDateTimes {
   private fun buildDateOrdinal(jsonObj: JsonObject, start: Int, end: Int): DateOrdinal {
 
     val type: String = jsonObj.string("type")!!
-    val refDateTime: DateTime = this.getInnerDateTime(jsonObj = jsonObj.obj("ref")!!, offset = start)
+    val refDateTime: SingleDateTime = this.getInnerDateTime(jsonObj = jsonObj.obj("ref")!!, offset = start)
     val pos: DateOrdinal.Position = jsonObj.int("position")!!.let {
       if (it < 0) DateOrdinal.Position.Last() else DateOrdinal.Position.Ordinal(count = it)
     }
@@ -315,14 +315,14 @@ object TestDateTimes {
   }
 
   /**
-   * Build a generic [DateTime] that is part of an outer [DateTime] object.
+   * Build a generic [SingleDateTime] that is part of an outer [DateTime] object.
    *
    * @param jsonObj the JSON object containing the information of the date-time
    * @param offset the start char index of the outer object (added as offset to the start-end indices of the [jsonObj])
    *
    * @return a date-time object
    */
-  private fun getInnerDateTime(jsonObj: JsonObject, offset: Int): DateTime = when {
+  private fun getInnerDateTime(jsonObj: JsonObject, offset: Int): SingleDateTime = when {
     "date" in jsonObj -> this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = offset)
     "time" in jsonObj -> this.buildInnerTime(jsonObj = jsonObj.obj("time")!!, offset = offset)
     "offset" in jsonObj -> this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = offset)
