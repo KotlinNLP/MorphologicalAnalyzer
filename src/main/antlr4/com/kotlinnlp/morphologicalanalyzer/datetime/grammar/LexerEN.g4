@@ -68,6 +68,7 @@ LUNCH     : L U N C H ;
 AFTERNOON : A F T E R N O O N ;
 EVENING   : E V E N I N G ;
 NIGHT     : N I G H T ;
+TONIGHT   : T O N I G H T ;
 
 // -----
 // -- Holidays

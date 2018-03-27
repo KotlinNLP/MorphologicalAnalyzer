@@ -71,6 +71,7 @@ LUNCH     : P R A N Z O ;
 AFTERNOON : P O M E R I G G I O ;
 EVENING   : S E R A ;
 NIGHT     : N O T T E ;
+TONIGHT   : Q U E S T A WS NIGHT | S T A NIGHT ;
 
 // -----
 // -- Holidays
