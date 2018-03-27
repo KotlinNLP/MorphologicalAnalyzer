@@ -33,6 +33,8 @@ BEFORE : B E F O R E ;
 FROM : F R O M ;
 TO   : T O ;
 
+ABOUT : A B O U T | A R O U N D ;
+
 EN_POSSESSIVE : APEX WS? S ;
 
 // -----
