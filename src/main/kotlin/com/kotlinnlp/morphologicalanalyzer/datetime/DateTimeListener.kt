@@ -11,6 +11,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.SingleDateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
 import com.kotlinnlp.neuraltokenizer.Token
@@ -37,6 +38,11 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
    * It is set when an 'exit ns_*' event is triggered.
    */
   private var strNumber: Int = -1
+
+  /**
+   * Whether in the currently building date-time there is an 'interval'.
+   */
+  private var isInterval: Boolean = false
 
   /**
    * Whether in the currently building date-time there is a 'date_ordinal'.
@@ -91,6 +97,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun enterDatetime(ctx: DateTimeParser.DatetimeContext) {
 
     this.dateTimeBuilder = DateTimeBuilder(this.tokens)
+  }
+
+  /**
+   * The listener of the 'enter interval' event.
+   *
+   * @param ctx the context of the 'interval' rule that is being parsed
+   */
+  override fun enterInterval(ctx: DateTimeParser.IntervalContext) {
+
+    this.isInterval = true
   }
 
   /**
@@ -162,21 +178,37 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
 
     this.dateTimes.add(
       when { // the order of the conditions is very important!
-        this.isDateOrdinal -> this.dateTimeBuilder.buildDateOrdinal()
-        this.isDateOffset -> this.dateTimeBuilder.buildDateOffset()
-        this.isOffset -> this.dateTimeBuilder.buildOffset()
-        this.isDateTimeSimple -> this.dateTimeBuilder.buildDateTimeSimple()
-        this.isDate -> this.dateTimeBuilder.buildDate()
-        this.isTime -> this.dateTimeBuilder.buildTime()
-        else -> throw RuntimeException("Expected date-time object but no 'enter' event has been triggered.")
+        this.isInterval -> this.dateTimeBuilder.buildInterval()
+        else -> this.buildSingleDateTime()
       }
     )
 
+    this.isInterval = false
+  }
+
+  /**
+   * @return a single date-time object just parsed
+   */
+  private fun buildSingleDateTime(): SingleDateTime {
+
+    val dateTime: SingleDateTime = when { // the order of the conditions is very important!
+      this.isDateOrdinal -> this.dateTimeBuilder.buildDateOrdinal()
+      this.isDateOffset -> this.dateTimeBuilder.buildDateOffset()
+      this.isOffset -> this.dateTimeBuilder.buildOffset()
+      this.isDateTimeSimple -> this.dateTimeBuilder.buildDateTimeSimple()
+      this.isDate -> this.dateTimeBuilder.buildDate()
+      this.isTime -> this.dateTimeBuilder.buildTime()
+      else -> throw RuntimeException("Expected single date-time object but no 'enter' event has been triggered.")
+    }
+
+    this.isDateOrdinal = false
     this.isDateOffset = false
     this.isOffset = false
     this.isDateTimeSimple = false
     this.isDate = false
     this.isTime = false
+
+    return dateTime
   }
 
   /**
@@ -237,6 +269,36 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   override fun exitDate_ordinal(ctx: DateTimeParser.Date_ordinalContext) {
 
     this.dateTimeBuilder.setDateOrdinalTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit interval' event.
+   *
+   * @param ctx the context of the 'interval' rule that is being parsed
+   */
+  override fun exitInterval(ctx: DateTimeParser.IntervalContext) {
+
+    this.dateTimeBuilder.setIntervalTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit interval_datetime_from' event.
+   *
+   * @param ctx the context of the 'interval_datetime_from' rule that is being parsed
+   */
+  override fun exitInterval_datetime_from(ctx: DateTimeParser.Interval_datetime_fromContext) {
+
+    this.dateTimeBuilder.intervalFromDateTime = this.buildSingleDateTime()
+  }
+
+  /**
+   * The listener of the 'exit interval_datetime_to' event.
+   *
+   * @param ctx the context of the 'interval_datetime_to' rule that is being parsed
+   */
+  override fun exitInterval_datetime_to(ctx: DateTimeParser.Interval_datetime_toContext) {
+
+    this.dateTimeBuilder.intervalToDateTime = this.buildSingleDateTime()
   }
 
   /**
