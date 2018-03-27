@@ -240,6 +240,16 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit date_time_simple_generic_time' event.
+   *
+   * @param ctx the context of the 'date_time_simple_generic_time' rule that is being parsed
+   */
+  override fun exitDate_time_simple_generic_time(ctx: DateTimeParser.Date_time_simple_generic_timeContext) {
+
+    this.dateTimeBuilder.setTimeTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
    * The listener of the 'exit offset_date_ref' event.
    *
    * @param ctx the context of the 'offset_date_ref' rule that is being parsed
