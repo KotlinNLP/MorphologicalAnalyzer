@@ -43,5 +43,50 @@
     "text": "last week's sunday",
     "date": {"week-D": 7, "start": 12, "end": 17},
     "offset": {"offset-type": "week", "units": -1, "start": 0, "end": 8}
+  },
+  {
+    "text": "tomorrow morning",
+    "time": {"generic": "morning", "start": 9, "end": 15},
+    "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
+  },
+  {
+    "text": "tonight",
+    "time": {"generic": "night", "start": 0, "end": 6},
+    "offset": {"offset-type": "day", "units": 0, "start": 0, "end": 6}
+  },
+  {
+    "text": "this evening",
+    "time": {"generic": "evening", "start": 5, "end": 11},
+    "offset": {"offset-type": "day", "units": 0, "start": 0, "end": 11}
+  },
+  {
+    "text": "today evening",
+    "time": {"generic": "evening", "start": 6, "end": 12},
+    "offset": {"offset-type": "day", "units": 0, "start": 0, "end": 4}
+  },
+  {
+    "text": "tomorrow evening",
+    "time": {"generic": "evening", "start": 9, "end": 15},
+    "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
+  },
+  {
+    "text": "tomorrow night",
+    "time": {"generic": "night", "start": 9, "end": 13},
+    "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
+  },
+  {
+    "text": "tomorrow lunch",
+    "time": {"generic": "lunch", "start": 9, "end": 13},
+    "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
+  },
+  {
+    "text": "tomorrow at lunch",
+    "time": {"generic": "lunch", "start": 9, "end": 16},
+    "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
+  },
+  {
+    "text": "yesterday evening",
+    "time": {"generic": "evening", "start": 10, "end": 16},
+    "offset": {"offset-type": "day", "units": -1, "start": 0, "end": 8}
   }
 ]
