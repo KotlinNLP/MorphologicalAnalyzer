@@ -11,9 +11,7 @@ time
     | half_hour
     | quarter_hour
     | three_quarters_hour
-    | AT WS generic_time // specific for EN with generic time (e.g. "at lunch")
-    | IN WS generic_time // specific for EN with generic time (e.g. "in the morning")
-    | OF WS generic_time // specific for IT with generic time (e.g. "di sera")
+    | generic_time_time_expr
     ;
 
 time_canonical : hour_00 COLON min_00 COLON sec_00 (DOT millisec_000)? ;
@@ -40,6 +38,12 @@ hour_str
 // -----
 // -- GENERIC
 // -----
+
+generic_time_time_expr
+    : AT WS generic_time // specific for EN with generic time (e.g. "at lunch")
+    | IN WS generic_time // specific for EN with generic time (e.g. "in the morning")
+    | OF WS generic_time // specific for IT with generic time (e.g. "di sera")
+    ;
 
 generic_time : morning | lunch | afternoon | evening | night ;
 
