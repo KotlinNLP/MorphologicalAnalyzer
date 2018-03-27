@@ -22,8 +22,7 @@ ordinal_prefix_number
 // -----
 
 ordinal_unit : ordinal_day_week_unit | date_unit_literal ;
-ordinal_day_week_unit     : day_week ;
-ordinal_date_unit_literal : date_unit_literal ;
+ordinal_day_week_unit : day_week ;
 
 // -----
 // -- Ref date-time
