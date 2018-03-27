@@ -52,7 +52,7 @@ data class Time(
    *
    * @return the string representing this time
    */
-  override fun toStandardFormat(): String = "%s:%s:%s.%s%s".format(
+  override fun toStandardFormat(): String = "%s:%s:%s.%s%s%s".format(
     this.hour?.let { "%02d".format(it) } ?: "-",
     this.min?.let { "%02d".format(it) } ?: "-",
     this.sec?.let { "%02d".format(it) } ?: "-",
