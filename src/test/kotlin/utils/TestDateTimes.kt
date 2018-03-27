@@ -80,7 +80,7 @@ object TestDateTimes {
     "null",
     "date",
     "time",
-    "datetime",
+    "date_time_simple",
     "offset",
     "date_offset",
     "date_ordinal"
@@ -174,7 +174,7 @@ object TestDateTimes {
     dateTime = when (type) {
       "date" -> this.buildDate(jsonObj = jsonObj, start = start, end = end)
       "time" -> this.buildTime(jsonObj = jsonObj, start = start, end = end)
-      "datetime" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
+      "date_time_simple" -> this.buildDateTime(jsonObj = jsonObj, start = start, end = end)
       "offset" -> this.buildOffset(jsonObj = jsonObj, start = start, end = end)
       "date_offset" -> this.buildDateOffset(jsonObj = jsonObj, start = start, end = end)
       "date_ordinal" -> this.buildDateOrdinal(jsonObj = jsonObj, start = start, end = end)

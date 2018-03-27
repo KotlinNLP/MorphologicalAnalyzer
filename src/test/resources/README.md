@@ -14,7 +14,7 @@ The following types are supported:
 * "null"
 * "date"
 * "time"
-* "datetime"
+* "date_time_simple"
 * "offset"
 * "date_offset"
 * "date_ordinal"
@@ -49,7 +49,7 @@ All the following fields are optional, but at least one of `h`, `m`, `s` or `gen
 * `generic`: a generic time (one of the following values: "morning", "lunch", "afternoon", "evening", "night")
 * `tz`: the timezone (e.g. "UTC")
 
-#### Adding fields for the `TYPE` "datetime"
+#### Adding fields for the `TYPE` "date_time_simple"
 
 The following fields are required. 
 
