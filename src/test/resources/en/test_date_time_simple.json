@@ -42,7 +42,17 @@
   {
     "text": "Sunday at lunch",
     "date": {"week-D": 7, "start": 0, "end": 5},
-    "time": {"generic": "lunch", "start": 7, "end": 14}
+    "time": {"generic": "noon", "start": 7, "end": 14}
+  },
+  {
+    "text": "Sunday at noon",
+    "date": {"week-D": 7, "start": 0, "end": 5},
+    "time": {"generic": "noon", "start": 7, "end": 13}
+  },
+  {
+    "text": "Sunday afternoon",
+    "date": {"week-D": 7, "start": 0, "end": 5},
+    "time": {"generic": "afternoon", "start": 7, "end": 15}
   },
   {
     "text": "wednesday in the morning",

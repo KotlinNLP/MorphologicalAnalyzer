@@ -1,6 +1,8 @@
 [
   {"text": "in the morning", "generic": "morning"},
-  {"text": "at lunch", "generic": "lunch"},
+  {"text": "at lunch", "generic": "noon"},
+  {"text": "at noon", "generic": "noon"},
+  {"text": "about dinner", "generic": "evening"},
   {"text": "in the afternoon", "generic": "afternoon"},
   {"text": "in the evening", "generic": "evening"},
   {"text": "at night", "generic": "night"},

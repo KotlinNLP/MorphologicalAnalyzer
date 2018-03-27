@@ -76,12 +76,12 @@
   },
   {
     "text": "tomorrow lunch",
-    "time": {"generic": "lunch", "start": 9, "end": 13},
+    "time": {"generic": "noon", "start": 9, "end": 13},
     "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
   },
   {
     "text": "tomorrow at lunch",
-    "time": {"generic": "lunch", "start": 9, "end": 16},
+    "time": {"generic": "noon", "start": 9, "end": 16},
     "offset": {"offset-type": "day", "units": 1, "start": 0, "end": 7}
   },
   {
