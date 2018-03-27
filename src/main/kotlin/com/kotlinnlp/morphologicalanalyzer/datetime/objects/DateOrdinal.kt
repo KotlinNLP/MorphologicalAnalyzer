@@ -17,7 +17,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateTimeObj
  *
  * @property dateUnit the date unit as string
  */
-sealed class DateOrdinal(private val dateUnit: String) : DateTime {
+sealed class DateOrdinal(private val dateUnit: String) : SingleDateTime {
 
   /**
    * The position.

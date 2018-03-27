@@ -108,7 +108,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    * The reference date-time of a date-offset.
    */
-  lateinit var dateOffsetDateTimeRef: DateTime
+  lateinit var dateOffsetDateTimeRef: SingleDateTime
 
   /**
    * The date as unit of an ordinal date (null if the reference is a date unit - e.g. "days", "weeks").
@@ -118,7 +118,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    * The reference date-time of an ordinal date (can be a [Date] or an [Offset]).
    */
-  lateinit var ordinalDateTimeRef: DateTime
+  lateinit var ordinalDateTimeRef: SingleDateTime
 
   /**
    * The range of token indices related to the currently parsing 'date' rule.

@@ -29,7 +29,7 @@ data class Date(
   val year: Int?,
   val yearAbbr: Boolean,
   val holiday: Holiday?
-) : DateTime {
+) : SingleDateTime {
 
   companion object {
 

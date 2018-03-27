@@ -8,9 +8,9 @@
 package com.kotlinnlp.morphologicalanalyzer.datetime.utils
 
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.SingleDateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 
-typealias DateTimeObj = DateTime
+typealias DateTimeObj = SingleDateTime
 typealias DateObj = Date
 typealias TimeObj = Time

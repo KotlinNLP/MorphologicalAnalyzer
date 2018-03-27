@@ -22,7 +22,7 @@ data class DateTimeSimple(
   override val endToken: Int,
   val date: Date,
   val time: Time
-) : DateTime {
+) : SingleDateTime {
 
   /**
    * Get the string representing this date-time in the following standard formats:

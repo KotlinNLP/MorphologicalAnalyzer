@@ -20,9 +20,9 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 data class DateOffset(
   override val startToken: Int,
   override val endToken: Int,
-  val dateTime: DateTime,
+  val dateTime: SingleDateTime,
   val offset: Offset
-) : DateTime {
+) : SingleDateTime {
 
   /**
    * Get the string representing this date-offset in the following standard format:

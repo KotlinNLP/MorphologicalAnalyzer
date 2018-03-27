@@ -15,7 +15,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.utils.TimeObj
  *
  * E.g. "Next year", "In three weeks", "The next 10th August".
  */
-sealed class Offset : DateTime {
+sealed class Offset : SingleDateTime {
 
   /**
    * The count of offset units, in the range [0, +inf] (e.g. + 2 weeks).

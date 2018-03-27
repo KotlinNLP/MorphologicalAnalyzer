@@ -33,7 +33,7 @@ data class Time(
   val millisec: Int?,
   val generic: Generic?,
   val timezone: TimeZone?
-) : DateTime {
+) : SingleDateTime {
 
   /**
    * A generic time.
