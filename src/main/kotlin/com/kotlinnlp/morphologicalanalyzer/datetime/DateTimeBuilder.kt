@@ -106,9 +106,9 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   var offsetDateRef: Date? = null
 
   /**
-   * The reference date of a date-offset.
+   * The reference date-time of a date-offset.
    */
-  lateinit var dateOffsetDateRef: Date
+  lateinit var dateOffsetDateTimeRef: DateTime
 
   /**
    * The date as unit of an ordinal date (null if the reference is a date unit - e.g. "days", "weeks").
@@ -223,7 +223,7 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun buildDateOffset() = DateOffset(
     startToken = this.dateOffsetTokens.start,
     endToken = this.dateOffsetTokens.endInclusive,
-    date = this.dateOffsetDateRef,
+    dateTime = this.dateOffsetDateTimeRef,
     offset = this.buildOffset()
   )
 

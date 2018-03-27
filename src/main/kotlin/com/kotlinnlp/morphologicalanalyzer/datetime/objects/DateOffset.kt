@@ -10,27 +10,27 @@ package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 /**
  * A date-offset object.
  *
- * E.g. "Monday of next week".
+ * E.g. "Monday of next week", "Tomorrow evening".
  *
  * @property startToken the index of the first token of this expression
  * @property endToken the index of the last token of this expression
- * @property date the date
- * @property offset the offset of the [date] (e.g. "next week")
+ * @property dateTime the date-time
+ * @property offset the offset of the [dateTime] (e.g. "next week", "tomorrow")
  */
 data class DateOffset(
   override val startToken: Int,
   override val endToken: Int,
-  val date: Date,
+  val dateTime: DateTime,
   val offset: Offset
 ) : DateTime {
 
   /**
    * Get the string representing this date-offset in the following standard format:
-   *   DATE of OFFSET.
+   *   DATE-TIME of OFFSET.
    *
    * @return the string representing this date-offset
    */
-  override fun toStandardFormat(): String = "%s of %s".format(this.date, this.offset)
+  override fun toStandardFormat(): String = "%s of %s".format(this.dateTime, this.offset)
 
   /**
    * @return a string representation of this date-offset object
