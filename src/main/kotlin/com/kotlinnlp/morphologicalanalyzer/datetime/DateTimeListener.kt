@@ -302,6 +302,32 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   }
 
   /**
+   * The listener of the 'exit interval_offset_from' event.
+   *
+   * @param ctx the context of the 'interval_offset_from' rule that is being parsed
+   */
+  override fun exitInterval_offset_from(ctx: DateTimeParser.Interval_offset_fromContext) {
+
+    this.isOffset = true
+
+    this.dateTimeBuilder.positiveOffset = false
+    this.dateTimeBuilder.setOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
+   * The listener of the 'exit interval_offset_to' event.
+   *
+   * @param ctx the context of the 'interval_offset_to' rule that is being parsed
+   */
+  override fun exitInterval_offset_to(ctx: DateTimeParser.Interval_offset_toContext) {
+
+    this.isOffset = true
+
+    this.dateTimeBuilder.positiveOffset = true
+    this.dateTimeBuilder.setOffsetTokens(startIndex = ctx.start.startIndex, endIndex = ctx.stop.stopIndex)
+  }
+
+  /**
    * The listener of the 'exit date_time_simple_generic_time' event.
    *
    * @param ctx the context of the 'date_time_simple_generic_time' rule that is being parsed
