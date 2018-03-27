@@ -96,15 +96,15 @@ more:
 The following fields are required. 
 
 * `type`: the type of ordinal date (possible values: "date", "day", "week", "weekend", "month", "year")
-* `ref`: the reference date-time object that can contains one of the following fields:
+* `ref`: the reference date-time object that can contain one of the following fields:
     * `date`: an inner "date" object that represents a week day (e.g. "Monday")
     * `offset`: an inner "offset" object
 
 Both `ref.date` and `ref.offset` contain the same adding fields of the test with `TYPE` equal to their name, and two 
 fields more: 
 
-* `start`: the index of the char at which it starts respect to the date-offset start index
-* `end`: the index of the char at which it ends respect to the date-offset start index
+* `start`: the index of the char at which it starts respect to the date-ordinal start index
+* `end`: the index of the char at which it ends respect to the date-ordinal start index
 
 If `type` is "date" then the same adding fields of the test of `TYPE` "date" are required, and the same `start` and 
 `end` adding fields.
