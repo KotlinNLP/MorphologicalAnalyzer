@@ -15,7 +15,7 @@ DAY_RD : NOT_DEFINED ;
 DAY_TH : E S I M VOCAL_SUFFIX ;
 
 AND : E ;
-AT  : A L | A L L E ;
+AT  : A (L | L L A | L L E) ;
 THE : I L | L APEX | L A | L O ;
 OF  : D I | D E ART_SUFFIX ;
 ON  : NOT_DEFINED ;
@@ -69,7 +69,7 @@ MIN          : M I N U T (O | I) ;
 SEC          : S E C ; // 'secondo' is also an ordinal number
 
 MORNING   : M A T T I N (O | A) ;
-LUNCH     : P R A N Z O ;
+NOON      : P R A N Z O | M E Z Z O G I O R N O | M E Z Z A ;
 AFTERNOON : P O M E R I G G I O ;
 EVENING   : S E R A ;
 NIGHT     : N O T T E ;
