@@ -3,7 +3,7 @@ grammar DateTimeSimple;
 import LexerEN, Date, Time;
 
 date_time_simple
-    : date WS (time | generic_time)
+    : date WS (time | date_time_simple_generic_time)
     | date WS AT WS time
     | datetime_utc
     | date TIME_T time
@@ -12,3 +12,5 @@ date_time_simple
     ;
 
 datetime_utc : date TIME_T time TIME_Z ;
+
+date_time_simple_generic_time : generic_time | generic_time_expr ;
