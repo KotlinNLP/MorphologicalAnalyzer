@@ -33,5 +33,40 @@
     "text": "9am on Saturday",
     "date": {"week-D": 6, "start": 7, "end": 14},
     "time": {"h": 9, "start": 0, "end": 2}
+  },
+  {
+    "text": "monday morning",
+    "date": {"week-D": 1, "start": 0, "end": 5},
+    "time": {"generic": "morning", "start": 7, "end": 13}
+  },
+  {
+    "text": "Sunday at lunch",
+    "date": {"week-D": 7, "start": 0, "end": 5},
+    "time": {"generic": "lunch", "start": 7, "end": 14}
+  },
+  {
+    "text": "wednesday in the morning",
+    "date": {"week-D": 3, "start": 0, "end": 8},
+    "time": {"generic": "morning", "start": 10, "end": 23}
+  },
+  {
+    "text": "friday night",
+    "date": {"week-D": 5, "start": 0, "end": 5},
+    "time": {"generic": "night", "start": 7, "end": 11}
+  },
+  {
+    "text": "february the 15th in the morning",
+    "date": {"D": 15, "M": 2, "start": 0, "end": 16},
+    "time": {"generic": "morning", "start": 18, "end": 31}
+  },
+  {
+    "text": "15 of february in the morning",
+    "date": {"D": 15, "M": 2, "start": 0, "end": 13},
+    "time": {"generic": "morning", "start": 15, "end": 28}
+  },
+  {
+    "text": "morning of the 15th of february",
+    "date": {"D": 15, "M": 2, "start": 15, "end": 30},
+    "time": {"generic": "morning", "start": 0, "end": 6}
   }
 ]
