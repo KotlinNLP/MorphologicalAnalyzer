@@ -4,9 +4,9 @@ import LexerEN, Date, Time;
 
 offset
     : offset_single_prefix WS offset_ref
-    | offset_pos_prefix WS offset_units WS offset_ref
+    | offset_pos_prefix WS offset_numerable
     | offset_ref WS offset_double_suffix
-    | offset_units WS offset_ref WS (offset_pos_suffix | offset_neg_suffix)
+    | offset_numerable WS (offset_pos_suffix | offset_neg_suffix)
     | special_offset
     ;
 
@@ -23,6 +23,7 @@ tomorrow             : TOMORROW ;
 day_after_tomorrow   : DAY_AFTER_TOMORROW ;
 day_before_yesterday : DAY_BEFORE_YESTERDAY ;
 
+offset_numerable : offset_units WS offset_ref ;
 
 // -----
 // -- Offset Reference

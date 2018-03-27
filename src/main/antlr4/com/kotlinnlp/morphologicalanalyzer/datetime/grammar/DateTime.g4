@@ -23,23 +23,23 @@ datetime : interval | single_datetime ;
 // -- Intervals
 // -----
 
-interval : interval_from WS interval_to  ;
-
-interval_from
-    : interval_expr_from WS interval_datetime_from
-    | interval_datetime_from WS interval_expr_from
+interval
+    : interval_from WS interval_to
+    | interval_from
+    | interval_to
     ;
 
-interval_to
-    : interval_expr_to WS interval_datetime_to
-    | interval_datetime_to WS interval_expr_to
-    ;
+interval_from : interval_expr_from WS interval_datetime_from ;
+interval_to   : interval_expr_to WS interval_datetime_to ;
 
 interval_expr_from : FROM | AFTER ;
-interval_expr_to   : TO | BEFORE ;
+interval_expr_to   : TO | AT | BEFORE ;
 
-interval_datetime_from : single_datetime ;
-interval_datetime_to   : single_datetime ;
+interval_datetime_from : single_datetime | interval_offset_from ;
+interval_datetime_to   : single_datetime | interval_offset_to ;
+
+interval_offset_from : offset_numerable ;
+interval_offset_to   : offset_numerable ;
 
 // -----
 // -- Single date-times
