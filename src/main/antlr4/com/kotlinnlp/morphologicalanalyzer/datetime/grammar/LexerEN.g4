@@ -64,10 +64,10 @@ MIN          : M I N (U T E) S? ;
 SEC          : S E C S? ; // 'second' is also an ordinal number
 
 MORNING   : M O R N I N G ;
-LUNCH     : L U N C H ;
-AFTERNOON : A F T E R N O O N ;
+LUNCH     : L U N C H (T I M E)?;
+AFTERNOON : (A F T E R)? N O O N ;
 EVENING   : E V E N I N G ;
-NIGHT     : N I G H T ;
+NIGHT     : N I G H T (T I M E)? | B E D T I M E ;
 TONIGHT   : T O N I G H T ;
 
 // -----
