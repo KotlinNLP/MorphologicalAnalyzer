@@ -198,16 +198,28 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   /**
    *
    */
-  fun buildTime() = Time(
-    startToken = this.timeTokens.start,
-    endToken = this.timeTokens.endInclusive,
-    hour = this.hour,
-    min = this.min,
-    sec = this.sec,
-    millisec = this.millisec,
-    generic = this.genericTime,
-    timezone = this.timezone
-  )
+  fun buildTime(): Time {
+
+    val time = Time(
+      startToken = this.timeTokens.start,
+      endToken = this.timeTokens.endInclusive,
+      hour = this.hour,
+      min = this.min,
+      sec = this.sec,
+      millisec = this.millisec,
+      generic = this.genericTime,
+      timezone = this.timezone
+    )
+
+    this.hour = null
+    this.min = null
+    this.sec = null
+    this.millisec = null
+    this.genericTime = null
+    this.timezone = null
+
+    return time
+  }
 
   /**
    *
@@ -230,10 +242,15 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
     val unitsFactor: Int = if (this.positiveOffset) 1 else -1
     val units: Int = unitsFactor * this.offsetLength
 
-    return this.offsetDateRef?.let {
+    val offset: Offset = this.offsetDateRef?.let {
       Offset.Date(startToken = start, endToken = end, units = units, value = it)
     } ?:
       DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(start, end, units) as Offset
+
+    this.offsetDateRef = null
+    this.dateUnit = null
+
+    return offset
   }
 
   /**
