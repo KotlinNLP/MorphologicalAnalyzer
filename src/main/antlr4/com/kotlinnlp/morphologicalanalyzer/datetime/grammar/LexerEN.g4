@@ -30,8 +30,8 @@ HENCE : H E N C E ;
 AFTER : A F T E R ;
 BEFORE : B E F O R E ;
 
-FROM : F R O M ;
-TO   : T O ;
+FROM : F R O M | S I N C E ;
+TO   : T O | U N T I L ;
 
 ABOUT : A B O U T | A R O U N D ;
 
