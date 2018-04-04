@@ -11,6 +11,9 @@ import com.kotlinnlp.linguisticdescription.morphology.dictionary.Entry
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
 import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
+import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.neuraltokenizer.Token
 
@@ -35,6 +38,17 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
      */
     private fun buildPunctMorpho(form: String): List<MorphologyEntry> = listOf(
       MorphologyEntry(type = MorphologyEntry.Type.Single, list = listOf(Punctuation(lemma = form)))
+    )
+
+    /**
+     * Build the default morphology entries list for number tokens (it contains only one single morphology).
+     *
+     * @return a morphology entries list
+     */
+    private fun buildNumberMorpho(form: String): List<MorphologyEntry> = listOf(
+      MorphologyEntry(
+        type = MorphologyEntry.Type.Single,
+        list = listOf(Number(lemma = form, gender = Gender.Masculine, number = NumberEnum.Singular)))
     )
   }
 
@@ -70,6 +84,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     return when {
       token.isSpace -> null
       token.isPunct() -> buildPunctMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
+      token.isNumber() -> buildNumberMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
       dictionaryEntry != null -> dictionaryEntry.morphologies
       else -> null
     }
@@ -151,6 +166,17 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    * @return a boolean indicating if this token contains a punctuation form
    */
   private fun Token.isPunct(): Boolean = punctRegex.matches(this.form)
+
+  /**
+   * TODO: fix
+   *
+   * @return a boolean indicating if this token contains a numeric form
+   */
+  private fun Token.isNumber(): Boolean =
+    this.form.toDoubleOrNull() != null ||
+      this.form.replace(",", ".").toDoubleOrNull() != null ||
+      this.form.replace(".", "").toDoubleOrNull() != null ||
+      this.form.replace(".", "").replace(",", ".").toDoubleOrNull() != null
 
   /**
    * @return the number of space chars (' ') in this string
