@@ -88,10 +88,17 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
       if (!token.isSpace) {
         this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
+
+          val addingTokens: Int = multiWord.getNumOfSpaces()
+          var followingTokens = 0
+          val endIndex: Int = tokenIndex + 1 + tokens.subList(tokenIndex + 1, tokens.size).indexOfFirst {
+            !it.isSpace && ++followingTokens == addingTokens
+          }
+
           morphologies.add(
             MultiWordsMorphology(
               startToken = tokenIndex,
-              endToken = tokenIndex + 2 * multiWord.getNumOfSpaces(), // the number of adding tokens
+              endToken = endIndex,
               morphologies = this.dictionary[multiWord]!!.morphologies)
           )
         }
@@ -114,11 +121,12 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     val validMultiWords = mutableListOf<String>()
 
     var candidates: Set<String> = this.dictionary.getMultiWordsIntroducedBy(tokens[tokenIndex].form).toSet()
-    var distance = 0
+    var followingTokenIndex: Int = tokenIndex
+    var addingTokens = 0
 
-    while (candidates.size > 1 && tokenIndex + ++distance < tokens.size) {
+    while (candidates.size > 1 && ++followingTokenIndex < tokens.size) {
 
-      val token: Token = tokens[tokenIndex + distance]
+      val token: Token = tokens[followingTokenIndex]
 
       if (!token.isSpace) {
 
@@ -128,8 +136,10 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
         candidates = candidates.intersect(multiWords)
 
+        addingTokens++
+
         candidates
-          .filter { 2 * it.getNumOfSpaces() == distance } // keep only the candidates that match exactly from
+          .filter { it.getNumOfSpaces() == addingTokens } // keep only the candidates that match exactly from
           .forEach { validMultiWords.add(it) }            // tokenIndex until the current index
       }
     }
