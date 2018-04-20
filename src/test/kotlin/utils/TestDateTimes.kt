@@ -54,7 +54,7 @@ object TestDateTimes {
   /**
    * A padding text to put before a date-time text.
    */
-  private const val PADDING_BEFORE = "Some padding before "
+  private const val PADDING_BEFORE = "Some padding before the datetime "
 
   /**
    * A padding text to put after a date-time text.
