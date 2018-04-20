@@ -13,7 +13,7 @@ text : text_atomic | text_complex ;
 text_complex : text_ws+? text_atomic? ;
 text_atomic  : datetime | string ;
 text_ws      : datetime punct* text_sep | string text_sep ;
-text_sep : WS | punct ;
+text_sep : (WS | punct)+ ;
 
 string : (CHAR_NO_WS | ~WS)+ ;
 punct  : DOT | COMMA | COLON | SEMICOLON | APEX | DASH | SLASH | BACKSLASH | DEGREE | CIRCUMFLEX | OTHER_SYMBOLS ;
