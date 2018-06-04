@@ -67,7 +67,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     return MorphologicalAnalysis(
       tokens = tokens.map { this.getTokenMorphology(it) },
-      multiWords = this.getMultiWordMorphologies(tokens),
+      multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
       dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = langCode)
     )
   }
@@ -90,77 +90,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     }
   }
 
-  /**
-   * @param tokens a list of input tokens
-   *
-   * @return the list of morphologies of the multi-words recognized in the given list of [tokens]
-   */
-  private fun getMultiWordMorphologies(tokens: List<Token>): List<MultiWordsMorphology> {
 
-    val morphologies = mutableListOf<MultiWordsMorphology>()
-
-    tokens.forEachIndexed { tokenIndex, token ->
-
-      if (!token.isSpace) {
-        this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
-
-          val addingTokens: Int = multiWord.getNumOfSpaces()
-          var followingTokens = 0
-          val endIndex: Int = tokenIndex + 1 + tokens.subList(tokenIndex + 1, tokens.size).indexOfFirst {
-            !it.isSpace && ++followingTokens == addingTokens
-          }
-
-          morphologies.add(
-            MultiWordsMorphology(
-              startToken = tokenIndex,
-              endToken = endIndex,
-              morphologies = this.dictionary[multiWord]!!.morphologies)
-          )
-        }
-      }
-    }
-
-    return morphologies
-  }
-
-  /**
-   * Get the list of multi-words expressions that start with the token at the given index of a [tokens] list.
-   *
-   * @param tokens a list of input tokens
-   * @param tokenIndex the index of the currently focused token (within the [tokens] list)
-   *
-   * @return a list of multi-words expressions (empty if no one has been found)
-   */
-  private fun getValidMultiWords(tokens: List<Token>, tokenIndex: Int): List<String> {
-
-    val validMultiWords = mutableListOf<String>()
-
-    var candidates: Set<String> = this.dictionary.getMultiWordsIntroducedBy(tokens[tokenIndex].form).toSet()
-    var followingTokenIndex: Int = tokenIndex
-    var addingTokens = 0
-
-    while (candidates.size > 1 && ++followingTokenIndex < tokens.size) {
-
-      val token: Token = tokens[followingTokenIndex]
-
-      if (!token.isSpace) {
-
-        val multiWords: List<String> = this.dictionary.getMultiWords(token.form)
-
-        if (multiWords.isEmpty()) break
-
-        candidates = candidates.intersect(multiWords)
-
-        addingTokens++
-
-        candidates
-          .filter { it.getNumOfSpaces() == addingTokens } // keep only the candidates that match exactly from
-          .forEach { validMultiWords.add(it) }            // tokenIndex until the current index
-      }
-    }
-
-    return validMultiWords
-  }
 
   /**
    * @return a boolean indicating if this token contains a punctuation form
@@ -177,9 +107,4 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
       this.form.replace(",", ".").toDoubleOrNull() != null ||
       this.form.replace(".", "").toDoubleOrNull() != null ||
       this.form.replace(".", "").replace(",", ".").toDoubleOrNull() != null
-
-  /**
-   * @return the number of space chars (' ') in this string
-   */
-  private fun String.getNumOfSpaces(): Int = this.sumBy { if (it == ' ') 1 else 0 }
 }
