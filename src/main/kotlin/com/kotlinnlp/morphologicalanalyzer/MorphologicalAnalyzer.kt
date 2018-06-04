@@ -7,9 +7,9 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
-import com.kotlinnlp.linguisticdescription.morphology.dictionary.Entry
-import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyDictionary
-import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
+import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
+import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
+import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum

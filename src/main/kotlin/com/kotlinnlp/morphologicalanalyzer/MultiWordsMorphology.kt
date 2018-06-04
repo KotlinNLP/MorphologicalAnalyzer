@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
-import com.kotlinnlp.linguisticdescription.morphology.dictionary.MorphologyEntry
+import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 
 /**
  * The morphology of a multi-words expression.
