@@ -90,8 +90,6 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     }
   }
 
-
-
   /**
    * @return a boolean indicating if this token contains a punctuation form
    */
