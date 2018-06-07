@@ -61,7 +61,7 @@
         <surfire.version>2.19.1</surfire.version>
         <dokka.version>0.9.13</dokka.version>
         <antlr4.version>4.7.1</antlr4.version>
-        <utils.version>2.0.0</utils.version>
+        <klaxon.version>3.0.5</klaxon.version>
         <linguisticdescription.version>0.8.0</linguisticdescription.version>
         <neuraltokenizer.version>0.1.0</neuraltokenizer.version>
         <utils.version>2.1.0</utils.version>
@@ -277,9 +277,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.kotlinnlp</groupId>
-            <artifactId>utils</artifactId>
-            <version>${utils.version}</version>
+            <groupId>com.beust</groupId>
+            <artifactId>klaxon</artifactId>
+            <version>${klaxon.version}</version>
         </dependency>
 
         <dependency>
