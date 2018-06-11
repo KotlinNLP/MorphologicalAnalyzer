@@ -8,8 +8,6 @@
 package com.kotlinnlp.morphologicalanalyzer.dictionary.compressor
 
 import com.beust.klaxon.JsonObject
-import com.beust.klaxon.obj
-import com.beust.klaxon.string
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType

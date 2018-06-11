@@ -10,7 +10,6 @@ package com.kotlinnlp.morphologicalanalyzer.dictionary
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
-import com.beust.klaxon.string
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
 
 /**
