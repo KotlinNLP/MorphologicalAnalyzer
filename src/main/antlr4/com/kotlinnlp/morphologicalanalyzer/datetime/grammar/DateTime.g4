@@ -6,13 +6,12 @@ import LexerEN, Date, Time, DateTimeSimple, DateOrdinal, Offset, DateOffset;
 // -- Input text
 // -----
 
-root : text_sep? text EOF? ;
+root : text_sep? text text_sep? EOF? ;
 
-text : text_atomic | text_complex ;
+text           : text_chunk sep_text_chunk* ;
+sep_text_chunk : text_sep text_chunk;
+text_chunk     : datetime | string ;
 
-text_complex : text_ws+? text_atomic? ;
-text_atomic  : datetime | string ;
-text_ws      : datetime punct* text_sep | string text_sep ;
 text_sep : (WS | punct)+ ;
 
 string : (~WS)+ ;
