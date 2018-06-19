@@ -1,6 +1,6 @@
-grammar DateOrdinal;
+grammar DTDateOrdinal;
 
-import LexerEN, NumbersParser, Date, Offset;
+import DTLexerEN, DTNumbersParser, DTDate, DTOffset;
 
 // E.g. "The second week of Sep. 2015", "The last week of August", "The first day of the next year"
 date_ordinal : ordinal_prefix WS ordinal_unit WS (OF | IN) WS ordinal_ref ;

@@ -1,6 +1,6 @@
-grammar DateTimeSimple;
+grammar DTDateTimeSimple;
 
-import LexerEN, Date, Time;
+import DTLexerEN, DTDate, DTTime;
 
 date_time_simple
     : date WS (time | date_time_simple_generic_time)

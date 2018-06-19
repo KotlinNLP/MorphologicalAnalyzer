@@ -1,6 +1,6 @@
-grammar Offset;
+grammar DTOffset;
 
-import LexerEN, Date, Time;
+import DTLexerEN, DTDate, DTTime;
 
 offset
     : offset_single_prefix WS offset_ref

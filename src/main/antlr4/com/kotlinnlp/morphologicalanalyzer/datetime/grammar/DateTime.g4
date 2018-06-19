@@ -1,6 +1,6 @@
 grammar DateTime;
 
-import LexerEN, Date, Time, DateTimeSimple, DateOrdinal, Offset, DateOffset;
+import DTLexerEN, DTDate, DTTime, DTDateTimeSimple, DTDateOrdinal, DTOffset, DTDateOffset;
 
 // -----
 // -- Input text
@@ -8,9 +8,8 @@ import LexerEN, Date, Time, DateTimeSimple, DateOrdinal, Offset, DateOffset;
 
 root : text_sep? text text_sep? EOF? ;
 
-text           : text_chunk sep_text_chunk* ;
-sep_text_chunk : text_sep text_chunk;
-text_chunk     : datetime | string ;
+text       : text_chunk (text_sep text_chunk)* ;
+text_chunk : datetime | string ;
 
 text_sep : (WS | punct)+ ;
 

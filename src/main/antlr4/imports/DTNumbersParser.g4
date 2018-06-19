@@ -1,6 +1,6 @@
-grammar NumbersParser;
+grammar DTNumbersParser;
 
-import LexerEN, NumbersLexer;
+import DTLexerEN, DTNumbersLexer;
 
 // -----
 // -- Digits numbers

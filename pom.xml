@@ -220,9 +220,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <libDirectory>src/main/antlr4/com/kotlinnlp/morphologicalanalyzer/datetime/grammar</libDirectory>
-                </configuration>
             </plugin>
         </plugins>
     </build>

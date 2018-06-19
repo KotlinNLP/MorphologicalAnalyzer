@@ -1,4 +1,4 @@
-lexer grammar Symbols;
+lexer grammar DTSymbols;
 
 WS : [ \n\r\t]+ ;
 

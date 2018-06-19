@@ -1,6 +1,6 @@
-lexer grammar NumbersLexer;
+lexer grammar DTNumbersLexer;
 
-import Symbols, Letters;
+import DTSymbols, DTLetters;
 
 // -----
 // -- Ordinal suffix

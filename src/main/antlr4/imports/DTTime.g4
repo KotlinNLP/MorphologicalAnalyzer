@@ -1,6 +1,6 @@
-grammar Time;
+grammar DTTime;
 
-import LexerEN, NumbersParser;
+import DTLexerEN, DTNumbersParser;
 
 time
     : time_canonical (WS? (time_suffix | time_zone))?

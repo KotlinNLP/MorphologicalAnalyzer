@@ -1,6 +1,6 @@
-grammar DateOffset;
+grammar DTDateOffset;
 
-import LexerEN, Date, Offset;
+import DTLexerEN, DTDate, DTOffset;
 
 date_offset
     : date_offset_date_ref WS (OF WS)? offset

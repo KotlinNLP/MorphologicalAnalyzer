@@ -1,6 +1,6 @@
-grammar Date;
+grammar DTDate;
 
-import LexerEN, NumbersParser;
+import DTLexerEN, DTNumbersParser;
 
 // -----
 // -- DATE

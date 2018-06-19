@@ -1,6 +1,6 @@
-lexer grammar TimeLexer;
+lexer grammar DTTimeLexer;
 
-import Letters;
+import DTLetters;
 
 TIME_H : H ;
 TIME_T : T ;

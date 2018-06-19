@@ -1,6 +1,6 @@
-lexer grammar Letters;
+lexer grammar DTLetters;
 
-import Symbols;
+import DTSymbols;
 
 fragment A : [Aa] ;
 fragment B : [Bb] ;
