@@ -11,6 +11,7 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.*
+import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.*
 
 /**
@@ -31,15 +32,10 @@ object DateTimeProcessor {
 
     return if (text.trim().isNotEmpty()) {
 
-      val charStream: CharStream = CharStreams.fromString(text)
-      val lexer = this.buildLexer(charStream = charStream, langCode = langCode)
-      val tokenStream = CommonTokenStream(lexer)
-      val parser = DateTimeParser(tokenStream)
-      val tree: RuleNode = parser.root()
-      val walker = ParseTreeWalker()
+      val parser: DateTimeParser = this.buildParser(text = text, langCode = langCode)
       val listener = DateTimeListener(tokens)
 
-      walker.walk(listener, tree)
+      ParseTreeWalker().walk(listener, parser.root())
 
       listener.getDateTimes()
 
@@ -49,10 +45,28 @@ object DateTimeProcessor {
   }
 
   /**
+   * @param text the input text
+   * @param langCode the iso-a2 code of the language in which to analyze the text
+   *
+   * @return a new ANTLR DateTime parser
+   */
+  private fun buildParser(text: String, langCode: String): DateTimeParser {
+
+    val lexer = this.buildLexer(charStream = CharStreams.fromString(text), langCode = langCode)
+    val tokenStream = CommonTokenStream(lexer)
+    val parser = DateTimeParser(tokenStream)
+
+    parser.interpreter.predictionMode = PredictionMode.SLL
+    parser.removeErrorListeners()
+
+    return parser
+  }
+
+  /**
    * @param charStream the input char stream
    * @param langCode the language iso-a2 code
    *
-   * @return a lexer for the given language
+   * @return an ANTLR DateTime lexer for the given language
    */
   private fun buildLexer(charStream: CharStream, langCode: String): Lexer = when (langCode) {
     "en" -> LexerEN(charStream)
