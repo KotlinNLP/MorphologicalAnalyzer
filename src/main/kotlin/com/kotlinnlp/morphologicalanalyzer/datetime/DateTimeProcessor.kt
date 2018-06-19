@@ -20,6 +20,11 @@ import org.antlr.v4.runtime.tree.*
 object DateTimeProcessor {
 
   /**
+   * The min size of a chunk to be processed.
+   */
+  private const val MIN_CHUNK_SIZE = 3
+
+  /**
    * Get the date-times recognized in a given text.
    *
    * @param text the input text
@@ -42,6 +47,48 @@ object DateTimeProcessor {
     } else {
       listOf()
     }
+  }
+
+  /**
+   *
+   */
+  fun getDateTimesByChunks(text: String, tokens: List<Token>, langCode: String): List<DateTime> {
+
+    val chunks: List<String> = this.getChunks(text = text, langCode = langCode)
+
+    return chunks.flatMap { this.getDateTimes(text = it, tokens = tokens, langCode = langCode) }
+  }
+
+  /**
+   *
+   */
+  private fun getChunks(text: String, langCode: String): List<String> {
+
+    val chunks: MutableList<String> = mutableListOf()
+    var chunkStart = 0
+    var chunkEnd = -1
+
+    this.forEachLexerTokensPosition(text = text, langCode = langCode) { (start, end) ->
+
+      if (start != chunkEnd + 1) {
+        chunks.add(text.substring(chunkStart, chunkEnd + 1))
+        chunkStart = start
+      }
+
+      chunkEnd = end
+    }
+
+    return chunks.map { it.trim() }.filter { it.length >= MIN_CHUNK_SIZE }
+  }
+
+  /**
+   *
+   */
+  private fun forEachLexerTokensPosition(text: String, langCode: String, callback: (Pair<Int, Int>) -> Unit) {
+
+    this.buildLexer(charStream = CharStreams.fromString(text), langCode = langCode).allTokens
+      .filter { it.type != DateTimeParser.OTHER_TOKEN }
+      .forEach { callback(Pair(it.startIndex, it.stopIndex)) }
   }
 
   /**
