@@ -5,7 +5,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Adverb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Preposition
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Verb
@@ -75,7 +74,6 @@ class MorphologyDictionarySpec : Spek({
       it("should contain the 'only_è' form") {
         assertNotNull(dictionary["only_è"])
       }
-
 
       it("should return null when trying to get a form not present") {
         assertNull(dictionary["form3"])
