@@ -35,7 +35,9 @@ object DateTimeProcessor {
       val parser: DateTimeParser = this.buildParser(text = text, langCode = langCode)
       val listener = DateTimeListener(tokens)
 
-      ParseTreeWalker().walk(listener, parser.root())
+      try {
+        ParseTreeWalker().walk(listener, parser.root())
+      } catch (e: RuntimeException) {}
 
       listener.getDateTimes()
 
