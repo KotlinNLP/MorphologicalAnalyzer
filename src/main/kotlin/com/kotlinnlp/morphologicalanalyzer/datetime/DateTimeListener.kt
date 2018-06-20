@@ -20,7 +20,7 @@ import java.util.*
 /**
  * An event listener for an ANTRL DateTime Parser.
  */
-@Suppress("FunctionName") // for Java overridden methods
+@Suppress("FunctionName") // for the automatically generated rule methods
 internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseListener() {
 
   /**
