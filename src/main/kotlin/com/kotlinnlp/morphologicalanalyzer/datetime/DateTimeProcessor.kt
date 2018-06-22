@@ -32,8 +32,8 @@ object DateTimeProcessor {
 
     return if (text.trim().isNotEmpty()) {
 
-      val parser: DateTimeParser = this.buildParser(text = text, langCode = langCode)
       val listener = DateTimeListener(tokens)
+      val parser: DateTimeParser = this.buildParser(text = text, langCode = langCode)
 
       try {
         ParseTreeWalker().walk(listener, parser.root())
@@ -58,10 +58,7 @@ object DateTimeProcessor {
     val tokenStream = CommonTokenStream(lexer)
     val parser = DateTimeParser(tokenStream)
 
-    parser.interpreter.predictionMode = PredictionMode.SLL
-    parser.removeErrorListeners()
-
-    return parser
+    return parser.enableSLL()
   }
 
   /**
@@ -74,5 +71,18 @@ object DateTimeProcessor {
     "en" -> LexerEN(charStream)
     "it" -> LexerIT(charStream)
     else -> throw RuntimeException("Lexer not available for language '$langCode'")
+  }
+
+  /**
+   * Enable the SSL prediction mode of this parser and return it.
+   *
+   * @return this parser
+   */
+  private fun <T: Parser>T.enableSLL(): T {
+
+    this.interpreter.predictionMode = PredictionMode.SLL
+    this.removeErrorListeners()
+
+    return this
   }
 }
