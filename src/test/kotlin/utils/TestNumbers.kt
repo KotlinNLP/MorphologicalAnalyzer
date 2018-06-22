@@ -64,12 +64,11 @@ object TestNumbers {
 
     return jsonList.flatMap { it as JsonObject
 
-//      val paddingTests = this.paddings.flatMap { (paddingBefore, paddingAfter) ->
-//        this.getPaddingTests(jsonObj = it, paddingBefore = paddingBefore, paddingAfter = paddingAfter)
-//      }
-//
-//      paddingTests + this.buildTest(it, originalText = it.string("text")!!, text = it.string("text")!!, offset = 0)
-      listOf(this.buildTest(it, originalText = it.string("text")!!, text = it.string("text")!!, offset = 0))
+      val paddingTests = this.paddings.flatMap { (paddingBefore, paddingAfter) ->
+        this.getPaddingTests(jsonObj = it, paddingBefore = paddingBefore, paddingAfter = paddingAfter)
+      }
+
+      paddingTests + this.buildTest(it, originalText = it.string("text")!!, text = it.string("text")!!, offset = 0)
     }
   }
 
