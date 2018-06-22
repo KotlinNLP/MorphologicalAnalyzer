@@ -119,18 +119,26 @@ object TestDateTimes {
 
     return jsonList.flatMap { it as JsonObject
 
-      if (type == "null")
+      if (type == "null") {
+
         listOf(Test(text = it.string("text")!!))
-      else
-        this.paddings.flatMap { (paddingBefore, paddingAfter) ->
-          this.getTests(jsonObj = it, type = type, paddingBefore = paddingBefore, paddingAfter = paddingAfter)
+
+      } else {
+
+        val paddingTests = this.paddings.flatMap { (paddingBefore, paddingAfter) ->
+          this.getPaddingTests(jsonObj = it, type = type, paddingBefore = paddingBefore, paddingAfter = paddingAfter)
         }
+
+        val text: String = it.string("text")!!
+
+        paddingTests + this.buildTest(it, type = type, text = text, start = 0, end = text.lastIndex)
+      }
     }
   }
 
   /**
-   * Get tests related to an object of the test file.
-   * For each object 4 tests are added, applying combinations of padding texts before and after the 'text'.
+   * Get padding tests related to an item of the test file.
+   * For each object 3 tests are built, applying combinations of padding texts before and after the 'text'.
    *
    * @param jsonObj a JSON object read from the test resource file
    * @param type the test type
@@ -139,7 +147,10 @@ object TestDateTimes {
    *
    * @return a list of tests
    */
-  private fun getTests(jsonObj: JsonObject, type: String, paddingBefore: String, paddingAfter: String): List<Test> {
+  private fun getPaddingTests(jsonObj: JsonObject,
+                              type: String,
+                              paddingBefore: String,
+                              paddingAfter: String): List<Test> {
 
     val text: String = jsonObj.string("text")!!
     val startWithPad: Int = paddingBefore.length
@@ -147,7 +158,6 @@ object TestDateTimes {
     val allPaddedText: String = paddingBefore + text + paddingAfter
 
     return listOf(
-      this.buildTest(jsonObj, type = type, text = text, start = 0, end = text.lastIndex),
       this.buildTest(jsonObj, type = type, text = text + paddingAfter, start = 0, end = text.lastIndex),
       this.buildTest(jsonObj, type = type, text = paddingBefore + text, start = startWithPad, end = endWithPad),
       this.buildTest(jsonObj, type = type, text = allPaddedText, start = startWithPad, end = endWithPad)
