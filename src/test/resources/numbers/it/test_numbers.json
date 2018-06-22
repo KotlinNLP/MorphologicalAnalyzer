@@ -1,0 +1,2284 @@
+[
+  {
+    "text": "unodue",
+    "tokens": []
+  },
+  {
+    "text": "zero",
+    "tokens": [
+      {
+        "asDigits": "0"
+      }
+    ]
+  },
+  {
+    "text": "uno",
+    "tokens": [
+      {
+        "asDigits": "1"
+      }
+    ]
+  },
+  {
+    "text": "000",
+    "tokens": [
+      {
+        "asDigits": "0",
+        "asWord": "zero"
+      }
+    ]
+  },
+  {
+    "text": "0001",
+    "tokens": [
+      {
+        "asDigits": "1",
+        "asWord": "uno"
+      }
+    ]
+  },
+  {
+    "text": "0,1",
+    "tokens": [
+      {
+        "asDigits": "0,1",
+        "asWord": "zero virgola uno"
+      }
+    ]
+  },
+  {
+    "text": "000,1",
+    "tokens": [
+      {
+        "asDigits": "0,1",
+        "asWord": "zero virgola uno"
+      }
+    ]
+  },
+  {
+    "text": "zERo",
+    "tokens": [
+      {
+        "asDigits": "0",
+        "asWord": "zero",
+        "original": "zERo"
+      }
+    ]
+  },
+  {
+    "text": "0",
+    "tokens": [
+      {
+        "asDigits": "0",
+        "asWord": "zero"
+      }
+    ]
+  },
+  {
+    "text": "1",
+    "tokens": [
+      {
+        "asDigits": "1",
+        "asWord": "uno"
+      }
+    ]
+  },
+  {
+    "text": "uno",
+    "tokens": [
+      {
+        "asDigits": "1"
+      }
+    ]
+  },
+  {
+    "text": "uno ",
+    "tokens": [
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "uno"
+      }
+    ]
+  },
+  {
+    "text": " uno",
+    "tokens": [
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "uno",
+        "start": 1
+      }
+    ]
+  },
+  {
+    "text": "dodici",
+    "tokens": [
+      {
+        "asDigits": "12"
+      }
+    ]
+  },
+  {
+    "text": "ventuno",
+    "tokens": [
+      {
+        "asDigits": "21"
+      }
+    ]
+  },
+  {
+    "text": "duecentoottantasette",
+    "tokens": [
+      {
+        "asDigits": "287"
+      }
+    ]
+  },
+  {
+    "text": "duecentottantasette",
+    "tokens": [
+      {
+        "asDigits": "287",
+        "asWord": "duecentoottantasette"
+      }
+    ]
+  },
+  {
+    "text": "trecentoquaranta",
+    "tokens": [
+      {
+        "asDigits": "340"
+      }
+    ]
+  },
+  {
+    "text": "trecentoquarantasette",
+    "tokens": [
+      {
+        "asDigits": "347"
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47",
+    "tokens": [
+      {
+        "asDigits": "347",
+        "asWord": "trecentoquarantasette"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      }
+    ]
+  },
+  {
+    "text": "3 cento 7",
+    "tokens": [
+      {
+        "asDigits": "307",
+        "asWord": "trecentosette"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "7",
+        "start": 8
+      }
+    ]
+  },
+  {
+    "text": "3 cento quaranta 7",
+    "tokens": [
+      {
+        "asDigits": "347",
+        "asWord": "trecentoquarantasette"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "40",
+        "asWord": "quaranta",
+        "original": "quaranta",
+        "start": 8
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "7",
+        "start": 17
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47 mila venti 2",
+    "tokens": [
+      {
+        "asDigits": "347022",
+        "asWord": "trecentoquarantasettemilaventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      },
+      {
+        "asDigits": "20",
+        "asWord": "venti",
+        "original": "venti",
+        "start": 16
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 22
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47 mila centoventi 2",
+    "tokens": [
+      {
+        "asDigits": "347122",
+        "asWord": "trecentoquarantasettemilacentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi",
+        "start": 16
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 27
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47 mila trecento 22",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      },
+      {
+        "asDigits": "300",
+        "asWord": "trecento",
+        "original": "trecento",
+        "start": 16
+      },
+      {
+        "asDigits": "22",
+        "asWord": "ventidue",
+        "original": "22",
+        "start": 25
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47 mila trecento venti 2",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      },
+      {
+        "asDigits": "300",
+        "asWord": "trecento",
+        "original": "trecento",
+        "start": 16
+      },
+      {
+        "asDigits": "20",
+        "asWord": "venti",
+        "original": "venti",
+        "start": 25
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 31
+      }
+    ]
+  },
+  {
+    "text": "3 cento 47 mila 322",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "47",
+        "start": 8
+      },
+      {
+        "asDigits": "322",
+        "asWord": "trecentoventidue",
+        "original": "322",
+        "start": 16
+      }
+    ]
+  },
+  {
+    "text": "3 cento quaranta 7 mila 322",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "40",
+        "asWord": "quaranta",
+        "original": "quaranta",
+        "start": 8
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "7",
+        "start": 17
+      },
+      {
+        "asDigits": "322",
+        "asWord": "trecentoventidue",
+        "original": "322",
+        "start": 24
+      }
+    ]
+  },
+  {
+    "text": "3 cento quaranta sette mila 322",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "40",
+        "asWord": "quaranta",
+        "original": "quaranta",
+        "start": 8
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "sette",
+        "start": 17
+      },
+      {
+        "asDigits": "322",
+        "asWord": "trecentoventidue",
+        "original": "322",
+        "start": 28
+      }
+    ]
+  },
+  {
+    "text": "3 cento quarantasette mila 322",
+    "tokens": [
+      {
+        "asDigits": "347322",
+        "asWord": "trecentoquarantasettemilatrecentoventidue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 2
+      },
+      {
+        "asDigits": "47",
+        "asWord": "quarantasette",
+        "original": "quarantasette",
+        "start": 8
+      },
+      {
+        "asDigits": "322",
+        "asWord": "trecentoventidue",
+        "original": "322",
+        "start": 27
+      }
+    ]
+  },
+  {
+    "text": "due cento trenta quattro",
+    "tokens": [
+      {
+        "asDigits": "234",
+        "asWord": "duecentotrentaquattro"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 4
+      },
+      {
+        "asDigits": "30",
+        "asWord": "trenta",
+        "original": "trenta",
+        "start": 10
+      },
+      {
+        "asDigits": "4",
+        "asWord": "quattro",
+        "original": "quattro",
+        "start": 17
+      }
+    ]
+  },
+  {
+    "text": "due cento; trenta quattro",
+    "tokens": [
+      {
+        "asDigits": "200",
+        "asWord": "duecento",
+        "original": "due cento"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 4
+      },
+      {
+        "asDigits": "34",
+        "asWord": "trentaquattro",
+        "original": "trenta quattro",
+        "start": 11
+      },
+      {
+        "asDigits": "30",
+        "asWord": "trenta",
+        "original": "trenta",
+        "start": 11
+      },
+      {
+        "asDigits": "4",
+        "asWord": "quattro",
+        "original": "quattro",
+        "start": 18
+      }
+    ]
+  },
+  {
+    "text": "due cento trenta mila quattro",
+    "tokens": [
+      {
+        "asDigits": "230004",
+        "asWord": "duecentotrentamilaquattro"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 4
+      },
+      {
+        "asDigits": "30",
+        "asWord": "trenta",
+        "original": "trenta",
+        "start": 10
+      },
+      {
+        "asDigits": "4",
+        "asWord": "quattro",
+        "original": "quattro",
+        "start": 22
+      }
+    ]
+  },
+  {
+    "text": "mille",
+    "tokens": [
+      {
+        "asDigits": "1000"
+      }
+    ]
+  },
+  {
+    "text": "milletre",
+    "tokens": [
+      {
+        "asDigits": "1003"
+      }
+    ]
+  },
+  {
+    "text": "milleduecentotre",
+    "tokens": [
+      {
+        "asDigits": "1203"
+      }
+    ]
+  },
+  {
+    "text": "seimilauno",
+    "tokens": [
+      {
+        "asDigits": "6001"
+      }
+    ]
+  },
+  {
+    "text": "seimilaundici",
+    "tokens": [
+      {
+        "asDigits": "6011"
+      }
+    ]
+  },
+  {
+    "text": "ventunomila",
+    "tokens": [
+      {
+        "asDigits": "21000",
+        "asWord": "ventunmila"
+      }
+    ]
+  },
+  {
+    "text": "ventunmila",
+    "tokens": [
+      {
+        "asDigits": "21000"
+      }
+    ]
+  },
+  {
+    "text": "trentasettemilaquarantuno",
+    "tokens": [
+      {
+        "asDigits": "37041"
+      }
+    ]
+  },
+  {
+    "text": "trentasettemilaquarantanove",
+    "tokens": [
+      {
+        "asDigits": "37049"
+      }
+    ]
+  },
+  {
+    "text": "centomiladodici",
+    "tokens": [
+      {
+        "asDigits": "100012"
+      }
+    ]
+  },
+  {
+    "text": "centomilanovecentosettanta",
+    "tokens": [
+      {
+        "asDigits": "100970"
+      }
+    ]
+  },
+  {
+    "text": "centottantottomila",
+    "tokens": [
+      {
+        "asDigits": "188000",
+        "asWord": "centoottantottomila"
+      }
+    ]
+  },
+  {
+    "text": "centounomilatre",
+    "tokens": [
+      {
+        "asDigits": "101003",
+        "asWord": "centounmilatre"
+      }
+    ]
+  },
+  {
+    "text": "centododicimila",
+    "tokens": [
+      {
+        "asDigits": "112000"
+      }
+    ]
+  },
+  {
+    "text": "duecentomila",
+    "tokens": [
+      {
+        "asDigits": "200000"
+      }
+    ]
+  },
+  {
+    "text": "duecentotrentasettemila",
+    "tokens": [
+      {
+        "asDigits": "237000"
+      }
+    ]
+  },
+  {
+    "text": "duecentotrentasettemilaquindici",
+    "tokens": [
+      {
+        "asDigits": "237015"
+      }
+    ]
+  },
+  {
+    "text": "duecentotrentasettemila quindici",
+    "tokens": [
+      {
+        "asDigits": "237015",
+        "asWord": "duecentotrentasettemilaquindici"
+      },
+      {
+        "asDigits": "237000",
+        "asWord": "duecentotrentasettemila",
+        "original": "duecentotrentasettemila"
+      },
+      {
+        "asDigits": "15",
+        "asWord": "quindici",
+        "original": "quindici",
+        "start": 24
+      }
+    ]
+  },
+  {
+    "text": "unmilionemilleuno",
+    "tokens": [
+      {
+        "asDigits": "1001001"
+      }
+    ]
+  },
+  {
+    "text": "unmilioneottocentomiladue",
+    "tokens": [
+      {
+        "asDigits": "1800002"
+      }
+    ]
+  },
+  {
+    "text": "1 milione 822.021",
+    "tokens": [
+      {
+        "asDigits": "1822021",
+        "asWord": "unmilioneottocentoventiduemilaventuno"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "822021",
+        "asWord": "ottocentoventiduemilaventuno",
+        "original": "822.021",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "1 milione 822.021",
+    "tokens": [
+      {
+        "asDigits": "1822021",
+        "asWord": "unmilioneottocentoventiduemilaventuno"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "822021",
+        "asWord": "ottocentoventiduemilaventuno",
+        "original": "822.021",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "1 milione 822.02",
+    "tokens": [
+      {
+        "asDigits": "1000822",
+        "asWord": "unmilioneottocentoventidue",
+        "original": "1 milione 822"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "822",
+        "asWord": "ottocentoventidue",
+        "original": "822",
+        "start": 10
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "02",
+        "start": 14
+      }
+    ]
+  },
+  {
+    "text": "tremilioniottocentomiladue",
+    "tokens": [
+      {
+        "asDigits": "3800002"
+      }
+    ]
+  },
+  {
+    "text": "duecentottantasettemilioniottocentomiladue",
+    "tokens": [
+      {
+        "asDigits": "287800002",
+        "asWord": "duecentoottantasettemilioniottocentomiladue"
+      }
+    ]
+  },
+  {
+    "text": "tre milioni ottocentomila due",
+    "tokens": [
+      {
+        "asDigits": "3800002",
+        "asWord": "tremilioniottocentomiladue"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "tre"
+      },
+      {
+        "asDigits": "800000",
+        "asWord": "ottocentomila",
+        "original": "ottocentomila",
+        "start": 12
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due",
+        "start": 26
+      }
+    ]
+  },
+  {
+    "text": "227000 milioni ottocento",
+    "tokens": [
+      {
+        "asDigits": "227000000800",
+        "asWord": "duecentoventisettemiliardiottocento"
+      },
+      {
+        "asDigits": "227000",
+        "asWord": "duecentoventisettemila",
+        "original": "227000"
+      },
+      {
+        "asDigits": "800",
+        "asWord": "ottocento",
+        "original": "ottocento",
+        "start": 15
+      }
+    ]
+  },
+  {
+    "text": "227.000 miliardi ottocento",
+    "tokens": [
+      {
+        "asDigits": "227000000000800",
+        "asWord": "duecentoventisettebilioniottocento"
+      },
+      {
+        "asDigits": "227000",
+        "asWord": "duecentoventisettemila",
+        "original": "227.000"
+      },
+      {
+        "asDigits": "800",
+        "asWord": "ottocento",
+        "original": "ottocento",
+        "start": 17
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioniottocentotrentasettemila",
+    "tokens": [
+      {
+        "asDigits": "200837000"
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioniottocentotrentasettemiladue",
+    "tokens": [
+      {
+        "asDigits": "200837002"
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioninovantanovemila",
+    "tokens": [
+      {
+        "asDigits": "200099000"
+      }
+    ]
+  },
+  {
+    "text": "3cento",
+    "tokens": [
+	  {
+        "asDigits": "300",
+        "asWord": "trecento"
+      }
+    ]
+  },
+  {
+    "text": "venti 2",
+    "tokens": [
+      {
+        "asDigits": "22",
+        "asWord": "ventidue"
+      },
+      {
+        "asDigits": "20",
+        "asWord": "venti",
+        "original": "venti"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 6
+      }
+    ]
+  },
+  {
+    "text": "11 cento",
+    "tokens": [
+      {
+        "asDigits": "11",
+        "asWord": "undici",
+        "original": "11"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 3
+      }
+    ]
+  },
+  {
+    "text": "3 mila",
+    "tokens": [
+      {
+        "asDigits": "3000",
+        "asWord": "tremila"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      }
+    ]
+  },
+  {
+    "text": "123 mila",
+    "tokens": [
+      {
+        "asDigits": "123000",
+        "asWord": "centoventitremila"
+      },
+      {
+        "asDigits": "123",
+        "asWord": "centoventitre",
+        "original": "123"
+      }
+    ]
+  },
+  {
+    "text": "1234 mila",
+    "tokens": [
+      {
+        "asDigits": "1234",
+        "asWord": "milleduecentotrentaquattro",
+        "original": "1234"
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioni 99000",
+    "tokens": [
+      {
+        "asDigits": "200099000",
+        "asWord": "duecentomilioninovantanovemila",
+        "original": "duecentomilioni 99000"
+      },
+      {
+        "asDigits": "200000000",
+        "asWord": "duecentomilioni",
+        "original": "duecentomilioni"
+      },
+      {
+        "asDigits": "99000",
+        "asWord": "novantanovemila",
+        "original": "99000",
+        "start": 16
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioni 99",
+    "tokens": [
+      {
+        "asDigits": "200000099",
+        "asWord": "duecentomilioninovantanove"
+      },
+      {
+        "asDigits": "200000000",
+        "asWord": "duecentomilioni",
+        "original": "duecentomilioni"
+      },
+      {
+        "asDigits": "99",
+        "asWord": "novantanove",
+        "original": "99",
+        "start": 16
+      }
+    ]
+  },
+  {
+    "text": "duecentomilioni novanta 9",
+    "tokens": [
+      {
+        "asDigits": "200000099",
+        "asWord": "duecentomilioninovantanove"
+      },
+      {
+        "asDigits": "200000000",
+        "asWord": "duecentomilioni",
+        "original": "duecentomilioni"
+      },
+      {
+        "asDigits": "90",
+        "asWord": "novanta",
+        "original": "novanta",
+        "start": 16
+      },
+      {
+        "asDigits": "9",
+        "asWord": "nove",
+        "original": "9",
+        "start": 24
+      }
+    ]
+  },
+  {
+    "text": "unmilionecentotre",
+    "tokens": [
+      {
+        "asDigits": "1000103",
+        "asWord": "unmilionecentotre"
+      }
+    ]
+  },
+  {
+    "text": "unmilionecentotremila",
+    "tokens": [
+      {
+        "asDigits": "1103000",
+        "asWord": "unmilionecentotremila"
+      }
+    ]
+  },
+  {
+    "text": "unmilionecentotremilaottocento",
+    "tokens": [
+      {
+        "asDigits": "1103800",
+        "asWord": "unmilionecentotremilaottocento"
+      }
+    ]
+  },
+  {
+    "text": "3 milioni",
+    "tokens": [
+      {
+        "asDigits": "3000000",
+        "asWord": "tremilioni"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      }
+    ]
+  },
+  {
+    "text": "novecentonovantanovemilanovecentonovantanovemilioni",
+    "tokens": [
+      {
+        "asDigits": "999999000000",
+        "asWord": "novecentonovantanovemiliardinovecentonovantanovemilioni"
+      }
+    ]
+  },
+  {
+    "text": "3 milioni 245000",
+    "tokens": [
+      {
+        "asDigits": "3245000",
+        "asWord": "tremilioniduecentoquarantacinquemila"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "245000",
+        "asWord": "duecentoquarantacinquemila",
+        "original": "245000",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "3 milioni 245 mila",
+    "tokens": [
+      {
+        "asDigits": "3245000",
+        "asWord": "tremilioniduecentoquarantacinquemila"
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "3"
+      },
+      {
+        "asDigits": "245",
+        "asWord": "duecentoquarantacinque",
+        "original": "245",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "125",
+    "tokens": [
+      {
+        "asDigits": "125",
+        "asWord": "centoventicinque"
+      }
+    ]
+  },
+  {
+    "text": "un miliardo ottocentoventiseimiladue",
+    "tokens": [
+      {
+        "asDigits": "1000826002",
+        "asWord": "unmiliardoottocentoventiseimiladue"
+      },
+      {
+      	"asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      },
+      {
+		"asDigits": "826002",
+        "asWord": "ottocentoventiseimiladue",
+        "original": "ottocentoventiseimiladue",
+        "start": 12
+      }
+    ]
+  },
+  {
+    "text": "un miliardo 826002",
+    "tokens": [
+      {
+        "asDigits": "1000826002",
+        "asWord": "unmiliardoottocentoventiseimiladue"
+      },
+      {
+      	"asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      },
+      {
+		"asDigits": "826002",
+        "asWord": "ottocentoventiseimiladue",
+        "original": "826002",
+        "start": 12
+      }
+    ]
+  },
+  {
+    "text": "un miliardo 826.002",
+    "tokens": [
+      {
+        "asDigits": "1000826002",
+        "asWord": "unmiliardoottocentoventiseimiladue"
+      },
+      {
+      	"asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      },
+      {
+		"asDigits": "826002",
+        "asWord": "ottocentoventiseimiladue",
+        "original": "826.002",
+        "start": 12
+      }
+    ]
+  },
+  {
+    "text": "un miliardo ottocentoventiseimilioni sette",
+    "tokens": [
+      {
+        "asDigits": "1826000007",
+        "asWord": "unmiliardoottocentoventiseimilionisette"
+      },
+      {
+      	"asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      },
+      {
+		"asDigits": "826000000",
+        "asWord": "ottocentoventiseimilioni",
+        "original": "ottocentoventiseimilioni",
+        "start": 12
+      },
+      {
+		"asDigits": "7",
+        "asWord": "sette",
+        "original": "sette",
+        "start": 37
+      }
+    ]
+  },
+  {
+    "text": "unmiliardo",
+    "tokens": [
+      {
+        "asDigits": "1000000000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentomilioni",
+    "tokens": [
+      {
+        "asDigits": "1100000000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentodiecimilioni",
+    "tokens": [
+      {
+        "asDigits": "1110000000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilioni",
+    "tokens": [
+      {
+        "asDigits": "1111000000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentomila",
+    "tokens": [
+      {
+        "asDigits": "1111100000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentodiecimila",
+    "tokens": [
+      {
+        "asDigits": "1111110000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentoundicimila",
+    "tokens": [
+      {
+        "asDigits": "1111111000"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentoundicimilacento",
+    "tokens": [
+      {
+        "asDigits": "1111111100"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentoundicimilacentodieci",
+    "tokens": [
+      {
+        "asDigits": "1111111110"
+      }
+    ]
+  },
+  {
+    "text": "unmiliardocentoundicimilionicentoundicimilacentoundici",
+    "tokens": [
+      {
+        "asDigits": "1111111111"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiduecentoventiduemilioniduecentoventiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2222222222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiventiduemilioniduecentoventiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2022222222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiduemilioniduecentoventiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2002222222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiduecentoventiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2000222222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiventiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2000022222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiduemiladuecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2000002222"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiduecentoventidue",
+    "tokens": [
+      {
+        "asDigits": "2000000222"
+      }
+    ]
+  },
+  {
+    "text": "due miliardi di miliardi",
+    "tokens": [
+      {
+        "asDigits": "2000000000000000000",
+        "asWord": "duetrilioni"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      }
+    ]
+  },
+  {
+    "text": "sei milioni di miliardi trecentoventisette",
+    "tokens": [
+      {
+        "asDigits": "6000000000000327",
+        "asWord": "seibiliarditrecentoventisette"
+      },
+      {
+        "asDigits": "6",
+        "asWord": "sei",
+        "original": "sei"
+      },
+      {
+        "asDigits": "327",
+        "asWord": "trecentoventisette",
+        "original": "trecentoventisette",
+        "start": 24
+      }
+    ]
+  },
+  {
+    "text": "sei milioni di miliardi trecentoventisette virgola settantadue",
+    "tokens": [
+      {
+        "asDigits": "6000000000000327,72",
+        "asWord": "seibiliarditrecentoventisette virgola sette due"
+      },
+      {
+        "asDigits": "6",
+        "asWord": "sei",
+        "original": "sei"
+      },
+      {
+        "asDigits": "327",
+        "asWord": "trecentoventisette",
+        "original": "trecentoventisette",
+        "start": 24
+      },
+      {
+        "asDigits": "72",
+        "asWord": "settantadue",
+        "original": "settantadue",
+        "start": 51
+      }
+    ]
+  },
+  {
+    "text": "un milione di milioni di miliardi cento 27",
+    "tokens": [
+      {
+        "asDigits": "1000000000000000000127",
+        "asWord": "untriliardocentoventisette"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 34
+      },
+      {
+        "asDigits": "27",
+        "asWord": "ventisette",
+        "original": "27",
+        "start": 40
+      }
+    ]
+  },
+  {
+    "text": "duemiliardiventidue",
+    "tokens": [
+      {
+        "asDigits": "2000000022"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardidue",
+    "tokens": [
+      {
+        "asDigits": "2000000002"
+      }
+    ]
+  },
+  {
+    "text": "duemiliardi",
+    "tokens": [
+      {
+        "asDigits": "2000000000"
+      }
+    ]
+  },
+  {
+    "text": "dodicimiliardi",
+    "tokens": [
+      {
+        "asDigits": "12000000000"
+      }
+    ]
+  },
+  {
+    "text": "centododicimiliardi",
+    "tokens": [
+      {
+        "asDigits": "112000000000"
+      }
+    ]
+  },
+  {
+    "text": "duemila miliardi",
+    "tokens": [
+      {
+        "asDigits": "2000000000000",
+        "asWord": "duebilioni"
+      },
+      {
+        "asDigits": "2000",
+        "asWord": "duemila",
+        "original": "duemila"
+      }
+    ]
+  },
+  {
+    "text": "2000.000.000.000",
+    "tokens": [
+      {
+        "asDigits": "2000000000000",
+        "asWord": "duebilioni"
+      }
+    ]
+  },
+  {
+    "text": "unbilioneduecentododicimiliardi",
+    "tokens": [
+      {
+        "asDigits": "1212000000000"
+      }
+    ]
+  },
+  {
+    "text": "trecentodiecibilioniduecentododicimiliardi",
+    "tokens": [
+      {
+        "asDigits": "310212000000000"
+      }
+    ]
+  },
+  {
+    "text": "unbiliardoduecentododicimiliardi",
+    "tokens": [
+      {
+        "asDigits": "1000212000000000"
+      }
+    ]
+  },
+  {
+    "text": "settantottobiliardiottocentomilatre",
+    "tokens": [
+      {
+        "asDigits": "78000000000800003"
+      }
+    ]
+  },
+  {
+    "text": "sei milioni di miliardi trecentoventisette",
+    "tokens": [
+	  {
+        "asDigits": "6000000000000327",
+        "asWord": "seibiliarditrecentoventisette"
+      },
+      {
+        "asDigits": "6",
+        "asWord": "sei",
+        "original": "sei"
+      },
+      {
+        "asDigits": "327",
+        "asWord": "trecentoventisette",
+        "original": "trecentoventisette",
+        "start": 24
+      }
+    ]
+  },
+  {
+    "text": "120,3",
+    "tokens": [
+      {
+        "asDigits": "120,3",
+        "asWord": "centoventi virgola tre"
+      }
+    ]
+  },
+  {
+    "text": "120.345.123",
+    "tokens": [
+      {
+        "asDigits": "120345123",
+        "asWord": "centoventimilionitrecentoquarantacinquemilacentoventitre"
+      }
+    ]
+  },
+  {
+    "text": "120.345.123,3",
+    "tokens": [
+      {
+        "asDigits": "120345123,3",
+        "asWord": "centoventimilionitrecentoquarantacinquemilacentoventitre virgola tre"
+      }
+    ]
+  },
+  {
+    "text": "centoventi virgola quattromiladue",
+    "tokens": [
+      {
+        "asDigits": "120,4002",
+        "asWord": "centoventi virgola quattro zero zero due"
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi"
+      },
+      {
+        "asDigits": "4002",
+        "asWord": "quattromiladue",
+        "original": "quattromiladue",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "  centoventi virgola quattromiladuecento",
+    "tokens": [
+      {
+        "asDigits": "120,42",
+        "asWord": "centoventi virgola quattro due",
+        "original": "centoventi virgola quattromiladuecento",
+        "start": 2
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi",
+        "start": 2
+      },
+      {
+        "asDigits": "4200",
+        "asWord": "quattromiladuecento",
+        "original": "quattromiladuecento",
+        "start": 21
+      }
+    ]
+  },
+  {
+    "text": "abc centoventi virgola quindici def",
+    "tokens": [
+      {
+        "asDigits": "120,15",
+        "asWord": "centoventi virgola uno cinque",
+        "original": "centoventi virgola quindici",
+        "start": 4
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi",
+        "start": 4
+      },
+      {
+        "asDigits": "15",
+        "asWord": "quindici",
+        "original": "quindici",
+        "start": 23
+      }
+    ]
+  },
+  {
+    "text": "centoventi virgola sette otto tre zero due",
+    "tokens": [
+      {
+        "asDigits": "120,78302",
+        "asWord": "centoventi virgola sette otto tre zero due"
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi"
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "sette",
+        "start": 19
+      },
+      {
+        "asDigits": "8",
+        "asWord": "otto",
+        "original": "otto",
+        "start": 25
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+        "original": "tre",
+        "start": 30
+      },
+      {
+        "asDigits": "0",
+        "asWord": "zero",
+        "original": "zero",
+        "start": 34
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due",
+        "start": 39
+      }
+    ]
+  },
+  {
+    "text": "centoventi virgola sette otto tre",
+    "tokens": [
+      {
+        "asDigits": "120,783",
+        "asWord": "centoventi virgola sette otto tre"
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi"
+      },
+      {
+        "asDigits": "7",
+        "asWord": "sette",
+        "original": "sette",
+        "start": 19
+      },
+      {
+        "asDigits": "8",
+        "asWord": "otto",
+        "original": "otto",
+        "start": 25
+      },
+      {
+        "asDigits": "3",
+        "asWord": "tre",
+	    "original": "tre",
+        "start": 30
+      }
+    ]
+  },
+  {
+    "text": "120,4200",
+    "tokens": [
+      {
+        "asDigits": "120,42",
+        "asWord": "centoventi virgola quattro due"
+      }
+    ]
+  },
+  {
+    "text" : "120.345.23,3",
+    "tokens": [
+      {
+        "asDigits" : "120345",
+        "asWord" : "centoventimilatrecentoquarantacinque",
+        "original" : "120.345"
+      },
+      {
+        "asDigits" : "23,3",
+        "asWord" : "ventitre virgola tre",
+        "original" : "23,3",
+        "start": 8
+      }
+    ]
+  },
+  {
+    "text": "m5s",
+    "tokens": []
+  },
+  {
+    "text" : "abc def",
+    "tokens": []
+  },
+  {
+    "text" : "ognuno",
+    "tokens": []
+  },
+  {
+    "text" : "centro",
+    "tokens": [],
+    "comment": "Solve bug that appeared due to skipped characters in the grammatic, here the 'r' would be skipped and so the number 'cento' would be recognized"
+  },
+  {
+    "text" : "il Sole subito dopo la sua formazione, assunse un'orbita quasi circolare attorno al centro della Via Lattea, ad una distanza media di circa 26.000 a.l. il Sole impiega, considerando la massa, circa 10 miliardi di anni per esaurire completamente l'idrogeno nel suo nucleo tra circa 5 miliardi di anni, il Sole entrerà in una fase di forte instabilità l'espansione causerà un raffreddamento del gas (fino a 3500 K)",
+    "tokens": [
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "un",
+        "start": 47
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "una",
+        "start": 112
+      },
+      {
+        "asDigits": "26000",
+        "asWord": "ventiseimila",
+        "original": "26.000",
+        "start": 140
+      },
+      {
+        "asDigits": "10000000000",
+        "asWord": "diecimiliardi",
+        "original": "10 miliardi",
+        "start": 198
+      },
+      {
+        "asDigits": "10",
+        "asWord": "dieci",
+        "original": "10",
+        "start": 198
+      },
+      {
+        "asDigits": "5000000000",
+        "asWord": "cinquemiliardi",
+        "original": "5 miliardi",
+        "start": 281
+      },
+      {
+        "asDigits": "5",
+        "asWord": "cinque",
+        "original": "5",
+        "start": 281
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "una",
+        "start": 320
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "un",
+        "start": 371
+      },
+      {
+        "asDigits": "3500",
+        "asWord": "tremilacinquecento",
+        "original": "3500",
+        "start": 405
+      }
+    ]
+  },
+  {
+    "text" : "trentotto milioni 5 cento ventotto mila 9 cento 67",
+    "tokens": [
+      {
+        "asDigits": "38528967",
+        "asWord": "trentottomilionicinquecentoventottomilanovecentosessantasette"
+      },
+      {
+        "asDigits": "38",
+        "asWord": "trentotto",
+        "original": "trentotto"
+      },
+      {
+        "asDigits": "5",
+        "asWord": "cinque",
+        "original": "5",
+        "start": 18
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 20
+      },
+      {
+        "asDigits": "28",
+        "asWord": "ventotto",
+        "original": "ventotto",
+        "start": 26
+      },
+      {
+        "asDigits": "9",
+        "asWord": "nove",
+        "original": "9",
+        "start": 40
+      },
+      {
+        "asDigits": "100",
+        "asWord": "cento",
+        "original": "cento",
+        "start": 42
+      },
+      {
+        "asDigits": "67",
+        "asWord": "sessantasette",
+        "original": "67",
+        "start": 48
+      }
+    ]
+  },
+  {
+    "text": "due milioni di bilioni",
+    "tokens": [
+      {
+        "asDigits": "2000000000000000000",
+        "asWord": "duetrilioni"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      }
+    ]
+  },
+  {
+    "text": "due bilioni di milioni",
+    "tokens": [
+      {
+        "asDigits": "2000000000000000000",
+        "asWord": "duetrilioni"
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due"
+      }
+    ]
+  },
+  {
+    "text": "un bilione di milioni",
+    "tokens": [
+      {
+        "asDigits": "1000000000000000000",
+        "asWord": "untrilione"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "un"
+      }
+    ]
+  },
+  {
+    "text": "999999 biliardi 999 bilioni 999 miliardi 999 milioni 999999",
+    "tokens": [
+      {
+        "asDigits": "999999999999999999999",
+        "asWord": "novecentonovantanovetrilioninovecentonovantanovebiliardinovecentonovantanovebilioninovecentonovantanovemiliardinovecentonovantanovemilioninovecentonovantanovemilanovecentonovantanove"
+      },
+      {
+        "asDigits": "999999",
+        "asWord": "novecentonovantanovemilanovecentonovantanove",
+        "original": "999999"
+      },
+      {
+        "asDigits": "999",
+        "asWord": "novecentonovantanove",
+        "original": "999",
+        "start": 16
+      },
+      {
+        "asDigits": "999",
+        "asWord": "novecentonovantanove",
+        "original": "999",
+        "start": 28
+      },
+      {
+        "asDigits": "999",
+        "asWord": "novecentonovantanove",
+        "original": "999",
+        "start": 41
+      },
+      {
+        "asDigits": "999999",
+        "asWord": "novecentonovantanovemilanovecentonovantanove",
+        "original": "999999",
+        "start": 53
+      }
+    ]
+  },
+  {
+    "text": "centoventi,37",
+    "tokens": [
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi"
+      },
+      {
+        "asDigits": "37",
+        "asWord": "trentasette",
+        "original": "37",
+        "start": 11
+      }
+    ]
+  },
+  {
+    "text": "centoventi virgola 37",
+    "tokens": [
+      {
+        "asDigits": "120,37",
+        "asWord": "centoventi virgola tre sette"
+      },
+      {
+        "asDigits": "120",
+        "asWord": "centoventi",
+        "original": "centoventi"
+      },
+      {
+        "asDigits": "37",
+        "asWord": "trentasette",
+        "original": "37",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "1274 bilioni 234",
+    "tokens": [
+      {
+        "asDigits": "1274000000000234",
+        "asWord": "unbiliardoduecentosettantaquattrobilioniduecentotrentaquattro"
+      },
+      {
+        "asDigits": "1274",
+        "asWord": "milleduecentosettantaquattro",
+        "original": "1274"
+      },
+      {
+        "asDigits": "234",
+        "asWord": "duecentotrentaquattro",
+        "original": "234",
+        "start": 13
+      }
+    ]
+  },
+  {
+    "text": "1274 miliardi 234",
+    "tokens": [
+      {
+        "asDigits": "1274000000234",
+        "asWord": "unbilioneduecentosettantaquattromiliardiduecentotrentaquattro"
+      },
+      {
+        "asDigits": "1274",
+        "asWord": "milleduecentosettantaquattro",
+        "original": "1274"
+      },
+      {
+        "asDigits": "234",
+        "asWord": "duecentotrentaquattro",
+        "original": "234",
+        "start": 14
+      }
+    ]
+  },
+  {
+    "text": "1 virgola 12",
+    "tokens": [
+      {
+        "asDigits": "1,12",
+        "asWord": "uno virgola uno due"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "12",
+        "asWord": "dodici",
+        "original": "12",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "1 virgola uno zero due",
+    "tokens": [
+      {
+        "asDigits": "1,102",
+        "asWord": "uno virgola uno zero due"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "uno",
+        "start": 10
+      },
+      {
+        "asDigits": "0",
+        "asWord": "zero",
+        "original": "zero",
+        "start": 14
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "1 virgola zero due",
+    "tokens": [
+      {
+        "asDigits": "1,02",
+        "asWord": "uno virgola zero due"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "0",
+        "asWord": "zero",
+        "original": "zero",
+        "start": 10
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "due",
+        "start": 15
+      }
+    ]
+  },
+  {
+    "text": "1 virgola 1 2",
+    "tokens": [
+      {
+        "asDigits": "1,1",
+        "asWord": "uno virgola uno",
+        "original": "1 virgola 1"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1",
+        "start": 10
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 12
+      }
+    ]
+  },
+  {
+    "text": "1 virgola uno 2",
+    "tokens": [
+      {
+        "asDigits": "1,1",
+        "asWord": "uno virgola uno",
+        "original": "1 virgola uno"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "1"
+      },
+      {
+        "asDigits": "1",
+        "asWord": "uno",
+        "original": "uno",
+        "start": 10
+      },
+      {
+        "asDigits": "2",
+        "asWord": "due",
+        "original": "2",
+        "start": 14
+      }
+    ]
+  }
+]
