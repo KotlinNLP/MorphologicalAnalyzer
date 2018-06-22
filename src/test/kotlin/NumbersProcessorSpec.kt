@@ -26,7 +26,7 @@ object NumbersProcessorSpec : Spek({
         context("number expression: '${test.text}'") {
 
           val numbers: List<NumberToken> =
-            NumbersProcessor(lang).process(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
+            NumbersProcessor(lang).findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
 
           it("should contain %d elements".format(test.tokens.size)) {
             assertEquals(test.tokens.size, numbers.size)

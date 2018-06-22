@@ -187,7 +187,7 @@ internal interface ListenerCommon {
 
         debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
 
-        this.processor.process(text = match.groupValues[1], tokens = this.tokens)
+        this.processor.findNumbers(text = match.groupValues[1], tokens = this.tokens)
           .map { token ->
             token.copy(
               startToken = matchTokenOffset + token.startToken,

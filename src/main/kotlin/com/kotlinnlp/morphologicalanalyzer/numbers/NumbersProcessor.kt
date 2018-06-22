@@ -48,7 +48,7 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun process(text: String, tokens: List<Token>): List<NumberToken> {
+  fun findNumbers(text: String, tokens: List<Token>): List<NumberToken> {
 
     return if (text.trim().isNotEmpty()) {
 
