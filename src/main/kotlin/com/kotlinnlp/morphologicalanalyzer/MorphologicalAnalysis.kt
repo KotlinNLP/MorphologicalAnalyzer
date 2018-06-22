@@ -9,6 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.morphologicalanalyzer.numbers.NumberToken
 
 /**
  * The morphological analysis of a tokenized text.
@@ -16,11 +17,13 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
  * @property tokens the list of tokens morphologies
  * @property multiWords the list of multi-words morphologies
  * @property dateTimes the list of date-times found
+ * @property numbers the list of numbers found
  */
 data class MorphologicalAnalysis(
   val tokens: List<List<MorphologyEntry>?>,
   val multiWords: List<MultiWordsMorphology>,
-  val dateTimes: List<DateTime>
+  val dateTimes: List<DateTime>,
+  val numbers: List<NumberToken>
 ) {
 
   /**

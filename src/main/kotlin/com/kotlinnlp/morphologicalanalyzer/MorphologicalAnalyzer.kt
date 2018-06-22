@@ -15,6 +15,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
+import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.neuraltokenizer.Token
 
 /**
@@ -68,7 +69,8 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     return MorphologicalAnalysis(
       tokens = tokens.map { this.getTokenMorphology(it) },
       multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
-      dateTimes = DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = langCode)
+      dateTimes = DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = langCode),
+      numbers = NumbersProcessor(langCode).findNumbers(text = text, tokens = tokens)
     )
   }
 
