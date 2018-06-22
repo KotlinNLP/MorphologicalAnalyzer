@@ -68,7 +68,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     return MorphologicalAnalysis(
       tokens = tokens.map { this.getTokenMorphology(it) },
       multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
-      dateTimes = DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = langCode)
+      dateTimes = DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = langCode)
     )
   }
 

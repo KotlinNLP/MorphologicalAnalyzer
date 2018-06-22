@@ -28,7 +28,7 @@ object DateTimeProcessor {
    *
    * @return a list of date-time objects (empty if none has been found)
    */
-  fun getDateTimes(text: String, tokens: List<Token>, langCode: String): List<DateTime> {
+  fun findDateTimes(text: String, tokens: List<Token>, langCode: String): List<DateTime> {
 
     return if (text.trim().isNotEmpty()) {
 

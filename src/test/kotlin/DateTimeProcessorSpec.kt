@@ -39,7 +39,7 @@ class DateTimeProcessorSpec : Spek({
 
               val tokens: List<Token> = SimpleTokenizer.tokenize(text)
               val dateTimes: List<DateTime> =
-                DateTimeProcessor.getDateTimes(text = text, tokens = tokens, langCode = lang)
+                DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = lang)
 
               if (expectedDateTime != null) {
 
