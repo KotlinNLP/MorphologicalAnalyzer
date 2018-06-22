@@ -77,7 +77,7 @@ internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseL
   /**
    * @return the list of date-times recognized during the last parsing
    */
-  fun getDateTimes(): List<DateTime> = this.dateTimes
+  fun getDateTimes(): List<DateTime> = this.dateTimes.filter { it.startToken >= 0 && it.endToken >= 0 }
 
   /**
    * The listener of the 'enter root' event.
