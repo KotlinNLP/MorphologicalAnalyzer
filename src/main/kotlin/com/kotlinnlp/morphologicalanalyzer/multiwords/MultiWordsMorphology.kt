@@ -16,4 +16,8 @@ import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
  * @property endToken the index of the last token of the expression
  * @property morphologies the list of possible morphologies of the expression
  */
-data class MultiWordsMorphology(val startToken: Int, val endToken: Int, val morphologies: List<MorphologyEntry>)
+data class MultiWordsMorphology(
+  override val startToken: Int,
+  override val endToken: Int,
+  val morphologies: List<MorphologyEntry>
+) : MultiWords

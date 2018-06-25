@@ -5,19 +5,20 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.morphologicalanalyzer.datetime.objects
-
-import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+package com.kotlinnlp.morphologicalanalyzer.multiwords
 
 /**
- * A date-time expression.
+ * A multi-words expression.
  */
-interface DateTime : MultiWords {
+interface MultiWords {
 
   /**
-   * Get the string representing this date-time in the standard format.
-   *
-   * @return the standard string representing this date-time
+   * The index of the first token of the expression
    */
-  fun toStandardFormat(): String
+  val startToken: Int
+
+  /**
+   * The index of the last token of the expression
+   */
+  val endToken: Int
 }

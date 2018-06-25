@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
+import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+
 /**
  * Represents a numeric expression recognized.
  *
@@ -17,9 +19,9 @@ package com.kotlinnlp.morphologicalanalyzer.numbers
  * @property original the original string containing the number
  */
 data class NumberToken(
-  val startToken: Int,
-  val endToken: Int,
+  override val startToken: Int,
+  override val endToken: Int,
   val asDigits: String,
   val asWord: String,
   val original: String
-)
+) : MultiWords
