@@ -16,24 +16,25 @@ import org.antlr.v4.runtime.tree.*
 
 /**
  * A text processor that recognizes date-time expressions in it.
+ *
+ * @param langCode ISO 639-2 code of the language in which to analyze the text
  */
-object DateTimeProcessor {
+class DateTimeProcessor(private val langCode: String) {
 
   /**
    * Get the date-times recognized in a given text.
    *
    * @param text the input text
    * @param tokens the list of tokens that compose the [text]
-   * @param langCode the iso-a2 code of the language in which to analyze the text
    *
    * @return a list of date-time objects (empty if none has been found)
    */
-  fun findDateTimes(text: String, tokens: List<Token>, langCode: String): List<DateTime> {
+  fun findDateTimes(text: String, tokens: List<Token>): List<DateTime> {
 
     return if (text.trim().isNotEmpty()) {
 
       val listener = DateTimeListener(tokens)
-      val parser: DateTimeParser = this.buildParser(text = text, langCode = langCode)
+      val parser: DateTimeParser = this.buildParser(text)
 
       try {
         ParseTreeWalker().walk(listener, parser.root())
@@ -48,13 +49,12 @@ object DateTimeProcessor {
 
   /**
    * @param text the input text
-   * @param langCode the iso-a2 code of the language in which to analyze the text
    *
    * @return a new ANTLR DateTime parser
    */
-  private fun buildParser(text: String, langCode: String): DateTimeParser {
+  private fun buildParser(text: String): DateTimeParser {
 
-    val lexer = this.buildLexer(charStream = CharStreams.fromString(text), langCode = langCode)
+    val lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val tokenStream = CommonTokenStream(lexer)
     val parser = DateTimeParser(tokenStream)
 
@@ -63,14 +63,13 @@ object DateTimeProcessor {
 
   /**
    * @param charStream the input char stream
-   * @param langCode the language iso-a2 code
    *
    * @return an ANTLR DateTime lexer for the given language
    */
-  private fun buildLexer(charStream: CharStream, langCode: String): Lexer = when (langCode) {
+  private fun buildLexer(charStream: CharStream): Lexer = when (this.langCode) {
     "en" -> LexerEN(charStream)
     "it" -> LexerIT(charStream)
-    else -> throw RuntimeException("Lexer not available for language '$langCode'")
+    else -> throw RuntimeException("Lexer not available for language '${this.langCode}'")
   }
 
   /**

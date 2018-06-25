@@ -55,6 +55,16 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
   }
 
   /**
+   * A map of [DateTimeProcessor]s associated by language code.
+   */
+  private val dateTimeProcessors = mutableMapOf<String, DateTimeProcessor>()
+
+  /**
+   * A map of [NumbersProcessor]s associated by language code.
+   */
+  private val numbersProcessors = mutableMapOf<String, NumbersProcessor>()
+
+  /**
    * Analyze the morphology of a text, given as a list of tokens.
    *
    * @param text the input text
@@ -67,11 +77,14 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     require(langCode.length == 2) { "The language code must have length 2." }
 
+    val dateTimeProcessor = this.dateTimeProcessors.getOrPut(langCode, defaultValue = { DateTimeProcessor(langCode) })
+    val numbersProcessor = this.numbersProcessors.getOrPut(langCode, defaultValue = { NumbersProcessor(langCode) })
+
     return MorphologicalAnalysis(
       tokens = tokens.map { this.getTokenMorphology(it) },
       multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
-      dateTimes = DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = langCode),
-      numbers = NumbersProcessor(langCode).findNumbers(text = text, tokens = tokens)
+      dateTimes = dateTimeProcessor.findDateTimes(text = text, tokens = tokens),
+      numbers = numbersProcessor.findNumbers(text = text, tokens = tokens)
     )
   }
 

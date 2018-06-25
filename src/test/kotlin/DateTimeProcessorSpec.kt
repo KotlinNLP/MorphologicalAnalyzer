@@ -33,13 +33,14 @@ class DateTimeProcessorSpec : Spek({
 
         context("[%s] %s".format(lang, testType)) {
 
+          val processor = DateTimeProcessor(lang)
+
           tests.forEach { (text, expectedDateTime) ->
 
             on("text: '$text'") {
 
               val tokens: List<Token> = SimpleTokenizer.tokenize(text)
-              val dateTimes: List<DateTime> =
-                DateTimeProcessor.findDateTimes(text = text, tokens = tokens, langCode = lang)
+              val dateTimes: List<DateTime> = processor.findDateTimes(text = text, tokens = tokens)
 
               if (expectedDateTime != null) {
 
