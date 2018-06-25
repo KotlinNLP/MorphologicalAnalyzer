@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 
 import com.kotlinnlp.morphologicalanalyzer.numbers.*
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.AnnotationsAccumulator
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
@@ -57,9 +58,9 @@ internal interface ListenerCommon {
   /**
    * Get a list containing the collected number expressions.
    *
-   * @return a list of number tokens
+   * @return a list of numbers
    */
-  fun getNumbers(): List<NumberToken> = this.helper.numbers
+  fun getNumbers(): List<Number> = this.helper.numbers
 
   /**
    * Collect the annotations of the nodes that are children of the one passed as context.
@@ -174,9 +175,9 @@ internal interface ListenerCommon {
    * @param offset the offset position of the [numericExpr] within the input text
    * @param numericExpr a numeric expression
    *
-   * @return a list of number tokens
+   * @return a list of numbers
    */
-  fun findSubexpressions(offset: Int, numericExpr: String): List<NumberToken> =
+  fun findSubexpressions(offset: Int, numericExpr: String): List<Number> =
 
     if (this.helper.whiteSpacesRegex.containsMatchIn(numericExpr)) {
 
@@ -945,7 +946,7 @@ internal interface ListenerCommon {
    * @param token the number token to add
    * @param ctx the ANTLR context of the token
    */
-  private fun addNewNumber(token: NumberToken, ctx: ParserRuleContext) {
+  private fun addNewNumber(token: Number, ctx: ParserRuleContext) {
 
     if (token.startToken >= 0 && token.endToken >= 0) {
 
@@ -968,7 +969,7 @@ internal interface ListenerCommon {
    *
    * @return a new number token
    */
-  fun buildNumber(ctx: ParserRuleContext, integer: String?, decimal: String?): NumberToken {
+  fun buildNumber(ctx: ParserRuleContext, integer: String?, decimal: String?): Number {
 
     val tmpDecimal = decimal?.trimEnd('0')?.let {
       if (it.isNotEmpty()) this.langParams.digitDecimalSeparator + it else ""
@@ -977,7 +978,7 @@ internal interface ListenerCommon {
     val number: String =
       ((integer ?: "") + tmpDecimal).replace(regex = this.helper.leadingZeroesRegex, replacement = "$1")
 
-    return NumberToken(
+    return Number(
       startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.startAt },
       endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.endAt },
       asDigits = number,

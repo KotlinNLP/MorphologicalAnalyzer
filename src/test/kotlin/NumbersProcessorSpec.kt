@@ -6,7 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
-import com.kotlinnlp.morphologicalanalyzer.numbers.NumberToken
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
@@ -25,7 +25,7 @@ object NumbersProcessorSpec : Spek({
 
         context("number expression: '${test.text}'") {
 
-          val numbers: List<NumberToken> =
+          val numbers: List<Number> =
             NumbersProcessor(lang).findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
 
           it("should contain %d elements".format(test.tokens.size)) {

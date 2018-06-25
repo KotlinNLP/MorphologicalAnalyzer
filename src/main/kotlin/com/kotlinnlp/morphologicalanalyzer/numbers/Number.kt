@@ -18,7 +18,7 @@ import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
  * @property asWord the standard representation of the number in letters
  * @property original the original string containing the number
  */
-data class NumberToken(
+data class Number(
   override val startToken: Int,
   override val endToken: Int,
   val asDigits: String,

@@ -8,7 +8,7 @@
 package utils
 
 import com.beust.klaxon.*
-import com.kotlinnlp.morphologicalanalyzer.numbers.NumberToken
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 
@@ -23,7 +23,7 @@ object TestNumbers {
    * @property text a text that can contain a date-time
    * @property tokens the list of numbers to recognize in the [text]
    */
-  data class Test(val text: String, val tokens: List<NumberToken>)
+  data class Test(val text: String, val tokens: List<Number>)
 
   /**
    * A list of padding texts to put before and after a text to generate adding tests.
@@ -113,7 +113,7 @@ object TestNumbers {
     )
 
   /**
-   * Build a [NumberToken]
+   * Build a [Number].
    *
    * @param jsonObj the JSON object of the number token
    * @param originalText the original text of the test without padding
@@ -121,12 +121,12 @@ object TestNumbers {
    *
    * @return a new number token
    */
-  private fun buildNumber(jsonObj: JsonObject, originalText: String, offset: Int): NumberToken {
+  private fun buildNumber(jsonObj: JsonObject, originalText: String, offset: Int): Number {
 
     val originalStr: String = jsonObj.string("original") ?: originalText
     val start: Int = offset + (jsonObj.int("start") ?: 0)
 
-    return NumberToken(
+    return Number(
       startToken = start,
       endToken = start + originalStr.lastIndex,
       asDigits = jsonObj.string("asDigits")!!,

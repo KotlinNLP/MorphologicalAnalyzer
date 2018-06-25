@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers
 
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
-import com.kotlinnlp.morphologicalanalyzer.numbers.NumberToken
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import org.antlr.v4.runtime.tree.ParseTree
 
 /**
@@ -31,7 +31,7 @@ internal class ListenerCommonHelper(langParams: LanguageParams) {
   /**
    * The list of numbers recognised in the input text.
    */
-  val numbers = mutableListOf<NumberToken>()
+  val numbers = mutableListOf<Number>()
 
   /**
    * Regex to recognize zeroes in non-significant decimal trailing position.
