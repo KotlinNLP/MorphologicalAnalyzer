@@ -138,13 +138,10 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
   private fun replaceProperty(tmpEntry: TmpEntry, morphoIndex: Int, propertyIndex: Int, newValue: String) = TmpEntry(
     morphologies = tmpEntry.morphologies.mapIndexed { morphoI, it ->
       if (morphoI == morphoIndex)
-        TmpMorphology(
-          lemma = it.lemma,
-          type = it.type,
+        it.copy(
           properties = Properties(it.properties.list.mapIndexed { propI, prop ->
             if (propI == propertyIndex) Pair(prop.first, newValue) else prop
-          })
-        )
+          }))
       else
         it
     }
