@@ -34,8 +34,8 @@ object NumbersProcessorSpec : Spek({
 
           numbers.zip(test.tokens).forEachIndexed { i, (number, testNumber) ->
 
-            it("should match the digits representation for the number n. ${i+1}") {
-              assertEquals(testNumber.asDigits, number.asDigits)
+            it("should match the value for the number n. ${i+1}") {
+              assertEquals(testNumber.value, number.value)
             }
 
             it("should match the word representation for the number n. ${i+1}") {

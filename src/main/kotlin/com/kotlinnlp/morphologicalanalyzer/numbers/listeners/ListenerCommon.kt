@@ -893,41 +893,7 @@ internal interface ListenerCommon {
 
     debugPrint("\nExiting number: %s".format(ctx.text))
 
-    val components: Pair<String, String?> = this.getNumberComponents(ctx)
-
-    this.addNewNumber(
-      token = this.buildNumber(ctx = ctx, integer = components.first, decimal = components.second),
-      ctx = ctx)
-  }
-
-  /**
-   * @param ctx the ANTLR context of the number
-   *
-   * @return a pair containing the <integer, decimal?> parts of the parsed number
-   */
-  private fun getNumberComponents(ctx: ParserRuleContext): Pair<String, String?> {
-
-    var accumulator = AnnotationsAccumulator()
-    var integer: String? = null
-
-    ctx.children.forEach {
-
-      if (it is TerminalNodeImpl) {
-
-        if (it.text == this.langParams.wordDecimalSeparator || it.text == this.langParams.digitDecimalSeparator) {
-
-          integer = accumulator.getConcatValues()
-          accumulator = AnnotationsAccumulator()
-
-          debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
-        }
-
-      } else {
-        this.visitParseTree(accumulator = accumulator, ctx = it as ParserRuleContext)
-      }
-    }
-
-    return integer?.let { Pair(it, accumulator.getConcatValues()) } ?: Pair(accumulator.getConcatValues(), null)
+    this.addNewNumber(token = this.buildNumber(ctx), ctx = ctx)
   }
 
   /**
@@ -955,26 +921,58 @@ internal interface ListenerCommon {
    * Build a token given its integer and decimal parts as strings.
    *
    * @param ctx the context of the 'number' rule
-   * @param integer the integer part of the number
-   * @param decimal the decimal part of the number
    *
    * @return a new number token
    */
-  fun buildNumber(ctx: ParserRuleContext, integer: String, decimal: String?): Number {
+  private fun buildNumber(ctx: ParserRuleContext): Number {
 
-    val sepDecimal = decimal?.trimEnd('0')?.let {
-      if (it.isNotEmpty()) this.langParams.digitDecimalSeparator + it else ""
-    } ?: ""
-
-    val number: String =
-      (integer + sepDecimal).replace(regex = this.helper.leadingZeroesRegex, replacement = "$1")
+    val (integer, decimal) = this.getNumberComponents(ctx)
 
     return Number(
       startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
       endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.position.end },
-      asDigits = number,
-      asWord = this.helper.digitToWordConverter.convert(number),
-      original = ctx.text)
+      value = decimal?.let { "$integer.$decimal".toDouble() }
+        ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
+      asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
+      original = ctx.text
+    )
+  }
+
+  /**
+   * @param ctx the ANTLR context of the number
+   *
+   * @return a pair containing the <integer, decimal?> parts of the parsed number
+   */
+  private fun getNumberComponents(ctx: ParserRuleContext): Pair<String, String?> {
+
+    val digitSep = this.langParams.digitDecimalSeparator
+    var accumulator = AnnotationsAccumulator()
+    var integer: String? = null
+
+    ctx.children.forEach {
+
+      if (it is TerminalNodeImpl) {
+
+        if (it.text == this.langParams.wordDecimalSeparator || it.text == digitSep) {
+
+          integer = accumulator.getConcatValues()
+          accumulator = AnnotationsAccumulator()
+
+          debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
+        }
+
+      } else {
+        this.visitParseTree(accumulator = accumulator, ctx = it as ParserRuleContext)
+      }
+    }
+
+    val accumulatedValues: String = accumulator.getConcatValues()
+
+    return when {
+      integer != null -> Pair(integer!!, accumulatedValues)
+      accumulatedValues.contains(digitSep) -> accumulatedValues.split(digitSep).let { Pair(it[0], it[1]) }
+      else -> Pair(accumulatedValues, null)
+    }
   }
 
   /**

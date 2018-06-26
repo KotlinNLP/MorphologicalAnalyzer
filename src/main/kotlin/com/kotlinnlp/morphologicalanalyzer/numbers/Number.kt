@@ -14,14 +14,14 @@ import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
  *
  * @property startToken the index of the first token of this numeric expression, within the input tokens list
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
- * @property asDigits the standard representation of the number in digits
+ * @property value the numeric value
  * @property asWord the standard representation of the number in letters
  * @property original the original string containing the number
  */
 data class Number(
   override val startToken: Int,
   override val endToken: Int,
-  val asDigits: String,
+  val value: kotlin.Number,
   val asWord: String,
   val original: String
 ) : MultiWords

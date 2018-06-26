@@ -129,7 +129,7 @@ object TestNumbers {
     return Number(
       startToken = start,
       endToken = start + originalStr.lastIndex,
-      asDigits = jsonObj.string("asDigits")!!,
+      value = jsonObj.getValue("value") as kotlin.Number,
       asWord = jsonObj.string("asWord") ?: originalStr,
       original = originalStr
     )

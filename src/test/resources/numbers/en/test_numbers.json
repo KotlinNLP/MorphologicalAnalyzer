@@ -3,7 +3,7 @@
     "text": "zero",
     "tokens": [
       {
-        "asDigits": "0"
+        "value": 0
       }
     ]
   },
@@ -11,7 +11,7 @@
     "text": "000",
     "tokens": [
       {
-        "asDigits": "0",
+        "value": 0,
         "asWord": "zero"
       }
     ]
@@ -20,7 +20,7 @@
     "text": "0001",
     "tokens": [
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one"
       }
     ]
@@ -29,7 +29,7 @@
     "text": "0.1",
     "tokens": [
       {
-        "asDigits": "0.1",
+        "value": 0.1,
         "asWord": "zero point one"
       }
     ]
@@ -38,7 +38,7 @@
     "text": "000.1",
     "tokens": [
       {
-        "asDigits": "0.1",
+        "value": 0.1,
         "asWord": "zero point one"
       }
     ]
@@ -47,7 +47,7 @@
     "text": "zERo",
     "tokens": [
       {
-        "asDigits": "0",
+        "value": 0,
         "asWord": "zero"
       }
     ]
@@ -56,7 +56,7 @@
     "text": "0",
     "tokens": [
       {
-        "asDigits": "0",
+        "value": 0,
         "asWord": "zero"
       }
     ]
@@ -65,7 +65,7 @@
     "text": "1",
     "tokens": [
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one"
       }
     ]
@@ -74,7 +74,7 @@
     "text": "one",
     "tokens": [
       {
-        "asDigits": "1"
+        "value": 1
       }
     ]
   },
@@ -82,7 +82,7 @@
     "text": "one ",
     "tokens": [
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       }
@@ -92,7 +92,7 @@
     "text": " one",
     "tokens": [
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one",
         "start": 1
@@ -103,7 +103,7 @@
     "text": "twelve",
     "tokens": [
       {
-        "asDigits": "12"
+        "value": 12
       }
     ]
   },
@@ -111,7 +111,7 @@
     "text": "twentyone",
     "tokens": [
       {
-        "asDigits": "21",
+        "value": 21,
         "asWord": "twenty-one"
       }
     ]
@@ -120,7 +120,7 @@
     "text": "twenty-one",
     "tokens": [
       {
-        "asDigits": "21"
+        "value": 21
       }
     ]
   },
@@ -128,7 +128,7 @@
     "text": "twohundredeightyseven",
     "tokens": [
       {
-        "asDigits": "287",
+        "value": 287,
         "asWord": "two hundred eighty-seven"
       }
     ]
@@ -137,16 +137,16 @@
     "text": "two hundred eightyseven",
     "tokens": [
       {
-        "asDigits": "287",
+        "value": 287,
         "asWord": "two hundred eighty-seven"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "87",
+        "value": 87,
         "asWord": "eighty-seven",
         "original": "eightyseven",
         "start": 12
@@ -157,16 +157,16 @@
     "text": "2 hundred 87",
     "tokens": [
       {
-        "asDigits": "287",
+        "value": 287,
         "asWord": "two hundred eighty-seven"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "2"
       },
       {
-        "asDigits": "87",
+        "value": 87,
         "asWord": "eighty-seven",
         "original": "87",
         "start": 10
@@ -177,16 +177,16 @@
     "text": "two hundred eighty-seven",
     "tokens": [
       {
-        "asDigits": "287",
+        "value": 287,
         "asWord": "two hundred eighty-seven"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "87",
+        "value": 87,
         "asWord": "eighty-seven",
         "original": "eighty-seven",
         "start": 12
@@ -197,22 +197,22 @@
     "text": "two hundred eighty seven",
     "tokens": [
       {
-        "asDigits": "287",
+        "value": 287,
         "asWord": "two hundred eighty-seven"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "80",
+        "value": 80,
         "asWord": "eighty",
         "original": "eighty",
         "start": 12
       },
       {
-        "asDigits": "7",
+        "value": 7,
         "asWord": "seven",
         "original": "seven",
         "start": 19
@@ -223,7 +223,7 @@
     "text": "threehundredforty",
     "tokens": [
       {
-        "asDigits": "340",
+        "value": 340,
         "asWord": "three hundred forty"
       }
     ]
@@ -232,7 +232,7 @@
     "text": "threehundredandforty",
     "tokens": [
       {
-        "asDigits": "340",
+        "value": 340,
         "asWord": "three hundred forty"
       }
     ]
@@ -241,16 +241,16 @@
     "text": "three hundred and forty",
     "tokens": [
       {
-        "asDigits": "340",
+        "value": 340,
         "asWord": "three hundred forty"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three"
       },
       {
-        "asDigits": "40",
+        "value": 40,
         "asWord": "forty",
         "original": "forty",
         "start": 18
@@ -261,7 +261,7 @@
     "text": "threehundredandforty-seven",
     "tokens": [
       {
-        "asDigits": "347",
+        "value": 347,
         "asWord": "three hundred forty-seven"
       }
     ]
@@ -270,22 +270,22 @@
     "text": "two hundred thirty four",
     "tokens": [
       {
-        "asDigits": "234",
+        "value": 234,
         "asWord": "two hundred thirty-four"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "30",
+        "value": 30,
         "asWord": "thirty",
         "original": "thirty",
         "start": 12
       },
       {
-        "asDigits": "4",
+        "value": 4,
         "asWord": "four",
         "original": "four",
         "start": 19
@@ -296,29 +296,29 @@
     "text": "two hundred; thirty four",
     "tokens": [
       {
-        "asDigits": "200",
+        "value": 200,
         "asWord": "two hundred",
         "original": "two hundred"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "34",
+        "value": 34,
         "asWord": "thirty-four",
         "original": "thirty four",
         "start": 13
       },
       {
-        "asDigits": "30",
+        "value": 30,
         "asWord": "thirty",
         "original": "thirty",
         "start": 13
       },
       {
-        "asDigits": "4",
+        "value": 4,
         "asWord": "four",
         "original": "four",
         "start": 20
@@ -329,22 +329,22 @@
     "text": "two hundred thirty thousand four",
     "tokens": [
       {
-        "asDigits": "230004",
+        "value": 230004,
         "asWord": "two hundred thirty thousand four"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "30",
+        "value": 30,
         "asWord": "thirty",
         "original": "thirty",
         "start": 12
       },
       {
-        "asDigits": "4",
+        "value": 4,
         "asWord": "four",
         "original": "four",
         "start": 28
@@ -355,7 +355,7 @@
     "text": "a thousand",
     "tokens": [
       {
-        "asDigits": "1000",
+        "value": 1000,
         "asWord": "one thousand"
       }
     ]
@@ -364,16 +364,16 @@
     "text": "one thousand three",
     "tokens": [
       {
-        "asDigits": "1003",
+        "value": 1003,
         "asWord": "one thousand three"
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three",
         "start": 13
@@ -384,16 +384,16 @@
     "text": "one thousand and three",
     "tokens": [
       {
-        "asDigits": "1003",
+        "value": 1003,
         "asWord": "one thousand three"
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three",
         "start": 17
@@ -404,7 +404,7 @@
     "text": "onethousandtwohundredthree",
     "tokens": [
       {
-        "asDigits": "1203",
+        "value": 1203,
         "asWord": "one thousand two hundred three"
       }
     ]
@@ -413,7 +413,7 @@
     "text": "sixthousandone",
     "tokens": [
       {
-        "asDigits": "6001",
+        "value": 6001,
         "asWord": "six thousand one"
       }
     ]
@@ -422,7 +422,7 @@
     "text": "sixthousandeleven",
     "tokens": [
       {
-        "asDigits": "6011",
+        "value": 6011,
         "asWord": "six thousand eleven"
       }
     ]
@@ -431,7 +431,7 @@
     "text": "twenty-onethousand",
     "tokens": [
       {
-        "asDigits": "21000",
+        "value": 21000,
         "asWord": "twenty-one thousand"
       }
     ]
@@ -440,10 +440,10 @@
     "text": "twenty-one thousand",
     "tokens": [
       {
-        "asDigits": "21000"
+        "value": 21000
       },
       {
-        "asDigits": "21",
+        "value": 21,
         "asWord": "twenty-one",
         "original": "twenty-one"
       }
@@ -453,15 +453,15 @@
     "text": "thirty-seven thousand forty-one",
     "tokens": [
       {
-        "asDigits": "37041"
+        "value": 37041
       },
       {
-        "asDigits": "37",
+        "value": 37,
         "asWord": "thirty-seven",
         "original": "thirty-seven"
       },
       {
-        "asDigits": "41",
+        "value": 41,
         "asWord": "forty-one",
         "original": "forty-one",
         "start": 22
@@ -472,16 +472,16 @@
     "text": "thirtyseven thousand fortynine",
     "tokens": [
       {
-        "asDigits": "37049",
+        "value": 37049,
         "asWord": "thirty-seven thousand forty-nine"
       },
       {
-        "asDigits": "37",
+        "value": 37,
         "asWord": "thirty-seven",
         "original": "thirtyseven"
       },
       {
-        "asDigits": "49",
+        "value": 49,
         "asWord": "forty-nine",
         "original": "fortynine",
         "start": 21
@@ -492,15 +492,15 @@
     "text": "one hundred thousand twelve",
     "tokens": [
       {
-        "asDigits": "100012"
+        "value": 100012
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "12",
+        "value": 12,
         "asWord": "twelve",
         "original": "twelve",
         "start": 21
@@ -511,21 +511,21 @@
     "text": "one hundred thousand nine hundred seventy",
     "tokens": [
       {
-        "asDigits": "100970"
+        "value": 100970
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "9",
+        "value": 9,
         "asWord": "nine",
         "original": "nine",
         "start": 21
       },
       {
-        "asDigits": "70",
+        "value": 70,
         "asWord": "seventy",
         "original": "seventy",
         "start": 34
@@ -536,16 +536,16 @@
     "text": "onehundred eighty-eight thousand",
     "tokens": [
       {
-        "asDigits": "188000",
+        "value": 188000,
         "asWord": "one hundred eighty-eight thousand"
       },
       {
-        "asDigits": "100",
+        "value": 100,
         "asWord": "one hundred",
         "original": "onehundred"
       },
       {
-        "asDigits": "88",
+        "value": 88,
         "asWord": "eighty-eight",
         "original": "eighty-eight",
         "start": 11
@@ -556,21 +556,21 @@
     "text": "one hundred one thousand three",
     "tokens": [
       {
-        "asDigits": "101003"
+        "value": 101003
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one",
         "start": 12
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three",
         "start": 25
@@ -581,15 +581,15 @@
     "text": "one hundred twelve thousand",
     "tokens": [
       {
-        "asDigits": "112000"
+        "value": 112000
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "12",
+        "value": 12,
         "asWord": "twelve",
         "original": "twelve",
         "start": 12
@@ -600,10 +600,10 @@
     "text": "two hundred thousand",
     "tokens": [
       {
-        "asDigits": "200000"
+        "value": 200000
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       }
@@ -613,15 +613,15 @@
     "text": "two hundred thirty-seven thousand",
     "tokens": [
       {
-        "asDigits": "237000"
+        "value": 237000
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       },
       {
-        "asDigits": "37",
+        "value": 37,
         "asWord": "thirty-seven",
         "original": "thirty-seven",
         "start": 12
@@ -632,7 +632,7 @@
     "text": "twohundredthirty-seventhousandfifteen",
     "tokens": [
       {
-        "asDigits": "237015",
+        "value": 237015,
         "asWord": "two hundred thirty-seven thousand fifteen"
       }
     ]
@@ -641,22 +641,22 @@
     "text": "twohundred thirty-seven thousand fifteen",
     "tokens": [
       {
-        "asDigits": "237015",
+        "value": 237015,
         "asWord": "two hundred thirty-seven thousand fifteen"
       },
       {
-        "asDigits": "200",
+        "value": 200,
         "asWord": "two hundred",
         "original": "twohundred"
       },
       {
-        "asDigits": "37",
+        "value": 37,
         "asWord": "thirty-seven",
         "original": "thirty-seven",
         "start": 11
       },
       {
-        "asDigits": "15",
+        "value": 15,
         "asWord": "fifteen",
         "original": "fifteen",
         "start": 33
@@ -667,21 +667,21 @@
     "text": "one million eight hundred thousand two",
     "tokens": [
       {
-        "asDigits": "1800002"
+        "value": 1800002
       },
       {
-        "asDigits": "1",
+        "value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-        "asDigits": "8",
+        "value": 8,
         "asWord": "eight",
         "original": "eight",
         "start": 12
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two",
         "start": 35
@@ -692,7 +692,7 @@
     "text": "threemillioneighthundredthousandtwo",
     "tokens": [
       {
-        "asDigits": "3800002",
+        "value": 3800002,
         "asWord": "three million eight hundred thousand two"
       }
     ]
@@ -701,7 +701,7 @@
     "text": "twohundredeighty-sevenmillioneighthundredthousandtwo",
     "tokens": [
       {
-        "asDigits": "287800002",
+        "value": 287800002,
         "asWord": "two hundred eighty-seven million eight hundred thousand two"
       }
     ]
@@ -710,22 +710,22 @@
     "text": "three million eighthundredthousand two",
     "tokens": [
       {
-        "asDigits": "3800002",
+        "value": 3800002,
         "asWord": "three million eight hundred thousand two"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three"
       },
       {
-        "asDigits": "800000",
+        "value": 800000,
         "asWord": "eight hundred thousand",
         "original": "eighthundredthousand",
         "start": 14
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two",
         "start": 35
@@ -736,16 +736,16 @@
     "text": "227000 million eighthundred",
     "tokens": [
       {
-        "asDigits": "227000000800",
+        "value": 227000000800,
         "asWord": "two hundred twenty-seven billion eight hundred"
       },
       {
-        "asDigits": "227000",
+        "value": 227000,
         "asWord": "two hundred twenty-seven thousand",
         "original": "227000"
       },               
       {
-        "asDigits": "800",
+        "value": 800,
         "asWord": "eight hundred",
         "original": "eighthundred",
         "start": 15
@@ -756,16 +756,16 @@
     "text": "227,000 billion eighthundred",
     "tokens": [
       {
-        "asDigits": "227000000000800",
+        "value": 227000000000800,
         "asWord": "two hundred twenty-seven trillion eight hundred"
       },
       {
-        "asDigits": "227000",
+        "value": 227000,
         "asWord": "two hundred twenty-seven thousand",
         "original": "227,000"
       },
       {
-        "asDigits": "800",
+        "value": 800,
         "asWord": "eight hundred",
         "original": "eighthundred",
         "start": 16
@@ -776,7 +776,7 @@
     "text": "twohundredmillioneighthundredthirty-seventhousand",
     "tokens": [
       {
-        "asDigits": "200837000",
+        "value": 200837000,
         "asWord": "two hundred million eight hundred thirty-seven thousand"
       }
     ]
@@ -785,7 +785,7 @@
     "text": "twohundredmillioneighthundredthirty-seventhousandtwo",
     "tokens": [
       {
-        "asDigits": "200837002",
+        "value": 200837002,
         "asWord": "two hundred million eight hundred thirty-seven thousand two"
       }
     ]
@@ -794,7 +794,7 @@
     "text": "twohundredmillionninety-ninethousand",
     "tokens": [
       {
-        "asDigits": "200099000",
+        "value": 200099000,
         "asWord": "two hundred million ninety-nine thousand"
       }
     ]
@@ -803,7 +803,7 @@
     "text": "3hundred",
     "tokens": [
       {
-        "asDigits": "300",
+        "value": 300,
         "asWord": "three hundred",
         "original": "3hundred"
       }
@@ -813,16 +813,16 @@
     "text": "twenty 2",
     "tokens": [
       {
-        "asDigits": "22",
+        "value": 22,
         "asWord": "twenty-two"
       },
       {
-        "asDigits": "20",
+        "value": 20,
         "asWord": "twenty",
         "original": "twenty"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "2",
         "start": 7
@@ -833,7 +833,7 @@
     "text": "11 hundred",
     "tokens": [
       {
-        "asDigits": "11",
+        "value": 11,
         "asWord": "eleven",
         "original": "11"
       }
@@ -843,11 +843,11 @@
     "text": "3 thousand",
     "tokens": [
       {
-        "asDigits": "3000",
+        "value": 3000,
         "asWord": "three thousand"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "3"
       }
@@ -857,11 +857,11 @@
     "text": "123 thousand",
     "tokens": [
       {
-        "asDigits": "123000",
+        "value": 123000,
         "asWord": "one hundred twenty-three thousand"
       },
       {
-        "asDigits": "123",
+        "value": 123,
         "asWord": "one hundred twenty-three",
         "original": "123"
       }
@@ -871,7 +871,7 @@
     "text": "1234 thousand",
     "tokens": [
       {
-        "asDigits": "1234",
+        "value": 1234,
         "asWord": "one thousand two hundred thirty-four",
         "original": "1234"
       }
@@ -881,16 +881,16 @@
     "text": "twohundredmillion 99000",
     "tokens": [
       {
-        "asDigits": "200099000",
+        "value": 200099000,
         "asWord": "two hundred million ninety-nine thousand"
       },
       {
-        "asDigits": "200000000",
+        "value": 200000000,
         "asWord": "two hundred million",
         "original": "twohundredmillion"
       },
       {
-        "asDigits": "99000",
+        "value": 99000,
         "asWord": "ninety-nine thousand",
         "original": "99000",
         "start": 18
@@ -901,16 +901,16 @@
     "text": "twohundredmillion 99",
     "tokens": [
       {
-        "asDigits": "200000099",
+        "value": 200000099,
         "asWord": "two hundred million ninety-nine"
       },
       {
-        "asDigits": "200000000",
+        "value": 200000000,
         "asWord": "two hundred million",
         "original": "twohundredmillion"
       },
       {
-        "asDigits": "99",
+        "value": 99,
         "asWord": "ninety-nine",
         "original": "99",
         "start": 18
@@ -921,22 +921,22 @@
     "text": "twohundredmillion ninety 9",
     "tokens": [
       {
-        "asDigits": "200000099",
+        "value": 200000099,
         "asWord": "two hundred million ninety-nine"
       },
       {
-        "asDigits": "200000000",
+        "value": 200000000,
         "asWord": "two hundred million",
         "original": "twohundredmillion"
       },
       {
-        "asDigits": "90",
+        "value": 90,
         "asWord": "ninety",
         "original": "ninety",
         "start": 18
       },
       {
-        "asDigits": "9",
+        "value": 9,
         "asWord": "nine",
         "original": "9",
         "start": 25
@@ -947,7 +947,7 @@
     "text": "onemilliononehundredthree",
     "tokens": [
       {
-        "asDigits": "1000103",
+        "value": 1000103,
         "asWord": "one million one hundred three"
       }
     ]
@@ -956,7 +956,7 @@
     "text": "onemilliononehundredthreethousand",
     "tokens": [
       {
-        "asDigits": "1103000",
+        "value": 1103000,
         "asWord": "one million one hundred three thousand"
       }
     ]
@@ -965,7 +965,7 @@
     "text": "onemilliononehundredthreethousandeighthundred",
     "tokens": [
       {
-        "asDigits": "1103800",
+        "value": 1103800,
         "asWord": "one million one hundred three thousand eight hundred"
       }
     ]
@@ -974,11 +974,11 @@
     "text": "3 million",
     "tokens": [
       {
-        "asDigits": "3000000",
+        "value": 3000000,
         "asWord": "three million"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "3"
       }
@@ -988,7 +988,7 @@
     "text": "ninehundredninety-ninethousandninehundredninety-ninemillion",
     "tokens": [
       {
-        "asDigits": "999999000000",
+        "value": 999999000000,
         "asWord": "nine hundred ninety-nine billion nine hundred ninety-nine million"
       }
     ]
@@ -997,16 +997,16 @@
     "text": "3 million 245000",
     "tokens": [
       {
-        "asDigits": "3245000",
+        "value": 3245000,
         "asWord": "three million two hundred forty-five thousand"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "3"
       },
       {
-        "asDigits": "245000",
+        "value": 245000,
         "asWord": "two hundred forty-five thousand",
         "original": "245000",
         "start": 10
@@ -1017,16 +1017,16 @@
     "text": "3 million 245 thousand",
     "tokens": [
       {
-        "asDigits": "3245000",
+        "value": 3245000,
         "asWord": "three million two hundred forty-five thousand"
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "3"
       },
       {
-        "asDigits": "245",
+        "value": 245,
         "asWord": "two hundred forty-five",
         "original": "245",
         "start": 10
@@ -1037,7 +1037,7 @@
     "text": "125",
     "tokens": [
       {
-        "asDigits": "125",
+        "value": 125,
         "asWord": "one hundred twenty-five"
       }
     ]
@@ -1046,16 +1046,16 @@
     "text": "one billion eighthundredtwenty-sixthousandtwo",
     "tokens": [
       {
-        "asDigits": "1000826002",
+        "value": 1000826002,
         "asWord": "one billion eight hundred twenty-six thousand two"
       },
       {
-      	"asDigits": "1",
+      	"value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-		"asDigits": "826002",
+		"value": 826002,
         "asWord": "eight hundred twenty-six thousand two",
         "original": "eighthundredtwenty-sixthousandtwo",
         "start": 12
@@ -1066,11 +1066,11 @@
     "text": "a billion eighthundredtwenty-sixthousandtwo",
     "tokens": [
       {
-        "asDigits": "1000826002",
+        "value": 1000826002,
         "asWord": "one billion eight hundred twenty-six thousand two"
       },
       {
-		"asDigits": "826002",
+		"value": 826002,
         "asWord": "eight hundred twenty-six thousand two",
         "original": "eighthundredtwenty-sixthousandtwo",
         "start": 10
@@ -1081,22 +1081,22 @@
     "text": "one billion eighthundredtwentysixmillion seven",
     "tokens": [
       {
-        "asDigits": "1826000007",
+        "value": 1826000007,
         "asWord": "one billion eight hundred twenty-six million seven"
       },
       {
-      	"asDigits": "1",
+      	"value": 1,
         "asWord": "one",
         "original": "one"
       },
       {
-		"asDigits": "826000000",
+		"value": 826000000,
         "asWord": "eight hundred twenty-six million",
         "original": "eighthundredtwentysixmillion",
         "start": 12
       },
       {
-		"asDigits": "7",
+		"value": 7,
         "asWord": "seven",
         "original": "seven",
         "start": 41
@@ -1107,7 +1107,7 @@
     "text": "onebillion",
     "tokens": [
       {
-        "asDigits": "1000000000",
+        "value": 1000000000,
         "asWord": "one billion"
       }
     ]
@@ -1116,7 +1116,7 @@
     "text": "onebilliononehundredmillion",
     "tokens": [
       {
-        "asDigits": "1100000000",
+        "value": 1100000000,
         "asWord": "one billion one hundred million"
       }
     ]
@@ -1125,7 +1125,7 @@
     "text": "onebilliononehundredtenmillion",
     "tokens": [
       {
-        "asDigits": "1110000000",
+        "value": 1110000000,
         "asWord": "one billion one hundred ten million"
       }
     ]
@@ -1134,7 +1134,7 @@
     "text": "onebilliononehundredelevenmillion",
     "tokens": [
       {
-        "asDigits": "1111000000",
+        "value": 1111000000,
         "asWord": "one billion one hundred eleven million"
       }
     ]
@@ -1143,7 +1143,7 @@
     "text": "onebilliononehundredelevenmilliononehundredthousand",
     "tokens": [
       {
-        "asDigits": "1111100000",
+        "value": 1111100000,
         "asWord": "one billion one hundred eleven million one hundred thousand"
       }
     ]
@@ -1152,7 +1152,7 @@
     "text": "onebilliononehundredelevenmilliononehundredtenthousand",
     "tokens": [
       {
-        "asDigits": "1111110000",
+        "value": 1111110000,
         "asWord": "one billion one hundred eleven million one hundred ten thousand"
       }
     ]
@@ -1161,7 +1161,7 @@
     "text": "onebilliononehundredelevenmilliononehundredeleventhousand",
     "tokens": [
       {
-        "asDigits": "1111111000",
+        "value": 1111111000,
         "asWord": "one billion one hundred eleven million one hundred eleven thousand"
       }
     ]
@@ -1170,7 +1170,7 @@
     "text": "onebilliononehundredelevenmilliononehundredeleventhousandonehundred",
     "tokens": [
       {
-        "asDigits": "1111111100",
+        "value": 1111111100,
         "asWord": "one billion one hundred eleven million one hundred eleven thousand one hundred"
       }
     ]
@@ -1179,7 +1179,7 @@
     "text": "onebilliononehundredelevenmilliononehundredeleventhousandonehundredten",
     "tokens": [
       {
-        "asDigits": "1111111110",
+        "value": 1111111110,
         "asWord": "one billion one hundred eleven million one hundred eleven thousand one hundred ten"
       }
     ]
@@ -1188,7 +1188,7 @@
     "text": "onebilliononehundredelevenmilliononehundredeleventhousandonehundredeleven",
     "tokens": [
       {
-        "asDigits": "1111111111",
+        "value": 1111111111,
         "asWord": "one billion one hundred eleven million one hundred eleven thousand one hundred eleven"
       }
     ]
@@ -1197,7 +1197,7 @@
     "text": "twobilliontwohundredtwenty-twomilliontwohundredtwenty-twothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2222222222",
+        "value": 2222222222,
         "asWord": "two billion two hundred twenty-two million two hundred twenty-two thousand two hundred twenty-two"
       }
     ]
@@ -1206,7 +1206,7 @@
     "text": "twobilliontwenty-twomilliontwohundredtwenty-twothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2022222222",
+        "value": 2022222222,
         "asWord": "two billion twenty-two million two hundred twenty-two thousand two hundred twenty-two"
       }
     ]
@@ -1215,7 +1215,7 @@
     "text": "twobilliontwomilliontwohundredtwenty-twothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2002222222",
+        "value": 2002222222,
         "asWord": "two billion two million two hundred twenty-two thousand two hundred twenty-two"
       }
     ]
@@ -1224,7 +1224,7 @@
     "text": "twobilliontwohundredtwenty-twothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2000222222",
+        "value": 2000222222,
         "asWord": "two billion two hundred twenty-two thousand two hundred twenty-two"
       }
     ]
@@ -1233,7 +1233,7 @@
     "text": "twobilliontwenty-twothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2000022222",
+        "value": 2000022222,
         "asWord": "two billion twenty-two thousand two hundred twenty-two"
       }
     ]
@@ -1242,7 +1242,7 @@
     "text": "twobilliontwothousandtwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2000002222",
+        "value": 2000002222,
         "asWord": "two billion two thousand two hundred twenty-two"
       }
     ]
@@ -1251,7 +1251,7 @@
     "text": "twobilliontwohundredtwenty-two",
     "tokens": [
       {
-        "asDigits": "2000000222",
+        "value": 2000000222,
         "asWord": "two billion two hundred twenty-two"
       }
     ]
@@ -1260,11 +1260,11 @@
     "text": "two billion of billion",
     "tokens": [
       {
-        "asDigits": "2000000000000000000",
+        "value": 2000000000000000000,
         "asWord": "two quintillion"
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two"
       }
@@ -1274,7 +1274,7 @@
     "text": "twobilliontwenty-two",
     "tokens": [
       {
-        "asDigits": "2000000022",
+        "value": 2000000022,
         "asWord": "two billion twenty-two"
       }
     ]
@@ -1283,7 +1283,7 @@
     "text": "twobilliontwo",
     "tokens": [
       {
-        "asDigits": "2000000002",
+        "value": 2000000002,
         "asWord": "two billion two"
       }
     ]
@@ -1292,7 +1292,7 @@
     "text": "twobillion",
     "tokens": [
       {
-        "asDigits": "2000000000",
+        "value": 2000000000,
         "asWord": "two billion"
       }
     ]
@@ -1301,7 +1301,7 @@
     "text": "twelvebillion",
     "tokens": [
       {
-        "asDigits": "12000000000",
+        "value": 12000000000,
         "asWord": "twelve billion"
       }
     ]
@@ -1310,7 +1310,7 @@
     "text": "onehundredtwelvebillion",
     "tokens": [
       {
-        "asDigits": "112000000000",
+        "value": 112000000000,
         "asWord": "one hundred twelve billion"
       }
     ]
@@ -1319,11 +1319,11 @@
     "text": "twothousand billion",
     "tokens": [
       {
-        "asDigits": "2000000000000",
+        "value": 2000000000000,
         "asWord": "two trillion"
       },
       {
-        "asDigits": "2000",
+        "value": 2000,
         "asWord": "two thousand",
         "original": "twothousand"
       }
@@ -1333,7 +1333,7 @@
     "text": "2000,000,000,000",
     "tokens": [
       {
-        "asDigits": "2000000000000",
+        "value": 2000000000000,
         "asWord": "two trillion"
       }
     ]
@@ -1342,7 +1342,7 @@
     "text": "onetrilliontwohundredtwelvebillion",
     "tokens": [
       {
-        "asDigits": "1212000000000",
+        "value": 1212000000000,
         "asWord": "one trillion two hundred twelve billion"
       }
     ]
@@ -1351,7 +1351,7 @@
     "text": "threehundredtentrilliontwohundredtwelvebillion",
     "tokens": [
       {
-        "asDigits": "310212000000000",
+        "value": 310212000000000,
         "asWord": "three hundred ten trillion two hundred twelve billion"
       }
     ]
@@ -1360,7 +1360,7 @@
     "text": "onequadrilliontwohundredtwelvebillion",
     "tokens": [
       {
-        "asDigits": "1000212000000000",
+        "value": 1000212000000000,
         "asWord": "one quadrillion two hundred twelve billion"
       }
     ]
@@ -1369,7 +1369,7 @@
     "text": "seventy-eightquadrillioneighthundredthousandthree",
     "tokens": [
       {
-        "asDigits": "78000000000800003",
+        "value": 78000000000800003,
         "asWord": "seventy-eight quadrillion eight hundred thousand three"
       }
     ]
@@ -1378,16 +1378,16 @@
     "text": "six million of billion threehundredtwenty-seven",
     "tokens": [
 	  {
-        "asDigits": "6000000000000327",
+        "value": 6000000000000327,
         "asWord": "six quadrillion three hundred twenty-seven"
       },
       {
-        "asDigits": "6",
+        "value": 6,
         "asWord": "six",
         "original": "six"
       },
       {
-        "asDigits": "327",
+        "value": 327,
         "asWord": "three hundred twenty-seven",
         "original": "threehundredtwenty-seven",
         "start": 23
@@ -1398,7 +1398,7 @@
     "text": "120.3",
     "tokens": [
       {
-        "asDigits": "120.3",
+        "value": 120.3,
         "asWord": "one hundred twenty point three"
       }
     ]
@@ -1407,7 +1407,7 @@
     "text": "120,345,123",
     "tokens": [
       {
-        "asDigits": "120345123",
+        "value": 120345123,
         "asWord": "one hundred twenty million three hundred forty-five thousand one hundred twenty-three"
       }
     ]
@@ -1416,7 +1416,7 @@
     "text": "120,345,123.3",
     "tokens": [
       {
-        "asDigits": "120345123.3",
+        "value": 120345123.3,
         "asWord": "one hundred twenty million three hundred forty-five thousand one hundred twenty-three point three"
       }
     ]
@@ -1425,16 +1425,16 @@
     "text": "onehundredtwenty point fourthousandtwo",
     "tokens": [
       {
-        "asDigits": "120.4002",
+        "value": 120.4002,
         "asWord": "one hundred twenty point four zero zero two"
       },
       {
-        "asDigits": "120",
+        "value": 120,
         "asWord": "one hundred twenty",
         "original": "onehundredtwenty"
       },
       {
-        "asDigits": "4002",
+        "value": 4002,
         "asWord": "four thousand two",
         "original": "fourthousandtwo",
         "start": 23
@@ -1445,19 +1445,19 @@
     "text": "  onehundredtwenty point fourthousandtwohundred",
     "tokens": [
       {
-        "asDigits": "120.42",
+        "value": 120.42,
         "asWord": "one hundred twenty point four two",
         "original": "onehundredtwenty point fourthousandtwohundred",
         "start": 2
       },
       {
-        "asDigits": "120",
+        "value": 120,
         "asWord": "one hundred twenty",
         "original": "onehundredtwenty",
         "start": 2
       },
       {
-        "asDigits": "4200",
+        "value": 4200,
         "asWord": "four thousand two hundred",
         "original": "fourthousandtwohundred",
         "start": 25
@@ -1468,19 +1468,19 @@
     "text": "abc onehundredtwenty point fifteen def",
     "tokens": [
       {
-        "asDigits": "120.15",
+        "value": 120.15,
         "asWord": "one hundred twenty point one five",
         "original": "onehundredtwenty point fifteen",
         "start": 4
       },
       {
-        "asDigits": "120",
+        "value": 120,
         "asWord": "one hundred twenty",
         "original": "onehundredtwenty",
         "start": 4
       },
       {
-        "asDigits": "15",
+        "value": 15,
         "asWord": "fifteen",
         "original": "fifteen",
         "start": 27
@@ -1491,40 +1491,40 @@
     "text": "onehundredtwenty point seven eight three zero two",
     "tokens": [
       {
-        "asDigits": "120.78302",
+        "value": 120.78302,
         "asWord": "one hundred twenty point seven eight three zero two"
       },
       {
-        "asDigits": "120",
+        "value": 120,
         "asWord": "one hundred twenty",
         "original": "onehundredtwenty"
       },
       {
-        "asDigits": "7",
+        "value": 7,
         "asWord": "seven",
         "original": "seven",
         "start": 23
       },
       {
-        "asDigits": "8",
+        "value": 8,
         "asWord": "eight",
         "original": "eight",
         "start": 29
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three",
         "start": 35
       },
       {
-        "asDigits": "0",
+        "value": 0,
         "asWord": "zero",
         "original": "zero",
         "start": 41
       },
       {
-        "asDigits": "2",
+        "value": 2,
         "asWord": "two",
         "original": "two",
         "start": 46
@@ -1535,28 +1535,28 @@
     "text": "onehundredtwenty point seven eight three",
     "tokens": [
       {
-        "asDigits": "120.783",
+        "value": 120.783,
         "asWord": "one hundred twenty point seven eight three"
       },
       {
-        "asDigits": "120",
+        "value": 120,
         "asWord": "one hundred twenty",
         "original": "onehundredtwenty"
       },
       {
-        "asDigits": "7",
+        "value": 7,
         "asWord": "seven",
         "original": "seven",
         "start": 23
       },
       {
-        "asDigits": "8",
+        "value": 8,
         "asWord": "eight",
         "original": "eight",
         "start": 29
       },
       {
-        "asDigits": "3",
+        "value": 3,
         "asWord": "three",
         "original": "three",
         "start": 35
@@ -1567,23 +1567,23 @@
     "text": "120.4200",
     "tokens": [
       {
-        "asDigits": "120.42",
+        "value": 120.42,
         "asWord": "one hundred twenty point four two"
       }
     ]
   },
   {
-    "text" : "120,345,23.3",
+    "text": "120,345,23.3",
     "tokens": [
       {
-        "asDigits" : "120345",
-        "asWord" : "one hundred twenty thousand three hundred forty-five",
-        "original" : "120,345"
+        "value": 120345,
+        "asWord": "one hundred twenty thousand three hundred forty-five",
+        "original": "120,345"
       },
       {
-        "asDigits" : "23.3",
-        "asWord" : "twenty-three point three",
-        "original" : "23.3",
+        "value": 23.3,
+        "asWord": "twenty-three point three",
+        "original": "23.3",
         "start": 8
       }
     ]
@@ -1593,46 +1593,46 @@
     "tokens": []
   },
   {
-    "text" : "abc def",
+    "text": "abc def",
     "tokens": []
   },
   {
-    "text" : "ognuno",
+    "text": "ognuno",
     "tokens": []
   },
   {
-    "text" : "thirty-eight million five hundred twenty-eight thousand nine hundred sixty-seven",
+    "text": "thirty-eight million five hundred twenty-eight thousand nine hundred sixty-seven",
     "tokens": [
       {
-        "asDigits": "38528967",
+        "value": 38528967,
         "asWord": "thirty-eight million five hundred twenty-eight thousand nine hundred sixty-seven",
         "original": "thirty-eight million five hundred twenty-eight thousand nine hundred sixty-seven"
       },
       {
-        "asDigits": "38",
+        "value": 38,
         "asWord": "thirty-eight",
         "original": "thirty-eight"
       },
       {
-        "asDigits": "5",
+        "value": 5,
         "asWord": "five",
         "original": "five",
         "start": 21
       },
       {
-        "asDigits": "28",
+        "value": 28,
         "asWord": "twenty-eight",
         "original": "twenty-eight",
         "start": 34
       },
       {
-        "asDigits": "9",
+        "value": 9,
         "asWord": "nine",
         "original": "nine",
         "start": 56
       },
       {
-        "asDigits": "67",
+        "value": 67,
         "asWord": "sixty-seven",
         "original": "sixty-seven",
         "start": 69
