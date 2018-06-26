@@ -50,7 +50,9 @@ internal class DigitToWordConverter(private val langParams: LanguageParams, priv
    * @param lang the language of the text to process
    * @param debug if true enable debug messages on stderr
    */
-  constructor(lang: String, debug: Boolean = false): this(LanguageParamsFactory.factory(lang), debug)
+  constructor(lang: String, debug: Boolean = false): this(
+    langParams = LanguageParamsFactory.factory(lang),
+    debug = debug)
 
   /**
    * Regex pattern that is used to verify that the arguments are valid numbers and to split the

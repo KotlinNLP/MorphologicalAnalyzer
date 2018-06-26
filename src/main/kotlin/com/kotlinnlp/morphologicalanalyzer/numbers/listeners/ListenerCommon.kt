@@ -118,15 +118,6 @@ internal interface ListenerCommon {
   }
 
   /**
-   * Convert a numeric representation to a word representation.
-   *
-   * @param number a string that contains a numeric representation of a number
-   *
-   * @return the word representation of the given number
-   */
-  fun convertDigitsToWord(number: String): String = this.helper.digitToWordConverter.convert(number)
-
-  /**
    * Visit a parse tree context, searching for annotated nodes.
    * When a node is found accumulate the value in the correct slot type and stop the recursion.
    *
@@ -982,7 +973,7 @@ internal interface ListenerCommon {
       startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.startAt },
       endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.endAt },
       asDigits = number,
-      asWord = convertDigitsToWord(number),
+      asWord = this.helper.digitToWordConverter.convert(number),
       original = ctx.text)
   }
 
