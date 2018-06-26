@@ -960,14 +960,14 @@ internal interface ListenerCommon {
    *
    * @return a new number token
    */
-  fun buildNumber(ctx: ParserRuleContext, integer: String?, decimal: String?): Number {
+  fun buildNumber(ctx: ParserRuleContext, integer: String, decimal: String?): Number {
 
-    val tmpDecimal = decimal?.trimEnd('0')?.let {
+    val sepDecimal = decimal?.trimEnd('0')?.let {
       if (it.isNotEmpty()) this.langParams.digitDecimalSeparator + it else ""
     } ?: ""
 
     val number: String =
-      ((integer ?: "") + tmpDecimal).replace(regex = this.helper.leadingZeroesRegex, replacement = "$1")
+      (integer + sepDecimal).replace(regex = this.helper.leadingZeroesRegex, replacement = "$1")
 
     return Number(
       startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
