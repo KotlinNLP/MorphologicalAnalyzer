@@ -73,7 +73,10 @@ class MorphologyCompressor : Serializable {
 
     val typeAnnotation: String = morphologyObj.string("type")!!
 
-    if (typeAnnotation !in this.annotationsToTypesMap) throw InvalidMorphologyType(typeAnnotation)
+    // Note: morphologies of type 'NUM' cannot be put in the dictionary because they have an adding 'numericForm'
+    // property. They should be created by the Morphological Analyzer.
+    if (typeAnnotation !in this.annotationsToTypesMap || typeAnnotation == "NUM")
+      throw InvalidMorphologyType(typeAnnotation)
 
     val lemmaIndex: Int = this.encodeLemma(morphologyObj.string("lemma")!!)
     val typeIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation)
