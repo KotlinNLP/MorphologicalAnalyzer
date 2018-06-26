@@ -7,9 +7,9 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
-import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.*
@@ -29,7 +29,7 @@ class DateTimeProcessor(private val langCode: String) {
    *
    * @return a list of date-time objects (empty if none has been found)
    */
-  fun findDateTimes(text: String, tokens: List<Token>): List<DateTime> {
+  fun findDateTimes(text: String, tokens: List<RealToken>): List<DateTime> {
 
     return if (text.trim().isNotEmpty()) {
 

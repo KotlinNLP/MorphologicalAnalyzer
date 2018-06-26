@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.AnnotationsAccumulator
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
-import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.tree.ParseTree
 import org.antlr.v4.runtime.tree.TerminalNodeImpl
@@ -38,7 +38,7 @@ internal interface ListenerCommon {
   /**
    * The list of tokens that compose the input text.
    */
-  val tokens: List<Token>
+  val tokens: List<RealToken>
 
   /**
    * If true it enables the print of debug messages on stderr.
@@ -175,7 +175,7 @@ internal interface ListenerCommon {
       this.helper.spaceSplitterRegex.findAll(numericExpr).toList().flatMap { match ->
 
         val matchOffset: Int = offset + match.groups[1]!!.range.start
-        val matchTokenOffset: Int = this.tokens.indexOfFirst { matchOffset == it.startAt }
+        val matchTokenOffset: Int = this.tokens.indexOfFirst { matchOffset == it.position.start }
 
         debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
 
@@ -970,8 +970,8 @@ internal interface ListenerCommon {
       ((integer ?: "") + tmpDecimal).replace(regex = this.helper.leadingZeroesRegex, replacement = "$1")
 
     return Number(
-      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.startAt },
-      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.endAt },
+      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
+      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.position.end },
       asDigits = number,
       asWord = this.helper.digitToWordConverter.convert(number),
       original = ctx.text)

@@ -7,13 +7,13 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerCommon
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerEN
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerIT
-import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeListener
@@ -48,7 +48,7 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String, tokens: List<Token>): List<Number> {
+  fun findNumbers(text: String, tokens: List<RealToken>): List<Number> {
 
     return if (text.trim().isNotEmpty()) {
 
@@ -70,7 +70,7 @@ class NumbersProcessor(
    *
    * @return the listener for the current language
    */
-  private fun buildListener(tokens: List<Token>): ListenerCommon {
+  private fun buildListener(tokens: List<RealToken>): ListenerCommon {
 
     val listenerClass: KClass<*> = when (this.langParams.language) {
       "en" -> ListenerEN::class

@@ -11,13 +11,15 @@ import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
-import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number as NumberMorpho
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
+import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
-import com.kotlinnlp.neuraltokenizer.Token
 
 /**
  * The morphological analyzer.
@@ -36,6 +38,8 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     /**
      * Build the default morphology entries list for punctuation tokens (it contains only one single morphology).
      *
+     * @param form the form of the token
+     *
      * @return a morphology entries list
      */
     private fun buildPunctMorpho(form: String): List<MorphologyEntry> = listOf(
@@ -45,12 +49,14 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     /**
      * Build the default morphology entries list for number tokens (it contains only one single morphology).
      *
+     * @param lemma the lemma of the number token
+     *
      * @return a morphology entries list
      */
-    private fun buildNumberMorpho(form: String): List<MorphologyEntry> = listOf(
+    private fun buildNumberMorpho(lemma: String): List<MorphologyEntry> = listOf(
       MorphologyEntry(
         type = MorphologyEntry.Type.Single,
-        list = listOf(Number(lemma = form, gender = Gender.Masculine, number = NumberEnum.Singular)))
+        list = listOf(NumberMorpho(lemma = lemma, gender = Gender.Undefined, number = NumberEnum.Undefined)))
     )
   }
 
@@ -73,52 +79,45 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    *
    * @return the morphological analysis of the given text
    */
-  fun analyze(text: String, tokens: List<Token>, langCode: String): MorphologicalAnalysis {
+  fun analyze(text: String, tokens: List<RealToken>, langCode: String): MorphologicalAnalysis {
 
     require(langCode.length == 2) { "The language code must have length 2." }
 
     val dateTimeProcessor = this.dateTimeProcessors.getOrPut(langCode, defaultValue = { DateTimeProcessor(langCode) })
     val numbersProcessor = this.numbersProcessors.getOrPut(langCode, defaultValue = { NumbersProcessor(langCode) })
 
+    val dateTimes: List<DateTime> = dateTimeProcessor.findDateTimes(text = text, tokens = tokens)
+    val numbers: List<Number> = numbersProcessor.findNumbers(text = text, tokens = tokens)
+    val numbersByIndex: Map<Int, Number> = mapOf(
+      *numbers.flatMap { (it.startToken..it.endToken).map { i -> Pair(i, it) } }.toTypedArray()
+    )
+
     return MorphologicalAnalysis(
-      tokens = tokens.map { this.getTokenMorphology(it) },
+      tokens = tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
       multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
-      dateTimes = dateTimeProcessor.findDateTimes(text = text, tokens = tokens),
-      numbers = numbersProcessor.findNumbers(text = text, tokens = tokens)
+      dateTimes = dateTimes
     )
   }
 
   /**
    * @param token a token
+   * @param numberToken the number token in case the token is part of a numeric expression, otherwise null
    *
    * @return the list of morphology entries of the given [token] or null if no one has been found
    */
-  private fun getTokenMorphology(token: Token): List<MorphologyEntry>? {
+  private fun getTokenMorphology(token: RealToken, numberToken: Number?): List<MorphologyEntry>? {
 
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 
     return when {
-      token.isSpace -> null
       token.isPunct() -> buildPunctMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
-      token.isNumber() -> buildNumberMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
-      dictionaryEntry != null -> dictionaryEntry.morphologies
-      else -> null
+      numberToken != null -> buildNumberMorpho(numberToken.asWord) + (dictionaryEntry?.morphologies ?: listOf())
+      else -> dictionaryEntry?.morphologies
     }
   }
 
   /**
    * @return a boolean indicating if this token contains a punctuation form
    */
-  private fun Token.isPunct(): Boolean = punctRegex.matches(this.form)
-
-  /**
-   * TODO: fix
-   *
-   * @return a boolean indicating if this token contains a numeric form
-   */
-  private fun Token.isNumber(): Boolean =
-    this.form.toDoubleOrNull() != null ||
-      this.form.replace(",", ".").toDoubleOrNull() != null ||
-      this.form.replace(".", "").toDoubleOrNull() != null ||
-      this.form.replace(".", "").replace(",", ".").toDoubleOrNull() != null
+  private fun RealToken.isPunct(): Boolean = punctRegex.matches(this.form)
 }

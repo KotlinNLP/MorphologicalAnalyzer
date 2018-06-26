@@ -7,12 +7,12 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersENBaseListener
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersENParser
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
-import com.kotlinnlp.neuraltokenizer.Token
 import org.antlr.v4.runtime.ParserRuleContext
 
 /**
@@ -30,7 +30,7 @@ import org.antlr.v4.runtime.ParserRuleContext
 internal class ListenerEN(
   override val langParams: LanguageParams,
   override val processor: NumbersProcessor,
-  override val tokens: List<Token>,
+  override val tokens: List<RealToken>,
   override val debug: Boolean = false,
   override val enableSubexpressions: Boolean = true
 ): NumbersENBaseListener(), ListenerCommon {

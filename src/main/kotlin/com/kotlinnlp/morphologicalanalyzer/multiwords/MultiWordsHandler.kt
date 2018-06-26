@@ -7,8 +7,8 @@
 
 package com.kotlinnlp.morphologicalanalyzer.multiwords
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
-import com.kotlinnlp.neuraltokenizer.Token
 
 /**
  * The multi-word expressions analyzer.
@@ -22,28 +22,19 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
    *
    * @return the list of morphologies of the multi-words recognized in the given list of [tokens]
    */
-  fun getMultiWordMorphologies(tokens: List<Token>): List<MultiWordsMorphology> {
+  fun getMultiWordMorphologies(tokens: List<RealToken>): List<MultiWordsMorphology> {
 
     val morphologies = mutableListOf<MultiWordsMorphology>()
 
-    tokens.forEachIndexed { tokenIndex, token ->
+    (0 until tokens.size).forEach { tokenIndex ->
 
-      if (!token.isSpace) {
-        this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
-
-          val addingTokens: Int = multiWord.getNumOfSpaces()
-          var followingTokens = 0
-          val endIndex: Int = tokenIndex + 1 + tokens.subList(tokenIndex + 1, tokens.size).indexOfFirst {
-            !it.isSpace && ++followingTokens == addingTokens
-          }
-
-          morphologies.add(
-            MultiWordsMorphology(
-              startToken = tokenIndex,
-              endToken = endIndex,
-              morphologies = this.dictionary[multiWord]!!.morphologies)
-          )
-        }
+      this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
+        morphologies.add(
+          MultiWordsMorphology(
+            startToken = tokenIndex,
+            endToken = tokenIndex + multiWord.getNumOfSpaces(),
+            morphologies = this.dictionary[multiWord]!!.morphologies)
+        )
       }
     }
 
@@ -51,39 +42,33 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
   }
 
   /**
-   * Get the list of multi-words expressions that start with the token at the given index of a [tokens] list.
+   * Get the list of multi-words expressions that start with the token at the given index of the [tokens] list.
    *
    * @param tokens a list of input tokens
    * @param tokenIndex the index of the currently focused token (within the [tokens] list)
    *
    * @return a list of multi-words expressions (empty if no one has been found)
    */
-  private fun getValidMultiWords(tokens: List<Token>, tokenIndex: Int): List<String> {
+  private fun getValidMultiWords(tokens: List<RealToken>, tokenIndex: Int): List<String> {
 
     val validMultiWords = mutableListOf<String>()
 
     var candidates: Set<String> = this.dictionary.getMultiWordsIntroducedBy(tokens[tokenIndex].form).toSet()
     var followingTokenIndex: Int = tokenIndex
-    var addingTokens = 0
 
     while (candidates.size > 1 && ++followingTokenIndex < tokens.size) {
 
-      val token: Token = tokens[followingTokenIndex]
+      val multiWords: List<String> = this.dictionary.getMultiWords(word = tokens[followingTokenIndex].form)
 
-      if (!token.isSpace) {
+      if (multiWords.isEmpty()) break
 
-        val multiWords: List<String> = this.dictionary.getMultiWords(token.form)
+      candidates = candidates.intersect(multiWords)
 
-        if (multiWords.isEmpty()) break
+      val addingTokens = followingTokenIndex - tokenIndex
 
-        candidates = candidates.intersect(multiWords)
-
-        addingTokens++
-
-        candidates
-          .filter { it.getNumOfSpaces() == addingTokens } // keep only the candidates that match exactly from
-          .forEach { validMultiWords.add(it) }            // tokenIndex until the current index
-      }
+      candidates
+        .filter { it.getNumOfSpaces() == addingTokens } // keep only the candidates that match exactly the sequence of
+        .forEach { validMultiWords.add(it) }            // the current token and all the adding tokens
     }
 
     return validMultiWords

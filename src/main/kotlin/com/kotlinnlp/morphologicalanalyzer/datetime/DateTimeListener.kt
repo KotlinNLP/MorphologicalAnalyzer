@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
@@ -14,14 +15,13 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.SingleDateTime
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
-import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
 
 /**
  * An event listener for an ANTRL DateTime Parser.
  */
 @Suppress("FunctionName") // for the automatically generated rule methods
-internal class DateTimeListener(private val tokens: List<Token>) : DateTimeBaseListener() {
+internal class DateTimeListener(private val tokens: List<RealToken>) : DateTimeBaseListener() {
 
   /**
    * The list of date-times recognized.

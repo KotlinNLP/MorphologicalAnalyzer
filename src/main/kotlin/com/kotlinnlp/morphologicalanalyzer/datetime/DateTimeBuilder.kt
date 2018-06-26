@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.*
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.CloseInterval
@@ -14,7 +15,6 @@ import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.Interval
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenFromInterval
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.intervals.OpenToInterval
 import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
-import com.kotlinnlp.neuraltokenizer.Token
 import java.util.*
 
 /**
@@ -22,7 +22,7 @@ import java.util.*
  *
  * @param tokens the list of tokens that compose the input text.
  */
-internal class DateTimeBuilder(private val tokens: List<Token>) {
+internal class DateTimeBuilder(private val tokens: List<RealToken>) {
 
   /**
    * The day of the currently building date-time.
@@ -308,8 +308,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateTokens(startIndex: Int, endIndex: Int) {
 
     this.dateTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -319,8 +319,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setTimeTokens(startIndex: Int, endIndex: Int) {
 
     this.timeTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -330,8 +330,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateTimeSimpleTokens(startIndex: Int, endIndex: Int) {
 
     this.dateTimeSimpleTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -341,8 +341,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setOffsetTokens(startIndex: Int, endIndex: Int) {
 
     this.offsetTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -352,8 +352,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateOffsetTokens(startIndex: Int, endIndex: Int) {
 
     this.dateOffsetTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -363,8 +363,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setDateOrdinalTokens(startIndex: Int, endIndex: Int) {
 
     this.dateOrdinalTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 
@@ -374,8 +374,8 @@ internal class DateTimeBuilder(private val tokens: List<Token>) {
   fun setIntervalTokens(startIndex: Int, endIndex: Int) {
 
     this.intervalTokens = IntRange(
-      this.tokens.indexOfFirst { it.startAt == startIndex },
-      this.tokens.indexOfFirst { it.endAt == endIndex }
+      this.tokens.indexOfFirst { it.position.start == startIndex },
+      this.tokens.indexOfFirst { it.position.end == endIndex }
     )
   }
 }

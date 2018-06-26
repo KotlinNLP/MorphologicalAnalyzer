@@ -7,12 +7,19 @@
 
 package utils
 
-import com.kotlinnlp.neuraltokenizer.Token
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
+import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
 
 /**
  * A simple text tokenizer by chars.
  */
 object SimpleTokenizer {
+
+  /**
+   * @property form the token form
+   * @property position the position of the token in the original text
+   */
+  data class Token(override val form: String, override val position: Position) : RealToken
 
   /**
    * Tokenize a text by chars.
@@ -21,7 +28,7 @@ object SimpleTokenizer {
    *
    * @return the list of tokens
    */
-  fun tokenize(text: String): List<Token> = text.mapIndexed { i, c ->
-    Token(id = i, form = c.toString(), startAt = i, endAt = i, isSpace = c.isWhitespace())
+  fun tokenize(text: String): List<RealToken> = text.mapIndexed { i, c ->
+    Token(form = c.toString(), position = Position(start = i, end = i, index = i))
   }
 }

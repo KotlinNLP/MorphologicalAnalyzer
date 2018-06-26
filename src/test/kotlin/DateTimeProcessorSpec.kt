@@ -5,9 +5,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
-import com.kotlinnlp.neuraltokenizer.Token
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
@@ -39,7 +39,7 @@ class DateTimeProcessorSpec : Spek({
 
             on("text: '$text'") {
 
-              val tokens: List<Token> = SimpleTokenizer.tokenize(text)
+              val tokens: List<RealToken> = SimpleTokenizer.tokenize(text)
               val dateTimes: List<DateTime> = processor.findDateTimes(text = text, tokens = tokens)
 
               if (expectedDateTime != null) {
