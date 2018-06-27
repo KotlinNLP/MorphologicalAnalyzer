@@ -897,109 +897,6 @@ internal interface ListenerCommon {
   }
 
   /**
-   * Add a new token found if it has a match within the [tokens] list.
-   * If enabled, sub-expressions are searched and added.
-   *
-   * @param token the number token to add
-   * @param ctx the ANTLR context of the token
-   */
-  private fun addNewNumber(token: Number, ctx: ParserRuleContext) {
-
-    if (token.startToken >= 0 && token.endToken >= 0) {
-
-      this.helper.numbers.add(token)
-
-      if (this.enableSubexpressions)
-        this.helper.numbers.addAll(this.findSubexpressions(offset = ctx.start.startIndex, numericExpr = ctx.text))
-
-    } else {
-      debugPrint("Cannot find a match of the number '${token.original}' within the tokens.")
-    }
-  }
-
-  /**
-   * Build a token given its integer and decimal parts as strings.
-   *
-   * @param ctx the context of the 'number' rule
-   *
-   * @return a new number token
-   */
-  private fun buildNumber(ctx: ParserRuleContext): Number {
-
-    val (integer, decimal) = this.getNumberComponents(ctx)
-
-    return Number(
-      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
-      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.position.end },
-      value = decimal?.let { "$integer.$decimal".toDouble() }
-        ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
-      asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
-      original = ctx.text
-    )
-  }
-
-  /**
-   * @param ctx the ANTLR context of the number
-   *
-   * @return a pair containing the <integer, decimal?> parts of the parsed number
-   */
-  private fun getNumberComponents(ctx: ParserRuleContext): Pair<String, String?> {
-
-    var accumulator = AnnotationsAccumulator()
-    var intPart: String? = null
-
-    ctx.children.forEach {
-
-      if (it is TerminalNodeImpl) {
-
-        if (it.text == this.langParams.wordDecimalSeparator || it.text == this.langParams.digitDecimalSeparator) {
-
-          intPart = accumulator.getConcatValues()
-          accumulator = AnnotationsAccumulator()
-
-          debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
-        }
-
-      } else {
-        this.visitParseTree(accumulator = accumulator, ctx = it as ParserRuleContext)
-      }
-    }
-
-    return this.buildComponents(accumulator = accumulator, intPart = intPart)
-  }
-
-  /**
-   * Build the integer and decimal parts of a number.
-   *
-   * @param accumulator the annotations accumulator
-   * @param intPart the integer part already accumulated
-   *
-   * @return a pair containing the <integer, decimal?> parts of the parsed number
-   */
-  private fun buildComponents(accumulator: AnnotationsAccumulator, intPart: String?): Pair<String, String?> {
-
-    val digitSep: String = this.langParams.digitDecimalSeparator
-    val accumulatedValues: String = accumulator.getConcatValues()
-
-    val components: Pair<String, String?> = when {
-      intPart != null -> Pair(intPart, accumulatedValues)
-      accumulatedValues.contains(digitSep) -> accumulatedValues.split(digitSep).let { Pair(it[0], it[1]) }
-      else -> Pair(accumulatedValues, null)
-    }
-
-    return components.let { Pair(it.first.trimLeadingZeros(), it.second?.trimEnd('0')) }
-  }
-
-  /**
-   * Trim the leading zeros of a string that contains a number.
-   * If the the string contains only '0' chars, only one of them is kept.
-   *
-   * @return a new string with the leading zeros trimmed
-   */
-  private fun String.trimLeadingZeros(): String =
-    this.replace(this@ListenerCommon.helper.leadingZeroesRegex, "$1").let { if (it.isEmpty()) "0" else it }
-
-  /**
    * The listener of the 'exit w_1' event.
    *
    * @param ctx the context of the 'w_1' rule just parsed
@@ -1215,4 +1112,107 @@ internal interface ListenerCommon {
    * @param ctx the context of the 'd_unit' rule just parsed
    */
   fun exitD_unit(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = ctx.text)
+
+  /**
+   * Add a new token found if it has a match within the [tokens] list.
+   * If enabled, sub-expressions are searched and added.
+   *
+   * @param token the number token to add
+   * @param ctx the ANTLR context of the token
+   */
+  private fun addNewNumber(token: Number, ctx: ParserRuleContext) {
+
+    if (token.startToken >= 0 && token.endToken >= 0) {
+
+      this.helper.numbers.add(token)
+
+      if (this.enableSubexpressions)
+        this.helper.numbers.addAll(this.findSubexpressions(offset = ctx.start.startIndex, numericExpr = ctx.text))
+
+    } else {
+      debugPrint("Cannot find a match of the number '${token.original}' within the tokens.")
+    }
+  }
+
+  /**
+   * Build a token given its integer and decimal parts as strings.
+   *
+   * @param ctx the context of the 'number' rule
+   *
+   * @return a new number token
+   */
+  private fun buildNumber(ctx: ParserRuleContext): Number {
+
+    val (integer, decimal) = this.getNumberComponents(ctx)
+
+    return Number(
+      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
+      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.position.end },
+      value = decimal?.let { "$integer.$decimal".toDouble() }
+        ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
+      asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
+      original = ctx.text
+    )
+  }
+
+  /**
+   * @param ctx the ANTLR context of the number
+   *
+   * @return a pair containing the <integer, decimal?> parts of the parsed number
+   */
+  private fun getNumberComponents(ctx: ParserRuleContext): Pair<String, String?> {
+
+    var accumulator = AnnotationsAccumulator()
+    var intPart: String? = null
+
+    ctx.children.forEach {
+
+      if (it is TerminalNodeImpl) {
+
+        if (it.text == this.langParams.wordDecimalSeparator || it.text == this.langParams.digitDecimalSeparator) {
+
+          intPart = accumulator.getConcatValues()
+          accumulator = AnnotationsAccumulator()
+
+          debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
+        }
+
+      } else {
+        this.visitParseTree(accumulator = accumulator, ctx = it as ParserRuleContext)
+      }
+    }
+
+    return this.buildComponents(accumulator = accumulator, intPart = intPart)
+  }
+
+  /**
+   * Build the integer and decimal parts of a number.
+   *
+   * @param accumulator the annotations accumulator
+   * @param intPart the integer part already accumulated
+   *
+   * @return a pair containing the <integer, decimal?> parts of the parsed number
+   */
+  private fun buildComponents(accumulator: AnnotationsAccumulator, intPart: String?): Pair<String, String?> {
+
+    val digitSep: String = this.langParams.digitDecimalSeparator
+    val accumulatedValues: String = accumulator.getConcatValues()
+
+    val components: Pair<String, String?> = when {
+      intPart != null -> Pair(intPart, accumulatedValues)
+      accumulatedValues.contains(digitSep) -> accumulatedValues.split(digitSep).let { Pair(it[0], it[1]) }
+      else -> Pair(accumulatedValues, null)
+    }
+
+    return components.let { Pair(it.first.trimLeadingZeros(), it.second?.trimEnd('0')) }
+  }
+
+  /**
+   * Trim the leading zeros of a string that contains a number.
+   * If the the string contains only '0' chars, only one of them is kept.
+   *
+   * @return a new string with the leading zeros trimmed
+   */
+  private fun String.trimLeadingZeros(): String =
+    this.replace(this@ListenerCommon.helper.leadingZeroesRegex, "$1").let { if (it.isEmpty()) "0" else it }
 }
