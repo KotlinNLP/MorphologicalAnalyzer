@@ -12,7 +12,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <nexus-staging-plugin.version>1.6.7</nexus-staging-plugin.version>
         <kotlin.version>1.2.41</kotlin.version>
         <morphologicalanalyzer.version>0.1.0</morphologicalanalyzer.version>
     </properties>
