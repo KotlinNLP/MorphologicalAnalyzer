@@ -945,17 +945,16 @@ internal interface ListenerCommon {
    */
   private fun getNumberComponents(ctx: ParserRuleContext): Pair<String, String?> {
 
-    val digitSep = this.langParams.digitDecimalSeparator
     var accumulator = AnnotationsAccumulator()
-    var integer: String? = null
+    var intPart: String? = null
 
     ctx.children.forEach {
 
       if (it is TerminalNodeImpl) {
 
-        if (it.text == this.langParams.wordDecimalSeparator || it.text == digitSep) {
+        if (it.text == this.langParams.wordDecimalSeparator || it.text == this.langParams.digitDecimalSeparator) {
 
-          integer = accumulator.getConcatValues()
+          intPart = accumulator.getConcatValues()
           accumulator = AnnotationsAccumulator()
 
           debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
@@ -966,14 +965,39 @@ internal interface ListenerCommon {
       }
     }
 
+    return this.buildComponents(accumulator = accumulator, intPart = intPart)
+  }
+
+  /**
+   * Build the integer and decimal parts of a number.
+   *
+   * @param accumulator the annotations accumulator
+   * @param intPart the integer part already accumulated
+   *
+   * @return a pair containing the <integer, decimal?> parts of the parsed number
+   */
+  private fun buildComponents(accumulator: AnnotationsAccumulator, intPart: String?): Pair<String, String?> {
+
+    val digitSep: String = this.langParams.digitDecimalSeparator
     val accumulatedValues: String = accumulator.getConcatValues()
 
-    return when {
-      integer != null -> Pair(integer!!, accumulatedValues)
+    val components: Pair<String, String?> = when {
+      intPart != null -> Pair(intPart, accumulatedValues)
       accumulatedValues.contains(digitSep) -> accumulatedValues.split(digitSep).let { Pair(it[0], it[1]) }
       else -> Pair(accumulatedValues, null)
     }
+
+    return components.let { Pair(it.first.trimLeadingZeros(), it.second?.trimEnd('0')) }
   }
+
+  /**
+   * Trim the leading zeros of a string that contains a number.
+   * If the the string contains only '0' chars, only one of them is kept.
+   *
+   * @return a new string with the leading zeros trimmed
+   */
+  private fun String.trimLeadingZeros(): String =
+    this.replace(this@ListenerCommon.helper.leadingZeroesRegex, "$1").let { if (it.isEmpty()) "0" else it }
 
   /**
    * The listener of the 'exit w_1' event.
