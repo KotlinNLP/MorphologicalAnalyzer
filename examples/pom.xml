@@ -13,6 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.2.41</kotlin.version>
+        <neuraltokenizer.version>0.3.0</neuraltokenizer.version>
         <morphologicalanalyzer.version>0.1.0</morphologicalanalyzer.version>
     </properties>
 
@@ -66,6 +67,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
+            <artifactId>neuraltokenizer</artifactId>
+            <version>${neuraltokenizer.version}</version>
         </dependency>
 
         <dependency>
