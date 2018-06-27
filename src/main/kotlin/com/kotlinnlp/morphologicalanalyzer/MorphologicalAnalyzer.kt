@@ -50,13 +50,19 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
      * Build the default morphology entries list for number tokens (it contains only one single morphology).
      *
      * @param lemma the lemma of the number token
+     * @param numericForm the numericForm of the number
      *
      * @return a morphology entries list
      */
-    private fun buildNumberMorpho(lemma: String): List<MorphologyEntry> = listOf(
+    private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): List<MorphologyEntry> = listOf(
       MorphologyEntry(
         type = MorphologyEntry.Type.Single,
-        list = listOf(NumberMorpho(lemma = lemma, gender = Gender.Undefined, number = NumberEnum.Undefined)))
+        list = listOf(NumberMorpho(
+          lemma = lemma,
+          gender = Gender.Undefined,
+          number = NumberEnum.Undefined,
+          numericForm = numericForm))
+      )
     )
   }
 
@@ -110,8 +116,14 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 
     return when {
+
       token.isPunct() -> buildPunctMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
-      numberToken != null -> buildNumberMorpho(numberToken.asWord) + (dictionaryEntry?.morphologies ?: listOf())
+
+      numberToken != null -> buildNumberMorpho(
+        lemma = numberToken.asWord,
+        numericForm = numberToken.value
+      ) + (dictionaryEntry?.morphologies ?: listOf())
+
       else -> dictionaryEntry?.morphologies
     }
   }
