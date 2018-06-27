@@ -5,12 +5,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalyzer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizerModel
-import com.kotlinnlp.neuraltokenizer.Token
 import java.io.File
 import java.io.FileInputStream
 
@@ -50,7 +50,7 @@ fun main(args: Array<String>) {
     } else {
 
       val sentences = tokenizer.tokenize(inputText)
-      val tokens = sentences.fold(mutableListOf<Token>()) { list, sentence -> list.addAll(sentence.tokens); list }
+      val tokens: List<RealToken> = sentences.flatMap { it.tokens }
 
       val analysis = analyzer.analyze(text = inputText, tokens = tokens, langCode = langCode)
 
@@ -79,7 +79,7 @@ private fun readValue(): String {
  * @param tokens the list of tokens
  * @param analysis the morphological analysis of the [tokens]
  */
-private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) {
+private fun printAnalysis(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
   println("\n*** Tokens ***\n")
   printTokens(tokens = tokens, analysis = analysis)
@@ -97,9 +97,9 @@ private fun printAnalysis(tokens: List<Token>, analysis: MorphologicalAnalysis) 
  * @param tokens the list of tokens
  * @param analysis the morphological analysis of the [tokens]
  */
-private fun printTokens(tokens: List<Token>, analysis: MorphologicalAnalysis) {
+private fun printTokens(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
-  analysis.tokens.zip(tokens).filterNot { (_, token) -> token.isSpace }.forEach { (morphoEntries, token) ->
+  analysis.tokens.zip(tokens).forEach { (morphoEntries, token) ->
     println("`${token.form}`")
     morphoEntries?.forEach { println("\t$it") } ?: println("\tNo morphology found.")
   }
@@ -111,7 +111,7 @@ private fun printTokens(tokens: List<Token>, analysis: MorphologicalAnalysis) {
  * @param tokens the list of tokens
  * @param analysis the morphological analysis of the [tokens]
  */
-private fun printMultiWords(tokens: List<Token>, analysis: MorphologicalAnalysis) {
+private fun printMultiWords(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
   if (analysis.multiWords.isNotEmpty())
 
@@ -130,7 +130,7 @@ private fun printMultiWords(tokens: List<Token>, analysis: MorphologicalAnalysis
  * @param tokens the list of tokens
  * @param analysis the morphological analysis of the [tokens]
  */
-private fun printDateTimes(tokens: List<Token>, analysis: MorphologicalAnalysis) {
+private fun printDateTimes(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
   if (analysis.dateTimes.isNotEmpty())
 
