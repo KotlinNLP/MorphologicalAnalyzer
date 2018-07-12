@@ -10,8 +10,8 @@ package com.kotlinnlp.morphologicalanalyzer.dictionary.compressor
 import com.beust.klaxon.JsonObject
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
-import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
@@ -92,12 +92,12 @@ class MorphologyCompressor : Serializable {
    *
    * @return the decoded morphology entry
    */
-  fun decodeMorphology(morphologyEntryCodes: List<String>): List<MorphologyEntry> {
+  fun decodeMorphology(morphologyEntryCodes: List<String>): List<Morphology> {
 
     val tmpEntry: TmpEntry = this.decodeTmpEntry(morphologyEntryCodes)
 
     return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
-      MorphologyEntry(morphologies = entry.morphologies.map {
+      Morphology(morphologies = entry.morphologies.map {
         MorphologyFactory(lemma = it.lemma, type = it.type, properties = this.mapProperties(it.properties))
       })
     }

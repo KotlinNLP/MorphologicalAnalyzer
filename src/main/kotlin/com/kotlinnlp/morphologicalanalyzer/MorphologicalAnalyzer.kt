@@ -7,9 +7,9 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
-import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number as NumberMorpho
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
@@ -42,8 +42,8 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
      *
      * @return a morphology entries list
      */
-    private fun buildPunctMorpho(form: String): List<MorphologyEntry> = listOf(
-      MorphologyEntry(type = MorphologyEntry.Type.Single, list = listOf(Punctuation(lemma = form)))
+    private fun buildPunctMorpho(form: String): List<Morphology> = listOf(
+      Morphology(type = Morphology.Type.Single, list = listOf(Punctuation(lemma = form)))
     )
 
     /**
@@ -54,9 +54,9 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
      *
      * @return a morphology entries list
      */
-    private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): List<MorphologyEntry> = listOf(
-      MorphologyEntry(
-        type = MorphologyEntry.Type.Single,
+    private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): List<Morphology> = listOf(
+      Morphology(
+        type = Morphology.Type.Single,
         list = listOf(NumberMorpho(
           lemma = lemma,
           gender = Gender.Undefined,
@@ -111,7 +111,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    *
    * @return the list of morphology entries of the given [token] or null if no one has been found
    */
-  private fun getTokenMorphology(token: RealToken, numberToken: Number?): List<MorphologyEntry>? {
+  private fun getTokenMorphology(token: RealToken, numberToken: Number?): List<Morphology>? {
 
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 

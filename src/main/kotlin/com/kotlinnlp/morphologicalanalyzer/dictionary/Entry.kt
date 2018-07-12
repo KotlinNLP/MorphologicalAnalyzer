@@ -7,6 +7,8 @@
 
 package com.kotlinnlp.morphologicalanalyzer.dictionary
 
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
+
 /**
  * A data entry of the morphology dictionary.
  *
@@ -17,7 +19,7 @@ package com.kotlinnlp.morphologicalanalyzer.dictionary
 data class Entry(
   val form: String,
   val multipleForm: List<String>?,
-  val morphologies: List<MorphologyEntry>
+  val morphologies: List<Morphology>
 ) {
 
   /**

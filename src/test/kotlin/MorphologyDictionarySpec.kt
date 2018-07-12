@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Adverb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Preposition
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Verb
@@ -15,7 +16,6 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
-import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
@@ -99,7 +99,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a Multiple morphology") {
-          assertEquals(MorphologyEntry.Type.Multiple, entry.morphologies.first().type)
+          assertEquals(Morphology.Type.Multiple, entry.morphologies.first().type)
         }
 
         it("should contain 2 entries in its multiple morphology") {
@@ -143,7 +143,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a first Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[0].type)
+          assertEquals(Morphology.Type.Single, entry.morphologies[0].type)
         }
 
         it("should contain the first expected morphology") {
@@ -161,7 +161,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a second Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies[1].type)
+          assertEquals(Morphology.Type.Single, entry.morphologies[1].type)
         }
 
         it("should contain the second expected morphology") {
@@ -199,7 +199,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies.first().type)
+          assertEquals(Morphology.Type.Single, entry.morphologies.first().type)
         }
 
         it("should contain the expected morphology") {
@@ -227,7 +227,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain Multiple morphologies") {
-          assertTrue { entry.morphologies.all { it.type == MorphologyEntry.Type.Multiple } }
+          assertTrue { entry.morphologies.all { it.type == Morphology.Type.Multiple } }
         }
 
         it("should contain 2 entries in its multiple morphologies") {
@@ -359,7 +359,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies.first().type)
+          assertEquals(Morphology.Type.Single, entry.morphologies.first().type)
         }
 
         it("should contain the expected morphology") {
@@ -371,7 +371,7 @@ class MorphologyDictionarySpec : Spek({
 
       on("the querying the alternative forms of 'form with_è accentuated'") {
 
-        val expectedMorpho = listOf(MorphologyEntry(listOf(Adverb.Modal(lemma = "lemma10", degree = Degree.Base))))
+        val expectedMorpho = listOf(Morphology(listOf(Adverb.Modal(lemma = "lemma10", degree = Degree.Base))))
 
         it("should return the same entry when querying `form with_e' accentuated`") {
           assertEquals(
@@ -409,7 +409,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain a Single morphology") {
-          assertEquals(MorphologyEntry.Type.Single, entry.morphologies.first().type)
+          assertEquals(Morphology.Type.Single, entry.morphologies.first().type)
         }
 
         it("should contain the expected morphology") {
@@ -421,7 +421,7 @@ class MorphologyDictionarySpec : Spek({
 
       on("the querying the alternative forms of 'only_è'") {
 
-        val expectedMorpho = listOf(MorphologyEntry(listOf(Adverb.Modal(lemma = "lemma11", degree = Degree.Base))))
+        val expectedMorpho = listOf(Morphology(listOf(Adverb.Modal(lemma = "lemma11", degree = Degree.Base))))
 
         it("should return the same entry when querying `only_e'`") {
           assertEquals(

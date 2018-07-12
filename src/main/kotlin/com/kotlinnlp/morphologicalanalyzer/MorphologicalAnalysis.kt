@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
-import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyEntry
+import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsMorphology
 
@@ -20,7 +20,7 @@ import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsMorphology
  * @property numbers the list of numbers found
  */
 data class MorphologicalAnalysis(
-  val tokens: List<List<MorphologyEntry>?>,
+  val tokens: List<List<Morphology>?>,
   val multiWords: List<MultiWordsMorphology>,
   val dateTimes: List<DateTime>
 ) {
