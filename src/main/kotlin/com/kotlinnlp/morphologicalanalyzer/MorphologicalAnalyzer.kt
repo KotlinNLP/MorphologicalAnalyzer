@@ -16,9 +16,9 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.Number as Numbe
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
-import com.kotlinnlp.morphologicalanalyzer.numbers.Number
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 
 /**

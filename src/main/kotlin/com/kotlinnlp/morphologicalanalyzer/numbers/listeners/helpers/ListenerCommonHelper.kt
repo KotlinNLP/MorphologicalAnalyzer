@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers
 
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
-import com.kotlinnlp.morphologicalanalyzer.numbers.Number
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.Number
 import org.antlr.v4.runtime.tree.ParseTree
 
 /**

@@ -6,7 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
-import com.kotlinnlp.morphologicalanalyzer.numbers.Number
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.Number
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe

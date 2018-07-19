@@ -9,7 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.*

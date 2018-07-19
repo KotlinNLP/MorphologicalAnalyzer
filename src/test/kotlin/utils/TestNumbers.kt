@@ -8,7 +8,7 @@
 package utils
 
 import com.beust.klaxon.*
-import com.kotlinnlp.morphologicalanalyzer.numbers.Number
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.Number
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 

@@ -10,11 +10,10 @@ package com.kotlinnlp.morphologicalanalyzer.datetime
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeBaseListener
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Date
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.SingleDateTime
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Time
-import com.kotlinnlp.morphologicalanalyzer.datetime.utils.DateUnit
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Date
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.SingleDateTime
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Time
 import java.util.*
 
 /**

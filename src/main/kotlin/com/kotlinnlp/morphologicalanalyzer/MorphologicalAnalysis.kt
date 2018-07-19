@@ -9,7 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 
 /**
  * The morphological analysis of a tokenized text.

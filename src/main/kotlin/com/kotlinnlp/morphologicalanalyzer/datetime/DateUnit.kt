@@ -5,10 +5,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-package com.kotlinnlp.morphologicalanalyzer.datetime.utils
+package com.kotlinnlp.morphologicalanalyzer.datetime
 
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.DateOrdinal
-import com.kotlinnlp.morphologicalanalyzer.datetime.objects.Offset
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateOrdinal
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Offset
 import kotlin.reflect.KClass
 
 /**
