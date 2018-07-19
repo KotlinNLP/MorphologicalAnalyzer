@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime.objects
 
-import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 
 /**
  * A date-time expression.

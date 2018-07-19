@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
-import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 
 /**
  * Represents a numeric expression recognized.

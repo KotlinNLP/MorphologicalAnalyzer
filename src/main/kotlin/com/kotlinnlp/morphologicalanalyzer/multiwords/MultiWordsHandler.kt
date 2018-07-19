@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.multiwords
 
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 
