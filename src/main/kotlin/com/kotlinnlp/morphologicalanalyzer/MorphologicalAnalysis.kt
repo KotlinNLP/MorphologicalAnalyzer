@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
 
 /**
@@ -21,14 +21,14 @@ import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
  */
 data class MorphologicalAnalysis(
   val tokens: List<List<Morphology>?>,
-  val multiWords: List<MultiWordsMorphology>,
+  val multiWords: List<MultiWords>,
   val dateTimes: List<DateTime>
 ) {
 
   /**
    * Map the index of each token to the list of multi-words morphologies in which it is involved.
    */
-  private val tokensToMultiWords: Map<Int, List<MultiWordsMorphology>> =
+  private val tokensToMultiWords: Map<Int, List<MultiWords>> =
     mapOf(*(0 until this.tokens.size)
       .map { tokenIndex -> Pair(tokenIndex, this.multiWords.filter { tokenIndex in (it.startToken .. it.endToken) }) }
       .toTypedArray())
@@ -40,5 +40,5 @@ data class MorphologicalAnalysis(
    *
    * @return a list of multi-words morphologies or null if no one has been found
    */
-  fun getInvolvedMultiWords(tokenIndex: Int): List<MultiWordsMorphology>? = this.tokensToMultiWords[tokenIndex]
+  fun getInvolvedMultiWords(tokenIndex: Int): List<MultiWords>? = this.tokensToMultiWords[tokenIndex]
 }

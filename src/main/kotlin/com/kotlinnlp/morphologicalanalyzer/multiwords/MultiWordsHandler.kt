@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.multiwords
 
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWordsMorphology
+import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 
@@ -23,15 +23,15 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
    *
    * @return the list of morphologies of the multi-words recognized in the given list of [tokens]
    */
-  fun getMultiWordMorphologies(tokens: List<RealToken>): List<MultiWordsMorphology> {
+  fun getMultiWordMorphologies(tokens: List<RealToken>): List<MultiWords> {
 
-    val morphologies = mutableListOf<MultiWordsMorphology>()
+    val morphologies = mutableListOf<MultiWords>()
 
     (0 until tokens.size).forEach { tokenIndex ->
 
       this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
         morphologies.add(
-          MultiWordsMorphology(
+          MultiWords(
             startToken = tokenIndex,
             endToken = tokenIndex + multiWord.getNumOfSpaces(),
             morphologies = this.dictionary[multiWord]!!.morphologies)
