@@ -7,8 +7,8 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateOrdinal
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Offset
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateOrdinal
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Offset
 import kotlin.reflect.KClass
 
 /**

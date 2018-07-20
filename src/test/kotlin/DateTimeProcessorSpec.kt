@@ -7,7 +7,7 @@
 
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe

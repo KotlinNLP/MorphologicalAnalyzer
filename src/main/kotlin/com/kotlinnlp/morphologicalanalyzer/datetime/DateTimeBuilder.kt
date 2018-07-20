@@ -8,12 +8,12 @@
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.*
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Date
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.CloseInterval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.Interval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.OpenFromInterval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.OpenToInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.*
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Date
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.CloseInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.Interval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenFromInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
 import java.util.*
 
 /**

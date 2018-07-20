@@ -8,8 +8,8 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.MultiWords
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.DateTime
+import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 
 /**
  * The morphological analysis of a tokenized text.

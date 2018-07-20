@@ -9,7 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.*
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.Number
+import com.kotlinnlp.linguisticdescription.sentence.properties.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.AnnotationsAccumulator
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper

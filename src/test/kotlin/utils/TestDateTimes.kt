@@ -8,12 +8,12 @@
 package utils
 
 import com.beust.klaxon.*
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.*
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.Date
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.CloseInterval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.Interval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.OpenFromInterval
-import com.kotlinnlp.linguisticdescription.sentence.multiwords.datetime.intervals.OpenToInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.*
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.Date
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.CloseInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.Interval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenFromInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 import java.util.*
