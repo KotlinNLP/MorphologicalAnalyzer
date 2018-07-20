@@ -13,8 +13,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.2.41</kotlin.version>
-        <neuraltokenizer.version>0.3.0</neuraltokenizer.version>
         <morphologicalanalyzer.version>0.1.0</morphologicalanalyzer.version>
+        <neuraltokenizer.version>0.3.0</neuraltokenizer.version>
+        <utils.version>2.1.0</utils.version>
     </properties>
 
     <repositories>
@@ -71,14 +72,20 @@
 
         <dependency>
             <groupId>com.kotlinnlp</groupId>
+            <artifactId>morphologicalanalyzer</artifactId>
+            <version>${morphologicalanalyzer.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlinnlp</groupId>
             <artifactId>neuraltokenizer</artifactId>
             <version>${neuraltokenizer.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.kotlinnlp</groupId>
-            <artifactId>morphologicalanalyzer</artifactId>
-            <version>${morphologicalanalyzer.version}</version>
+            <artifactId>utils</artifactId>
+            <version>${utils.version}</version>
         </dependency>
     </dependencies>
 </project>
