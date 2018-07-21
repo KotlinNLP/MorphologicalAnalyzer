@@ -60,7 +60,10 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
         list = listOf(NumberMorpho(
           lemma = lemma,
           gender = Gender.Undefined,
-          number = NumberEnum.Undefined,
+          number = when (numericForm.toDouble()) {
+            1.0 -> NumberEnum.Singular
+            else -> NumberEnum.Undefined
+          },
           numericForm = numericForm))
       )
     )
