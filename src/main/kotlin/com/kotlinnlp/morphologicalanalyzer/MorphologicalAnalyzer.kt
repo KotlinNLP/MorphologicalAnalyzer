@@ -94,9 +94,8 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     val dateTimes: List<DateTime> = dateTimeProcessor.findDateTimes(text = text, tokens = tokens)
     val numbers: List<Number> = numbersProcessor.findNumbers(text = text, tokens = tokens)
-    val numbersByIndex: Map<Int, Number> = mapOf(
-      *numbers.flatMap { (it.startToken..it.endToken).map { i -> Pair(i, it) } }.toTypedArray()
-    )
+    val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
+    val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
 
     return MorphologicalAnalysis(
       tokens = tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
