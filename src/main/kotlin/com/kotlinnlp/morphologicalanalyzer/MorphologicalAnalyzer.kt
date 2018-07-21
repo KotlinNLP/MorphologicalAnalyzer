@@ -99,7 +99,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
 
     return MorphologicalAnalysis(
       tokens = tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
-      multiWords = MultiWordsHandler(this.dictionary).getMultiWordMorphologies(tokens),
+      multiWords = MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens),
       dateTimes = dateTimes
     )
   }

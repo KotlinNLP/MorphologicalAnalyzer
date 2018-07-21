@@ -23,7 +23,7 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
    *
    * @return the list of morphologies of the multi-words recognized in the given list of [tokens]
    */
-  fun getMultiWordMorphologies(tokens: List<RealToken>): List<MultiWords> {
+  fun getMultiWordsMorphologies(tokens: List<RealToken>): List<MultiWords> {
 
     val morphologies = mutableListOf<MultiWords>()
 
