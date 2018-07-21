@@ -14,9 +14,9 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Pun
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number as NumberMorpho
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
+import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
-import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
 import com.kotlinnlp.linguisticdescription.sentence.properties.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
@@ -92,15 +92,15 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     val dateTimeProcessor = this.dateTimeProcessors.getOrPut(langCode, defaultValue = { DateTimeProcessor(langCode) })
     val numbersProcessor = this.numbersProcessors.getOrPut(langCode, defaultValue = { NumbersProcessor(langCode) })
 
-    val dateTimes: List<DateTime> = dateTimeProcessor.findDateTimes(text = text, tokens = tokens)
     val numbers: List<Number> = numbersProcessor.findNumbers(text = text, tokens = tokens)
     val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
+    val multiWordsNumbers: List<Number> = numbers.filter { it.startToken != it.endToken }
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
 
     return MorphologicalAnalysis(
       tokens = tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
-      multiWords = MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens),
-      dateTimes = dateTimes
+      multiWords = this.buildMultiWords(tokens = tokens, multiWordsNumbers = multiWordsNumbers),
+      dateTimes = dateTimeProcessor.findDateTimes(text = text, tokens = tokens)
     )
   }
 
@@ -131,4 +131,22 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
    * @return a boolean indicating if this token contains a punctuation form
    */
   private fun RealToken.isPunct(): Boolean = punctRegex.matches(this.form)
+
+  /**
+   * @param tokens the list of input tokens
+   * @param multiWordsNumbers the list of multi-words numbers
+   *
+   * @return the list of multi-words morphologies
+   */
+  private fun buildMultiWords(tokens: List<RealToken>, multiWordsNumbers: List<Number>): List<MultiWords> {
+
+    val multiWordsFromNumbers: List<MultiWords> = multiWordsNumbers.map {
+      MultiWords(
+        startToken = it.startToken,
+        endToken = it.endToken,
+        morphologies = buildNumberMorpho(lemma = it.asWord, numericForm = it.value))
+    }
+
+    return MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens) + multiWordsFromNumbers
+  }
 }
