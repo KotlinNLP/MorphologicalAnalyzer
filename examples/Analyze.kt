@@ -139,7 +139,7 @@ private fun printDateTimes(tokens: List<RealToken>, analysis: MorphologicalAnaly
 
     analysis.dateTimes.forEach {
       println("`%s` [%s]".format(
-        tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form },
+        tokens.subList(it.startToken, it.endToken + 1).joinToString(" ") { it.form },
         it
       ))
     }
