@@ -57,7 +57,6 @@ fun main(args: Array<String>) {
 
         printAnalysis(tokens = sentence.tokens, analysis = analysis)
       }
-
     }
   }
 
