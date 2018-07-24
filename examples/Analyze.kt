@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
@@ -49,12 +50,14 @@ fun main(args: Array<String>) {
 
     } else {
 
-      val sentences = tokenizer.tokenize(inputText)
-      val tokens: List<RealToken> = sentences.flatMap { it.tokens }
+      tokenizer.tokenize(inputText).forEach { sentence ->
 
-      val analysis = analyzer.analyze(text = inputText, tokens = tokens, langCode = langCode)
+        @Suppress("UNCHECKED_CAST")
+        val analysis = analyzer.analyze(sentence = sentence as RealSentence<RealToken>, langCode = langCode)
 
-      printAnalysis(tokens = tokens, analysis = analysis)
+        printAnalysis(tokens = sentence.tokens, analysis = analysis)
+      }
+
     }
   }
 
