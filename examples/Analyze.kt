@@ -118,7 +118,7 @@ private fun printMultiWords(tokens: List<RealToken>, analysis: MorphologicalAnal
   if (analysis.multiWords.isNotEmpty())
 
     analysis.multiWords.forEach {
-      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(separator = "") { it.form }))
+      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(" ") { it.form }))
       it.morphologies.forEach { println("\t$it") }
     }
 
