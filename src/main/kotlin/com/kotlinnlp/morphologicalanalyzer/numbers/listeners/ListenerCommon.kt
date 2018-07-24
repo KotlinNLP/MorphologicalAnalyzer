@@ -176,10 +176,11 @@ internal interface ListenerCommon {
 
         val matchOffset: Int = offset + match.groups[1]!!.range.start
         val matchTokenOffset: Int = this.tokens.indexOfFirst { matchOffset == it.position.start }
+        val subTokens: List<RealToken> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
         debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
 
-        this.processor.findNumbers(text = match.groupValues[1], tokens = this.tokens)
+        this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
           .map { token ->
             token.copy(
               startToken = matchTokenOffset + token.startToken,
@@ -1144,10 +1145,11 @@ internal interface ListenerCommon {
   private fun buildNumber(ctx: ParserRuleContext): Number {
 
     val (integer, decimal) = this.getNumberComponents(ctx)
-
+    val offset: Int = this.tokens.first().position.start // in case of recursion, when the tokens are
+                                                         // a sublist of the input
     return Number(
-      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == it.position.start },
-      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == it.position.end },
+      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == (it.position.start - offset) },
+      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == (it.position.end - offset) },
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
