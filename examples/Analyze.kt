@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
 
   val tokenizer: NeuralTokenizer = args[1].let {
     println("Loading tokenizer model from '$it'...")
-    NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))), useDropout = false)
+    NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))))
   }
 
   val analyzer: MorphologicalAnalyzer = args[2].let {

@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.2.41</kotlin.version>
         <morphologicalanalyzer.version>0.2.0</morphologicalanalyzer.version>
-        <neuraltokenizer.version>0.3.0</neuraltokenizer.version>
+        <neuraltokenizer.version>0.3.1</neuraltokenizer.version>
         <utils.version>2.1.0</utils.version>
     </properties>
 
