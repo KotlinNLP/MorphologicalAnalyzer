@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
 
   val analyzer: MorphologicalAnalyzer = args[2].let {
     println("Loading serialized dictionary from '$it'...")
-    MorphologicalAnalyzer(dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
+    MorphologicalAnalyzer(langCode = langCode, dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
   }
 
   while (true) {
@@ -53,7 +53,7 @@ fun main(args: Array<String>) {
       tokenizer.tokenize(inputText).forEach { sentence ->
 
         @Suppress("UNCHECKED_CAST")
-        val analysis = analyzer.analyze(sentence = sentence as RealSentence<RealToken>, langCode = langCode)
+        val analysis = analyzer.analyze(sentence = sentence as RealSentence<RealToken>)
 
         printAnalysis(tokens = sentence.tokens, analysis = analysis)
       }
