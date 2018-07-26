@@ -7,7 +7,6 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
-import com.beust.klaxon.JsonObject
 import com.kotlinnlp.linguisticdescription.sentence.properties.TokensRange
 
 /**
@@ -25,12 +24,4 @@ data class Number(
   val value: kotlin.Number,
   val asWord: String,
   val original: String
-) : TokensRange {
-
-  /**
-   * @return the JSON object that represents this number
-   */
-  fun toJSON(): JsonObject {
-    TODO("make as abstract and implement for each implementation")
-  }
-}
+) : TokensRange
