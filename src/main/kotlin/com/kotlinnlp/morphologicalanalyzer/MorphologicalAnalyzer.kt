@@ -25,9 +25,10 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 /**
  * The morphological analyzer.
  *
+ * @property langCode ISO 639-2 code of the language in which to analyze the text
  * @param dictionary a morphology dictionary
  */
-class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
+class MorphologicalAnalyzer(val langCode: String, private val dictionary: MorphologyDictionary) {
 
   companion object {
 
@@ -71,32 +72,33 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
   }
 
   /**
-   * A map of [DateTimeProcessor]s associated by language code.
+   * The processor of date-time expressions.
    */
-  private val dateTimeProcessors = mutableMapOf<String, DateTimeProcessor>()
+  private val dateTimeProcessor = DateTimeProcessor(this.langCode)
 
   /**
-   * A map of [NumbersProcessor]s associated by language code.
+   * The processor of number expressions.
    */
-  private val numbersProcessors = mutableMapOf<String, NumbersProcessor>()
+  private val numbersProcessor = NumbersProcessor(this.langCode)
+
+  /**
+   * Check language ISO code.
+   */
+  init {
+    require(langCode.length == 2) { "The language code must have length 2." }
+  }
 
   /**
    * Perform the morphological analysis of a sentence.
    *
    * @param sentence the sentence
-   * @param langCode the iso-a2 code of the language in which to analyze the text
    *
    * @return the morphological analysis of the given sentence
    */
-  fun analyze(sentence: RealSentence<RealToken>, langCode: String): MorphologicalAnalysis {
-
-    require(langCode.length == 2) { "The language code must have length 2." }
+  fun analyze(sentence: RealSentence<RealToken>): MorphologicalAnalysis {
 
     val text = sentence.buildText()
-    val dateTimeProcessor = this.dateTimeProcessors.getOrPut(langCode, defaultValue = { DateTimeProcessor(langCode) })
-    val numbersProcessor = this.numbersProcessors.getOrPut(langCode, defaultValue = { NumbersProcessor(langCode) })
-
-    val numbers: List<Number> = numbersProcessor.findNumbers(text = text, tokens = sentence.tokens)
+    val numbers: List<Number> = this.numbersProcessor.findNumbers(text = text, tokens = sentence.tokens)
     val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
     val multiWordsNumbers: List<Number> = numbers.filter { it.startToken != it.endToken }
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
@@ -104,7 +106,7 @@ class MorphologicalAnalyzer(private val dictionary: MorphologyDictionary) {
     return MorphologicalAnalysis(
       tokens = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
-      dateTimes = dateTimeProcessor.findDateTimes(text = text, tokens = sentence.tokens)
+      dateTimes = this.dateTimeProcessor.findDateTimes(text = text, tokens = sentence.tokens)
     )
   }
 
