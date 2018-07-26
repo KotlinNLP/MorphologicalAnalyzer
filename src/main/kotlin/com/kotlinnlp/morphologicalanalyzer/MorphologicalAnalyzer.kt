@@ -19,7 +19,7 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
-import com.kotlinnlp.linguisticdescription.sentence.properties.Number
+import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 
 /**
