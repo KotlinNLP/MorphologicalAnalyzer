@@ -6,6 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.getLanguageByIso
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.utils.Timer
 import java.io.File
@@ -26,15 +27,12 @@ fun main(args: Array<String>) {
   val inputFile: String = args[0]
   val outputFile: String = args[1]
   val timer = Timer()
-  val languagesByIso: Map<String, Language> = Language.values().associateBy { it.isoCode }
+
 
   println("Loading morphology dictionary in JSONL format from '$inputFile'...")
   val m = MorphologyDictionary.load(
     filename = inputFile,
-    language = if (args.size > 2)
-      languagesByIso[args[2]] ?: throw RuntimeException("Invalid language: ${args[2]}")
-    else
-      Language.Unknown)
+    language = if (args.size > 2) getLanguageByIso(args[2]) else Language.Unknown)
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
   println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
