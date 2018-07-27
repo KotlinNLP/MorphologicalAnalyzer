@@ -41,7 +41,7 @@ class MorphologyDictionary : Serializable {
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
      *
      * @param filename the morphologies dictionary filename
-     * @param languageCode the iso-a2 code of the dictionary language (needed to explode accents, default = null)
+     * @param languageCode the ISO 639-1 code of the dictionary language (needed to explode accents, default = null)
      * @param verbose whether to print the reading progress (default = true)
      *
      * @return a new Morphology Dictionary
