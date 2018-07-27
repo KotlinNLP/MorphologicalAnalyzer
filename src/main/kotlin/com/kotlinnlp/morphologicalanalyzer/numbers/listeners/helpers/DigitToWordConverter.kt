@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 
@@ -47,11 +48,11 @@ internal class DigitToWordConverter(private val langParams: LanguageParams, priv
   /**
    * Constructor to be used when passing the language as a string containing a two-letters ISO code.
    *
-   * @param lang the language of the text to process
+   * @param language the language of the text to process
    * @param debug if true enable debug messages on stderr
    */
-  constructor(lang: String, debug: Boolean = false): this(
-    langParams = LanguageParamsFactory.factory(lang),
+  constructor(language: Language, debug: Boolean = false): this(
+    langParams = LanguageParamsFactory.factory(language),
     debug = debug)
 
   /**

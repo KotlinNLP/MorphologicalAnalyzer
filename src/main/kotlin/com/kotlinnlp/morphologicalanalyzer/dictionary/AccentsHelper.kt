@@ -10,15 +10,16 @@ package com.kotlinnlp.morphologicalanalyzer.dictionary
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
 
 /**
  * The helper that explodes the accentuated forms of a [MorphologyDictionary].
  *
- * @param languageCode the iso-a2 code of the language whose accents regex list must be used
+ * @param language the language whose accents regex list must be used
  * @param verbose whether to print the exploding progress (default = true)
  */
-class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
+internal class AccentsHelper(language: Language, private val verbose: Boolean = true) {
 
   companion object {
 
@@ -43,13 +44,20 @@ class AccentsHelper(languageCode: String, private val verbose: Boolean = true) {
         }
       }
     }
+
+    /**
+     * @param language a language
+     *
+     * @return whether the given language is supported by the [AccentsHelper]
+     */
+    fun isLanguageSupported(language: Language): Boolean = language.isoCode in accentsRegexMap
   }
 
   /**
    * A list of pairs <regex, replacement> for the accents.
    */
-  private val accentsRegexList: List<Pair<Regex, String>> = accentsRegexMap.getOrElse(languageCode.toLowerCase()) {
-    throw RuntimeException("Language not supported: $languageCode.")
+  private val accentsRegexList: List<Pair<Regex, String>> = accentsRegexMap.getOrElse(language.isoCode) {
+    throw RuntimeException("Language not supported: $language.")
   }
 
   /**

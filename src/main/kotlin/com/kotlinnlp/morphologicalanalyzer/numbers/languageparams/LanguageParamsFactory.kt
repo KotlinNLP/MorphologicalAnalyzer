@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.languageparams
 
 import com.beust.klaxon.Klaxon
+import com.kotlinnlp.linguisticdescription.Language
 import java.io.File
 import java.nio.file.Paths
 
@@ -19,11 +20,11 @@ internal object LanguageParamsFactory {
   /**
    * Create a [LanguageParams] object.
    *
-   * @param language the ISO 639-2 code of the language for which to provide the params
+   * @param language the language for which to provide the params
    *
    * @return a [LanguageParams] object populated with the values specific for the given language
    */
-  fun factory(language: String): LanguageParams = try {
+  fun factory(language: Language): LanguageParams = try {
 
     Klaxon().parse<LanguageParams>(getJsonResource(language))!!
 
@@ -35,13 +36,13 @@ internal object LanguageParamsFactory {
   /**
    * Returns a [File] object that points to the json params file for the language requested.
    *
-   * @param language the two letters ISO code of the language for which to provide the params object
+   * @param language the language for which to provide the params object
    *
    * @return the pointer to the json params file for the given language
    */
-  private fun getJsonResource(language: String): String {
+  private fun getJsonResource(language: Language): String {
 
-    val resPath: String = Paths.get("/", "numbers", language, "langparams.json").toString()
+    val resPath: String = Paths.get("/", "numbers", language.isoCode, "langparams.json").toString()
 
     return LanguageParamsFactory.javaClass.getResource(resPath).readText()
   }

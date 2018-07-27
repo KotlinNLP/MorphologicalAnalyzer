@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
@@ -17,9 +18,9 @@ import org.antlr.v4.runtime.tree.*
 /**
  * A text processor that recognizes date-time expressions in it.
  *
- * @param langCode ISO 639-2 code of the language in which to analyze the text
+ * @param language the language in which to analyze the text
  */
-class DateTimeProcessor(private val langCode: String) {
+class DateTimeProcessor(private val language: Language) {
 
   /**
    * Get the date-times recognized in a given text.
@@ -66,10 +67,10 @@ class DateTimeProcessor(private val langCode: String) {
    *
    * @return an ANTLR DateTime lexer for the given language
    */
-  private fun buildLexer(charStream: CharStream): Lexer = when (this.langCode) {
-    "en" -> LexerEN(charStream)
-    "it" -> LexerIT(charStream)
-    else -> throw RuntimeException("Lexer not available for language '${this.langCode}'")
+  private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
+    Language.English -> LexerEN(charStream)
+    Language.Italian -> LexerIT(charStream)
+    else -> throw RuntimeException("Lexer not available for language '${this.language}'")
   }
 
   /**

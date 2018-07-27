@@ -46,13 +46,14 @@ private fun loadDictionary(filename: String): MorphologyDictionary {
 
   println("Loading serialized dictionary from '$filename'...")
 
-  val m = MorphologyDictionary.load(FileInputStream(File(filename)))
+  val dictionary = MorphologyDictionary.load(FileInputStream(File(filename)))
 
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
-  println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
+  println("\nDictionary for the ${dictionary.language} language.")
+  println("Number of elements in the dictionary: ${dictionary.size} (+ ${dictionary.alternativesCount} references).")
 
-  return m
+  return dictionary
 }
 
 /**

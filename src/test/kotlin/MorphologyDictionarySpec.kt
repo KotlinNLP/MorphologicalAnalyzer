@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Adverb
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.relations.Preposition
@@ -35,7 +36,7 @@ class MorphologyDictionarySpec : Spek({
 
     val dictionary: MorphologyDictionary = MorphologyDictionary.load(
       filename = MorphologyDictionary::class.java.classLoader.getResource("test_dictionary.jsonl").file,
-      languageCode = "it")
+      language = Language.Italian)
 
     context("loading") {
 

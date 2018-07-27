@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.dictionary
 
 import com.beust.klaxon.*
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.compressor.MorphologyCompressor
 import com.kotlinnlp.utils.Serializer
@@ -21,7 +22,7 @@ import java.io.Serializable
 /**
  * The dictionary of morphologies that maps forms to morphologies.
  */
-class MorphologyDictionary : Serializable {
+class MorphologyDictionary(val language: Language) : Serializable {
 
   companion object {
 
@@ -40,14 +41,14 @@ class MorphologyDictionary : Serializable {
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
      *
      * @param filename the morphologies dictionary filename
-     * @param languageCode the ISO 639-1 code of the dictionary language (needed to explode accents, default = null)
+     * @param language the language of the dictionary (needed to explode accents, default = unknown)
      * @param verbose whether to print the reading progress (default = true)
      *
      * @return a new Morphology Dictionary
      */
-    fun load(filename: String, languageCode: String? = null, verbose: Boolean = true): MorphologyDictionary {
+    fun load(filename: String, language: Language = Language.Unknown, verbose: Boolean = true): MorphologyDictionary {
 
-      val dictionary = MorphologyDictionary()
+      val dictionary = MorphologyDictionary(language)
 
       val jsonParser = Parser()
       val progress = ProgressIndicatorBar(getLinesCount(filename))
@@ -66,9 +67,9 @@ class MorphologyDictionary : Serializable {
       }
 
       // Attention: explodeByAccents() must be called before setMultiWords()
-      if (languageCode != null) {
+      if (AccentsHelper.isLanguageSupported(language)) {
         if (verbose) println("Exploding accentuated forms...")
-        dictionary.alternativesCount += AccentsHelper(languageCode = languageCode, verbose = verbose)
+        dictionary.alternativesCount += AccentsHelper(language = language, verbose = verbose)
           .explodeByAccents(dictionary.morphologyMap)
       }
 

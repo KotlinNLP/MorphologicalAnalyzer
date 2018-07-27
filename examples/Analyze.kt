@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
@@ -29,7 +30,8 @@ fun main(args: Array<String>) {
     "Required 3 arguments: <lang_code> <tokenizer_model_filename> <morpho_dictionary_filename>."
   }
 
-  val langCode: String = args[0]
+    val languagesByIso: Map<String, Language> = Language.values().associateBy { it.isoCode }
+  val language: Language = languagesByIso[args[0]] ?: throw RuntimeException("Invalid language code: '${args[0]}'")
 
   val tokenizer: NeuralTokenizer = args[1].let {
     println("Loading tokenizer model from '$it'...")
@@ -38,7 +40,7 @@ fun main(args: Array<String>) {
 
   val analyzer: MorphologicalAnalyzer = args[2].let {
     println("Loading serialized dictionary from '$it'...")
-    MorphologicalAnalyzer(langCode = langCode, dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
+    MorphologicalAnalyzer(language = language, dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
   }
 
   while (true) {

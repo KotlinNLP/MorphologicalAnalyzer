@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
@@ -24,13 +25,13 @@ import kotlin.reflect.full.primaryConstructor
 /**
  * A text processor to recognize numeric expressions.
  *
- * @param langCode ISO 639-2 code of the language in which to analyze the text
+ * @param language the language in which to analyze the text
  * @param enableSubexpressions if false do not perform the analysis of numeric sub-expressions (inside other
  *                             recognized expressions)
  * @param debug if true enables the print of debug messages on stderr
  */
 class NumbersProcessor(
-  langCode: String,
+  language: Language,
   private val enableSubexpressions: Boolean = true,
   private val debug: Boolean = false
 ) {
@@ -38,7 +39,7 @@ class NumbersProcessor(
   /**
    * Language-specific parameters.
    */
-  private val langParams: LanguageParams = LanguageParamsFactory.factory(langCode)
+  private val langParams: LanguageParams = LanguageParamsFactory.factory(language)
 
   /**
    * Process the input text searching for numeric expressions.

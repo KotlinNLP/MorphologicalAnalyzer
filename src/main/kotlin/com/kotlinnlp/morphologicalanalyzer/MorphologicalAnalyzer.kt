@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
@@ -25,10 +26,10 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 /**
  * The morphological analyzer.
  *
- * @property langCode ISO 639-2 code of the language in which to analyze the text
+ * @property language the language in which to analyze the text
  * @param dictionary a morphology dictionary
  */
-class MorphologicalAnalyzer(val langCode: String, private val dictionary: MorphologyDictionary) {
+class MorphologicalAnalyzer(val language: Language, private val dictionary: MorphologyDictionary) {
 
   companion object {
 
@@ -74,19 +75,12 @@ class MorphologicalAnalyzer(val langCode: String, private val dictionary: Morpho
   /**
    * The processor of date-time expressions.
    */
-  private val dateTimeProcessor = DateTimeProcessor(this.langCode)
+  private val dateTimeProcessor = DateTimeProcessor(this.language)
 
   /**
    * The processor of number expressions.
    */
-  private val numbersProcessor = NumbersProcessor(this.langCode)
-
-  /**
-   * Check language ISO code.
-   */
-  init {
-    require(langCode.length == 2) { "The language code must have length 2." }
-  }
+  private val numbersProcessor = NumbersProcessor(this.language)
 
   /**
    * Perform the morphological analysis of a sentence.
