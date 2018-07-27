@@ -6,6 +6,7 @@
  * ------------------------------------------------------------------*/
 
 import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.getLanguageByIso
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
@@ -30,8 +31,7 @@ fun main(args: Array<String>) {
     "Required 3 arguments: <lang_code> <tokenizer_model_filename> <morpho_dictionary_filename>."
   }
 
-    val languagesByIso: Map<String, Language> = Language.values().associateBy { it.isoCode }
-  val language: Language = languagesByIso[args[0]] ?: throw RuntimeException("Invalid language code: '${args[0]}'")
+  val language: Language = getLanguageByIso(args[0])
 
   val tokenizer: NeuralTokenizer = args[1].let {
     println("Loading tokenizer model from '$it'...")
