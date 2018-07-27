@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.dictionary
 
 import com.beust.klaxon.*
-import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.compressor.MorphologyCompressor
 import com.kotlinnlp.utils.Serializer

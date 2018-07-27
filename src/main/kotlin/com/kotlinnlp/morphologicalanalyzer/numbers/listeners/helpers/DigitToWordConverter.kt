@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers
 
-import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 

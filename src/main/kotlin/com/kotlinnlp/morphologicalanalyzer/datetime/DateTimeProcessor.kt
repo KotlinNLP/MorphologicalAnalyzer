@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.datetime
 
-import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.*
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime

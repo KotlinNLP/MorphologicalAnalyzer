@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.languageparams
 
 import com.beust.klaxon.Klaxon
-import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.language.Language
 import java.io.File
 import java.nio.file.Paths
 

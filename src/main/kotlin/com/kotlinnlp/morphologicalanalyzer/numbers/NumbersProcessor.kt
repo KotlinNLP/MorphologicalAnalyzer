@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
-import com.kotlinnlp.linguisticdescription.Language
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
