@@ -14,7 +14,6 @@ import com.kotlinnlp.utils.Serializer
 import com.kotlinnlp.utils.forEachLine
 import com.kotlinnlp.utils.getLinesCount
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
-import com.kotlinnlp.utils.toInputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.io.Serializable
@@ -55,7 +54,7 @@ class MorphologyDictionary : Serializable {
 
       forEachLine(filename) { line ->
 
-        val entryObj = jsonParser.parse(line.toInputStream()) as JsonObject
+        val entryObj = jsonParser.parse(StringBuilder(line)) as JsonObject
 
         dictionary.addEntry(
           forms = getForms(entryObj),
