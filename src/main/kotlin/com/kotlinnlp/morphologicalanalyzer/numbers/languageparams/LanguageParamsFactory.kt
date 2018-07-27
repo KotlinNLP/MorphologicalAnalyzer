@@ -14,7 +14,7 @@ import java.nio.file.Paths
 /**
  * The [LanguageParams] factory.
  */
-object LanguageParamsFactory {
+internal object LanguageParamsFactory {
 
   /**
    * Create a [LanguageParams] object.
