@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
@@ -28,12 +29,14 @@ class DateTimeProcessorSpec : Spek({
 
   describe("a DateTimeProcessor") {
 
+    val languagesByIso: Map<String, Language> = Language.values().associateBy { it.isoCode }
+
     TestDateTimes.tests.forEach { lang, testGroups ->
       testGroups.forEach { (testType, tests) ->
 
         context("[%s] %s".format(lang, testType)) {
 
-          val processor = DateTimeProcessor(lang)
+          val processor = DateTimeProcessor(languagesByIso.getValue(lang))
 
           tests.forEach { (text, expectedDateTime) ->
 
