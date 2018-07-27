@@ -15,7 +15,7 @@ import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
-import com.kotlinnlp.linguisticdescription.utils.InvalidMorphologyType
+import com.kotlinnlp.linguisticdescription.InvalidMorphologyType
 import java.io.Serializable
 
 /**
