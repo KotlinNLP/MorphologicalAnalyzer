@@ -53,7 +53,7 @@ object TestNumbers {
    */
   private fun loadTests(langCode: String): List<Test> {
 
-    val resPath = Paths.get("numbers", langCode, "test_numbers.json").toString()
+    val resPath = "numbers/$langCode/test_numbers.json"
     val absResPath: String = try {
       TestNumbers::class.java.classLoader.getResource(resPath).file
     } catch (e: NullPointerException) {

@@ -107,7 +107,7 @@ object TestDateTimes {
   private fun loadTests(type: String, langCode: String): List<Test> {
 
     val formattedResName: String = this.RES_UNFORMATTED.format(type)
-    val simpleResFilename: String = Paths.get("datetime", langCode, formattedResName).toString()
+    val simpleResFilename: String = "datetime/$langCode/$formattedResName"
 
     val absResFilename: String = try {
       TestDateTimes::class.java.classLoader.getResource(simpleResFilename).file
