@@ -35,7 +35,7 @@ class MorphologyDictionary : Serializable {
     /**
      * The prefix used to define morphologies by reference.
      */
-    val REF_PREFIX = "REF:"
+    const val REF_PREFIX = "REF:"
 
     /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
