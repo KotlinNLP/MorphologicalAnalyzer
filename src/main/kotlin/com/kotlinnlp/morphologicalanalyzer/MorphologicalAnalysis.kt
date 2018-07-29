@@ -8,7 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
-import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 
 /**

@@ -16,7 +16,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
-import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
