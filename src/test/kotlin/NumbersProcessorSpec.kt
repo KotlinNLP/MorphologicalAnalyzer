@@ -18,7 +18,9 @@ import kotlin.system.measureTimeMillis
 import kotlin.test.assertEquals
 
 object NumbersProcessorSpec : Spek({
+
   val executionTime = measureTimeMillis {
+
     TestNumbers.tests.forEach { (lang, tests) ->
 
       describe("a NumbersProcessor for lang $lang") {
@@ -62,5 +64,6 @@ object NumbersProcessorSpec : Spek({
       }
     }
   }
+
   println("Execution Time = $executionTime ms")
 })
