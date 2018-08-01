@@ -65,29 +65,22 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String, tokens: List<RealToken>): List<Number> {
+  fun findNumbers(text: String, tokens: List<RealToken>, SLL: Boolean = true): List<Number> {
 
     return if (text.trim().isNotEmpty()) {
 
       val listener: ListenerCommon = this.buildListener(tokens)
 
-      val (parser, root) = try{
+      val root = try{
 
-        this.buildParseTree(text, true)
+        this.buildParseTree(text, SLL)
+
       } catch (ex: ParseCancellationException) {
 
         this.buildParseTree(text, false)
       }
 
-      try {
-        ParseTreeWalker().walk(listener as ParseTreeListener, root)
-      } catch (ex: ParseCancellationException) {
-
-        //parser.addErrorListener(ConsoleErrorListener.INSTANCE)
-        parser.errorHandler = DefaultErrorStrategy()
-        parser.interpreter.predictionMode = PredictionMode.LL
-        ParseTreeWalker().walk(listener as ParseTreeListener, root)
-      }
+      ParseTreeWalker().walk(listener as ParseTreeListener, root)
 
       listener.getNumbers()
 
@@ -123,19 +116,17 @@ class NumbersProcessor(
    *
    * @return the parse tree of the given tokens stream
    */
-  private fun buildParseTree(text: String, SLL: Boolean): Pair<Parser, ParserRuleContext> {
+  private fun buildParseTree(text: String, SLL: Boolean): ParserRuleContext {
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val tokensStream = CommonTokenStream(lexer)
 
     return when (this.langParams.language) {
       "en" -> {
-        val p = NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }
-        Pair(p, p.root())
+        NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
       }
       "it" -> {
-        val p = NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }
-        Pair(p, p.root())
+        NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
     }
       else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
     }

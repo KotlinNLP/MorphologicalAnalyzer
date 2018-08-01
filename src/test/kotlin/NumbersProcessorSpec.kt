@@ -14,50 +14,53 @@ import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import utils.SimpleTokenizer
 import utils.TestNumbers
+import kotlin.system.measureTimeMillis
 import kotlin.test.assertEquals
 
 object NumbersProcessorSpec : Spek({
+  val executionTime = measureTimeMillis {
+    TestNumbers.tests.forEach { (lang, tests) ->
 
-  TestNumbers.tests.forEach { (lang, tests) ->
+      describe("a NumbersProcessor for lang $lang") {
 
-    describe("a NumbersProcessor for lang $lang") {
+        tests.forEach { test ->
 
-      tests.forEach { test ->
+          context("number expression: '${test.text}'") {
 
-        context("number expression: '${test.text}'") {
+            val processor = NumbersProcessor(getLanguageByIso(lang))
+            val numbers: List<Number> =
+             processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
 
-          val processor = NumbersProcessor(getLanguageByIso(lang))
-          val numbers: List<Number> =
-            processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
-
-          it("should contain %d elements".format(test.tokens.size)) {
-            assertEquals(test.tokens.size, numbers.size)
-          }
-
-          numbers.zip(test.tokens).forEachIndexed { i, (number, testNumber) ->
-
-            it("should match the value for the number n. ${i+1}") {
-              assertEquals(testNumber.value, number.value)
+            it("should contain %d elements".format(test.tokens.size)) {
+              assertEquals(test.tokens.size, numbers.size)
             }
 
-            it("should match the word representation for the number n. ${i+1}") {
-              assertEquals(testNumber.asWord, number.asWord)
-            }
+            numbers.zip(test.tokens).forEachIndexed { i, (number, testNumber) ->
 
-            it("should match the original string for the number n. ${i+1}") {
-              assertEquals(testNumber.original, number.original)
-            }
+              it("should match the value for the number n. ${i + 1}") {
+                assertEquals(testNumber.value, number.value)
+              }
 
-            it("should match the expected start char for the number n. ${i+1}") {
-              assertEquals(testNumber.startToken, number.startToken)
-            }
+              it("should match the word representation for the number n. ${i + 1}") {
+                assertEquals(testNumber.asWord, number.asWord)
+              }
 
-            it("should match the expected end char for the number n. ${i+1}") {
-              assertEquals(testNumber.endToken, number.endToken)
+              it("should match the original string for the number n. ${i + 1}") {
+                assertEquals(testNumber.original, number.original)
+              }
+
+              it("should match the expected start char for the number n. ${i + 1}") {
+                assertEquals(testNumber.startToken, number.startToken)
+              }
+
+              it("should match the expected end char for the number n. ${i + 1}") {
+                assertEquals(testNumber.endToken, number.endToken)
+              }
             }
           }
         }
       }
     }
   }
+  println("Execution Time = $executionTime ms")
 })
