@@ -21,6 +21,12 @@ import org.antlr.v4.runtime.tree.ParseTreeListener
 import org.antlr.v4.runtime.tree.ParseTreeWalker
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
+import org.antlr.v4.runtime.BailErrorStrategy
+import org.antlr.v4.runtime.DefaultErrorStrategy
+import org.antlr.v4.runtime.ConsoleErrorListener
+import org.antlr.v4.runtime.RecognitionException
+import org.antlr.v4.runtime.misc.ParseCancellationException
+
 
 /**
  * A text processor to recognize numeric expressions.
@@ -35,6 +41,16 @@ class NumbersProcessor(
   private val enableSubexpressions: Boolean = true,
   private val debug: Boolean = false
 ) {
+
+  /**
+   * Print a debug message if debug is enabled.
+   *
+   * @param message the debug message to print
+   */
+  fun debugPrint(message: String) {
+
+    if (this.debug) System.err.println(message)
+  }
 
   /**
    * Language-specific parameters.
@@ -55,9 +71,23 @@ class NumbersProcessor(
 
       val listener: ListenerCommon = this.buildListener(tokens)
 
+      val (parser, root) = try{
+
+        this.buildParseTree(text, true)
+      } catch (ex: ParseCancellationException) {
+
+        this.buildParseTree(text, false)
+      }
+
       try {
-        ParseTreeWalker().walk(listener as ParseTreeListener, this.buildParseTree(text))
-      } catch (e: RuntimeException) {}
+        ParseTreeWalker().walk(listener as ParseTreeListener, root)
+      } catch (ex: ParseCancellationException) {
+
+        //parser.addErrorListener(ConsoleErrorListener.INSTANCE)
+        parser.errorHandler = DefaultErrorStrategy()
+        parser.interpreter.predictionMode = PredictionMode.LL
+        ParseTreeWalker().walk(listener as ParseTreeListener, root)
+      }
 
       listener.getNumbers()
 
@@ -93,14 +123,20 @@ class NumbersProcessor(
    *
    * @return the parse tree of the given tokens stream
    */
-  private fun buildParseTree(text: String): ParserRuleContext {
+  private fun buildParseTree(text: String, SLL: Boolean): Pair<Parser, ParserRuleContext> {
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val tokensStream = CommonTokenStream(lexer)
 
     return when (this.langParams.language) {
-      "en" -> NumbersENParser(tokensStream).enableSLL().root()
-      "it" -> NumbersITParser(tokensStream).enableSLL().root()
+      "en" -> {
+        val p = NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }
+        Pair(p, p.root())
+      }
+      "it" -> {
+        val p = NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }
+        Pair(p, p.root())
+    }
       else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
     }
   }
@@ -125,6 +161,7 @@ class NumbersProcessor(
 
     this.interpreter.predictionMode = PredictionMode.SLL
     this.removeErrorListeners()
+    this.setErrorHandler(BailErrorStrategy())
 
     return this
   }
