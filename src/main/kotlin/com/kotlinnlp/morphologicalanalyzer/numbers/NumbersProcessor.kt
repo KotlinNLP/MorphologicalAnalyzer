@@ -22,9 +22,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 import org.antlr.v4.runtime.BailErrorStrategy
-import org.antlr.v4.runtime.DefaultErrorStrategy
-import org.antlr.v4.runtime.ConsoleErrorListener
-import org.antlr.v4.runtime.RecognitionException
 import org.antlr.v4.runtime.misc.ParseCancellationException
 
 
@@ -73,11 +70,11 @@ class NumbersProcessor(
 
       val root = try{
 
-        this.buildParseTree(text, SLL)
+        this.buildParseTree(text, SLL = SLL)
 
       } catch (ex: ParseCancellationException) {
 
-        this.buildParseTree(text, false)
+        this.buildParseTree(text, SLL = false)
       }
 
       ParseTreeWalker().walk(listener as ParseTreeListener, root)
