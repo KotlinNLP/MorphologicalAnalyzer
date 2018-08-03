@@ -62,7 +62,10 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String, tokens: List<RealToken>, SLL: Boolean = true): List<Number> {
+  fun findNumbers(text: String, tokens: List<RealToken>, SLL: Boolean = true, fb: Boolean = true): List<Number> {
+
+    var fallback = fb
+    if (! SLL) fallback = false
 
     return if (text.trim().isNotEmpty()) {
 
@@ -70,11 +73,16 @@ class NumbersProcessor(
 
       val root = try{
 
+        debugPrint("Executing with${if (SLL) "" else "out"} SLL")
         this.buildParseTree(text, SLL = SLL)
 
       } catch (ex: ParseCancellationException) {
 
-        this.buildParseTree(text, SLL = false)
+        if(fallback) {
+          debugPrint("Executing fallback LL")
+          this.buildParseTree(text, SLL = false)
+        }
+        else throw ex
       }
 
       ParseTreeWalker().walk(listener as ParseTreeListener, root)
