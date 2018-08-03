@@ -42,7 +42,7 @@ internal object LanguageParamsFactory {
    */
   private fun getJsonResource(language: Language): String {
 
-    val resPath: String = "/numbers/$language/langparams.json"
+    val resPath: String = "/numbers/${language.isoCode}/langparams.json"
 
     return LanguageParamsFactory.javaClass.getResource(resPath).readText()
   }

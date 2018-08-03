@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
@@ -27,13 +28,10 @@ object NumbersProcessorSpec : Spek({
 
         context("number expression: '${test.text}'") {
 
-          val numbers: List<Number> =
-            NumbersProcessor(lang).findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
-
           val processor = NumbersProcessor(getLanguageByIso(lang))
           val numbers: List<Number> =
             processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text))
-          
+
           it("should contain %d elements".format(test.tokens.size)) {
             assertEquals(test.tokens.size, numbers.size)
           }
