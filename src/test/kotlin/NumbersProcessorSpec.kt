@@ -40,23 +40,23 @@ object NumbersProcessorSpec : Spek({
 
           numbers.zip(test.tokens).forEachIndexed { i, (number, testNumber) ->
 
-            it("should match the value for the number n. ${i + 1}") {
+            it("should match the value for the number n. ${i+1}") {
               assertEquals(testNumber.value, number.value)
             }
 
-            it("should match the word representation for the number n. ${i + 1}") {
+            it("should match the word representation for the number n. ${i+1}") {
               assertEquals(testNumber.asWord, number.asWord)
             }
 
-            it("should match the original string for the number n. ${i + 1}") {
+            it("should match the original string for the number n. ${i+1}") {
               assertEquals(testNumber.original, number.original)
             }
 
-            it("should match the expected start char for the number n. ${i + 1}") {
+            it("should match the expected start char for the number n. ${i+1}") {
               assertEquals(testNumber.startToken, number.startToken)
             }
 
-            it("should match the expected end char for the number n. ${i + 1}") {
+            it("should match the expected end char for the number n. ${i+1}") {
               assertEquals(testNumber.endToken, number.endToken)
             }
           }
