@@ -62,7 +62,10 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String, tokens: List<RealToken>, SLL: Boolean = true, fb: Boolean = true): List<Number> {
+  fun findNumbers(text: String,
+                  tokens: List<RealToken>,
+                  SLL: Boolean = true,
+                  fb: Boolean = true): List<Number> {
 
     var fallback = fb
     if (! SLL) fallback = false
