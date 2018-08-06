@@ -7,15 +7,14 @@
 
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
-import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
-import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalyzer
-import com.kotlinnlp.neuraltokenizer.NeuralTokenizer
+import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizerModel
 import java.io.File
 import java.io.FileInputStream
+import utils.SimpleTokenizer
 
 /**
  * Analyze the morphology of a text.
@@ -27,40 +26,15 @@ import java.io.FileInputStream
  */
 fun main(args: Array<String>) {
 
-  require(args.size == 3) {
-    "Required 3 arguments: <lang_code> <tokenizer_model_filename> <morpho_dictionary_filename>."
-  }
+  val language: Language = getLanguageByIso("it")
 
-  val language: Language = getLanguageByIso(args[0])
+  val str = """abc 123"""
 
-  val tokenizer: NeuralTokenizer = args[1].let {
-    println("Loading tokenizer model from '$it'...")
-    NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))))
-  }
+  val numbersProcessor = NumbersProcessor(language)
 
-  val analyzer: MorphologicalAnalyzer = args[2].let {
-    println("Loading serialized dictionary from '$it'...")
-    MorphologicalAnalyzer(language = language, dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
-  }
+  val res = numbersProcessor.findNumbers(str, SimpleTokenizer.tokenize(str))
 
-  while (true) {
-
-    val inputText = readValue()
-
-    if (inputText.isEmpty()) {
-      break
-
-    } else {
-
-      tokenizer.tokenize(inputText).forEach { sentence ->
-
-        @Suppress("UNCHECKED_CAST")
-        val analysis = analyzer.analyze(sentence = sentence as RealSentence<RealToken>)
-
-        printAnalysis(tokens = sentence.tokens, analysis = analysis)
-      }
-    }
-  }
+  println(res)
 
   println("\nExiting...")
 }

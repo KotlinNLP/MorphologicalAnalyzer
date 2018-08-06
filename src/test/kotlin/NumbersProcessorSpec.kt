@@ -5,7 +5,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
@@ -15,7 +14,6 @@ import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import utils.SimpleTokenizer
 import utils.TestNumbers
-import kotlin.system.measureTimeMillis
 import kotlin.test.assertEquals
 
 object NumbersProcessorSpec : Spek({
