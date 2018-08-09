@@ -9,15 +9,73 @@ import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.linguisticdescription.sentence.token.properties.Position
-import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import kotlin.system.measureTimeMillis
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 
+
+fun main(args: Array<String>) {
+
+//  timing(args)
+//  debugging()
+  test_grammar()
+}
+
+fun test_grammar(){
+
+  // Warming up the Antlr caches
+  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"))
+  numbersProcessor.findNumbers(
+    text= "",
+    tokens = SimpleTokenizer.tokenize(""),
+    SLL = true,
+    LLfallback = false
+  )
+
+  val strings = listOf("two", "two hundred", "two one", "two hundred one", "two hundred one thousand", "one thousand", "one thousand five")
+
+  strings.forEach{str ->
+
+    print("Testing \"$str\" Result: ")
+    var ok = false
+    try {
+      numbersProcessor.findNumbers(
+        text = str,
+        tokens = SimpleTokenizer.tokenize(str),
+        SLL = true,
+        LLfallback = false
+      )
+      ok = true
+    }
+    catch (ex: Exception) {
+
+      println("FAIL")
+    }
+
+    if(ok) println("OK")
+  }
+}
+
+fun debugging(){
+
+  val str = """two hundred one"""
+
+  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"))
+
+  val res = numbersProcessor.findNumbers(
+    text= str,
+    tokens = SimpleTokenizer.tokenize(str),
+    SLL = true,
+    LLfallback = false
+  )
+
+  println(res)
+}
+
 /**
  * Perform timing tests on various texts.
  */
-fun main(args: Array<String>) {
+fun timing() {
 
   val language: Language = getLanguageByIso("it")
 
@@ -60,7 +118,7 @@ fun test(str: String,
     for (j in 1..n) {
 
       ++m
-      res = numbersProcessor.findNumbers(str, SimpleTokenizer.tokenize(str), SLL = SLL, fb = FB)
+      res = numbersProcessor.findNumbers(str, SimpleTokenizer.tokenize(str), SLL = SLL, LLfallback = FB)
     }
   }
 
