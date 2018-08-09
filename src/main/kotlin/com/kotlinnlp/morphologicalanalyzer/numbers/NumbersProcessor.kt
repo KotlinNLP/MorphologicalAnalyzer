@@ -24,7 +24,6 @@ import kotlin.reflect.full.primaryConstructor
 import org.antlr.v4.runtime.BailErrorStrategy
 import org.antlr.v4.runtime.misc.ParseCancellationException
 
-
 /**
  * A text processor to recognize numeric expressions.
  *
@@ -65,9 +64,9 @@ class NumbersProcessor(
   fun findNumbers(text: String,
                   tokens: List<RealToken>,
                   SLL: Boolean = true,
-                  fb: Boolean = true): List<Number> {
+                  LLfallback: Boolean = true): List<Number> {
 
-    var fallback = fb
+    var fallback = LLfallback
     if (! SLL) fallback = false
 
     return if (text.trim().isNotEmpty()) {
