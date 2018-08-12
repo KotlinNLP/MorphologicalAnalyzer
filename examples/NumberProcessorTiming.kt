@@ -16,7 +16,7 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 
 fun main(args: Array<String>) {
 
-//  timing(args)
+  timing()
 //  debugging()
   test_grammar()
 }
@@ -28,22 +28,20 @@ fun test_grammar(){
   numbersProcessor.findNumbers(
     text= "",
     tokens = SimpleTokenizer.tokenize(""),
-    SLL = true,
-    LLfallback = false
+    modality = "SLL"
   )
 
   val strings = listOf("two", "two hundred", "two one", "two hundred one", "two hundred one thousand", "one thousand", "one thousand five")
 
   strings.forEach{str ->
 
-    print("Testing \"$str\" Result: ")
+    print("Testing \"$str\" ")
     var ok = false
     try {
       numbersProcessor.findNumbers(
         text = str,
         tokens = SimpleTokenizer.tokenize(str),
-        SLL = true,
-        LLfallback = false
+        modality = "SLL"
       )
       ok = true
     }
@@ -65,8 +63,7 @@ fun debugging(){
   val res = numbersProcessor.findNumbers(
     text= str,
     tokens = SimpleTokenizer.tokenize(str),
-    SLL = true,
-    LLfallback = false
+    modality = "SLL"
   )
 
   println(res)
@@ -94,10 +91,10 @@ Insieme alla luce il Sole irradia un flusso continuo di particelle cariche (plas
   strings.forEach{ str ->
 
     println("Test string ${++nstr}")
-    test(str = str, language = language, n = 1000, SLL = true, FB = true)
-    test(str = str, language = language, n = 1000, SLL = true, FB = true)
-    test(str = str, language = language, n = 1000, SLL = true, FB = false)
-    test(str = str, language = language, n = 1000, SLL = false, FB = true)
+    test(str = str, language = language, n = 1000, modality = "SLL+LL")
+    test(str = str, language = language, n = 1000, modality = "SLL+LL")
+    test(str = str, language = language, n = 1000, modality = "SLL")
+    test(str = str, language = language, n = 1000, modality = "LL")
   }
 
   println("\nExiting...")
@@ -105,8 +102,7 @@ Insieme alla luce il Sole irradia un flusso continuo di particelle cariche (plas
 
 fun test(str: String,
          n: Int,
-         SLL: Boolean = true,
-         FB: Boolean = true,
+         modality: String,
          language: Language) {
 
   val numbersProcessor = NumbersProcessor(language)
@@ -118,11 +114,11 @@ fun test(str: String,
     for (j in 1..n) {
 
       ++m
-      res = numbersProcessor.findNumbers(str, SimpleTokenizer.tokenize(str), SLL = SLL, LLfallback = FB)
+      res = numbersProcessor.findNumbers(str, SimpleTokenizer.tokenize(str), modality = modality)
     }
   }
 
-  println("Execution ${if(SLL)"SLL" else "NO-SLL"} ${if(FB)"FB" else "NO-FB"} Num: $m Time: $executionTime ms Tokens: ${res?.count()}")
+  println("Execution $modality Num: $m Time: $executionTime ms Tokens: ${res?.count()}")
 
 //  if(res != null) {
 //

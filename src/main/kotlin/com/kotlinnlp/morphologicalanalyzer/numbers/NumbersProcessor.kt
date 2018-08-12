@@ -58,16 +58,33 @@ class NumbersProcessor(
    *
    * @param text the text to process
    * @param tokens the list of tokens that compose the input text
+   * @param modality the Antlr parsing modality to use
    *
    * @return the list of number tokens found
    */
   fun findNumbers(text: String,
                   tokens: List<RealToken>,
-                  SLL: Boolean = true,
-                  LLfallback: Boolean = true): List<Number> {
+                  modality: String = "SLL+LL"): List<Number> {
 
-    var fallback = LLfallback
-    if (! SLL) fallback = false
+    val fallback: Boolean
+    val SLL: Boolean
+
+    if(modality == "SLL") {
+
+      SLL = true
+      fallback = false
+    }
+    else if(modality == "SLL+LL") {
+
+      SLL = true
+      fallback = true
+    }
+    else if(modality == "LL") {
+
+      SLL = false
+      fallback = false
+    }
+    else throw IllegalArgumentException("Modality '$modality' not implemented")
 
     return if (text.trim().isNotEmpty()) {
 
@@ -95,6 +112,7 @@ class NumbersProcessor(
       listOf()
     }
   }
+
 
   /**
    * @param tokens the list of tokens that compose the input text
