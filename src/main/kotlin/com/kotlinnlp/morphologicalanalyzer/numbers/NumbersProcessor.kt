@@ -15,6 +15,7 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerCommon
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerEN
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerIT
+import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeListener
@@ -66,13 +67,13 @@ class NumbersProcessor(
                   tokens: List<RealToken>,
                   modality: String = "SLL+LL"): List<Number> {
 
-    val fallback: Boolean
-    val SLL: Boolean
+    var split: Boolean = false
+    var fallback: Boolean = false
+    var SLL: Boolean = false
 
     if(modality == "SLL") {
 
       SLL = true
-      fallback = false
     }
     else if(modality == "SLL+LL") {
 
@@ -82,7 +83,10 @@ class NumbersProcessor(
     else if(modality == "LL") {
 
       SLL = false
-      fallback = false
+    }
+    else if(modality == "split") {
+
+      split = true
     }
     else throw IllegalArgumentException("Modality '$modality' not implemented")
 
@@ -90,29 +94,98 @@ class NumbersProcessor(
 
       val listener: ListenerCommon = this.buildListener(tokens)
 
-      val root = try{
+      if(split) {
 
-        debugPrint("Executing with${if (SLL) "" else "out"} SLL")
-        this.buildParseTree(text, SLL = SLL)
+        debugPrint("Executing split parsing")
 
-      } catch (ex: ParseCancellationException) {
-
-        if(fallback) {
-          debugPrint("Executing fallback LL")
-          this.buildParseTree(text, SLL = false)
-        }
-        else throw ex
+        findNumbersWithSplitParsing(text, tokens)
       }
+      else {
 
-      ParseTreeWalker().walk(listener as ParseTreeListener, root)
+        val root = try{
 
-      listener.getNumbers()
+          debugPrint("Executing ${if (SLL) "SLL" else "LL"} parsing")
+          this.buildParseTree(text, SLL = SLL)
 
+        } catch (ex: ParseCancellationException) {
+
+          if(fallback) {
+            debugPrint("Executing fallback LL")
+            this.buildParseTree(text, SLL = false)
+          }
+          else throw ex
+        }
+
+        ParseTreeWalker().walk(listener as ParseTreeListener, root)
+
+        listener.getNumbers()
+      }
     } else {
       listOf()
     }
   }
 
+  fun findNumbersWithSplitParsing(text: String,
+                                   tokens: List<RealToken>): List<Number> {
+
+    val helper = ListenerCommonHelper(langParams)
+    val tokensGroup = mutableListOf<String>()
+    var accumulator = ""
+
+    for ( t in helper.spaceSplitterRegex.findAll(text).toList() ) {
+
+      debugPrint("expr: ${t.groupValues[0]}  /  ${t.groupValues[1]}")
+
+      if (canBePartOfNumericExpression(t.groupValues[1])) {
+
+        debugPrint("can be part")
+
+        accumulator += t.groupValues[0]
+      }
+      else {
+        debugPrint("cannot be part")
+
+        if (accumulator.isNotEmpty()) {
+
+            debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
+
+            tokensGroup.add(accumulator)
+            accumulator = ""
+        }
+      }
+    }
+
+    if (accumulator.isNotEmpty()) {
+
+      debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
+
+      tokensGroup.add(accumulator)
+    }
+    
+    TODO()
+//    debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
+//
+//    this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
+//      .map { token ->
+//        token.copy(
+//          startToken = matchTokenOffset + token.startToken,
+//          endToken = matchTokenOffset + token.endToken)
+//      }
+
+//      .forEach {
+//
+//      helper.spaceSplitterRegex.findAll(text).toList()
+//      val numbers = this.findNumbers(subText, subTokens)
+//    } . flatMap
+  }
+
+  fun canBePartOfNumericExpression(str: String): Boolean {
+
+    // TODO optimization: distinguish between tokens that can be the first of a numeric expression and others (ie: and, of, point, ",", "."); distinguish also between tokens that can be prefixes and tokens that must match the full expression
+    val tokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "a", "an", "and", "of", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
+
+    return tokens.any{it.toLowerCase().startsWith(str)}
+  }
 
   /**
    * @param tokens the list of tokens that compose the input text

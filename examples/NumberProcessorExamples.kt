@@ -16,7 +16,7 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 
 fun main(args: Array<String>) {
 
-  timing()
+//  timing()
 //  debugging()
   test_grammar()
 }
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
 fun test_grammar(){
 
   // Warming up the Antlr caches
-  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"))
+  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"), debug = true)
   numbersProcessor.findNumbers(
     text= "",
     tokens = SimpleTokenizer.tokenize(""),
@@ -41,7 +41,8 @@ fun test_grammar(){
       numbersProcessor.findNumbers(
         text = str,
         tokens = SimpleTokenizer.tokenize(str),
-        modality = "SLL"
+//        modality = "SLL"
+        modality = "split"
       )
       ok = true
     }
