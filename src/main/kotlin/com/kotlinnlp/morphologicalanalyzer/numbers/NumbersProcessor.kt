@@ -29,8 +29,7 @@ import org.antlr.v4.runtime.misc.ParseCancellationException
  * A text processor to recognize numeric expressions.
  *
  * @param language the language in which to analyze the text
- * @param enableSubexpressions if false do not perform the analysis of numeric sub-expressions (inside other
- *                             recognized expressions)
+ * @param enableSubexpressions if false do not perform the analysis of numeric sub-expressions (inside other recognized expressions)
  * @param debug if true enables the print of debug messages on stderr
  */
 class NumbersProcessor(
@@ -53,6 +52,11 @@ class NumbersProcessor(
    * Language-specific parameters.
    */
   private val langParams: LanguageParams = LanguageParamsFactory.factory(language)
+
+  /**
+   * Helper for the listener.
+   */
+  private val helper = ListenerCommonHelper(langParams)
 
   /**
    * Process the input text searching for numeric expressions.
@@ -128,41 +132,13 @@ class NumbersProcessor(
   fun findNumbersWithSplitParsing(text: String,
                                    tokens: List<RealToken>): List<Number> {
 
-    val helper = ListenerCommonHelper(langParams)
-    val tokensGroup = mutableListOf<String>()
-    var accumulator = ""
+    return findPossibleNumberExpressions(text).flatMap {
 
-    for ( t in helper.spaceSplitterRegex.findAll(text).toList() ) {
-
-      debugPrint("expr: ${t.groupValues[0]}  /  ${t.groupValues[1]}")
-
-      if (canBePartOfNumericExpression(t.groupValues[1])) {
-
-        debugPrint("can be part")
-
-        accumulator += t.groupValues[0]
-      }
-      else {
-        debugPrint("cannot be part")
-
-        if (accumulator.isNotEmpty()) {
-
-            debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
-
-            tokensGroup.add(accumulator)
-            accumulator = ""
-        }
-      }
+      findNumbers(it, tokens)
     }
 
-    if (accumulator.isNotEmpty()) {
 
-      debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
 
-      tokensGroup.add(accumulator)
-    }
-    
-    TODO()
 //    debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
 //
 //    this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
@@ -179,12 +155,66 @@ class NumbersProcessor(
 //    } . flatMap
   }
 
+  /**
+   *
+   */
+  fun findPossibleNumberExpressions(text: String): List<String> {
+
+    val tokensGroup = mutableListOf<String>()
+    var accumulator = ""
+    val negTokens = listOf("of", "and", "a", "an", "of a")
+
+    for ( t in helper.spaceSplitterRegex.findAll(text).toList() ) {
+
+      debugPrint("expr: ${t.groupValues[0]}  /  ${t.groupValues[1]}")
+
+      if (canBePartOfNumericExpression(t.groupValues[1])) {
+
+        debugPrint("can be part")
+
+        accumulator += t.groupValues[0]
+
+      } else {
+
+        debugPrint("cannot be part")
+
+        if (accumulator.isNotEmpty()
+          &&
+          ! negTokens.contains(accumulator.trim())) {
+
+          debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
+          println("+ $accumulator")
+
+          tokensGroup.add(accumulator)
+        }
+
+        accumulator = ""
+      }
+    }
+
+    if (accumulator.isNotEmpty()
+      && ! negTokens.contains(accumulator.trim())) {
+
+      debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
+      println("+ $accumulator")
+
+      tokensGroup.add(accumulator)
+    }
+
+    return tokensGroup
+  }
+
   fun canBePartOfNumericExpression(str: String): Boolean {
 
     // TODO optimization: distinguish between tokens that can be the first of a numeric expression and others (ie: and, of, point, ",", "."); distinguish also between tokens that can be prefixes and tokens that must match the full expression
-    val tokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "a", "an", "and", "of", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
+    val prefixTokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
 
-    return tokens.any{it.toLowerCase().startsWith(str)}
+    val tokens = listOf("a", "an", "and", "of")
+
+    if (prefixTokens.any{str.toLowerCase().startsWith(it)}) {
+      return true
+    }
+    else return tokens.contains(str.toLowerCase())
   }
 
   /**
@@ -205,6 +235,7 @@ class NumbersProcessor(
       this,
       tokens,
       this.debug,
+//      false,
       this.enableSubexpressions
     ) as ListenerCommon
   }
