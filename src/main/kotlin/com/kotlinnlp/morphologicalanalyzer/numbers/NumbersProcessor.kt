@@ -119,11 +119,17 @@ class NumbersProcessor(
 
         listener.getNumbers()
       }
-    } else {
-      listOf()
-    }
+    } else listOf()
   }
 
+  /**
+   * Find the numbers using the split parsing strategy
+   *
+   * @param text the string to be parsed
+   * @param tokens the list of tokens that compose the input text
+   *
+   * @return the list of number tokens found
+   */
   fun findNumbersWithSplitParsing(text: String,
                                   tokens: List<RealToken>): List<Number> {
 
@@ -146,12 +152,13 @@ class NumbersProcessor(
     var accumulator = ""
     val negTokens = listOf("of", "and", "a", "an", "of a")
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
+    var skipNext = false;
 
     lexer.allTokens.forEach {t ->
 
       debugPrint("expr: $t")
 
-      if (canBePartOfNumericExpression(t)) {
+      if ( ! skipNext && canBePartOfNumericExpression(t)) {
 
         debugPrint("can be part")
 
@@ -169,7 +176,10 @@ class NumbersProcessor(
           debugPrint("+ $accumulator")
 
           tokensGroup.add(accumulator)
+
         }
+
+        skipNext = """[a-zA-Z0-9]""".toRegex().matches(t.text)
 
         accumulator = ""
       }
@@ -190,16 +200,8 @@ class NumbersProcessor(
   fun canBePartOfNumericExpression(t: Token): Boolean {
 
     debugPrint("Testing: '${t.text}'")
-    // TODO optimization: distinguish between tokens that can be the first of a numeric expression and others (ie: and, of, point, ",", "."); distinguish also between tokens that can be prefixes and tokens that must match the full expression
-//    val prefixTokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
-//
-//    val tokens = listOf("a", "an", "and", "of")
-//    val strLower = str.toLowerCase()
 
     return t.type != NumbersENParser.WORDDIV && t.type != NumbersENParser.ANY
-
-//    if (prefixTokens.any{strLower.startsWith(it)}) return true
-//    else return tokens.contains(strLower)
   }
 
   /**

@@ -38,8 +38,8 @@ fun main(args: Array<String>) {
 //  debugging()
 //  test_grammar()
 //  example()
-  timing2()
-//  tokens()
+//  timing2()
+  tokens()
 }
 
 fun example() {
