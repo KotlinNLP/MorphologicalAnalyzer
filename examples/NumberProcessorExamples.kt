@@ -29,14 +29,17 @@ Il Sole viene classificato come una nana gialla, anche se come nome è ingannevo
 Il Sole è una stella di I popolazione, ed è nato nelle fasi successive dell'evoluzione dell'Universo. Esso contiene più elementi pesanti dell'idrogeno e dell'elio (metalli) rispetto alle più vecchie stelle di popolazione II.[37] Gli elementi più pesanti dell'idrogeno e dell'elio si formarono nei nuclei di stelle antiche ormai esplose, così la prima generazione di stelle dovette terminare il suo ciclo vitale prima che l'universo potesse essersi arricchito di questi elementi. Le stelle più antiche osservate contengono infatti pochi metalli, mentre quelle di più recente formazione ne sono più ricche. Questa alta metallicità si pensa sia stata cruciale nello sviluppo di un sistema planetario da parte del Sole, poiché i pianeti si formano dall'accumulo di metalli.[38]
 
 Insieme alla luce il Sole irradia un flusso continuo di particelle cariche (plasma), noto anche come vento solare. Questo flusso di particelle si propaga verso l'esterno a circa 1,5 milioni di chilometri all'ora,[39], crea una tenue atmosfera (l'Eliosfera) e permea il sistema solare per almeno 100 UA (cfr. Eliopausa) formando il mezzo interplanetario."""
+var execution = 0
+
 
 fun main(args: Array<String>) {
 
 //  timing()
 //  debugging()
 //  test_grammar()
-  example()
-//  timing2()
+//  example()
+  timing2()
+//  tokens()
 }
 
 fun example() {
@@ -63,6 +66,23 @@ val str = bigstr_EN
   //  println( "The two expressions are ${if(res_1 == res_2) "EQUAL" else "NOT EQUAL"}" )
 }
 
+fun tokens(){
+
+  val language = getLanguageByIso("en")
+  val str = bigstr_EN
+
+//  test(str = str, language = language, n = 1, modality = "SLL+LL")!!.forEach {
+//
+//    println(it.original)
+  //  }
+
+
+  test(str = str, language = language, n = 1, modality = "split")!!.forEach {
+
+    println(it.original)
+  }
+}
+
 fun timing2() {
 
   //  val str = "one dog and two million and one cats"
@@ -73,7 +93,7 @@ fun timing2() {
   numbersProcessor.findNumbers(
     text= str,
     tokens = SimpleTokenizer.tokenize(str),
-    modality = "SLL"
+    modality = "SLL+LL"
   )
 
 //  val modality = "SLL+LL"
@@ -172,6 +192,8 @@ fun test(str: String,
   var res: List<Number>? = null
   var m = 0
 
+  ++execution
+
   val executionTime = measureTimeMillis {
 
     for (j in 1..n) {
@@ -181,7 +203,7 @@ fun test(str: String,
     }
   }
 
-  println("Execution $modality Num: $m Time: $executionTime ms Tokens: ${res?.count()}")
+  println("Execution $execution Modality: $modality Num: $m Time: $executionTime ms Tokens: ${res?.count()}")
 
   return res
 

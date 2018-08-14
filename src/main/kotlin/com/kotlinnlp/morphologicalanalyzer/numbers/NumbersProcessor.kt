@@ -9,13 +9,13 @@ package com.kotlinnlp.morphologicalanalyzer.numbers
 
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
+import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerCommon
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerEN
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerIT
-import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeListener
@@ -52,11 +52,6 @@ class NumbersProcessor(
    * Language-specific parameters.
    */
   private val langParams: LanguageParams = LanguageParamsFactory.factory(language)
-
-  /**
-   * Helper for the listener.
-   */
-  private val helper = ListenerCommonHelper(langParams)
 
   /**
    * Process the input text searching for numeric expressions.
@@ -130,49 +125,37 @@ class NumbersProcessor(
   }
 
   fun findNumbersWithSplitParsing(text: String,
-                                   tokens: List<RealToken>): List<Number> {
+                                  tokens: List<RealToken>): List<Number> {
 
     return findPossibleNumberExpressions(text).flatMap {
 
       findNumbers(it, tokens)
     }
-
-
-
-//    debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
-//
-//    this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
-//      .map { token ->
-//        token.copy(
-//          startToken = matchTokenOffset + token.startToken,
-//          endToken = matchTokenOffset + token.endToken)
-//      }
-
-//      .forEach {
-//
-//      helper.spaceSplitterRegex.findAll(text).toList()
-//      val numbers = this.findNumbers(subText, subTokens)
-//    } . flatMap
   }
 
   /**
+   * Look for possible number expressions in the provided list of tokens
    *
+   * @param text the string to match
+   *
+   * @return
    */
   fun findPossibleNumberExpressions(text: String): List<String> {
 
     val tokensGroup = mutableListOf<String>()
     var accumulator = ""
     val negTokens = listOf("of", "and", "a", "an", "of a")
+    val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
 
-    for ( t in helper.spaceSplitterRegex.findAll(text).toList() ) {
+    lexer.allTokens.forEach {t ->
 
-      debugPrint("expr: ${t.groupValues[0]}  /  ${t.groupValues[1]}")
+      debugPrint("expr: $t")
 
-      if (canBePartOfNumericExpression(t.groupValues[1])) {
+      if (canBePartOfNumericExpression(t)) {
 
         debugPrint("can be part")
 
-        accumulator += t.groupValues[0]
+        accumulator += t.text
 
       } else {
 
@@ -183,7 +166,7 @@ class NumbersProcessor(
           ! negTokens.contains(accumulator.trim())) {
 
           debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
-          println("+ $accumulator")
+          debugPrint("+ $accumulator")
 
           tokensGroup.add(accumulator)
         }
@@ -196,7 +179,7 @@ class NumbersProcessor(
       && ! negTokens.contains(accumulator.trim())) {
 
       debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
-      println("+ $accumulator")
+      debugPrint("+ $accumulator")
 
       tokensGroup.add(accumulator)
     }
@@ -204,17 +187,19 @@ class NumbersProcessor(
     return tokensGroup
   }
 
-  fun canBePartOfNumericExpression(str: String): Boolean {
+  fun canBePartOfNumericExpression(t: Token): Boolean {
 
+    debugPrint("Testing: '${t.text}'")
     // TODO optimization: distinguish between tokens that can be the first of a numeric expression and others (ie: and, of, point, ",", "."); distinguish also between tokens that can be prefixes and tokens that must match the full expression
-    val prefixTokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
+//    val prefixTokens = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ",", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million", "billion", "trillion", "quadrillion", "point")
+//
+//    val tokens = listOf("a", "an", "and", "of")
+//    val strLower = str.toLowerCase()
 
-    val tokens = listOf("a", "an", "and", "of")
+    return t.type != NumbersENParser.WORDDIV && t.type != NumbersENParser.ANY
 
-    if (prefixTokens.any{str.toLowerCase().startsWith(it)}) {
-      return true
-    }
-    else return tokens.contains(str.toLowerCase())
+//    if (prefixTokens.any{strLower.startsWith(it)}) return true
+//    else return tokens.contains(strLower)
   }
 
   /**
@@ -256,7 +241,7 @@ class NumbersProcessor(
       }
       "it" -> {
         NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-    }
+      }
       else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
     }
   }
