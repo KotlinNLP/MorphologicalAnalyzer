@@ -109,7 +109,9 @@ class NumbersProcessor(
         } catch (ex: ParseCancellationException) {
 
           if(fallback) {
+
             debugPrint("Executing fallback LL")
+
             this.buildParseTree(text, SLL = false)
           }
           else throw ex
@@ -160,25 +162,21 @@ class NumbersProcessor(
 
       if ( ! skipNext && canBePartOfNumericExpression(t)) {
 
-        debugPrint("can be part")
-
         accumulator += t.text
 
       } else {
-
-        debugPrint("cannot be part")
 
         if (accumulator.isNotEmpty()
           &&
           ! negTokens.contains(accumulator.trim())) {
 
-          debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
           debugPrint("+ $accumulator")
 
           tokensGroup.add(accumulator)
 
         }
 
+        // Substitute this regex with a check on the ascii code being inside one of the ranges: 0x30 - 0x39, 0x41 - 0x5a, 0x61 - 0x7a (what about non-latin alphabets?)
         skipNext = """[a-zA-Z0-9]""".toRegex().matches(t.text)
 
         accumulator = ""
@@ -188,7 +186,6 @@ class NumbersProcessor(
     if (accumulator.isNotEmpty()
       && ! negTokens.contains(accumulator.trim())) {
 
-      debugPrint("Adding \"$accumulator\" to the list of possible numeric expressions")
       debugPrint("+ $accumulator")
 
       tokensGroup.add(accumulator)
