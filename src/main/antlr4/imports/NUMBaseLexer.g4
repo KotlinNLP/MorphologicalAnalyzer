@@ -66,5 +66,5 @@ fragment Z : [Zz] ;
 // -- Other
 // -----
 
-WORDDIV: ~[a-zA-Z0-9., \t\n] ;
+WORDDIV: [<>()[\]{}!?|"“”‘#*+:;'’/\\°^] ;
 ANY : . ;

@@ -160,7 +160,7 @@ class NumbersProcessor(
 
       debugPrint("expr: $t")
 
-      if ( ! skipNext && canBePartOfNumericExpression(t)) {
+      if (! skipNext && canBePartOfNumericExpression(t)) {
 
         accumulator += t.text
 
@@ -173,18 +173,15 @@ class NumbersProcessor(
           debugPrint("+ $accumulator")
 
           tokensGroup.add(accumulator)
-
         }
 
-        // Substitute this regex with a check on the ascii code being inside one of the ranges: 0x30 - 0x39, 0x41 - 0x5a, 0x61 - 0x7a (what about non-latin alphabets?)
-        skipNext = """[a-zA-Z0-9]""".toRegex().matches(t.text)
+        skipNext = t.type == NumbersENParser.ANY
 
         accumulator = ""
       }
     }
 
-    if (accumulator.isNotEmpty()
-      && ! negTokens.contains(accumulator.trim())) {
+    if (accumulator.isNotEmpty() && ! negTokens.contains(accumulator.trim())) {
 
       debugPrint("+ $accumulator")
 
