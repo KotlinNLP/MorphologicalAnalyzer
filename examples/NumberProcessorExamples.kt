@@ -37,10 +37,13 @@ a4
 b4b
 b4a
 4a
-7"""
+7
+"""
+
+//const val testDebug = true
+const val testDebug = false
 
 var execution = 0
-
 
 fun main(args: Array<String>) {
 
@@ -52,19 +55,25 @@ fun main(args: Array<String>) {
   tokens(odd_situations)
 }
 
+fun warmupNumberProcessor(): NumbersProcessor {
+
+  val r = NumbersProcessor(getLanguageByIso("en"), debug = true)
+
+  r.findNumbers(
+    text= "",
+    tokens = SimpleTokenizer.tokenize(""),
+    modality = "SLL"
+  )
+
+  return r
+}
+
 fun example() {
 
 //  val str = "one dog and two million and one cats"
 val str = bigstr_EN
 
-  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"), debug = false)
-  // Warming up the Antlr caches
-  numbersProcessor.findNumbers(
-    text = str,
-    tokens = SimpleTokenizer.tokenize(str),
-    modality = "SLL+LL"
-  )
-
+  warmupNumberProcessor()
   val language = getLanguageByIso("en")
 
 //  val res_1: List<Number> = test(str = str, language = language, n = 1, modality = "SLL+LL")!!
@@ -96,13 +105,7 @@ fun timing2() {
   //  val str = "one dog and two million and one cats"
   val str = bigstr_EN
 
-  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"), debug = false)
-  // Warming up the Antlr caches
-  numbersProcessor.findNumbers(
-    text= str,
-    tokens = SimpleTokenizer.tokenize(str),
-    modality = "SLL+LL"
-  )
+  warmupNumberProcessor()
 
 //  val modality = "SLL+LL"
   val modality = "split"
@@ -122,13 +125,7 @@ fun timing2() {
 
 fun test_grammar(){
 
-  // Warming up the Antlr caches
-  val numbersProcessor = NumbersProcessor(getLanguageByIso("en"), debug = true)
-  numbersProcessor.findNumbers(
-    text= "",
-    tokens = SimpleTokenizer.tokenize(""),
-    modality = "SLL"
-  )
+  val numbersProcessor = warmupNumberProcessor()
 
   val strings = listOf("two", "two hundred", "two one", "two hundred one", "two hundred one thousand", "one thousand", "one thousand five")
 
@@ -196,7 +193,7 @@ fun test(str: String,
          modality: String,
          language: Language): List<Number>? {
 
-  val numbersProcessor = NumbersProcessor(language, debug = true)
+  val numbersProcessor = NumbersProcessor(language, debug = testDebug)
   var res: List<Number>? = null
   var m = 0
 
