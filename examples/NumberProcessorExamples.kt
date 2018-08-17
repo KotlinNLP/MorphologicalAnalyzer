@@ -40,8 +40,8 @@ b4a
 7
 """
 
-//const val testDebug = true
-const val testDebug = false
+const val testDebug = true
+//const val testDebug = false
 
 var execution = 0
 

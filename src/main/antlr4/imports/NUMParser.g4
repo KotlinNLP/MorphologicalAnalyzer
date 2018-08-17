@@ -72,7 +72,7 @@ not_word: (WORDDIV | extra_word_dividers | WS | EOL)+;
 
 number_or_string: number | string;
 
-string: ~(WS | WORDDIV)+;
+string: ~(WS | EOL | WORDDIV)+;
 
 integ_list: integ WS? COMMA WS? integ (WS? COMMA WS? integ)+;
 
