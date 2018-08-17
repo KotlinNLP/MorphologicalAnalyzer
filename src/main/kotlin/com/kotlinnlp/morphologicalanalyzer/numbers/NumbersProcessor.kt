@@ -66,55 +66,56 @@ class NumbersProcessor(
                   tokens: List<RealToken>,
                   modality: String = "SLL+LL"): List<Number> {
 
-    var split: Boolean = false
-    var fallback: Boolean = false
-    var SLL: Boolean = false
+    var split = false
+    var fallback = false
+    var SLL = false
 
-    if(modality == "SLL") {
+    if (modality == "SLL") {
 
       SLL = true
-    }
-    else if(modality == "SLL+LL") {
+
+    } else if (modality == "SLL+LL") {
 
       SLL = true
       fallback = true
-    }
-    else if(modality == "LL") {
+
+    } else if (modality == "LL") {
 
       SLL = false
-    }
-    else if(modality == "split") {
+
+    } else if (modality == "split") {
 
       split = true
-    }
-    else throw IllegalArgumentException("Modality '$modality' not implemented")
+
+    } else throw IllegalArgumentException("Modality '$modality' not implemented")
 
     return if (text.trim().isNotEmpty()) {
 
       val listener: ListenerCommon = this.buildListener(tokens)
 
-      if(split) {
+      if (split) {
 
         debugPrint("Executing split parsing")
 
         findNumbersWithSplitParsing(text, tokens)
-      }
-      else {
+
+      } else {
 
         val root = try{
 
           debugPrint("Executing ${if (SLL) "SLL" else "LL"} parsing")
+          
           this.buildParseTree(text, SLL = SLL)
 
         } catch (ex: ParseCancellationException) {
 
-          if(fallback) {
+          if (fallback) {
 
             debugPrint("Executing fallback LL")
 
             this.buildParseTree(text, SLL = false)
-          }
-          else throw ex
+
+          } else throw ex
         }
 
         ParseTreeWalker().walk(listener as ParseTreeListener, root)
@@ -132,13 +133,9 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbersWithSplitParsing(text: String,
-                                  tokens: List<RealToken>): List<Number> {
+  private fun findNumbersWithSplitParsing(text: String, tokens: List<RealToken>): List<Number> {
 
-    return findPossibleNumberExpressions(text).flatMap {
-
-      findNumbers(it, tokens)
-    }
+    return findPossibleNumberExpressions(text).flatMap { findNumbers(it, tokens) }
   }
 
   /**
@@ -148,15 +145,15 @@ class NumbersProcessor(
    *
    * @return
    */
-  fun findPossibleNumberExpressions(text: String): List<String> {
+  private fun findPossibleNumberExpressions(text: String): List<String> {
 
     val tokensGroup = mutableListOf<String>()
     var accumulator = ""
     val negTokens = listOf("of", "and", "a", "an", "of a")
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
-    var skipNext = false;
+    var skipNext = false
 
-    lexer.allTokens.forEach {t ->
+    lexer.allTokens.forEach { t ->
 
       debugPrint("expr: $t")
 
@@ -191,7 +188,7 @@ class NumbersProcessor(
     return tokensGroup
   }
 
-  fun canBePartOfNumericExpression(t: Token): Boolean {
+  private fun canBePartOfNumericExpression(t: Token): Boolean {
 
     debugPrint("Testing: '${t.text}'")
 
