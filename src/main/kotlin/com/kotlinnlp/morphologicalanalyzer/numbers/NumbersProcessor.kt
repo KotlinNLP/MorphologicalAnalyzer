@@ -104,7 +104,7 @@ class NumbersProcessor(
         val root = try{
 
           debugPrint("Executing ${if (SLL) "SLL" else "LL"} parsing")
-          
+
           this.buildParseTree(text, SLL = SLL)
 
         } catch (ex: ParseCancellationException) {
@@ -155,7 +155,7 @@ class NumbersProcessor(
 
     lexer.allTokens.forEach { t ->
 
-      debugPrint("expr: $t")
+      debugPrint("Expr: '${t.text}'")
 
       if (! skipNext && canBePartOfNumericExpression(t)) {
 
@@ -212,8 +212,8 @@ class NumbersProcessor(
       this.langParams,
       this,
       tokens,
-      this.debug,
-//      false,
+//      this.debug,
+      false,
       this.enableSubexpressions
     ) as ListenerCommon
   }

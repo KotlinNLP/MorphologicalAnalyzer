@@ -8,8 +8,8 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
-import com.kotlinnlp.morphologicalanalyzer.numbers.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
+import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.AnnotationsAccumulator
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
@@ -86,7 +86,7 @@ internal interface ListenerCommon {
    */
   fun setTreeValue(node: ParseTree, type: String, value: String) {
 
-    debugPrint("\nAnnotating '%s' with value '%s'".format(type, value))
+    debugPrint("Annotating '%s' with value '%s'".format(type, value))
 
     this.helper.treeValues[node] = Pair(type, value)
   }
@@ -126,13 +126,13 @@ internal interface ListenerCommon {
    */
   fun visitParseTree(accumulator: AnnotationsAccumulator, ctx: ParserRuleContext) {
 
-    debugPrint("\nSearching annotated nodes under node type: %s".format(ctx.javaClass))
+    debugPrint("Searching annotated nodes under node type: %s".format(ctx.javaClass))
 
     if (this.hasTreeValue(ctx)) {
 
       val (type, value) = this.getTreeValue(ctx)
 
-      debugPrint("\nFound annotation of type %s value '%s'".format(type, value))
+      debugPrint("Found annotation of type %s value '%s'".format(type, value))
 
       accumulator.push(type = type, value = value)
 
@@ -154,7 +154,7 @@ internal interface ListenerCommon {
       when {
         it !is TerminalNodeImpl -> visitParseTree(ctx = it as ParserRuleContext, accumulator = accumulator)
         it.text == this.langParams.numbers["0"] -> accumulator.push(type = "zero", value = "0")
-        else -> debugPrint("\nIgnoring terminal node %s".format(it.text))
+        else -> debugPrint("Ignoring terminal node %s".format(it.text))
       }
     }
   }
@@ -178,7 +178,7 @@ internal interface ListenerCommon {
         val matchTokenOffset: Int = this.tokens.indexOfFirst { matchOffset == it.position.start }
         val subTokens: List<RealToken> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
-        debugPrint("\nProcessing subexpression '${match.groupValues[1]}'")
+        debugPrint("Processing subexpression '${match.groupValues[1]}'")
 
         this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
           .map { token ->
@@ -892,7 +892,7 @@ internal interface ListenerCommon {
    */
   fun exitNumber(ctx: ParserRuleContext) {
 
-    debugPrint("\nExiting number: %s".format(ctx.text))
+    debugPrint("Exiting number: %s".format(ctx.text))
 
     this.addNewNumber(token = this.buildNumber(ctx), ctx = ctx)
   }
@@ -1176,7 +1176,7 @@ internal interface ListenerCommon {
           intPart = accumulator.getConcatValues()
           accumulator = AnnotationsAccumulator()
 
-          debugPrint("\nFound decimal separator, saving integer part and starting accumulating decimal part")
+          debugPrint("Found decimal separator, saving integer part and starting accumulating decimal part")
         }
 
       } else {

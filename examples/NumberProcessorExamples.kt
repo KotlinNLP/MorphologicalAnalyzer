@@ -91,12 +91,12 @@ fun tokens(str: String){
 
   test(str = str, language = language, n = 1, modality = "SLL+LL")!!.forEach {
 
-    println(it.original)
+    println("Found (SLL+LL): ${it.original}")
   }
 
   test(str = str, language = language, n = 1, modality = "split")!!.forEach {
 
-    println(it.original)
+    println("Found (split): ${it.original}")
   }
 }
 
