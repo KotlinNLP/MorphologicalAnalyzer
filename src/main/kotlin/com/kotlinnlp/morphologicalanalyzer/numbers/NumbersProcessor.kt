@@ -59,12 +59,14 @@ class NumbersProcessor(
    * @param text the text to process
    * @param tokens the list of tokens that compose the input text
    * @param modality the Antlr parsing modality to use
+   * @param offset the offset of the text in the containing text
    *
    * @return the list of number tokens found
    */
   fun findNumbers(text: String,
                   tokens: List<RealToken>,
-                  modality: String = "SLL+LL"): List<Number> {
+                  modality: String = "SLL+LL",
+                  offset: Int = 0): List<Number> {
 
     var split = false
     var fallback = false
@@ -120,7 +122,14 @@ class NumbersProcessor(
 
         ParseTreeWalker().walk(listener as ParseTreeListener, root)
 
-        listener.getNumbers()
+        val numbers = listener.getNumbers()
+
+        return if( offset > 0 ) numbers.map { it.copy(
+
+          startToken = offset + it.startToken,
+          endToken = offset + it.endToken
+
+        )} else numbers
       }
     } else listOf()
   }
@@ -135,64 +144,11 @@ class NumbersProcessor(
    */
   private fun findNumbersWithSplitParsing(text: String, tokens: List<RealToken>): List<Number> {
 
-    return findPossibleNumberExpressions(text).flatMap { findNumbers(it, tokens) }
-  }
-
-  /**
-   * Look for possible number expressions in the provided list of tokens
-   *
-   * @param text the string to match
-   *
-   * @return
-   */
-  private fun findPossibleNumberExpressions(text: String): List<String> {
-
-    val tokensGroup = mutableListOf<String>()
-    var accumulator = ""
-    val negTokens = listOf("of", "and", "a", "an", "of a")
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
-    var skipNext = false
 
-    lexer.allTokens.forEach { t ->
-
-      debugPrint("Expr: '${t.text}'")
-
-      if (! skipNext && canBePartOfNumericExpression(t)) {
-
-        accumulator += t.text
-
-      } else {
-
-        if (accumulator.isNotEmpty()
-          &&
-          ! negTokens.contains(accumulator.trim())) {
-
-          debugPrint("+ $accumulator")
-
-          tokensGroup.add(accumulator)
-        }
-
-        skipNext = t.type == NumbersENParser.ANY
-
-        accumulator = ""
-      }
-    }
-
-    if (accumulator.isNotEmpty() && ! negTokens.contains(accumulator.trim())) {
-
-      debugPrint("+ $accumulator")
-
-      tokensGroup.add(accumulator)
-    }
-
-    return tokensGroup
-  }
-
-  private fun canBePartOfNumericExpression(t: Token): Boolean {
-
-    debugPrint("Testing: '${t.text}'")
-
-    return t.type != NumbersENParser.WORDDIV && t.type != NumbersENParser.ANY
+    return ChunkFinder(debug)
+      .find(lexer.allTokens as List<Token>)
+      .flatMap { findNumbers(text = it.text, tokens = tokens, offset = it.offset) }
   }
 
   /**

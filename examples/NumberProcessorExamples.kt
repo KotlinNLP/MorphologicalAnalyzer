@@ -33,6 +33,7 @@ Insieme alla luce il Sole irradia un flusso continuo di particelle cariche (plas
 const val odd_situations = """4 a "3" a4b
 a4a
 a4
+4
 4b
 b4b
 b4a
@@ -40,7 +41,7 @@ b4a
 7
 """
 
-const val testDebug = true
+var testDebug = true
 //const val testDebug = false
 
 var execution = 0
@@ -51,8 +52,8 @@ fun main(args: Array<String>) {
 //  debugging()
 //  test_grammar()
 //  example()
-//  timing2()
-  tokens(odd_situations)
+  timing2()
+//  tokens(odd_situations)
 }
 
 fun warmupNumberProcessor(): NumbersProcessor {
@@ -102,24 +103,28 @@ fun tokens(str: String){
 
 fun timing2() {
 
+  testDebug = false
   //  val str = "one dog and two million and one cats"
   val str = bigstr_EN
 
   warmupNumberProcessor()
 
-//  val modality = "SLL+LL"
-  val modality = "split"
   val language = getLanguageByIso("en")
 
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
+  var modality = "SLL+LL"
 
-  //  println("Res1: $res_1")
-  //  println("Res2: $res_2")
+//  test(str = str, language = language, n = 1000, modality = modality)!!
+//  test(str = str, language = language, n = 1000, modality = modality)!!
+//  test(str = str, language = language, n = 1000, modality = modality)!!
+//  test(str = str, language = language, n = 1000, modality = modality)!!
 
-  //  println( "The two expressions are ${if(res_1 == res_2) "EQUAL" else "NOT EQUAL"}" )
+  println("")
+
+  modality = "split"
+  test(str = str, language = language, n = 1000, modality = modality)!!
+  test(str = str, language = language, n = 1000, modality = modality)!!
+  test(str = str, language = language, n = 1000, modality = modality)!!
+  test(str = str, language = language, n = 1000, modality = modality)!!
 }
 
 
