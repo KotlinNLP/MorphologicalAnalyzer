@@ -56,7 +56,7 @@ class ChunkFinder(val debug: Boolean = false){
 
     tokens.forEach { t ->
 
-      debugPrint("Expr: '${t.text}'")
+      debugPrint("Stat: $status Type: ${t.type}) Text: '${t.text}' Wacc: '${wordAccum}' Eacc: '${exprAccum}'")
 
       when (status) {
 
@@ -70,7 +70,7 @@ class ChunkFinder(val debug: Boolean = false){
 
     if (status == 1 && exprAccum.isNotEmpty()) {
 
-      addPossibleNumericExpression(text = exprAccum, offset = exprOffset)
+      addPossibleNumericExpression(text = exprAccum)
     }
 
     return possibileNumericExpressions
@@ -105,6 +105,7 @@ class ChunkFinder(val debug: Boolean = false){
 
     if (t.type == NumbersENParser.ANY) {
 
+      addPossibleNumericExpression(text = exprAccum)
       wordAccum = ""
       exprAccum = ""
       status = 2
@@ -117,7 +118,7 @@ class ChunkFinder(val debug: Boolean = false){
     else if (listOf(NumbersENParser.WORDDIV, NumbersENParser.EOL, NumbersENParser.EOF ).contains(t.type)) {
 
       exprAccum += wordAccum
-      addPossibleNumericExpression(text = exprAccum, offset = exprOffset)
+      addPossibleNumericExpression(text = exprAccum)
       wordAccum = ""
       exprAccum = ""
       status = 0
@@ -135,13 +136,13 @@ class ChunkFinder(val debug: Boolean = false){
    */
   private fun processTokenStatus2(t: Token) {
 
-    if (listOf(NumbersENParser.WORDDIV, NumbersENParser.EOL).contains(t.type)) {
+    if (listOf(NumbersENParser.WORDDIV, NumbersENParser.WS, NumbersENParser.EOL).contains(t.type)) {
 
       status = 0
     }
   }
 
-  private fun addPossibleNumericExpression(text: String, offset: Int) {
+  private fun addPossibleNumericExpression(text: String) {
 
     debugPrint("+ $offset: $text")
 

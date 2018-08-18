@@ -52,8 +52,9 @@ fun main(args: Array<String>) {
 //  debugging()
 //  test_grammar()
 //  example()
-  timing2()
+//  timing2(bigstr_EN)
 //  tokens(odd_situations)
+  tokens(bigstr_EN)
 }
 
 fun warmupNumberProcessor(): NumbersProcessor {
@@ -101,11 +102,10 @@ fun tokens(str: String){
   }
 }
 
-fun timing2() {
+fun timing2(str: String) {
 
   testDebug = false
   //  val str = "one dog and two million and one cats"
-  val str = bigstr_EN
 
   warmupNumberProcessor()
 
