@@ -52,10 +52,10 @@ fun main(args: Array<String>) {
   //  debugging()
   //  test_grammar()
   //  example()
-//    timing2(bigstr_EN, language = "en")
+    timing2(bigstr_EN, language = "en")
 //    tokens(odd_situations, language = "en")
 //    tokens(bigstr_EN, language = "en")
-    tokens("due miliardi di miliardi and padding after.", language = "it")
+//    tokens("due miliardi di miliardi and padding after.", language = "it")
 }
 
 
