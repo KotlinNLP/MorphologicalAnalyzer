@@ -21,6 +21,14 @@ The Sun is a G-type main-sequence star (G2V) based on its spectral class. As suc
 The Sun is roughly middle-aged; it has not changed dramatically for more than four billion[a] years, and will remain fairly stable for more than another five billion years. It currently fuses about 600 million tons of hydrogen into helium every second, converting 4 million tons of matter into energy every second as a result. This energy, which can take between 10,000 and 170,000 years to escape from its core, is the source of the Sun's light and heat. In about 5 billion years, when hydrogen fusion in its core has diminished to the point at which the Sun is no longer in hydrostatic equilibrium, the core of the Sun will experience a marked increase in density and temperature while its outer layers expand to eventually become a red giant. It is calculated that the Sun will become sufficiently large to engulf the current orbits of Mercury and Venus, and render Earth uninhabitable. After this, it will shed its outer layers and become a dense type of cooling star known as a white dwarf, which no longer produces energy by fusion, but still glows and gives off heat from its previous fusion.
 """
 
+const val bigstr_SLL_EN ="""
+    The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma,[14][15] with internal convective motion that generates a magnetic field via a dynamo process.[16] It is by far the most important source of energy for life on Earth. Its diameter is about 1.39 million kilometers, i.e. 109 times that of Earth, and its mass is about 330,000 times that of Earth, accounting for about 99.86% of the total mass of the Solar System.[17] About three quarters of the Sun's mass consists of one thousand hydrogen (~73%); the rest is mostly helium (~25%), with much smaller quantities of heavier elements, including oxygen, carbon, neon, and iron.[18]
+
+The Sun is a G-type main-sequence star (G2V) based on its spectral class. As such, it is informally and not completely accurately referred to as a yellow dwarf (its light is closer to white than yellow). It formed approximately 4.6 billion  [a][10][19] years ago from the gravitational collapse of matter within a region of a large molecular cloud. Most of this matter gathered in the center, whereas the rest flattened into an orbiting disk that became the Solar System. The central mass became so hot and dense that it eventually initiated nuclear fusion in its core. It is thought that almost all stars form by this process.
+
+The Sun is roughly middle-aged; it has not changed dramatically for more than four billion[a] years, and will remain fairly stable for more than another five billion years. It currently fuses about 600 million tons of hydrogen into helium every second, converting 4 million tons of matter into energy every second as a result. This energy, which can take between 10,000 and 170,000 years to escape from its core, is the source of the Sun's light and heat. In about 5 billion years, when hydrogen fusion in its core has diminished to the point at which the Sun is no longer in hydrostatic equilibrium, the core of the Sun will experience a marked increase in density and temperature while its outer layers expand to eventually become a red giant. It is calculated that the Sun will become sufficiently large to engulf the current orbits of Mercury and Venus, and render Earth uninhabitable. After this, it will shed its outer layers and become a dense type of cooling star known as a white dwarf, which no longer produces energy by fusion, but still glows and gives off heat from its previous fusion.
+"""
+
 const val bigstr_IT = """ Il Sole ripreso in falsi colori dal Solar Dynamics Observatory della NASA nella banda dell'ultravioletto.
 Il Sole è la stella madre del sistema solare, e di gran lunga il suo principale componente. La sua grande massa gli permette di sostenere la fusione nucleare, che rilascia enormi quantità di energia, per la maggior parte irradiata nello spazio come radiazione elettromagnetica, in particolare luce visibile.
 
@@ -52,12 +60,13 @@ fun main(args: Array<String>) {
   //  debugging()
   //  test_grammar()
   //  example()
-    timing2(bigstr_EN, language = "en")
+    timing2(bigstr_SLL_EN, language = "en")
 //    tokens(odd_situations, language = "en")
 //    tokens(bigstr_EN, language = "en")
 //    tokens("due miliardi di miliardi and padding after.", language = "it")
-}
 
+//  test_sll(bigstr_SLL_EN, "en")
+}
 
 fun warmupNumberProcessor(): NumbersProcessor {
 
@@ -128,7 +137,6 @@ fun timing2(str: String, language: String) {
   test(str = str, language = lang, n = 1000, modality = modality)!!
 }
 
-
 fun test_grammar(){
 
   val numbersProcessor = warmupNumberProcessor()
@@ -154,6 +162,26 @@ fun test_grammar(){
     }
 
     if(ok) println("OK")
+  }
+}
+
+fun test_sll(text: String, language: String){
+
+  val numbersProcessor = NumbersProcessor(getLanguageByIso(language), debug = testDebug)
+
+
+  try {
+    numbersProcessor.findNumbers(
+      text = text,
+      tokens = SimpleTokenizer.tokenize(text),
+      modality = "SLL"
+    )
+
+    println("OK")
+  }
+  catch (ex: Exception) {
+
+    println("FAIL")
   }
 }
 
