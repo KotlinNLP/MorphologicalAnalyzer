@@ -7,43 +7,44 @@
 
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
-import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersENParser
-import org.antlr.v4.runtime.CharStreams
-import org.antlr.v4.runtime.Lexer
+import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.Token
-import org.antlr.v4.runtime.atn.TokensStartState
+import kotlin.reflect.KClass
+import kotlin.reflect.full.staticProperties
 
-class ChunkFinder(val debug: Boolean = false){
+class ChunkFinder(private val debug: Boolean = false, private val parserClass: KClass<out Parser>) {
 
   /**
    * The accumulator that holds the current word
    */
-  var wordAccum = ""
+  private var wordAccum = ""
 
   /**
    * The accumulator the current expression
    */
-  var exprAccum = ""
+  private var exprAccum = ""
 
   /**
    * The offset of the current token
    */
-  var offset = 0
+  private var offset = 0
 
   /**
    * The offset of the current expression
    */
-  var exprOffset = 0
+  private var exprOffset = 0
 
   /**
    * The current parsing status
    */
-  var status = 0
+  private var status = 0
 
   /**
    * The list of possibile numeric expressions
    */
-  val possibileNumericExpressions = mutableListOf<StringWithOffset>()
+  private val possibileNumericExpressions = mutableListOf<StringWithOffset>()
+
+  private val staticPropertiesCache = mutableMapOf<String, Int>()
 
   /**
    * Process a list of tokens, return a list of possible numeric expressions to process through the Antlr grammar and their offsets relative to the original text
@@ -56,7 +57,7 @@ class ChunkFinder(val debug: Boolean = false){
 
     tokens.forEach { t ->
 
-      debugPrint("Stat: $status Type: ${t.type}) Text: '${t.text}' Wacc: '${wordAccum}' Eacc: '${exprAccum}'")
+      debugPrint("Stat: $status Type: ${t.type} Text: '${t.text}' Wacc: '$wordAccum' Eacc: '$exprAccum'")
 
       when (status) {
 
@@ -68,13 +69,47 @@ class ChunkFinder(val debug: Boolean = false){
       offset += t.text.length
     }
 
-    if (status == 1 && exprAccum.isNotEmpty()) {
+    debugPrint("END Stat: $status Wacc: '$wordAccum' Eacc: '$exprAccum'")
 
-      addPossibleNumericExpression(text = exprAccum)
+    val tmp = exprAccum + wordAccum
+
+    if (status == 1 && tmp.isNotEmpty()) {
+
+      addPossibleNumericExpression(text = tmp)
     }
 
     return possibileNumericExpressions
   }
+
+  /**
+   * Returns the internal value for a static property of the parser class
+   *
+   * @param name the property name
+   *
+   * @return the property value
+   */
+  private fun getParserStaticMember(name: String): Int {
+
+    if(staticPropertiesCache.containsKey(name)) return staticPropertiesCache[name]!!
+
+    val v = parserClass
+      .staticProperties
+      .first {it.name == name}
+      .get() as Int
+
+    staticPropertiesCache[name] = v
+
+    return v
+  }
+
+  /**
+   * Returns a list of internal values for the static property of the parser class whose name was provided
+   *
+   * @param names the names of the inquired properties
+   *
+   * @return a list of property values
+   */
+  private fun getParserStaticMemberList(vararg names: String): List<Int> = names.map { getParserStaticMember(it) }
 
   /**
    * Process the current token, we are searching for possible numeric expressions
@@ -83,11 +118,11 @@ class ChunkFinder(val debug: Boolean = false){
    */
   private fun processTokenStatus0(t: Token) {
 
-    if (t.type == NumbersENParser.ANY) {
+    if (t.type == getParserStaticMember("ANY")) {
 
       status = 2
     }
-    else if (! listOf(NumbersENParser.WORDDIV, NumbersENParser.WS, NumbersENParser.EOL, NumbersENParser.EOF ).contains(t.type)) {
+    else if (! getParserStaticMemberList("WORDDIV", "WS", "EOL", "EOF").contains(t.type)) {
 
       wordAccum = t.text
       exprAccum = ""
@@ -103,19 +138,19 @@ class ChunkFinder(val debug: Boolean = false){
    */
   private fun processTokenStatus1(t: Token) {
 
-    if (t.type == NumbersENParser.ANY) {
+    if (t.type == getParserStaticMember("ANY")) {
 
       addPossibleNumericExpression(text = exprAccum)
       wordAccum = ""
       exprAccum = ""
       status = 2
 
-    } else if (t.type == NumbersENParser.WS) {
+    } else if (t.type == getParserStaticMember("WS")) {
 
       exprAccum += wordAccum + t.text
       wordAccum = ""
     }
-    else if (listOf(NumbersENParser.WORDDIV, NumbersENParser.EOL, NumbersENParser.EOF ).contains(t.type)) {
+    else if (getParserStaticMemberList("WORDDIV", "EOL", "EOF").contains(t.type)) {
 
       exprAccum += wordAccum
       addPossibleNumericExpression(text = exprAccum)
@@ -136,7 +171,7 @@ class ChunkFinder(val debug: Boolean = false){
    */
   private fun processTokenStatus2(t: Token) {
 
-    if (listOf(NumbersENParser.WORDDIV, NumbersENParser.WS, NumbersENParser.EOL).contains(t.type)) {
+    if (getParserStaticMemberList("WORDDIV", "WS", "EOL").contains(t.type)) {
 
       status = 0
     }
@@ -144,9 +179,9 @@ class ChunkFinder(val debug: Boolean = false){
 
   private fun addPossibleNumericExpression(text: String) {
 
-    debugPrint("+ $offset: $text")
+    debugPrint("+ $exprOffset: '$text'")
 
-    possibileNumericExpressions.add(StringWithOffset(text = exprAccum, offset = exprOffset))
+    possibileNumericExpressions.add(StringWithOffset(text = text, offset = exprOffset))
 
   }
 
@@ -155,7 +190,7 @@ class ChunkFinder(val debug: Boolean = false){
    *
    * @param message the debug message to print
    */
-  fun debugPrint(message: String) {
+  private fun debugPrint(message: String) {
 
     if (this.debug) System.err.println(message)
   }

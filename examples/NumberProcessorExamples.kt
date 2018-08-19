@@ -48,14 +48,16 @@ var execution = 0
 
 fun main(args: Array<String>) {
 
-//  timing()
-//  debugging()
-//  test_grammar()
-//  example()
-//  timing2(bigstr_EN)
-//  tokens(odd_situations)
-  tokens(bigstr_EN)
+  //  timing()
+  //  debugging()
+  //  test_grammar()
+  //  example()
+    timing2(bigstr_EN, language = "en")
+//    tokens(odd_situations, language = "en")
+//    tokens(bigstr_EN, language = "en")
+//    tokens("Padding before the number 3 cento 47 mila trecento venti 2", language = "it")
 }
+
 
 fun warmupNumberProcessor(): NumbersProcessor {
 
@@ -87,44 +89,43 @@ val str = bigstr_EN
   //  println( "The two expressions are ${if(res_1 == res_2) "EQUAL" else "NOT EQUAL"}" )
 }
 
-fun tokens(str: String){
+fun tokens(str: String, language: String = "en"){
 
-  val language = getLanguageByIso("en")
+  val lang = getLanguageByIso(language)
 
-  test(str = str, language = language, n = 1, modality = "SLL+LL")!!.forEach {
+  test(str = str, language = lang, n = 1, modality = "SLL+LL")!!.forEach {
 
     println("Found (SLL+LL): ${it.original}")
   }
 
-  test(str = str, language = language, n = 1, modality = "split")!!.forEach {
+  test(str = str, language = lang, n = 1, modality = "split")!!.forEach {
 
     println("Found (split): ${it.original}")
   }
 }
 
-fun timing2(str: String) {
+fun timing2(str: String, language: String) {
 
   testDebug = false
-  //  val str = "one dog and two million and one cats"
 
   warmupNumberProcessor()
 
-  val language = getLanguageByIso("en")
+  val lang = getLanguageByIso(language)
 
   var modality = "SLL+LL"
 
-//  test(str = str, language = language, n = 1000, modality = modality)!!
-//  test(str = str, language = language, n = 1000, modality = modality)!!
-//  test(str = str, language = language, n = 1000, modality = modality)!!
-//  test(str = str, language = language, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
 
   println("")
 
   modality = "split"
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
-  test(str = str, language = language, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
+  test(str = str, language = lang, n = 1000, modality = modality)!!
 }
 
 

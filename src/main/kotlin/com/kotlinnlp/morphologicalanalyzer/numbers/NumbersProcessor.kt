@@ -146,7 +146,7 @@ class NumbersProcessor(
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
 
-    return ChunkFinder(debug)
+    return ChunkFinder(debug, getParserClass())
       .find(lexer.allTokens as List<Token>)
       .flatMap { findNumbers(text = it.text, tokens = tokens, offset = it.offset) }
   }
@@ -193,6 +193,17 @@ class NumbersProcessor(
       }
       else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
     }
+  }
+
+  /**
+   * Get the parser class for the current language
+   *
+   * @return the parser class corresponding to the current language
+   */
+  private fun getParserClass(): KClass<out Parser> = when (this.langParams.language) {
+    "en" -> NumbersENParser::class
+    "it" -> NumbersITParser::class
+    else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
   }
 
   /**
