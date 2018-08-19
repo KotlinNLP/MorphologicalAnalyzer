@@ -52,10 +52,10 @@ fun main(args: Array<String>) {
   //  debugging()
   //  test_grammar()
   //  example()
-    timing2(bigstr_EN, language = "en")
+//    timing2(bigstr_EN, language = "en")
 //    tokens(odd_situations, language = "en")
 //    tokens(bigstr_EN, language = "en")
-//    tokens("Padding before the number 3 cento 47 mila trecento venti 2", language = "it")
+    tokens("due miliardi di miliardi and padding after.", language = "it")
 }
 
 
@@ -95,12 +95,12 @@ fun tokens(str: String, language: String = "en"){
 
   test(str = str, language = lang, n = 1, modality = "SLL+LL")!!.forEach {
 
-    println("Found (SLL+LL): ${it.original}")
+    println("Found (SLL+LL): '${it.original}'")
   }
 
   test(str = str, language = lang, n = 1, modality = "split")!!.forEach {
 
-    println("Found (split): ${it.original}")
+    println("Found (split): '${it.original}'")
   }
 }
 

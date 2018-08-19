@@ -179,10 +179,12 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
 
   private fun addPossibleNumericExpression(text: String) {
 
-    debugPrint("+ $exprOffset: '$text'")
+    if (text.isNotEmpty()) {
 
-    possibileNumericExpressions.add(StringWithOffset(text = text, offset = exprOffset))
+      debugPrint("+ $exprOffset: '$text'")
 
+      possibileNumericExpressions.add(StringWithOffset(text = text, offset = exprOffset))
+    }
   }
 
   /**

@@ -33,7 +33,7 @@ d_ten_pref: (D_2 | D_3 | D_4 | D_5 | D_6 | D_7 | D_8 | D_9);
 hundred: (ten_pref WS? | d_ten_pref WS?)? W_HUNDRED (n_tens_80 | (W_O (WS? (n_1_99 | max_2_digits))?));
 
 // from 1000 to 99999
-thousand: W_A_THOUSAND WS? n_1_999?
+thousand: W_A_THOUSAND (WS? n_1_999)?
 		| (thousand_pref | max_2_digits) WS? W_THOUSAND (WS? n_1_999)?;
 
 million:
