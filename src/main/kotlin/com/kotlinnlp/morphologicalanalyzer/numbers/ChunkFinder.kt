@@ -57,7 +57,7 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
 
     tokens.forEach { t ->
 
-      debugPrint("Stat: $status Type: ${t.type} Text: '${t.text}' Wacc: '$wordAccum' Eacc: '$exprAccum'")
+      debugPrint("Stat: $status Type: ${t.type} Text: '${t.text}' Eacc: '$exprAccum' Wacc: '$wordAccum'")
 
       when (status) {
 
@@ -69,7 +69,7 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
       offset += t.text.length
     }
 
-    debugPrint("END Stat: $status Wacc: '$wordAccum' Eacc: '$exprAccum'")
+    debugPrint("END Stat: $status Eacc: '$exprAccum' Wacc: '$wordAccum'")
 
     val tmp = exprAccum + wordAccum
 

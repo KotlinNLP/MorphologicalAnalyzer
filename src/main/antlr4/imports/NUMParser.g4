@@ -188,6 +188,6 @@ n_1_999t: quadrillion | n_1_999b;
 // OF rules (millions of trillions, hundred of millions of trillions, ...)
 prefix_of_rules: million_prefix | billion_prefix | trillion_prefix | quadrillion_prefix;
 
-of_rules_body: (WS? W_OF WS? (w_million | w_billion | w_trillion | w_quadrillion) WS?)+;
+of_rules_body: (WS? W_OF WS? (w_million | w_billion | w_trillion | w_quadrillion))+;
 
-of_rules: prefix_of_rules of_rules_body base_number?;
+of_rules: prefix_of_rules of_rules_body (WS? base_number)?;
