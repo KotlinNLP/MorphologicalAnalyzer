@@ -7,13 +7,13 @@
 
 package com.kotlinnlp.morphologicalanalyzer.dictionary.compressor
 
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 
 /**
  * A temporary morphology.
  *
  * @property lemma the lemma
- * @property type the morphology type
+ * @property pos the POS
  * @property properties the morphology properties object
  */
-data class TmpMorphology(val lemma: String, val type: MorphologyType, val properties: Properties)
+data class TmpMorphology(val lemma: String, val pos: POS, val properties: Properties)

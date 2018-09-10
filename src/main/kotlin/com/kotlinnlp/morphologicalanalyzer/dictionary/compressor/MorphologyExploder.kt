@@ -26,44 +26,44 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
     private set
 
   /**
-   * Explode the entry respect to each property type.
+   * Explode the entry respect to each property name.
    */
   init {
-    MorphologyPropertyFactory.propertyTypes.forEach { this.explodeEntries(propertyType = it) }
+    MorphologyPropertyFactory.propertyNames.forEach { this.explodeEntries(propertyName = it) }
   }
 
   /**
-   * Explode the entries respect to a given [propertyType].
+   * Explode the entries respect to a given [propertyName].
    *
-   * @param propertyType a property type
+   * @param propertyName the name of a property
    */
-  private fun explodeEntries(propertyType: String) {
+  private fun explodeEntries(propertyName: String) {
 
     val newEntries = mutableListOf<TmpEntry>()
 
     this.explodedEntries.forEach {
-      newEntries.addAll(this.explodeEntry(tmpEntry = it, propertyType = propertyType))
+      newEntries.addAll(this.explodeEntry(tmpEntry = it, propertyName = propertyName))
     }
 
     this.explodedEntries = newEntries
   }
 
   /**
-   * Explode an entry respect to a given [propertyType].
+   * Explode an entry respect to a given [propertyName].
    *
    * @param tmpEntry a temporary entry
-   * @param propertyType a property type
+   * @param propertyName the name of a property
    */
-  private fun explodeEntry(tmpEntry: TmpEntry, propertyType: String): List<TmpEntry> {
+  private fun explodeEntry(tmpEntry: TmpEntry, propertyName: String): List<TmpEntry> {
 
-    val explodingIndices: Pair<Int, Int>? = this.getExplodingIndices(tmpEntry = tmpEntry, propertyType = propertyType)
+    val explodingIndices: Pair<Int, Int>? = this.getExplodingIndices(tmpEntry = tmpEntry, propertyName = propertyName)
 
     return if (explodingIndices != null)
       this.explodeByProperty(
         tmpEntry = tmpEntry,
         morphoIndex = explodingIndices.first,
         propertyIndex = explodingIndices.second,
-        propertyType = propertyType)
+        propertyName = propertyName)
     else
       listOf(tmpEntry)
   }
@@ -72,17 +72,17 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
    * Get the pair of indices (<morphology_index, property_index>) of the first property to explode.
    *
    * @param tmpEntry a temporary entry
-   * @param propertyType a property type
+   * @param propertyName the name of a property
    *
    * @return a pair of <morphology_index, property_index> or null if no property has to be exploded
    */
-  private fun getExplodingIndices(tmpEntry: TmpEntry, propertyType: String): Pair<Int, Int>? {
+  private fun getExplodingIndices(tmpEntry: TmpEntry, propertyName: String): Pair<Int, Int>? {
 
     tmpEntry.morphologies.forEachIndexed { morphoIndex, morphology ->
       morphology.properties.list.forEachIndexed { propertyIndex, property ->
-        val (entryPropType, entryPropValue) = property
+        val (entryPropName, entryPropValue) = property
 
-        if (entryPropType == propertyType && entryPropValue.contains('+')) {
+        if (entryPropName == propertyName && entryPropValue.contains('+')) {
           return Pair(morphoIndex, propertyIndex)
         }
       }
@@ -97,14 +97,14 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
    * @param tmpEntry a temporary entry
    * @param morphoIndex the index of a morphology of the entry
    * @param propertyIndex the index of a property of the morphology
-   * @param propertyType the type of the property
+   * @param propertyName the name of the property
    *
    * @return a list of exploded entries
    */
   private fun explodeByProperty(tmpEntry: TmpEntry,
                                 morphoIndex: Int,
                                 propertyIndex: Int,
-                                propertyType: String): List<TmpEntry> {
+                                propertyName: String): List<TmpEntry> {
 
     val newEntries = mutableListOf<TmpEntry>()
 
@@ -118,7 +118,7 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
             morphoIndex = morphoIndex,
             propertyIndex = propertyIndex,
             newValue = annotation),
-          propertyType = propertyType
+          propertyName = propertyName
         ))
     }
 

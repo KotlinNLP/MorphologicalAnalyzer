@@ -11,11 +11,11 @@ import com.beust.klaxon.JsonObject
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyType
+import com.kotlinnlp.linguisticdescription.morphology.POS
 import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
-import com.kotlinnlp.linguisticdescription.InvalidMorphologyType
+import com.kotlinnlp.linguisticdescription.InvalidPOS
 import java.io.Serializable
 
 /**
@@ -30,17 +30,17 @@ class MorphologyCompressor : Serializable {
      */
     @Suppress("unused")
     private const val serialVersionUID: Long = 1L
+
+    /**
+     * The multiplier coefficient of the POS index, used to encode a morphology.
+     */
+    private const val POS_INDEX_COEFF: Int = 1.0e03.toInt()
+
+    /**
+     * The multiplier coefficient of the lemma index, used to encode a morphology.
+     */
+    private const val LEMMA_INDEX_COEFF: Long = 1.0e06.toLong()
   }
-
-  /**
-   * The multiplier coefficient of the type index, used to encode a morphology.
-   */
-  private val typeIndexCoeff: Int = 1.0e03.toInt()
-
-  /**
-   * The multiplier coefficient of the lemma index, used to encode a morphology.
-   */
-  private val lemmaIndexCoeff: Long = 1.0e06.toLong()
 
   /**
    * The BiMap of unique indices to lemmas.
@@ -48,15 +48,15 @@ class MorphologyCompressor : Serializable {
   private val lemmasBiMap: BiMap<Int, String> = HashBiMap.create()
 
   /**
-   * The map of morphology types associated by annotation.
+   * The map of POS tags associated by annotation.
    */
-  private val annotationsToTypesMap: Map<String, MorphologyType> = MorphologyType.values().associateBy { it.annotation }
+  private val annotationsToPOSMap: Map<String, POS> = POS.values().associateBy { it.annotation }
 
   /**
-   * The BiMap of morphology annotations associated by index.
+   * The BiMap of POS tags associated by index.
    */
   private val indicesToAnnotationsBiMap: BiMap<Int, String> = HashBiMap.create(
-    this.annotationsToTypesMap.keys.mapIndexed { i, index -> Pair(i, index) }.associate { it }
+    this.annotationsToPOSMap.keys.mapIndexed { i, index -> Pair(i, index) }.associate { it }
   )
 
   /**
@@ -71,18 +71,17 @@ class MorphologyCompressor : Serializable {
    */
   fun encodeMorphology(morphologyObj: JsonObject): Long {
 
-    val typeAnnotation: String = morphologyObj.string("type")!!
+    val posAnnotation: String = morphologyObj.string("type")!!
 
-    // Note: morphologies of type 'NUM' cannot be put in the dictionary because they have an adding 'numericForm'
-    // property. They should be created by the Morphological Analyzer.
-    if (typeAnnotation !in this.annotationsToTypesMap || typeAnnotation == "NUM")
-      throw InvalidMorphologyType(typeAnnotation)
+    // Note: morphologies with POS 'NUM' cannot be put in the dictionary because they have an adding 'numericForm'
+    // property. They should be created by the Morphological Analyzer only.
+    if (posAnnotation !in this.annotationsToPOSMap || posAnnotation == "NUM") throw InvalidPOS(posAnnotation)
 
     val lemmaIndex: Int = this.encodeLemma(morphologyObj.string("lemma")!!)
-    val typeIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(typeAnnotation)
+    val posIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(posAnnotation)
     val propertiesIndex: Int = this.encodeJSONProperties(morphologyObj.obj("properties")!!)
 
-    return this.lemmaIndexCoeff * lemmaIndex + this.typeIndexCoeff * typeIndex + propertiesIndex
+    return LEMMA_INDEX_COEFF * lemmaIndex + POS_INDEX_COEFF * posIndex + propertiesIndex
   }
 
   /**
@@ -98,7 +97,7 @@ class MorphologyCompressor : Serializable {
 
     return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
       Morphology(morphologies = entry.morphologies.map {
-        MorphologyFactory(lemma = it.lemma, type = it.type, properties = this.mapProperties(it.properties))
+        MorphologyFactory(lemma = it.lemma, pos = it.pos, properties = this.mapProperties(it.properties))
       })
     }
   }
@@ -164,7 +163,7 @@ class MorphologyCompressor : Serializable {
 
     return TmpMorphology(
       lemma = this.decodeLemma(encodedMorphology),
-      type = this.decodeType(encodedMorphology),
+      pos = this.decodePOS(encodedMorphology),
       properties = this.decodeProperties(encodedMorphology)
     )
   }
@@ -175,19 +174,19 @@ class MorphologyCompressor : Serializable {
    * @return the lemma of the given [encodedMorphology]
    */
   private fun decodeLemma(encodedMorphology: Long): String =
-    this.lemmasBiMap[(encodedMorphology / this.lemmaIndexCoeff).toInt()]!!
+    this.lemmasBiMap[(encodedMorphology / LEMMA_INDEX_COEFF).toInt()]!!
 
   /**
    * @param encodedMorphology an encoded morphology
    *
-   * @return the morphology type of the given [encodedMorphology]
+   * @return the POS of the given [encodedMorphology]
    */
-  private fun decodeType(encodedMorphology: Long): MorphologyType {
+  private fun decodePOS(encodedMorphology: Long): POS {
 
-    val typeRemainder: Int = (encodedMorphology % this.lemmaIndexCoeff).toInt()
-    val typeAnnotation: String = this.indicesToAnnotationsBiMap.getValue(typeRemainder / this.typeIndexCoeff)
+    val posRemainder: Int = (encodedMorphology % LEMMA_INDEX_COEFF).toInt()
+    val posAnnotation: String = this.indicesToAnnotationsBiMap.getValue(posRemainder / POS_INDEX_COEFF)
 
-    return this.annotationsToTypesMap[typeAnnotation]!!
+    return this.annotationsToPOSMap[posAnnotation]!!
   }
 
   /**
@@ -196,18 +195,18 @@ class MorphologyCompressor : Serializable {
    * @return the properties of the given [encodedMorphology]
    */
   private fun decodeProperties(encodedMorphology: Long): Properties =
-    this.propertiesBiMap.getValue((encodedMorphology % this.typeIndexCoeff).toInt())
+    this.propertiesBiMap.getValue((encodedMorphology % POS_INDEX_COEFF).toInt())
 
   /**
    * @param properties the properties object of a morphology
    *
-   * @return a map of morphology types to [MorphologyProperty] objects
+   * @return a map of properties names to [MorphologyProperty] objects
    */
   private fun mapProperties(properties: Properties): Map<String, MorphologyProperty> =
     properties.list.associate {
       Pair(
         it.first,
-        MorphologyPropertyFactory(propertyType = it.first, valueAnnotation = it.second)
+        MorphologyPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
       )
     }
 }
