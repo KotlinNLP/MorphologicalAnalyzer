@@ -48,16 +48,16 @@ class MorphologyCompressor : Serializable {
   private val lemmasBiMap: BiMap<Int, String> = HashBiMap.create()
 
   /**
-   * The map of POS tags associated by annotation.
-   */
-  private val annotationsToPOSMap: Map<String, POS> = POS.values().associateBy { it.annotation }
-
-  /**
    * The BiMap of POS tags associated by index.
    */
-  private val indicesToAnnotationsBiMap: BiMap<Int, String> = HashBiMap.create(
-    this.annotationsToPOSMap.keys.mapIndexed { i, index -> Pair(i, index) }.associate { it }
+  private val indicesToAnnotations: BiMap<Int, String> = HashBiMap.create(
+    POS.values().withIndex().associate { (i, it) -> i to it.annotation }
   )
+
+  /**
+   * The inverse map of [indicesToAnnotations].
+   */
+  private val annotationsToIndices: BiMap<String, Int> = this.indicesToAnnotations.inverse()
 
   /**
    * The BiMap of unique indices to morphology properties.
@@ -75,10 +75,10 @@ class MorphologyCompressor : Serializable {
 
     // Note: morphologies with POS 'NUM' cannot be put in the dictionary because they have an adding 'numericForm'
     // property. They should be created by the Morphological Analyzer only.
-    if (posAnnotation !in this.annotationsToPOSMap || posAnnotation == "NUM") throw InvalidPOS(posAnnotation)
+    if (posAnnotation !in this.annotationsToIndices || posAnnotation == "NUM") throw InvalidPOS(posAnnotation)
 
     val lemmaIndex: Int = this.encodeLemma(morphologyObj.string("lemma")!!)
-    val posIndex: Int = this.indicesToAnnotationsBiMap.inverse().getValue(posAnnotation)
+    val posIndex: Int = this.annotationsToIndices.getValue(posAnnotation)
     val propertiesIndex: Int = this.encodeJSONProperties(morphologyObj.obj("properties")!!)
 
     return LEMMA_INDEX_COEFF * lemmaIndex + POS_INDEX_COEFF * posIndex + propertiesIndex
@@ -184,9 +184,9 @@ class MorphologyCompressor : Serializable {
   private fun decodePOS(encodedMorphology: Long): POS {
 
     val posRemainder: Int = (encodedMorphology % LEMMA_INDEX_COEFF).toInt()
-    val posAnnotation: String = this.indicesToAnnotationsBiMap.getValue(posRemainder / POS_INDEX_COEFF)
+    val posAnnotation: String = this.indicesToAnnotations.getValue(posRemainder / POS_INDEX_COEFF)
 
-    return this.annotationsToPOSMap[posAnnotation]!!
+    return POS.byAnnotation(posAnnotation)
   }
 
   /**
