@@ -12,10 +12,10 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.POS
-import com.kotlinnlp.linguisticdescription.morphology.MorphologyFactory
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.InvalidPOS
+import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import java.io.Serializable
 
 /**
@@ -97,7 +97,7 @@ class MorphologyCompressor : Serializable {
 
     return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
       Morphology(morphologies = entry.morphologies.map {
-        MorphologyFactory(lemma = it.lemma, pos = it.pos, properties = this.mapProperties(it.properties))
+        SingleMorphology(lemma = it.lemma, pos = it.pos, properties = this.mapProperties(it.properties))
       })
     }
   }
