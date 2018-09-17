@@ -113,8 +113,7 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
     propertyValue.split('+').forEach { annotation ->
       newEntries.addAll(
         this.explodeEntry(
-          tmpEntry = this.replaceProperty(
-            tmpEntry = tmpEntry,
+          tmpEntry = tmpEntry.replaceProperty(
             morphoIndex = morphoIndex,
             propertyIndex = propertyIndex,
             newValue = annotation),
@@ -126,17 +125,16 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
   }
 
   /**
-   * Create a new temporary entry from the given [tmpEntry], replacing the value of a specific morphology property.
+   * Create a new temporary entry from this, replacing the value of a specific morphology property.
    *
-   * @param tmpEntry a temporary entry
    * @param morphoIndex the index of a morphology of the entry
    * @param propertyIndex the index of a property of the morphology
    * @param newValue the new value
    *
    * @return a new temporary entry
    */
-  private fun replaceProperty(tmpEntry: TmpEntry, morphoIndex: Int, propertyIndex: Int, newValue: String) = TmpEntry(
-    morphologies = tmpEntry.morphologies.mapIndexed { morphoI, it ->
+  private fun TmpEntry.replaceProperty(morphoIndex: Int, propertyIndex: Int, newValue: String) = this.copy(
+    morphologies = this.morphologies.mapIndexed { morphoI, it ->
       if (morphoI == morphoIndex)
         it.copy(
           properties = Properties(it.properties.list.mapIndexed { propI, prop ->
