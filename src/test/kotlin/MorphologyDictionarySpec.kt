@@ -103,15 +103,15 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(Morphology.Type.Multiple, entry.morphologies.first().type)
         }
 
-        it("should contain 2 entries in its multiple morphology") {
-          assertEquals(2, entry.morphologies.first().list.size)
+        it("should contain 2 components in its multiple morphology") {
+          assertEquals(2, entry.morphologies.first().components.size)
         }
 
-        it("should contain the expected first entry of its multiple morphology") {
-          assertEquals(Preposition.Base(lemma = "lemma1"), entry.morphologies.first().list[0])
+        it("should contain the expected first component of its multiple morphology") {
+          assertEquals(Preposition.Base(lemma = "lemma1"), entry.morphologies.first().components[0])
         }
 
-        it("should contain the expected second entry of its multiple morphology") {
+        it("should contain the expected second component of its multiple morphology") {
           assertEquals(
             Article.Base(
               lemma = "lemma2",
@@ -119,7 +119,7 @@ class MorphologyDictionarySpec : Spek({
               number = Number.Plural,
               case = GrammaticalCase.Object
             ),
-            entry.morphologies.first().list[1]
+            entry.morphologies.first().components[1]
           )
         }
       }
@@ -157,7 +157,7 @@ class MorphologyDictionarySpec : Spek({
               number = Number.Singular,
               person = Person.Third
             ),
-            entry.morphologies[0].list.first()
+            entry.morphologies[0].components.first()
           )
         }
 
@@ -175,7 +175,7 @@ class MorphologyDictionarySpec : Spek({
               mood = Mood.Indicative,
               tense = Tense.Present
             ),
-            entry.morphologies[1].list.first()
+            entry.morphologies[1].components.first()
           )
         }
       }
@@ -204,7 +204,7 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain the expected morphology") {
-          assertEquals(Preposition.Base(lemma = "lemma5 lemma6 lemma7"), entry.morphologies.first().list[0])
+          assertEquals(Preposition.Base(lemma = "lemma5 lemma6 lemma7"), entry.morphologies.first().components[0])
         }
       }
     }
@@ -231,8 +231,8 @@ class MorphologyDictionarySpec : Spek({
           assertTrue { entry.morphologies.all { it.type == Morphology.Type.Multiple } }
         }
 
-        it("should contain 2 entries in its multiple morphologies") {
-          assertTrue { entry.morphologies.all { it.list.size == 2 } }
+        it("should contain 2 components in its multiple morphologies") {
+          assertTrue { entry.morphologies.all { it.components.size == 2 } }
         }
 
         it("should contain the expected first entry of its first morphology") {
@@ -245,11 +245,11 @@ class MorphologyDictionarySpec : Spek({
               mood = Mood.Indicative,
               tense = Tense.Present
             ),
-            entry.morphologies[0].list[0]
+            entry.morphologies[0].components[0]
           )
         }
 
-        it("should contain the expected second entry of its first morphology") {
+        it("should contain the expected second component of its first morphology") {
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
@@ -258,11 +258,11 @@ class MorphologyDictionarySpec : Spek({
               person = Person.Third,
               case = GrammaticalCase.IndirectObject
             ),
-            entry.morphologies[0].list[1]
+            entry.morphologies[0].components[1]
           )
         }
 
-        it("should contain the expected first entry of its second morphology") {
+        it("should contain the expected first component of its second morphology") {
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
@@ -272,11 +272,11 @@ class MorphologyDictionarySpec : Spek({
               mood = Mood.Indicative,
               tense = Tense.Present
             ),
-            entry.morphologies[1].list[0]
+            entry.morphologies[1].components[0]
           )
         }
 
-        it("should contain the expected second entry of its second morphology") {
+        it("should contain the expected second component of its second morphology") {
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
@@ -285,11 +285,11 @@ class MorphologyDictionarySpec : Spek({
               person = Person.Third,
               case = GrammaticalCase.IndirectObject
             ),
-            entry.morphologies[1].list[1]
+            entry.morphologies[1].components[1]
           )
         }
 
-        it("should contain the expected first entry of its third morphology") {
+        it("should contain the expected first component of its third morphology") {
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
@@ -299,11 +299,11 @@ class MorphologyDictionarySpec : Spek({
               mood = Mood.Subjunctive,
               tense = Tense.Present
             ),
-            entry.morphologies[2].list[0]
+            entry.morphologies[2].components[0]
           )
         }
 
-        it("should contain the expected second entry of its third morphology") {
+        it("should contain the expected second component of its third morphology") {
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
@@ -312,11 +312,11 @@ class MorphologyDictionarySpec : Spek({
               person = Person.Third,
               case = GrammaticalCase.IndirectObject
             ),
-            entry.morphologies[2].list[1]
+            entry.morphologies[2].components[1]
           )
         }
 
-        it("should contain the expected first entry of its fourth morphology") {
+        it("should contain the expected first component of its fourth morphology") {
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
@@ -326,11 +326,11 @@ class MorphologyDictionarySpec : Spek({
               mood = Mood.Subjunctive,
               tense = Tense.Present
             ),
-            entry.morphologies[3].list[0]
+            entry.morphologies[3].components[0]
           )
         }
 
-        it("should contain the expected second entry of its fourth morphology") {
+        it("should contain the expected second component of its fourth morphology") {
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
@@ -339,7 +339,7 @@ class MorphologyDictionarySpec : Spek({
               person = Person.Third,
               case = GrammaticalCase.IndirectObject
             ),
-            entry.morphologies[3].list[1]
+            entry.morphologies[3].components[1]
           )
         }
       }
@@ -366,7 +366,7 @@ class MorphologyDictionarySpec : Spek({
         it("should contain the expected morphology") {
           assertEquals(
             Adverb.Modal(lemma = "lemma10", degree = Degree.Base),
-            entry.morphologies.first().list.first())
+            entry.morphologies.first().components.first())
         }
       }
 
@@ -416,7 +416,7 @@ class MorphologyDictionarySpec : Spek({
         it("should contain the expected morphology") {
           assertEquals(
             Adverb.Modal(lemma = "lemma11", degree = Degree.Base),
-            entry.morphologies.first().list.first())
+            entry.morphologies.first().components.first())
         }
       }
 
