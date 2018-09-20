@@ -46,7 +46,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
      * @return a morphology entries list
      */
     private fun buildPunctMorpho(form: String): List<Morphology> = listOf(
-      Morphology(type = Morphology.Type.Single, components = listOf(Punctuation(lemma = form)))
+      Morphology(Punctuation(lemma = form))
     )
 
     /**
@@ -58,17 +58,14 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
      * @return a morphology entries list
      */
     private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): List<Morphology> = listOf(
-      Morphology(
-        type = Morphology.Type.Single,
-        components = listOf(NumberMorpho(
-          lemma = lemma,
-          gender = Gender.Undefined,
-          number = when (numericForm.toDouble()) {
-            1.0 -> NumberEnum.Singular
-            else -> NumberEnum.Undefined
-          },
-          numericForm = numericForm))
-      )
+      Morphology(NumberMorpho(
+        lemma = lemma,
+        gender = Gender.Undefined,
+        number = when (numericForm.toDouble()) {
+          1.0 -> NumberEnum.Singular
+          else -> NumberEnum.Undefined
+        },
+        numericForm = numericForm))
     )
   }
 
