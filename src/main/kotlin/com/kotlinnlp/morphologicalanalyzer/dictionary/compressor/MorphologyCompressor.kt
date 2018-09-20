@@ -96,7 +96,7 @@ class MorphologyCompressor : Serializable {
     val tmpEntry: TmpEntry = this.decodeTmpEntry(morphologyEntryCodes)
 
     return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
-      Morphology(morphologies = entry.morphologies.map {
+      Morphology(components = entry.morphologies.map {
         SingleMorphology(lemma = it.lemma, pos = it.pos, properties = this.mapProperties(it.properties))
       })
     }
