@@ -95,7 +95,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
 
     return MorphologicalAnalysis(
-      tokens = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphology(it, numberToken = numbersByIndex[i]) },
+      tokens = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphologies(it, numberToken = numbersByIndex[i]) },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
       dateTimes = this.dateTimeProcessor.findDateTimes(text = text, tokens = sentence.tokens)
     )
@@ -105,9 +105,9 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
    * @param token a token
    * @param numberToken the number token in case the token is part of a numeric expression, otherwise null
    *
-   * @return the list of morphology entries of the given [token] or null if no one has been found
+   * @return the list of the possible morphologies of the given [token] or null if no one has been found
    */
-  private fun getTokenMorphology(token: RealToken, numberToken: Number?): List<Morphology>? {
+  private fun getTokenMorphologies(token: RealToken, numberToken: Number?): List<Morphology>? {
 
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 
