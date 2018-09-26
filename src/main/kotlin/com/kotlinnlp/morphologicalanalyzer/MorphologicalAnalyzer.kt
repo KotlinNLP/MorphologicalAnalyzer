@@ -12,8 +12,9 @@ import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.discourse.Punctuation
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Noun
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number as NumberMorpho
-import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberEnum
+import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
@@ -39,34 +40,39 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     private val punctRegex = Regex("^[.,;:#!?|/\\\\$%&=~*\\-_\"“”‘'`^()\\[\\]{}]+$")
 
     /**
-     * Build the default morphology entries list for punctuation tokens (it contains only one single morphology).
+     * Build the default morphology for punctuation tokens.
      *
      * @param form the form of the token
      *
-     * @return a morphology entries list
+     * @return a new punctuation morphology
      */
-    private fun buildPunctMorpho(form: String): List<Morphology> = listOf(
-      Morphology(Punctuation(lemma = form))
-    )
+    private fun buildPunctMorpho(form: String): Morphology = Morphology(Punctuation(lemma = form))
 
     /**
-     * Build the default morphology entries list for number tokens (it contains only one single morphology).
+     * Build the default morphology for number tokens.
      *
      * @param lemma the lemma of the number token
      * @param numericForm the numericForm of the number
      *
-     * @return a morphology entries list
+     * @return a new number morphology
      */
-    private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): List<Morphology> = listOf(
-      Morphology(NumberMorpho(
-        lemma = lemma,
-        gender = Gender.Undefined,
-        number = when (numericForm.toDouble()) {
-          1.0 -> NumberEnum.Singular
-          else -> NumberEnum.Undefined
-        },
-        numericForm = numericForm))
-    )
+    private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): Morphology = Morphology(NumberMorpho(
+      lemma = lemma,
+      gender = Gender.Undefined,
+      number = when (numericForm.toDouble()) {
+        1.0 -> NumberProp.Singular
+        else -> NumberProp.Undefined
+      },
+      numericForm = numericForm))
+
+    /**
+     * Build the default morphology for proper nouns tokens.
+     *
+     * @param form the form of the token
+     *
+     * @return a new proper noun morphology
+     */
+    private fun buildProperNounMorpho(form: String): Morphology = Morphology(Noun.Proper.Base(lemma = form))
   }
 
   /**
@@ -111,23 +117,31 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
 
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 
-    return when {
+    val morphologies: MutableList<Morphology> = dictionaryEntry?.morphologies?.toMutableList() ?: mutableListOf()
 
-      token.isPunct() -> buildPunctMorpho(token.form) + (dictionaryEntry?.morphologies ?: listOf())
-
-      numberToken != null -> buildNumberMorpho(
-        lemma = numberToken.asWord,
-        numericForm = numberToken.value
-      ) + (dictionaryEntry?.morphologies ?: listOf())
-
-      else -> dictionaryEntry?.morphologies
+    when {
+      token.isPunct() -> morphologies.add(buildPunctMorpho(token.form))
+      numberToken != null ->
+        morphologies.add(buildNumberMorpho(lemma = numberToken.asWord, numericForm = numberToken.value))
     }
+
+    if (token.isTitleCase() && morphologies.none { it.components.any { it is Noun } })
+      morphologies.add(buildProperNounMorpho(token.form))
+
+    return if (morphologies.isNotEmpty()) morphologies else null
   }
 
   /**
-   * @return a boolean indicating if this token contains a punctuation form
+   * @return true if this token contains a punctuation form, otherwise false
    */
   private fun RealToken.isPunct(): Boolean = punctRegex.matches(this.form)
+
+  /**
+   * @return true if this token form is title case (only first letter upper case), otherwise false
+   */
+  private fun RealToken.isTitleCase(): Boolean = this.form.let {
+    it.first().isUpperCase() && (it.length == 1 || it.subSequence(1, it.length).all { it.isLowerCase() })
+  }
 
   /**
    * @param tokens the list of input tokens
@@ -141,7 +155,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
       MultiWords(
         startToken = it.startToken,
         endToken = it.endToken,
-        morphologies = buildNumberMorpho(lemma = it.asWord, numericForm = it.value))
+        morphologies = listOf(buildNumberMorpho(lemma = it.asWord, numericForm = it.value)))
     }
 
     return MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens) + multiWordsFromNumbers
