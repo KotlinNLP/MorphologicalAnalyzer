@@ -117,7 +117,7 @@ class MorphologyDictionarySpec : Spek({
               lemma = "lemma2",
               gender = Gender.Feminine,
               number = Number.Plural,
-              case = GrammaticalCase.Object
+              case = GrammaticalCase.Accusative
             ),
             entry.morphologies.first().components[1]
           )
@@ -256,7 +256,7 @@ class MorphologyDictionarySpec : Spek({
               gender = Gender.Masculine,
               number = Number.Singular,
               person = Person.Third,
-              case = GrammaticalCase.IndirectObject
+              case = GrammaticalCase.Dative
             ),
             entry.morphologies[0].components[1]
           )
@@ -283,7 +283,7 @@ class MorphologyDictionarySpec : Spek({
               gender = Gender.Masculine,
               number = Number.Plural,
               person = Person.Third,
-              case = GrammaticalCase.IndirectObject
+              case = GrammaticalCase.Dative
             ),
             entry.morphologies[1].components[1]
           )
@@ -310,7 +310,7 @@ class MorphologyDictionarySpec : Spek({
               gender = Gender.Masculine,
               number = Number.Singular,
               person = Person.Third,
-              case = GrammaticalCase.IndirectObject
+              case = GrammaticalCase.Dative
             ),
             entry.morphologies[2].components[1]
           )
@@ -337,7 +337,7 @@ class MorphologyDictionarySpec : Spek({
               gender = Gender.Masculine,
               number = Number.Plural,
               person = Person.Third,
-              case = GrammaticalCase.IndirectObject
+              case = GrammaticalCase.Dative
             ),
             entry.morphologies[3].components[1]
           )
