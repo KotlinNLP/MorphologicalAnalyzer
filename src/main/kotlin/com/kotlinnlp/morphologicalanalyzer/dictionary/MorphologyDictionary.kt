@@ -268,7 +268,9 @@ class MorphologyDictionary(val language: Language) : Serializable {
    * @return the list of multi-words expression that are mapped to the given [indices]
    */
   private fun indicesToMultiWords(indices: List<Int>, includeAlternatives: Boolean): List<String> =
-    indices.map { this.multiWords[it] }.let { if (includeAlternatives) it else it.filter { !this.isReference(it) } }
+    indices
+      .map { this.multiWords[it] }
+      .let { multiWords -> if (includeAlternatives) multiWords else multiWords.filter { !this.isReference(it) } }
 
   /**
    * @param form a form of the dictionary
