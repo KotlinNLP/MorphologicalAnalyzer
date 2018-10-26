@@ -57,7 +57,7 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
     var candidates: Set<String> = this.dictionary.getMultiWordsIntroducedBy(tokens[tokenIndex].form).toSet()
     var followingTokenIndex: Int = tokenIndex
 
-    while (candidates.size > 1 && ++followingTokenIndex < tokens.size) {
+    while (candidates.isNotEmpty() && ++followingTokenIndex < tokens.size) {
 
       val multiWords: List<String> = this.dictionary.getMultiWords(word = tokens[followingTokenIndex].form)
 
