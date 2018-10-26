@@ -38,6 +38,11 @@ class MorphologyDictionary(val language: Language) : Serializable {
     const val REF_PREFIX = "REF:"
 
     /**
+     * A regular expression that matches all the alternative apostrophes chars.
+     */
+    val APOSTROPHES_REGEX = Regex("[‘’´`❜❛]")
+
+    /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
      *
      * @param filename the morphologies dictionary filename
@@ -153,7 +158,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
    */
   operator fun get(form: String): Entry? {
 
-    val encodedEntry: String? = this.morphologyMap[form.toLowerCase()]?.let {
+    val encodedEntry: String? = this.morphologyMap[form.normalize()]?.let {
       if (it.startsWith(REF_PREFIX)) this.morphologyMap[it.removePrefix(REF_PREFIX)] else it
     }
 
@@ -182,7 +187,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
    * @return the list of multi-words in which the given [word] is involved (empty if no one is found)
    */
   fun getMultiWords(word: String, includeAlternatives: Boolean = true): List<String> =
-    this.wordsToMultiWords[word.toLowerCase()]?.let {
+    this.wordsToMultiWords[word.normalize()]?.let {
       this.indicesToMultiWords(indices = it, includeAlternatives = includeAlternatives)
     } ?: listOf()
 
@@ -195,7 +200,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
    * @return the list of multi-words that the given [startWord] introduces (empty if no one is found)
    */
   fun getMultiWordsIntroducedBy(startWord: String, includeAlternatives: Boolean = true): List<String> =
-    this.startMultiWordsMap[startWord.toLowerCase()]?.let {
+    this.startMultiWordsMap[startWord.normalize()]?.let {
       this.indicesToMultiWords(indices = it, includeAlternatives = includeAlternatives)
     } ?: listOf()
 
@@ -278,4 +283,11 @@ class MorphologyDictionary(val language: Language) : Serializable {
    * @return a boolean indicating whether the given [form] references another one
    */
   private fun isReference(form: String): Boolean = this.morphologyMap.getValue(form).startsWith(REF_PREFIX)
+
+  /**
+   * Normalize this string to search it in the dictionary.
+   *
+   * @return a new normalized string
+   */
+  private fun String.normalize(): String = this.toLowerCase().replace(APOSTROPHES_REGEX, "'")
 }
