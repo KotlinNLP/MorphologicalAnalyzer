@@ -12,6 +12,9 @@ import org.antlr.v4.runtime.Token
 import kotlin.reflect.KClass
 import kotlin.reflect.full.staticProperties
 
+/**
+ *
+ */
 class ChunkFinder(private val debug: Boolean = false, private val parserClass: KClass<out Parser>) {
 
   /**
@@ -44,6 +47,9 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
    */
   private val possibileNumericExpressions = mutableListOf<StringWithOffset>()
 
+  /**
+   *
+   */
   private val staticPropertiesCache = mutableMapOf<String, Int>()
 
   /**
@@ -138,29 +144,29 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
    */
   private fun processTokenStatus1(t: Token) {
 
-    if (t.type == getParserStaticMember("ANY")) {
+    when {
 
-      addPossibleNumericExpression(text = exprAccum)
-      wordAccum = ""
-      exprAccum = ""
-      status = 2
+      t.type == getParserStaticMember("ANY") -> {
+        addPossibleNumericExpression(text = exprAccum)
+        wordAccum = ""
+        exprAccum = ""
+        status = 2
+      }
 
-    } else if (t.type == getParserStaticMember("WS")) {
+      t.type == getParserStaticMember("WS") -> {
+        exprAccum += wordAccum + t.text
+        wordAccum = ""
+      }
 
-      exprAccum += wordAccum + t.text
-      wordAccum = ""
-    }
-    else if (getParserStaticMemberList("WORDDIV", "EOL", "EOF").contains(t.type)) {
+      getParserStaticMemberList("WORDDIV", "EOL", "EOF").contains(t.type) -> {
+        exprAccum += wordAccum
+        addPossibleNumericExpression(text = exprAccum)
+        wordAccum = ""
+        exprAccum = ""
+        status = 0
+      }
 
-      exprAccum += wordAccum
-      addPossibleNumericExpression(text = exprAccum)
-      wordAccum = ""
-      exprAccum = ""
-      status = 0
-
-    } else {
-
-      wordAccum += t.text
+      else -> wordAccum += t.text
     }
   }
 
@@ -183,7 +189,7 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
 
       debugPrint("+ $exprOffset: '$text'")
 
-      possibileNumericExpressions.add(StringWithOffset(text = text, offset = exprOffset))
+      possibileNumericExpressions.add(StringWithOffset(str = text, offset = exprOffset))
     }
   }
 

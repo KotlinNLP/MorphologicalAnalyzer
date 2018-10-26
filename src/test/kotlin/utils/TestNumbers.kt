@@ -10,7 +10,6 @@ package utils
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import java.io.FileNotFoundException
-import java.nio.file.Paths
 
 /**
  * Contains list of numbers tests.

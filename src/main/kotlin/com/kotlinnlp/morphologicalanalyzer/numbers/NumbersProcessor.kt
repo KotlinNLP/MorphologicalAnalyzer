@@ -9,7 +9,6 @@ package com.kotlinnlp.morphologicalanalyzer.numbers
 
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
-import com.kotlinnlp.morphologicalanalyzer.datetime.grammar.DateTimeParser
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
@@ -43,7 +42,7 @@ class NumbersProcessor(
    *
    * @param message the debug message to print
    */
-  fun debugPrint(message: String) {
+  private fun debugPrint(message: String) {
 
     if (this.debug) System.err.println(message)
   }
@@ -70,26 +69,20 @@ class NumbersProcessor(
 
     var split = false
     var fallback = false
-    var SLL = false
+    var sll = false
 
-    if (modality == "SLL") {
+    when (modality) {
+      "SLL" -> sll = true
+      "SLL+LL" -> {
 
-      SLL = true
+        sll = true
+        fallback = true
 
-    } else if (modality == "SLL+LL") {
-
-      SLL = true
-      fallback = true
-
-    } else if (modality == "LL") {
-
-      SLL = false
-
-    } else if (modality == "split") {
-
-      split = true
-
-    } else throw IllegalArgumentException("Modality '$modality' not implemented")
+      }
+      "LL" -> sll = false
+      "split" -> split = true
+      else -> throw IllegalArgumentException("Modality '$modality' not implemented")
+    }
 
     return if (text.trim().isNotEmpty()) {
 
@@ -105,9 +98,9 @@ class NumbersProcessor(
 
         val root = try{
 
-          debugPrint("Executing ${if (SLL) "SLL" else "LL"} parsing")
+          debugPrint("Executing ${if (sll) "SLL" else "LL"} parsing")
 
-          this.buildParseTree(text, SLL = SLL)
+          this.buildParseTree(text, SLL = sll)
 
         } catch (ex: ParseCancellationException) {
 
@@ -148,7 +141,7 @@ class NumbersProcessor(
 
     return ChunkFinder(debug, getParserClass())
       .find(lexer.allTokens as List<Token>)
-      .flatMap { findNumbers(text = it.text, tokens = tokens, offset = it.offset) }
+      .flatMap { findNumbers(text = it.str, tokens = tokens, offset = it.offset) }
   }
 
   /**
@@ -168,7 +161,6 @@ class NumbersProcessor(
       this.langParams,
       this,
       tokens,
-//      this.debug,
       false,
       this.enableSubexpressions
     ) as ListenerCommon
@@ -226,7 +218,7 @@ class NumbersProcessor(
 
     this.interpreter.predictionMode = PredictionMode.SLL
     this.removeErrorListeners()
-    this.setErrorHandler(BailErrorStrategy())
+    this.errorHandler = BailErrorStrategy()
 
     return this
   }
