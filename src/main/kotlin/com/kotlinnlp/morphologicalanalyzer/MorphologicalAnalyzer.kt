@@ -37,7 +37,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     /**
      * A regex that matches a punctuation token.
      */
-    private val punctRegex = Regex("^[.,;:#!?|/\\\\$%&=~*\\-–_\"“”‘'`^()\\[\\]{}]+$")
+    private val punctRegex = Regex("^[….,;:#!?|/\\\\$%&=~*\\-–_\"“”‘'`^()\\[\\]{}]+$")
 
     /**
      * Build the default morphology for punctuation tokens.
