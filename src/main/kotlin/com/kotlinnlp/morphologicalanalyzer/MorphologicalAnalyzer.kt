@@ -125,7 +125,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
         morphologies.add(buildNumberMorpho(lemma = numberToken.asWord, numericForm = numberToken.value))
     }
 
-    if (token.isTitleCase() && morphologies.none { it.components.any { component -> component is Noun } })
+    if (token.isFirstUpperCase() && morphologies.none { it.components.any { component -> component is Noun.Proper } })
       morphologies.add(buildProperNounMorpho(token.form))
 
     return if (morphologies.isNotEmpty()) morphologies else null
@@ -137,11 +137,9 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
   private fun RealToken.isPunct(): Boolean = punctRegex.matches(this.form)
 
   /**
-   * @return true if this token form is title case (only first letter upper case), otherwise false
+   * @return true if the first char of this token form is upper case, otherwise false
    */
-  private fun RealToken.isTitleCase(): Boolean = this.form.let {
-    it.first().isUpperCase() && (it.length == 1 || it.subSequence(1, it.length).all { char -> char.isLowerCase() })
-  }
+  private fun RealToken.isFirstUpperCase(): Boolean = this.form.first().isUpperCase()
 
   /**
    * @param tokens the list of input tokens
