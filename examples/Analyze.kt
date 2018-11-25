@@ -7,10 +7,10 @@
 
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
+import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
-import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalysis
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalyzer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizerModel
@@ -103,7 +103,7 @@ private fun printAnalysis(tokens: List<RealToken>, analysis: MorphologicalAnalys
  */
 private fun printTokens(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
-  analysis.tokens.zip(tokens).forEach { (morphoEntries, token) ->
+  analysis.tokensMorphologies.zip(tokens).forEach { (morphoEntries, token) ->
     println("`${token.form}`")
     morphoEntries?.forEach { println("\t$it") } ?: println("\tNo morphology found.")
   }

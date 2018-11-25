@@ -8,6 +8,8 @@
 package com.kotlinnlp.morphologicalanalyzer
 
 import com.kotlinnlp.linguisticdescription.language.Language
+import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
+import com.kotlinnlp.linguisticdescription.morphology.Morphologies
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
@@ -101,7 +103,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
 
     return MorphologicalAnalysis(
-      tokens = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphologies(it, numberToken = numbersByIndex[i]) },
+      tokensMorphologies = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphologies(it, numberToken = numbersByIndex[i]) },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
       dateTimes = this.dateTimeProcessor.findDateTimes(text = text, tokens = sentence.tokens)
     )
@@ -111,9 +113,9 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
    * @param token a token
    * @param numberToken the number token in case the token is part of a numeric expression, otherwise null
    *
-   * @return the list of the possible morphologies of the given [token] or null if no one has been found
+   * @return the list of the possible morphologies of the given [token] (can be empty if no one has been found)
    */
-  private fun getTokenMorphologies(token: RealToken, numberToken: Number?): List<Morphology>? {
+  private fun getTokenMorphologies(token: RealToken, numberToken: Number?): Morphologies {
 
     val dictionaryEntry: Entry? = this.dictionary[token.form]
 
@@ -128,7 +130,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     if (token.isFirstUpperCase() && morphologies.none { it.components.any { component -> component is Noun.Proper } })
       morphologies.add(buildProperNounMorpho(token.form))
 
-    return if (morphologies.isNotEmpty()) morphologies else null
+    return Morphologies(morphologies)
   }
 
   /**
