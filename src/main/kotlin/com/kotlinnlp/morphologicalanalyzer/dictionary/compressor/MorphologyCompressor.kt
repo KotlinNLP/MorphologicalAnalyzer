@@ -16,6 +16,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPrope
 import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
 import com.kotlinnlp.linguisticdescription.InvalidPOS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
+import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Noun
 import java.io.Serializable
 
 /**
@@ -97,7 +98,11 @@ class MorphologyCompressor : Serializable {
 
     return MorphologyExploder(tmpEntry).explodedEntries.map { entry ->
       Morphology(components = entry.morphologies.map {
-        SingleMorphology(lemma = it.lemma, pos = it.pos, properties = this.mapProperties(it.properties))
+        SingleMorphology(
+          lemma = it.lemma,
+          pos = it.pos,
+          properties = this.mapProperties(it.properties),
+          allowIncompleteProperties = it.pos.isSubTypeOf(Noun.Proper::class))
       })
     }
   }
