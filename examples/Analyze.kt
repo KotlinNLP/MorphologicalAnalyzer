@@ -105,7 +105,7 @@ private fun printTokens(tokens: List<RealToken>, analysis: MorphologicalAnalysis
 
   analysis.tokensMorphologies.zip(tokens).forEach { (morphoEntries, token) ->
     println("`${token.form}`")
-    morphoEntries?.forEach { println("\t$it") } ?: println("\tNo morphology found.")
+    morphoEntries.forEach { println("\t$it") }
   }
 }
 
