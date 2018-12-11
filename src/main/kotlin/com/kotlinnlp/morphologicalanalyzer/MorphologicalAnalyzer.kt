@@ -109,7 +109,9 @@ class MorphologicalAnalyzer(
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
 
     return MorphologicalAnalysis(
-      tokensMorphologies = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphologies(it, numberToken = numbersByIndex[i]) },
+      tokensMorphologies = sentence.tokens.mapIndexed { i, it ->
+        this.getTokenMorphologies(it, numberToken = numbersByIndex[i])
+      },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
       dateTimes = this.dateTimeProcessor?.findDateTimes(text = text, tokens = sentence.tokens) ?: listOf()
     )
