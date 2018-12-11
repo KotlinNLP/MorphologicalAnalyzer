@@ -219,7 +219,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
    */
   private fun addEntry(forms: List<String>, encodedMorphologies: List<Long>) {
 
-    val uniqueForm: String = forms.joinToString(separator = " ") { it.toLowerCase() }
+    val uniqueForm: String = forms.joinToString(separator = " ") { it.normalize() }
     val morphologyString: String = encodedMorphologies.joinToString(separator = ",")
 
     this.morphologyMap[uniqueForm] = if (uniqueForm in this.morphologyMap) {
