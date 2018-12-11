@@ -31,8 +31,14 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
  *
  * @property language the language in which to analyze the text
  * @param dictionary a morphology dictionary
+ * @param processDateTimes whether to process date-times
+ * @param processNumbers whether to process numbers
  */
-class MorphologicalAnalyzer(val language: Language, private val dictionary: MorphologyDictionary) {
+class MorphologicalAnalyzer(
+  val language: Language,
+  private val dictionary: MorphologyDictionary,
+  processDateTimes: Boolean = true,
+  processNumbers: Boolean = true) {
 
   companion object {
 
@@ -80,12 +86,12 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
   /**
    * The processor of date-time expressions.
    */
-  private val dateTimeProcessor = DateTimeProcessor(this.language)
+  private val dateTimeProcessor: DateTimeProcessor? = if (processDateTimes) DateTimeProcessor(this.language) else null
 
   /**
    * The processor of number expressions.
    */
-  private val numbersProcessor = NumbersProcessor(this.language)
+  private val numbersProcessor: NumbersProcessor? = if (processNumbers) NumbersProcessor(this.language) else null
 
   /**
    * Perform the morphological analysis of a sentence.
@@ -97,7 +103,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
   fun analyze(sentence: Sentence<RealToken>): MorphologicalAnalysis {
 
     val text = sentence.buildText()
-    val numbers: List<Number> = this.numbersProcessor.findNumbers(text = text, tokens = sentence.tokens)
+    val numbers: List<Number> = this.numbersProcessor?.findNumbers(text = text, tokens = sentence.tokens) ?: listOf()
     val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
     val multiWordsNumbers: List<Number> = numbers.filter { it.startToken != it.endToken }
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
@@ -105,7 +111,7 @@ class MorphologicalAnalyzer(val language: Language, private val dictionary: Morp
     return MorphologicalAnalysis(
       tokensMorphologies = sentence.tokens.mapIndexed { i, it -> this.getTokenMorphologies(it, numberToken = numbersByIndex[i]) },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
-      dateTimes = this.dateTimeProcessor.findDateTimes(text = text, tokens = sentence.tokens)
+      dateTimes = this.dateTimeProcessor?.findDateTimes(text = text, tokens = sentence.tokens) ?: listOf()
     )
   }
 
