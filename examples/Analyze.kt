@@ -153,8 +153,8 @@ private fun printDateTimes(tokens: List<RealToken>, analysis: MorphologicalAnaly
         when (dateTime) {
           is SingleDateTime -> dateTime.isoFormat(ref)
           is Interval -> "%s - %s".format(
-            if (dateTime is LowerLimitedInterval) dateTime.from.toLocalDateTime(ref) else "/",
-            if (dateTime is UpperLimitedInterval) dateTime.to.toLocalDateTime(ref) else "/"
+            if (dateTime is LowerLimitedInterval) dateTime.from.isoFormat(ref) else "/",
+            if (dateTime is UpperLimitedInterval) dateTime.to.isoFormat(ref) else "/"
           )
           else -> throw RuntimeException("Invalid date-time object.")
         }
