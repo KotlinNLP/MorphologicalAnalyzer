@@ -34,7 +34,7 @@ AFTER : D O P O WS THE ;
 BEFORE : P R I M A WS OF ;
 
 FROM : D A ART_SUFFIX? ;
-TO   : A | F I N O WS (A | AT) ; // can have the same values of AT in Italian, but for this usage is sufficient this single alternative
+TO   : A | F I N O WS (A | AT) ; // can have the same values of AT in Italian, but for this usage this single alternative is enough
 
 ABOUT : (C I R C A | I N T O R N O) WS (A | AT) | V E R S O WS THE ;
 
