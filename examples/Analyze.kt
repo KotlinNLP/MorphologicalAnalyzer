@@ -9,6 +9,10 @@ import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.SingleDateTime
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.Interval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.LowerLimitedInterval
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.UpperLimitedInterval
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.morphologicalanalyzer.MorphologicalAnalyzer
@@ -16,6 +20,8 @@ import com.kotlinnlp.neuraltokenizer.NeuralTokenizer
 import com.kotlinnlp.neuraltokenizer.NeuralTokenizerModel
 import java.io.File
 import java.io.FileInputStream
+import java.lang.RuntimeException
+import java.time.LocalDateTime
 
 /**
  * Analyze the morphology of a text.
@@ -119,9 +125,9 @@ private fun printMultiWords(tokens: List<RealToken>, analysis: MorphologicalAnal
 
   if (analysis.multiWords.isNotEmpty())
 
-    analysis.multiWords.forEach {
-      println("`%s`".format(tokens.subList(it.startToken, it.endToken + 1).joinToString(" ") { it.form }))
-      it.morphologies.forEach { println("\t$it") }
+    analysis.multiWords.forEach { mw ->
+      println("`%s`".format(tokens.subList(mw.startToken, mw.endToken + 1).joinToString(" ") { it.form }))
+      mw.morphologies.forEach { println("\t$it") }
     }
 
   else
@@ -136,15 +142,26 @@ private fun printMultiWords(tokens: List<RealToken>, analysis: MorphologicalAnal
  */
 private fun printDateTimes(tokens: List<RealToken>, analysis: MorphologicalAnalysis) {
 
-  if (analysis.dateTimes.isNotEmpty())
+  if (analysis.dateTimes.isNotEmpty()) {
 
-    analysis.dateTimes.forEach {
-      println("`%s` [%s]".format(
-        tokens.subList(it.startToken, it.endToken + 1).joinToString(" ") { it.form },
-        it
+    val ref: LocalDateTime = LocalDateTime.now()
+
+    analysis.dateTimes.forEach { dateTime ->
+      println("`%s` [%s] (%s)".format(
+        tokens.subList(dateTime.startToken, dateTime.endToken + 1).joinToString(" ") { it.form },
+        dateTime,
+        when (dateTime) {
+          is SingleDateTime -> dateTime.isoFormat(ref)
+          is Interval -> "%s - %s".format(
+            if (dateTime is LowerLimitedInterval) dateTime.from.toLocalDateTime(ref) else "/",
+            if (dateTime is UpperLimitedInterval) dateTime.to.toLocalDateTime(ref) else "/"
+          )
+          else -> throw RuntimeException("Invalid date-time object.")
+        }
       ))
     }
 
-  else
+  } else {
     println("No one found.")
+  }
 }
