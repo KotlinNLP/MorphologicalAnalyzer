@@ -15,7 +15,6 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenFromInterval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
 import java.io.FileNotFoundException
-import java.nio.file.Paths
 import java.util.*
 
 /**
