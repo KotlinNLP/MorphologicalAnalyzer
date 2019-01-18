@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.2.41</kotlin.version>
-        <morphologicalanalyzer.version>0.4.0</morphologicalanalyzer.version>
+        <morphologicalanalyzer.version>0.4.1</morphologicalanalyzer.version>
         <linguisticdescription.version>0.10.1</linguisticdescription.version>
         <neuraltokenizer.version>0.4.3</neuraltokenizer.version>
         <utils.version>2.1.1</utils.version>
