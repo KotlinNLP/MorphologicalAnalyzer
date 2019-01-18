@@ -55,7 +55,6 @@ internal object DateUnit {
     Type.Day to DateOrdinal.Day::class,
     Type.Week to DateOrdinal.Week::class,
     Type.Weekend to DateOrdinal.Weekend::class,
-    Type.Month to DateOrdinal.Month::class,
-    Type.Year to DateOrdinal.Year::class
+    Type.Month to DateOrdinal.Month::class
   )
 }

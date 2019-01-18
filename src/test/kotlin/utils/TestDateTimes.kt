@@ -327,8 +327,7 @@ object TestDateTimes {
       "week" -> DateOrdinal.Week(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
       "weekend" -> DateOrdinal.Weekend(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
       "month" -> DateOrdinal.Month(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
-      "year" -> DateOrdinal.Year(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
-      else -> throw RuntimeException("Invalid offset type: $type")
+      else -> throw RuntimeException("Invalid ordinal unit: $type")
     }
   }
 
