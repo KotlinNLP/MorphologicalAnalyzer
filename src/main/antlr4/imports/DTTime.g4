@@ -4,7 +4,8 @@ import DTLexerEN, DTNumbersParser;
 
 time
     : time_canonical (WS? (time_suffix | time_zone))?
-    | hour COLON min (WS? (time_suffix | time_zone))?
+    | AT WS hour
+    | (AT WS)? hour COLON min (WS? (time_suffix | time_zone))?
     | (TIME_H | HOUR) WS hour
     | hour DOT min (DOT sec (DOT millisec)?)?
     | (hour | hour_str) WS? (time_suffix | O_CLOCK) (WS? time_suffix | O_CLOCK)? (WS? time_zone)?
