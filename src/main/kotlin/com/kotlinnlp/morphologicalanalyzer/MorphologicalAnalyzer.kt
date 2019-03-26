@@ -7,7 +7,6 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
-import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.morphology.Morphologies
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
@@ -29,13 +28,11 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 /**
  * The morphological analyzer.
  *
- * @property language the language in which to analyze the text
  * @param dictionary a morphology dictionary
  * @param processDateTimes whether to process date-times
  * @param processNumbers whether to process numbers
  */
 class MorphologicalAnalyzer(
-  val language: Language,
   private val dictionary: MorphologyDictionary,
   processDateTimes: Boolean = true,
   processNumbers: Boolean = true) {
@@ -86,12 +83,18 @@ class MorphologicalAnalyzer(
   /**
    * The processor of date-time expressions.
    */
-  private val dateTimeProcessor: DateTimeProcessor? = if (processDateTimes) DateTimeProcessor(this.language) else null
+  private val dateTimeProcessor: DateTimeProcessor? = if (processDateTimes)
+    DateTimeProcessor(this.dictionary.language)
+  else
+    null
 
   /**
    * The processor of number expressions.
    */
-  private val numbersProcessor: NumbersProcessor? = if (processNumbers) NumbersProcessor(this.language) else null
+  private val numbersProcessor: NumbersProcessor? = if (processNumbers)
+    NumbersProcessor(this.dictionary.language)
+  else
+    null
 
   /**
    * Perform the morphological analysis of a sentence.
