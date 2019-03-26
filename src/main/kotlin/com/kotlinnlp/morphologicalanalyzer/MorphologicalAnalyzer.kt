@@ -35,7 +35,8 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
 class MorphologicalAnalyzer(
   private val dictionary: MorphologyDictionary,
   processDateTimes: Boolean = true,
-  processNumbers: Boolean = true) {
+  processNumbers: Boolean = true
+) {
 
   companion object {
 
