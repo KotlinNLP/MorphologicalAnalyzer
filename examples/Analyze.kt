@@ -34,12 +34,12 @@ fun main(args: Array<String>) {
     "Required 2 arguments: <tokenizer_model_filename> <morpho_dictionary_filename>."
   }
 
-  val tokenizer: NeuralTokenizer = args[1].let {
+  val tokenizer: NeuralTokenizer = args[0].let {
     println("Loading tokenizer model from '$it'...")
     NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))))
   }
 
-  val analyzer: MorphologicalAnalyzer = args[2].let {
+  val analyzer: MorphologicalAnalyzer = args[1].let {
     println("Loading serialized dictionary from '$it'...")
     MorphologicalAnalyzer(dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
   }
