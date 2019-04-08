@@ -17,7 +17,7 @@ import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Noun
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Number as NumberMorpho
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number as NumberProp
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
-import com.kotlinnlp.linguisticdescription.sentence.Sentence
+import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
@@ -104,7 +104,7 @@ class MorphologicalAnalyzer(
    *
    * @return the morphological analysis of the given sentence
    */
-  fun analyze(sentence: Sentence<RealToken>): MorphologicalAnalysis {
+  fun analyze(sentence: RealSentence<RealToken>): MorphologicalAnalysis {
 
     val text = sentence.buildText()
     val numbers: List<Number> = this.numbersProcessor?.findNumbers(text = text, tokens = sentence.tokens) ?: listOf()
@@ -117,7 +117,9 @@ class MorphologicalAnalyzer(
         this.getTokenMorphologies(it, numberToken = numbersByIndex[i])
       },
       multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
-      dateTimes = this.dateTimeProcessor?.findDateTimes(text = text, tokens = sentence.tokens) ?: listOf()
+      dateTimes = this.dateTimeProcessor
+        ?.findDateTimes(text = text, tokens = sentence.tokens, offset = sentence.position.start)
+        ?: listOf()
     )
   }
 
