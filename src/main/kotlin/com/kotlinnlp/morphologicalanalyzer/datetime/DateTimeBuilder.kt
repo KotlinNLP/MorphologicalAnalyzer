@@ -243,8 +243,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
 
     val offset: Offset = this.offsetDateRef?.let {
       Offset.Date(startToken = start, endToken = end, units = units, value = it)
-    } ?:
-      DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(start, end, units) as Offset
+    } ?: DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(start, end, units) as Offset
 
     this.offsetDateRef = null
     this.dateUnit = null
@@ -277,9 +276,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
 
     return this.ordinalDateUnit?.let {
       DateOrdinal.Date(startToken = start, endToken = end, position = pos, dateTime = ordinalDateTimeRef, value = it)
-    } ?:
-      DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first()
-        .call(start, end, pos, this.ordinalDateTimeRef) as DateOrdinal
+    } ?: DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first()
+      .call(start, end, pos, this.ordinalDateTimeRef) as DateOrdinal
   }
 
   /**
@@ -302,7 +300,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of a date found
+   * @param endIndex the end char index of a date found
    */
   fun setDateTokens(startIndex: Int, endIndex: Int) {
 
@@ -313,7 +312,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of a time found
+   * @param endIndex the end char index of a time found
    */
   fun setTimeTokens(startIndex: Int, endIndex: Int) {
 
@@ -324,7 +324,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of a date-time-simple found
+   * @param endIndex the end char index of a date-time-simple found
    */
   fun setDateTimeSimpleTokens(startIndex: Int, endIndex: Int) {
 
@@ -335,7 +336,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of an offset found
+   * @param endIndex the end char index of an offset found
    */
   fun setOffsetTokens(startIndex: Int, endIndex: Int) {
 
@@ -346,7 +348,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of a date-offset found
+   * @param endIndex the end char index of a date-offset found
    */
   fun setDateOffsetTokens(startIndex: Int, endIndex: Int) {
 
@@ -357,7 +360,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of a date-ordinal found
+   * @param endIndex the end char index of a date-ordinal found
    */
   fun setDateOrdinalTokens(startIndex: Int, endIndex: Int) {
 
@@ -368,7 +372,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
   }
 
   /**
-   *
+   * @param startIndex the start char index of an interval found
+   * @param endIndex the end char index of an interval found
    */
   fun setIntervalTokens(startIndex: Int, endIndex: Int) {
 
