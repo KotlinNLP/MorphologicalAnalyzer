@@ -305,10 +305,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setDateTokens(startIndex: Int, endIndex: Int) {
 
-    this.dateTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.dateTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -317,10 +314,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setTimeTokens(startIndex: Int, endIndex: Int) {
 
-    this.timeTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.timeTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -329,10 +323,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setDateTimeSimpleTokens(startIndex: Int, endIndex: Int) {
 
-    this.dateTimeSimpleTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.dateTimeSimpleTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -341,10 +332,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setOffsetTokens(startIndex: Int, endIndex: Int) {
 
-    this.offsetTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.offsetTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -353,10 +341,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setDateOffsetTokens(startIndex: Int, endIndex: Int) {
 
-    this.dateOffsetTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.dateOffsetTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -365,10 +350,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setDateOrdinalTokens(startIndex: Int, endIndex: Int) {
 
-    this.dateOrdinalTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.dateOrdinalTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
 
   /**
@@ -377,9 +359,17 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    */
   fun setIntervalTokens(startIndex: Int, endIndex: Int) {
 
-    this.intervalTokens = IntRange(
-      this.tokens.indexOfFirst { it.position.start == startIndex },
-      this.tokens.indexOfFirst { it.position.end == endIndex }
-    )
+    this.intervalTokens = this.getTokensRange(startIndex = startIndex, endIndex = endIndex)
   }
+
+  /**
+   * @param startIndex the start char index of a token in the text
+   * @param endIndex the end char index of a token in the text
+   *
+   * @return the range of tokens indices that include the given start and end chars
+   */
+  private fun getTokensRange(startIndex: Int, endIndex: Int): IntRange = IntRange(
+    this.tokens.indexOfFirst { it.position.end >= startIndex },
+    this.tokens.indexOfFirst { it.position.end >= endIndex }
+  )
 }
