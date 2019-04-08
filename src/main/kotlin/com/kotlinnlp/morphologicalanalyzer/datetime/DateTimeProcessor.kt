@@ -26,15 +26,16 @@ class DateTimeProcessor(private val language: Language) {
    * Get the date-times recognized in a given text.
    *
    * @param text the input text
-   * @param tokens the list of tokens that compose the [text]
+   * @param tokens the list of tokens that compose the text
+   * @param offset the offset of the text in the containing text (default 0)
    *
    * @return a list of date-time objects (empty if none has been found)
    */
-  fun findDateTimes(text: String, tokens: List<RealToken>): List<DateTime> {
+  fun findDateTimes(text: String, tokens: List<RealToken>, offset: Int = 0): List<DateTime> {
 
     return if (text.trim().isNotEmpty()) {
 
-      val listener = DateTimeListener(tokens)
+      val listener = DateTimeListener(tokens = tokens, offset = offset)
       val parser: DateTimeParser = this.buildParser(text)
 
       try {

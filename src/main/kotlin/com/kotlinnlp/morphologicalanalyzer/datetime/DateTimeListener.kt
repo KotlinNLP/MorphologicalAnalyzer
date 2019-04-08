@@ -18,9 +18,12 @@ import java.util.*
 
 /**
  * An event listener for an ANTRL DateTime Parser.
+ *
+ * @param tokens the list of tokens that compose the text
+ * @param offset the offset of the text in the containing text
  */
 @Suppress("FunctionName") // for the automatically generated rule methods
-internal class DateTimeListener(private val tokens: List<RealToken>) : DateTimeBaseListener() {
+internal class DateTimeListener(private val tokens: List<RealToken>, private val offset: Int) : DateTimeBaseListener() {
 
   /**
    * The list of date-times recognized.
@@ -95,7 +98,7 @@ internal class DateTimeListener(private val tokens: List<RealToken>) : DateTimeB
    */
   override fun enterDatetime(ctx: DateTimeParser.DatetimeContext) {
 
-    this.dateTimeBuilder = DateTimeBuilder(this.tokens)
+    this.dateTimeBuilder = DateTimeBuilder(tokens = this.tokens, offset = this.offset)
   }
 
   /**

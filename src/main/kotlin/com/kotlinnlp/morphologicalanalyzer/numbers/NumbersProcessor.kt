@@ -58,7 +58,7 @@ class NumbersProcessor(
    * @param text the text to process
    * @param tokens the list of tokens that compose the input text
    * @param modality the Antlr parsing modality to use
-   * @param offset the offset of the text in the containing text
+   * @param offset the offset of the text in the containing text (default 0)
    *
    * @return the list of number tokens found
    */

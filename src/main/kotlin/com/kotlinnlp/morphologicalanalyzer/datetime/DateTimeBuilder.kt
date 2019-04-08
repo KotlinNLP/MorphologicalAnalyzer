@@ -19,9 +19,10 @@ import java.util.*
 /**
  * The helper to build a [DateTimeSimple].
  *
- * @param tokens the list of tokens that compose the input text.
+ * @param tokens the list of tokens that compose the text
+ * @param offset the offset of the text in the containing text
  */
-internal class DateTimeBuilder(private val tokens: List<RealToken>) {
+internal class DateTimeBuilder(private val tokens: List<RealToken>, private val offset: Int) {
 
   /**
    * The day of the currently building date-time.
@@ -369,7 +370,7 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>) {
    * @return the range of tokens indices that include the given start and end chars
    */
   private fun getTokensRange(startIndex: Int, endIndex: Int): IntRange = IntRange(
-    this.tokens.indexOfFirst { it.position.end >= startIndex },
-    this.tokens.indexOfFirst { it.position.end >= endIndex }
+    this.tokens.indexOfFirst { (it.position.end - this.offset) >= startIndex },
+    this.tokens.indexOfFirst { (it.position.end - this.offset) >= endIndex }
   )
 }
