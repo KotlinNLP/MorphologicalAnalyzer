@@ -1148,8 +1148,8 @@ internal interface ListenerCommon {
     val offset: Int = this.tokens.first().position.start // in case of recursion, when the tokens are
                                                          // a sublist of the input
     return Number(
-      startToken = this.tokens.indexOfFirst { ctx.start.startIndex == (it.position.start - offset) },
-      endToken = this.tokens.indexOfFirst { ctx.stop.stopIndex == (it.position.end - offset) },
+      startToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.start.startIndex },
+      endToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.stop.stopIndex },
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
