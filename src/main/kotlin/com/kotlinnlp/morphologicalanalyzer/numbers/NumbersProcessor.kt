@@ -57,31 +57,23 @@ class NumbersProcessor(
    *
    * @param text the text to process
    * @param tokens the list of tokens that compose the input text
-   * @param modality the Antlr parsing modality to use
+   * @param mode the Antlr parsing mode to use
    * @param offset the offset of the text in the containing text (default 0)
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String,
-                  tokens: List<RealToken>,
-                  modality: String = "SLL+LL",
-                  offset: Int = 0): List<Number> {
+  fun findNumbers(text: String, tokens: List<RealToken>, mode: String = "SLL+LL", offset: Int = 0): List<Number> {
 
     var split = false
     var fallback = false
     var sll = false
 
-    when (modality) {
+    when (mode) {
       "SLL" -> sll = true
-      "SLL+LL" -> {
-
-        sll = true
-        fallback = true
-
-      }
+      "SLL+LL" -> { sll = true; fallback = true }
       "LL" -> sll = false
       "split" -> split = true
-      else -> throw IllegalArgumentException("Modality '$modality' not implemented")
+      else -> throw IllegalArgumentException("Invalid mode '$mode'")
     }
 
     return if (text.trim().isNotEmpty()) {
@@ -96,7 +88,7 @@ class NumbersProcessor(
 
       } else {
 
-        val root = try{
+        val root = try {
 
           debugPrint("Executing ${if (sll) "SLL" else "LL"} parsing")
 
@@ -110,19 +102,19 @@ class NumbersProcessor(
 
             this.buildParseTree(text, SLL = false)
 
-          } else throw ex
+          } else {
+            throw ex
+          }
         }
 
         ParseTreeWalker().walk(listener as ParseTreeListener, root)
 
         val numbers = listener.getNumbers()
 
-        return if( offset > 0 ) numbers.map { it.copy(
-
-          startToken = offset + it.startToken,
-          endToken = offset + it.endToken
-
-        )} else numbers
+        return if (offset > 0)
+          numbers.map { it.copy(startToken = offset + it.startToken, endToken = offset + it.endToken) }
+        else
+          numbers
       }
     } else listOf()
   }
@@ -139,7 +131,7 @@ class NumbersProcessor(
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
 
-    return ChunkFinder(debug, getParserClass())
+    return ChunkFinder(parserClass = getParserClass(), debug = this.debug)
       .find(lexer.allTokens as List<Token>)
       .flatMap { findNumbers(text = it.str, tokens = tokens, offset = it.offset) }
   }

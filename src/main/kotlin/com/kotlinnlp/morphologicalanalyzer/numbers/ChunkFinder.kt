@@ -15,7 +15,7 @@ import kotlin.reflect.full.staticProperties
 /**
  *
  */
-class ChunkFinder(private val debug: Boolean = false, private val parserClass: KClass<out Parser>) {
+class ChunkFinder(private val parserClass: KClass<out Parser>, private val debug: Boolean = false) {
 
   /**
    * The accumulator that holds the current word
@@ -53,7 +53,8 @@ class ChunkFinder(private val debug: Boolean = false, private val parserClass: K
   private val staticPropertiesCache = mutableMapOf<String, Int>()
 
   /**
-   * Process a list of tokens, return a list of possible numeric expressions to process through the Antlr grammar and their offsets relative to the original text
+   * Process a list of tokens, return a list of possible numeric expressions to process through the Antlr grammar and
+   * their offsets relative to the original text.
    *
    * @param tokens the tokens to process
    *

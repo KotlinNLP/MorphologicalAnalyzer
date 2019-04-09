@@ -28,7 +28,7 @@ object NumbersProcessorSpec : Spek({
 
           val processor = NumbersProcessor(getLanguageByIso(lang))
           val numbers: List<Number> =
-            processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text), modality = "split")
+            processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text), mode = "split")
 
           it("should contain %d elements".format(test.tokens.size)) {
             assertEquals(test.tokens.size, numbers.size)
