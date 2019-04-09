@@ -175,16 +175,14 @@ internal interface ListenerCommon {
       this.helper.spaceSplitterRegex.findAll(numericExpr).toList().flatMap { match ->
 
         val matchOffset: Int = offset + match.groups[1]!!.range.start
-        val matchTokenOffset: Int = this.tokens.indexOfFirst { matchOffset == it.position.start }
+        val matchTokenOffset: Int = this.tokens.indexOfFirst { it.position.end >= matchOffset }
         val subTokens: List<RealToken> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
         debugPrint("Processing subexpression '${match.groupValues[1]}'")
 
         this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
           .map { token ->
-            token.copy(
-              startToken = matchTokenOffset + token.startToken,
-              endToken = matchTokenOffset + token.endToken)
+            token.copy(startToken = matchTokenOffset + token.startToken, endToken = matchTokenOffset + token.endToken)
           }
       }
 
@@ -1145,8 +1143,10 @@ internal interface ListenerCommon {
   private fun buildNumber(ctx: ParserRuleContext): Number {
 
     val (integer, decimal) = this.getNumberComponents(ctx)
-    val offset: Int = this.tokens.first().position.start // in case of recursion, when the tokens are
-                                                         // a sublist of the input
+
+    // In case of recursion, when the tokens are a sublist of the input.
+    val offset: Int = this.tokens.first().position.start
+
     return Number(
       startToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.start.startIndex },
       endToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.stop.stopIndex },
