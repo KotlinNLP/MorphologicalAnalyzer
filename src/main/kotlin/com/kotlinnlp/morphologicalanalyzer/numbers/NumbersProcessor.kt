@@ -78,13 +78,13 @@ class NumbersProcessor(
 
     return if (text.trim().isNotEmpty()) {
 
-      val listener: ListenerCommon = this.buildListener(tokens)
+      val listener: ListenerCommon = this.buildListener(tokens = tokens, offset = offset)
 
       if (split) {
 
         debugPrint("Executing split parsing")
 
-        findNumbersWithSplitParsing(text, tokens)
+        findNumbersWithSplitParsing(text = text, tokens = tokens, offset = offset)
 
       } else {
 
@@ -109,12 +109,7 @@ class NumbersProcessor(
 
         ParseTreeWalker().walk(listener as ParseTreeListener, root)
 
-        val numbers = listener.getNumbers()
-
-        return if (offset > 0)
-          numbers.map { it.copy(startToken = offset + it.startToken, endToken = offset + it.endToken) }
-        else
-          numbers
+        return listener.getNumbers()
       }
     } else listOf()
   }
@@ -124,24 +119,27 @@ class NumbersProcessor(
    *
    * @param text the string to be parsed
    * @param tokens the list of tokens that compose the input text
+   * @param offset the offset of the text in the containing text
    *
    * @return the list of number tokens found
    */
-  private fun findNumbersWithSplitParsing(text: String, tokens: List<RealToken>): List<Number> {
+  private fun findNumbersWithSplitParsing(text: String, tokens: List<RealToken>, offset: Int): List<Number> {
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
+    val chunkFinder = ChunkFinder(parserClass = getParserClass(), debug = this.debug)
 
-    return ChunkFinder(parserClass = getParserClass(), debug = this.debug)
-      .find(lexer.allTokens as List<Token>)
-      .flatMap { findNumbers(text = it.str, tokens = tokens, offset = it.offset) }
+    return chunkFinder.find(lexer.allTokens as List<Token>).flatMap { (chunkText, chunkOffset) ->
+      findNumbers(text = chunkText, tokens = tokens, offset = offset + chunkOffset)
+    }
   }
 
   /**
    * @param tokens the list of tokens that compose the input text
+   * @param offset
    *
    * @return the listener for the current language
    */
-  private fun buildListener(tokens: List<RealToken>): ListenerCommon {
+  private fun buildListener(tokens: List<RealToken>, offset: Int): ListenerCommon {
 
     val listenerClass: KClass<*> = when (this.langParams.language) {
       "en" -> ListenerEN::class
@@ -153,6 +151,7 @@ class NumbersProcessor(
       this.langParams,
       this,
       tokens,
+      offset,
       false,
       this.enableSubexpressions
     ) as ListenerCommon

@@ -22,6 +22,7 @@ import org.antlr.v4.runtime.ParserRuleContext
  * @property langParams language-specific parameters
  * @property processor a numbers processor to process sub-expressions
  * @property tokens the list of tokens that compose the input text
+ * @property offset the offset of the input text in the containing text
  * @property debug if true it enables the print of debug messages on stderr
  * @property enableSubexpressions if false do not perform the analysis of numeric sub-expressions (inside other
  *                                recognized expressions)
@@ -31,6 +32,7 @@ internal class ListenerEN(
   override val langParams: LanguageParams,
   override val processor: NumbersProcessor,
   override val tokens: List<RealToken>,
+  override val offset: Int,
   override val debug: Boolean = false,
   override val enableSubexpressions: Boolean = true
 ): NumbersENBaseListener(), ListenerCommon {

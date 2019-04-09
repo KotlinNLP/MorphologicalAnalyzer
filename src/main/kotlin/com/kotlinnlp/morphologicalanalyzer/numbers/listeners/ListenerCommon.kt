@@ -41,6 +41,11 @@ internal interface ListenerCommon {
   val tokens: List<RealToken>
 
   /**
+   * The offset of the input text in the containing text.
+   */
+  val offset: Int
+
+  /**
    * If true it enables the print of debug messages on stderr.
    */
   val debug: Boolean
@@ -163,27 +168,24 @@ internal interface ListenerCommon {
    * Search for numeric sub-expressions inside a recognized expression.
    * The [numericExpr] is split by spaces, tabs and newlines.
    *
-   * @param offset the offset position of the [numericExpr] within the input text
    * @param numericExpr a numeric expression
+   * @param exprOffset the offset position of the [numericExpr] within the input text
    *
    * @return a list of numbers
    */
-  fun findSubexpressions(offset: Int, numericExpr: String): List<Number> =
+  fun findSubexpressions(numericExpr: String, exprOffset: Int): List<Number> =
 
     if (this.helper.whiteSpacesRegex.containsMatchIn(numericExpr)) {
 
       this.helper.spaceSplitterRegex.findAll(numericExpr).toList().flatMap { match ->
 
-        val matchOffset: Int = offset + match.groups[1]!!.range.start
-        val matchTokenOffset: Int = this.tokens.indexOfFirst { it.position.end >= matchOffset }
+        val matchOffset: Int = this.offset + exprOffset + match.groups[1]!!.range.start
+        val matchTokenOffset: Int = this.tokens.first { it.position.end >= matchOffset }.position.index
         val subTokens: List<RealToken> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
         debugPrint("Processing subexpression '${match.groupValues[1]}'")
 
-        this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens)
-          .map { token ->
-            token.copy(startToken = matchTokenOffset + token.startToken, endToken = matchTokenOffset + token.endToken)
-          }
+        this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens, offset = matchOffset)
       }
 
     } else {
@@ -1126,7 +1128,7 @@ internal interface ListenerCommon {
       this.helper.numbers.add(token)
 
       if (this.enableSubexpressions)
-        this.helper.numbers.addAll(this.findSubexpressions(offset = ctx.start.startIndex, numericExpr = ctx.text))
+        this.helper.numbers.addAll(this.findSubexpressions(numericExpr = ctx.text, exprOffset = ctx.start.startIndex))
 
     } else {
       debugPrint("Cannot find a match of the number '${token.original}' within the tokens.")
@@ -1144,12 +1146,9 @@ internal interface ListenerCommon {
 
     val (integer, decimal) = this.getNumberComponents(ctx)
 
-    // In case of recursion, when the tokens are a sublist of the input.
-    val offset: Int = this.tokens.first().position.start
-
     return Number(
-      startToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.start.startIndex },
-      endToken = this.tokens.indexOfFirst { (it.position.end - offset) >= ctx.stop.stopIndex },
+      startToken = this.tokens.first { (it.position.end - this.offset) >= ctx.start.startIndex }.position.index,
+      endToken = this.tokens.first { (it.position.end - this.offset) >= ctx.stop.stopIndex }.position.index,
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),

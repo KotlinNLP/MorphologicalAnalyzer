@@ -107,7 +107,9 @@ class MorphologicalAnalyzer(
   fun analyze(sentence: RealSentence<RealToken>): MorphologicalAnalysis {
 
     val text = sentence.buildText()
-    val numbers: List<Number> = this.numbersProcessor?.findNumbers(text = text, tokens = sentence.tokens) ?: listOf()
+    val numbers: List<Number> = this.numbersProcessor
+      ?.findNumbers(text = text, tokens = sentence.tokens, offset = sentence.position.start)
+      ?: listOf()
     val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
     val multiWordsNumbers: List<Number> = numbers.filter { it.startToken != it.endToken }
     val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
