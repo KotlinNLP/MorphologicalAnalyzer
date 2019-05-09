@@ -167,14 +167,10 @@ class NumbersProcessor(
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val tokensStream = CommonTokenStream(lexer)
 
-    return when (this.langParams.language) {
-      "en" -> {
-        NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-      }
-      "it" -> {
-        NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-      }
-      else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
+    return when (this.language) {
+      Language.English -> NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
+      Language.Italian -> NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
+      else -> throw RuntimeException("Parser not available for language '${this.language}'")
     }
   }
 
@@ -183,10 +179,10 @@ class NumbersProcessor(
    *
    * @return the parser class corresponding to the current language
    */
-  private fun getParserClass(): KClass<out Parser> = when (this.langParams.language) {
-    "en" -> NumbersENParser::class
-    "it" -> NumbersITParser::class
-    else -> throw RuntimeException("Parser not available for language '${this.langParams.language}'")
+  private fun getParserClass(): KClass<out Parser> = when (this.language) {
+    Language.English -> NumbersENParser::class
+    Language.Italian -> NumbersITParser::class
+    else -> throw RuntimeException("Parser not available for language '${this.language}'")
   }
 
   /**
@@ -194,10 +190,10 @@ class NumbersProcessor(
    *
    * @return an ANTLR Numbers lexer for the given language
    */
-  private fun buildLexer(charStream: CharStream): Lexer = when (this.langParams.language) {
-    "en" -> LexerEN(charStream)
-    "it" -> LexerIT(charStream)
-    else -> throw RuntimeException("Lexer not available for language '${this.langParams.language}'")
+  private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
+    Language.English -> LexerEN(charStream)
+    Language.Italian -> LexerIT(charStream)
+    else -> throw RuntimeException("Lexer not available for language '${this.language}'")
   }
 
   /**
