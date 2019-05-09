@@ -32,7 +32,7 @@ import org.antlr.v4.runtime.misc.ParseCancellationException
  * @param debug if true enables the print of debug messages on stderr
  */
 class NumbersProcessor(
-  language: Language,
+  private val language: Language,
   private val enableSubexpressions: Boolean = true,
   private val debug: Boolean = false
 ) {
@@ -50,7 +50,7 @@ class NumbersProcessor(
   /**
    * Language-specific parameters.
    */
-  private val langParams: LanguageParams = LanguageParamsFactory.factory(language)
+  private val langParams: LanguageParams by lazy { LanguageParamsFactory.factory(language) }
 
   /**
    * Process the input text searching for numeric expressions.
@@ -141,10 +141,10 @@ class NumbersProcessor(
    */
   private fun buildListener(tokens: List<RealToken>, offset: Int): ListenerCommon {
 
-    val listenerClass: KClass<*> = when (this.langParams.language) {
-      "en" -> ListenerEN::class
-      "it" -> ListenerIT::class
-      else -> throw RuntimeException("Listener not available for language '${this.langParams.language}'")
+    val listenerClass: KClass<*> = when (this.language) {
+      Language.English -> ListenerEN::class
+      Language.Italian -> ListenerIT::class
+      else -> throw RuntimeException("Listener not available for language '${this.language}'")
     }
 
     return listenerClass.primaryConstructor!!.call(
