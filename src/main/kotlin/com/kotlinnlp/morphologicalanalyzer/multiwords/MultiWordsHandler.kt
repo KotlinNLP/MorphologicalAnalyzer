@@ -59,7 +59,7 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
 
     while (candidates.isNotEmpty() && ++followingTokenIndex < tokens.size) {
 
-      val multiWords: List<String> = this.dictionary.getMultiWords(word = tokens[followingTokenIndex].form)
+      val multiWords: List<String> = this.dictionary.getMultiWordsIncluding(tokens[followingTokenIndex].form)
 
       if (multiWords.isEmpty()) break
 

@@ -186,7 +186,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
    *
    * @return the list of multi-words in which the given [word] is involved (empty if no one is found)
    */
-  fun getMultiWords(word: String, includeAlternatives: Boolean = true): List<String> =
+  fun getMultiWordsIncluding(word: String, includeAlternatives: Boolean = true): List<String> =
     this.wordsToMultiWords[word.normalize()]?.let {
       this.indicesToMultiWords(indices = it, includeAlternatives = includeAlternatives)
     } ?: listOf()

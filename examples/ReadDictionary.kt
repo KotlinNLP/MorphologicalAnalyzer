@@ -76,7 +76,7 @@ private fun readValue(): String {
  */
 private fun printMorphology(form: String, dictionary: MorphologyDictionary) {
 
-  val multiWords: List<String> = dictionary.getMultiWords(form)
+  val multiWords: List<String> = dictionary.getMultiWordsIncluding(form)
 
   println("\n" + dictionary[form])
 
