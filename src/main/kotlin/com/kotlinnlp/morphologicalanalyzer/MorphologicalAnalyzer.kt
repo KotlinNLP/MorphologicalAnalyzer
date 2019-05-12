@@ -7,6 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
+import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.morphology.Morphologies
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
@@ -19,6 +20,7 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.Number as Numbe
 import com.kotlinnlp.linguisticdescription.morphology.properties.Gender
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.properties.MultiWords
+import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.morphologicalanalyzer.multiwords.MultiWordsHandler
@@ -82,9 +84,25 @@ class MorphologicalAnalyzer(
   }
 
   /**
+   * The language of this morphological analyzer.
+   * Currently given by the [dictionary].
+   */
+  private val language = this.dictionary.language
+
+  /**
+   * Whether the [NumbersProcessor] is available, or not.
+   */
+  private val isNumbersProcessorAvailable: Boolean = this.language in setOf(Language.English, Language.Italian)
+
+  /**
+   * Whether the [DateTimeProcessor] is available, or not.
+   */
+  private val isDateTimeProcessorAvailable: Boolean = this.language in setOf(Language.English, Language.Italian)
+
+  /**
    * The processor of date-time expressions.
    */
-  private val dateTimeProcessor: DateTimeProcessor? = if (processDateTimes)
+  private val dateTimeProcessor: DateTimeProcessor? = if (processDateTimes && this.isDateTimeProcessorAvailable)
     DateTimeProcessor(this.dictionary.language)
   else
     null
@@ -92,7 +110,7 @@ class MorphologicalAnalyzer(
   /**
    * The processor of number expressions.
    */
-  private val numbersProcessor: NumbersProcessor? = if (processNumbers)
+  private val numbersProcessor: NumbersProcessor? = if (processNumbers && this.isNumbersProcessorAvailable)
     NumbersProcessor(this.dictionary.language)
   else
     null
@@ -106,24 +124,92 @@ class MorphologicalAnalyzer(
    */
   fun analyze(sentence: RealSentence<RealToken>): MorphologicalAnalysis {
 
-    val text = sentence.buildText()
-    val numbers: List<Number> = this.numbersProcessor
-      ?.findNumbers(text = text, tokens = sentence.tokens, offset = sentence.position.start)
-      ?: listOf()
-    val oneTokenNumbers: List<Number> = numbers.filter { it.startToken == it.endToken }
-    val multiWordsNumbers: List<Number> = numbers.filter { it.startToken != it.endToken }
-    val numbersByIndex: Map<Int, Number> = mapOf(*oneTokenNumbers.map { it.startToken to it }.toTypedArray())
+    val numbers: List<Number>
+    val dateTimes: List<DateTime>
+
+    sentence.buildText().let { text ->
+      numbers = this.buildNumbers(text = text, sentence = sentence)
+      dateTimes = this.buildDateTimes(text = text, sentence = sentence)
+    }
 
     return MorphologicalAnalysis(
-      tokensMorphologies = sentence.tokens.mapIndexed { i, it ->
-        this.getTokenMorphologies(it, numberToken = numbersByIndex[i])
-      },
-      multiWords = this.buildMultiWords(tokens = sentence.tokens, multiWordsNumbers = multiWordsNumbers),
-      dateTimes = this.dateTimeProcessor
-        ?.findDateTimes(text = text, tokens = sentence.tokens, offset = sentence.position.start)
-        ?: listOf()
+      tokensMorphologies = this.buildSingleTokensMorphologies(
+        tokens = sentence.tokens,
+        singleNumbers = numbers.filterSingleNumbers()),
+      multiWords = this.buildMultiWords(
+        tokens = sentence.tokens,
+        multiWordsNumbers = numbers.filterMultipleNumbers()),
+      dateTimes = dateTimes
     )
   }
+
+  /**
+   * @param tokens the list of input tokens
+   * @param singleNumbers the list of single-word numbers
+   *
+   * @return the list of single tokens morphologies
+   */
+  private fun buildSingleTokensMorphologies(tokens: List<RealToken>, singleNumbers: List<Number>): List<Morphologies> {
+
+    val numbersByIndex: Map<Int, Number> = mapOf(*singleNumbers.map { it.startToken to it }.toTypedArray())
+
+    return tokens.mapIndexed { i, it ->
+      this.getTokenMorphologies(it, numberToken = numbersByIndex[i])
+    }
+  }
+
+  /**
+   * @param tokens the list of input tokens
+   * @param multiWordsNumbers the list of multi-words numbers
+   *
+   * @return the list of multi-words morphologies
+   */
+  private fun buildMultiWords(tokens: List<RealToken>, multiWordsNumbers: List<Number>): List<MultiWords> =
+    MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens) + multiWordsNumbers.toMultiWords()
+
+  /**
+   * @param text the text reconstructed from the sentence
+   * @param sentence the sentence
+   *
+   * @return the list of recognized date-times
+   */
+  private fun buildDateTimes(text: String, sentence: RealSentence<RealToken>) : List<DateTime> =
+    this.dateTimeProcessor
+      ?.findDateTimes(text = text, tokens = sentence.tokens, offset = sentence.position.start)
+      ?: listOf()
+
+  /**
+   * @param text the text reconstructed from the sentence
+   * @param sentence the sentence
+   *
+   * @return the list of recognized numbers
+   */
+  private fun buildNumbers(text: String, sentence: RealSentence<RealToken>) : List<Number> =
+    this.numbersProcessor
+      ?.findNumbers(text = text, tokens = sentence.tokens, offset = sentence.position.start)
+      ?: listOf()
+
+  /**
+   * Transform this list of numbers in a list of multi-words.
+   *
+   * @return a list of multi-words
+   */
+  private fun List<Number>.toMultiWords(): List<MultiWords> = this.map {
+    MultiWords(
+      startToken = it.startToken,
+      endToken = it.endToken,
+      morphologies = listOf(buildNumberMorpho(lemma = it.asWord, numericForm = it.value)))
+  }
+
+  /**
+   * @return the numbers that are composed by multiple tokens
+   */
+  private fun List<Number>.filterMultipleNumbers() = this.filter { it.startToken != it.endToken }
+
+  /**
+   * @return the numbers that are composed by a single token
+   */
+  private fun List<Number>.filterSingleNumbers() = this.filter { it.startToken == it.endToken }
 
   /**
    * @param token a token
@@ -158,22 +244,4 @@ class MorphologicalAnalyzer(
    * @return true if the first char of this token form is upper case, otherwise false
    */
   private fun RealToken.isFirstUpperCase(): Boolean = this.form.first().isUpperCase()
-
-  /**
-   * @param tokens the list of input tokens
-   * @param multiWordsNumbers the list of multi-words numbers
-   *
-   * @return the list of multi-words morphologies
-   */
-  private fun buildMultiWords(tokens: List<RealToken>, multiWordsNumbers: List<Number>): List<MultiWords> {
-
-    val multiWordsFromNumbers: List<MultiWords> = multiWordsNumbers.map {
-      MultiWords(
-        startToken = it.startToken,
-        endToken = it.endToken,
-        morphologies = listOf(buildNumberMorpho(lemma = it.asWord, numericForm = it.value)))
-    }
-
-    return MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens) + multiWordsFromNumbers
-  }
 }
