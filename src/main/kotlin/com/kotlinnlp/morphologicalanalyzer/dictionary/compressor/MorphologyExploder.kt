@@ -7,7 +7,7 @@
 
 package com.kotlinnlp.morphologicalanalyzer.dictionary.compressor
 
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalPropertyFactory
 
 /**
  * A helper that explodes a given temporary entry into more entries.
@@ -29,7 +29,7 @@ class MorphologyExploder(tmpEntry: TmpEntry) {
    * Explode the entry respect to each property name.
    */
   init {
-    MorphologyPropertyFactory.propertyNames.forEach { this.explodeEntries(propertyName = it) }
+    GrammaticalPropertyFactory.propertyNames.forEach { this.explodeEntries(propertyName = it) }
   }
 
   /**

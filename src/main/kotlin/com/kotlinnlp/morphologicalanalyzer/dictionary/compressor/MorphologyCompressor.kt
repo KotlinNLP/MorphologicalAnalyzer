@@ -12,8 +12,8 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.linguisticdescription.morphology.POS
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyProperty
-import com.kotlinnlp.linguisticdescription.morphology.properties.MorphologyPropertyFactory
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalProperty
+import com.kotlinnlp.linguisticdescription.morphology.properties.GrammaticalPropertyFactory
 import com.kotlinnlp.linguisticdescription.InvalidPOS
 import com.kotlinnlp.linguisticdescription.morphology.SingleMorphology
 import com.kotlinnlp.linguisticdescription.morphology.morphologies.things.Noun
@@ -205,13 +205,13 @@ class MorphologyCompressor : Serializable {
   /**
    * @param properties the properties object of a morphology
    *
-   * @return a map of properties names to [MorphologyProperty] objects
+   * @return a map of properties names to [GrammaticalProperty] objects
    */
-  private fun mapProperties(properties: Properties): Map<String, MorphologyProperty> =
+  private fun mapProperties(properties: Properties): Map<String, GrammaticalProperty> =
     properties.list.associate {
       Pair(
         it.first,
-        MorphologyPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
+        GrammaticalPropertyFactory(propertyName = it.first, valueAnnotation = it.second)
       )
     }
 }
