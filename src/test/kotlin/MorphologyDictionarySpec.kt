@@ -108,13 +108,14 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain the expected first component of its multiple morphology") {
-          assertEquals(Preposition.Base(lemma = "lemma1"), entry.morphologies.first().components[0])
+          assertEquals(Preposition.Base(lemma = "lemma1", oov = false), entry.morphologies.first().components[0])
         }
 
         it("should contain the expected second component of its multiple morphology") {
           assertEquals(
             Article.Base(
               lemma = "lemma2",
+              oov = false,
               gender = Gender.Feminine,
               number = Number.Plural,
               case = GrammaticalCase.Accusative
@@ -151,6 +152,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Noun.Common.Base(
               lemma = "lemma3",
+              oov = false,
               case = GrammaticalCase.Unknown,
               degree = Degree.Base,
               gender = Gender.Masculine,
@@ -169,6 +171,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Verb.Base(
               lemma = "lemma4",
+              oov = false,
               gender = Gender.Feminine,
               number = Number.Singular,
               person = Person.Third,
@@ -204,7 +207,10 @@ class MorphologyDictionarySpec : Spek({
         }
 
         it("should contain the expected morphology") {
-          assertEquals(Preposition.Base(lemma = "lemma5 lemma6 lemma7"), entry.morphologies.first().components[0])
+          assertEquals(
+            Preposition.Base(lemma = "lemma5 lemma6 lemma7", oov = false),
+            entry.morphologies.first().components[0]
+          )
         }
       }
     }
@@ -239,6 +245,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
+              oov = false,
               gender = Gender.Undefined,
               number = Number.Singular,
               person = Person.Third,
@@ -253,6 +260,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
+              oov = false,
               gender = Gender.Masculine,
               number = Number.Singular,
               person = Person.Third,
@@ -266,6 +274,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
+              oov = false,
               gender = Gender.Undefined,
               number = Number.Singular,
               person = Person.Third,
@@ -280,6 +289,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
+              oov = false,
               gender = Gender.Masculine,
               number = Number.Plural,
               person = Person.Third,
@@ -293,6 +303,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
+              oov = false,
               gender = Gender.Undefined,
               number = Number.Singular,
               person = Person.Third,
@@ -307,6 +318,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
+              oov = false,
               gender = Gender.Masculine,
               number = Number.Singular,
               person = Person.Third,
@@ -320,6 +332,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Verb.Base(
               lemma = "lemma8",
+              oov = false,
               gender = Gender.Undefined,
               number = Number.Singular,
               person = Person.Third,
@@ -334,6 +347,7 @@ class MorphologyDictionarySpec : Spek({
           assertEquals(
             Pronoun.Base(
               lemma = "lemma9",
+              oov = false,
               gender = Gender.Masculine,
               number = Number.Plural,
               person = Person.Third,
@@ -365,14 +379,14 @@ class MorphologyDictionarySpec : Spek({
 
         it("should contain the expected morphology") {
           assertEquals(
-            Adverb.Modal(lemma = "lemma10", degree = Degree.Base),
+            Adverb.Modal(lemma = "lemma10", degree = Degree.Base, oov = false),
             entry.morphologies.first().components.first())
         }
       }
 
       on("the querying the alternative forms of 'form with_è accentuated'") {
 
-        val expectedMorpho = listOf(Morphology(listOf(Adverb.Modal(lemma = "lemma10", degree = Degree.Base))))
+        val expectedMorpho = listOf(Morphology(Adverb.Modal(lemma = "lemma10", oov = false, degree = Degree.Base)))
 
         it("should return the same entry when querying `form with_e' accentuated`") {
           assertEquals(
@@ -415,14 +429,14 @@ class MorphologyDictionarySpec : Spek({
 
         it("should contain the expected morphology") {
           assertEquals(
-            Adverb.Modal(lemma = "lemma11", degree = Degree.Base),
+            Adverb.Modal(lemma = "lemma11", oov = false, degree = Degree.Base),
             entry.morphologies.first().components.first())
         }
       }
 
       on("the querying the alternative forms of 'only_è'") {
 
-        val expectedMorpho = listOf(Morphology(listOf(Adverb.Modal(lemma = "lemma11", degree = Degree.Base))))
+        val expectedMorpho = listOf(Morphology(Adverb.Modal(lemma = "lemma11", oov = false, degree = Degree.Base)))
 
         it("should return the same entry when querying `only_e'`") {
           assertEquals(
