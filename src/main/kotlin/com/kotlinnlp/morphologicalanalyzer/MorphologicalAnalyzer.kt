@@ -54,7 +54,7 @@ class MorphologicalAnalyzer(
      *
      * @return a new punctuation morphology
      */
-    private fun buildPunctMorpho(form: String): Morphology = Morphology(Punctuation(lemma = form))
+    private fun buildPunctMorpho(form: String): Morphology = Morphology(Punctuation(lemma = form, oov = true))
 
     /**
      * Build the default morphology for number tokens.
@@ -66,6 +66,7 @@ class MorphologicalAnalyzer(
      */
     private fun buildNumberMorpho(lemma: String, numericForm: kotlin.Number): Morphology = Morphology(NumberMorpho(
       lemma = lemma,
+      oov = true,
       gender = Gender.Undefined,
       number = when (numericForm.toDouble()) {
         1.0 -> NumberProp.Singular
@@ -80,7 +81,7 @@ class MorphologicalAnalyzer(
      *
      * @return a new proper noun morphology
      */
-    private fun buildProperNounMorpho(form: String): Morphology = Morphology(Noun.Proper.Base(lemma = form))
+    private fun buildProperNounMorpho(form: String): Morphology = Morphology(Noun.Proper.Base(lemma = form, oov = true))
   }
 
   /**
