@@ -29,7 +29,7 @@ internal object LanguageParamsFactory {
 
   } catch (e: java.io.FileNotFoundException) {
 
-    throw TODO("Language '%s' is not implemented".format(language))
+    throw NotImplementedError("Language '%s' is not implemented".format(language))
   }
 
   /**
