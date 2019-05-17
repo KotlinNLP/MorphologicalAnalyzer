@@ -62,7 +62,7 @@
         <antlr4.version>4.7.1</antlr4.version>
         <klaxon.version>3.0.5</klaxon.version>
         <linguisticdescription.version>0.11.0</linguisticdescription.version>
-        <utils.version>2.1.1</utils.version>
+        <utils.version>2.1.2</utils.version>
     </properties>
 
     <repositories>

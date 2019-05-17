@@ -17,7 +17,7 @@
         <morphologicalanalyzer.version>0.4.4</morphologicalanalyzer.version>
         <linguisticdescription.version>0.11.0</linguisticdescription.version>
         <neuraltokenizer.version>0.4.6</neuraltokenizer.version>
-        <utils.version>2.1.1</utils.version>
+        <utils.version>2.1.2</utils.version>
     </properties>
 
     <repositories>
