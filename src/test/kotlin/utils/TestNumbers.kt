@@ -9,7 +9,8 @@ package utils
 
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
-import java.io.FileNotFoundException
+import java.io.File
+import java.io.InputStream
 
 /**
  * Contains list of numbers tests.
@@ -52,14 +53,11 @@ object TestNumbers {
    */
   private fun loadTests(langCode: String): List<Test> {
 
-    val resPath = "numbers/$langCode/test_numbers.json"
-    val absResPath: String = try {
-      TestNumbers::class.java.classLoader.getResource(resPath).file
-    } catch (e: NullPointerException) {
-      throw FileNotFoundException(resPath)
-    }
+    val resPath: String = sequenceOf("numbers", langCode, "test_numbers.json")
+      .joinToString(prefix = File.separator, separator = File.separator)
+    val inputStream: InputStream = this.javaClass.getResourceAsStream(resPath)
 
-    val jsonList = Parser().parse(absResPath) as JsonArray<*>
+    val jsonList = Parser().parse(inputStream) as JsonArray<*>
 
     return jsonList.flatMap { it as JsonObject
 

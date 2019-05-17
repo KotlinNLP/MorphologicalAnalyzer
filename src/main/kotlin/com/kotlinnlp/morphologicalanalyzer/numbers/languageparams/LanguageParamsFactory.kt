@@ -10,6 +10,7 @@ package com.kotlinnlp.morphologicalanalyzer.numbers.languageparams
 import com.beust.klaxon.Klaxon
 import com.kotlinnlp.linguisticdescription.language.Language
 import java.io.File
+import java.io.InputStream
 
 /**
  * The [LanguageParams] factory.
@@ -25,7 +26,7 @@ internal object LanguageParamsFactory {
    */
   fun factory(language: Language): LanguageParams = try {
 
-    Klaxon().parse<LanguageParams>(getJsonResource(language))!!
+    Klaxon().parse<LanguageParams>(getJsonStream(language))!!
 
   } catch (e: java.io.FileNotFoundException) {
 
@@ -33,16 +34,15 @@ internal object LanguageParamsFactory {
   }
 
   /**
-   * Returns a [File] object that points to the json params file for the language requested.
-   *
    * @param language the language for which to provide the params object
    *
-   * @return the pointer to the json params file for the given language
+   * @return the input stream of the JSON file with the params for the given language
    */
-  private fun getJsonResource(language: Language): String {
+  private fun getJsonStream(language: Language): InputStream {
 
-    val resPath = "/numbers/${language.isoCode}/langparams.json"
+    val resPath: String = sequenceOf("numbers", language.isoCode, "langparams.json")
+      .joinToString(prefix = File.separator, separator = File.separator)
 
-    return LanguageParamsFactory.javaClass.getResource(resPath).readText()
+    return LanguageParamsFactory.javaClass.getResourceAsStream(resPath)
   }
 }

@@ -22,6 +22,7 @@ import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -35,7 +36,7 @@ class MorphologyDictionarySpec : Spek({
   describe("a MorphologyDictionary") {
 
     val dictionary: MorphologyDictionary = MorphologyDictionary.load(
-      filename = MorphologyDictionary::class.java.classLoader.getResource("test_dictionary.jsonl").file,
+      filename = Charsets.javaClass.getResource(File.separator + "test_dictionary.jsonl").file,
       language = Language.Italian)
 
     context("loading") {

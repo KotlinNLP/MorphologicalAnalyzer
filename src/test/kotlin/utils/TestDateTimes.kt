@@ -14,7 +14,8 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.Interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenFromInterval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
-import java.io.FileNotFoundException
+import java.io.File
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -106,15 +107,11 @@ object TestDateTimes {
   private fun loadTests(type: String, langCode: String): List<Test> {
 
     val formattedResName: String = this.RES_UNFORMATTED.format(type)
-    val simpleResFilename = "datetime/$langCode/$formattedResName"
+    val simpleResFilename = sequenceOf("datetime", langCode, formattedResName)
+      .joinToString(prefix = File.separator, separator = File.separator)
 
-    val absResFilename: String = try {
-      TestDateTimes::class.java.classLoader.getResource(simpleResFilename).file
-    } catch (e: NullPointerException) {
-      throw FileNotFoundException(simpleResFilename)
-    }
-
-    val jsonList: JsonArray<*> = Parser().parse(absResFilename) as JsonArray<*>
+    val inputStream: InputStream = this.javaClass.getResourceAsStream(simpleResFilename)
+    val jsonList: JsonArray<*> = Parser().parse(inputStream) as JsonArray<*>
 
     return jsonList.flatMap { it as JsonObject
 

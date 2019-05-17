@@ -12,6 +12,7 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
+import java.io.InputStream
 
 /**
  * The helper that explodes the accentuated forms of a [MorphologyDictionary].
@@ -35,8 +36,8 @@ internal class AccentsHelper(language: Language, private val verbose: Boolean = 
      */
     private fun loadAccentsRegexList(): Map<String, List<Pair<Regex, String>>> {
 
-      val filename: String = MorphologyDictionary::class.java.classLoader.getResource("accents_regex.json").file
-      val regexObj: JsonObject = Parser().parse(filename) as JsonObject
+      val inputStream: InputStream = Charsets.javaClass.getResourceAsStream("accents_regex.json")
+      val regexObj: JsonObject = Parser().parse(inputStream) as JsonObject
 
       return regexObj.mapValues { (_, regexList) -> regexList as JsonArray<*>
         regexList.map { obj -> obj as JsonObject
