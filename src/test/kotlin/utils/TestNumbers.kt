@@ -11,6 +11,7 @@ import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
 import java.io.File
 import java.io.InputStream
+import java.nio.file.Paths
 
 /**
  * Contains list of numbers tests.
@@ -53,8 +54,7 @@ object TestNumbers {
    */
   private fun loadTests(langCode: String): List<Test> {
 
-    val resPath: String = sequenceOf("numbers", langCode, "test_numbers.json")
-      .joinToString(prefix = File.separator, separator = File.separator)
+    val resPath: String = Paths.get(File.separator, "numbers", langCode, "test_numbers.json").toString()
     val inputStream: InputStream = this.javaClass.getResourceAsStream(resPath)
 
     val jsonList = Parser().parse(inputStream) as JsonArray<*>

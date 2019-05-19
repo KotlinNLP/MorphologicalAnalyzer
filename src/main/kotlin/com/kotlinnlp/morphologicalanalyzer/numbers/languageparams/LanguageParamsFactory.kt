@@ -11,6 +11,7 @@ import com.beust.klaxon.Klaxon
 import com.kotlinnlp.linguisticdescription.language.Language
 import java.io.File
 import java.io.InputStream
+import java.nio.file.Paths
 
 /**
  * The [LanguageParams] factory.
@@ -40,8 +41,7 @@ internal object LanguageParamsFactory {
    */
   private fun getJsonStream(language: Language): InputStream {
 
-    val resPath: String = sequenceOf("numbers", language.isoCode, "langparams.json")
-      .joinToString(prefix = File.separator, separator = File.separator)
+    val resPath: String = Paths.get(File.separator, "numbers", language.isoCode, "langparams.json").toString()
 
     return LanguageParamsFactory.javaClass.getResourceAsStream(resPath)
   }

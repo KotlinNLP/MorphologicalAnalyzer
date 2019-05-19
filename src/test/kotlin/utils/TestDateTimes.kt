@@ -16,6 +16,7 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
 import java.io.File
 import java.io.InputStream
+import java.nio.file.Paths
 import java.util.*
 
 /**
@@ -107,8 +108,7 @@ object TestDateTimes {
   private fun loadTests(type: String, langCode: String): List<Test> {
 
     val formattedResName: String = this.RES_UNFORMATTED.format(type)
-    val simpleResFilename = sequenceOf("datetime", langCode, formattedResName)
-      .joinToString(prefix = File.separator, separator = File.separator)
+    val simpleResFilename: String = Paths.get(File.separator, "datetime", langCode, formattedResName).toString()
 
     val inputStream: InputStream = this.javaClass.getResourceAsStream(simpleResFilename)
     val jsonList: JsonArray<*> = Parser().parse(inputStream) as JsonArray<*>
