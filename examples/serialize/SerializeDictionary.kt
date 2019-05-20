@@ -5,7 +5,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
-import com.kotlinnlp.linguisticdescription.language.Language
+package serialize
+
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.utils.Timer
@@ -15,30 +16,23 @@ import java.io.FileOutputStream
 /**
  * Load a [MorphologyDictionary] from a file in JSONL format and serialize it to another file.
  *
- * Command line arguments:
- *   1. The path of the input file from which to read the dictionary in JSONL format.
- *   2. The path of the output file into which to write the serialized dictionary.
- *   3. The language iso-a2 code of the dictionary (optional).
+ * Launch with the '-h' option for help about the command line arguments.
  */
 fun main(args: Array<String>) {
 
-  require(args.size >= 2) { "Required at least 2 arguments: <input_file> <output_file> [<lang_code>]." }
-
-  val inputFile: String = args[0]
-  val outputFile: String = args[1]
+  val parsedArgs = CommandLineArguments(args)
   val timer = Timer()
 
-
-  println("Loading morphology dictionary in JSONL format from '$inputFile'...")
+  println("Loading morphology dictionary in JSONL format from '${parsedArgs.inputFilePath}'...")
   val m = MorphologyDictionary.load(
-    filename = inputFile,
-    language = if (args.size > 2) getLanguageByIso(args[2]) else Language.Unknown)
+    filename = parsedArgs.inputFilePath,
+    language = getLanguageByIso(parsedArgs.language))
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
   println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
 
-  println("\nSaving serialized dictionary to '$outputFile'...")
+  println("\nSaving serialized dictionary to '${parsedArgs.outputFilePath}'...")
   timer.reset()
-  m.dump(FileOutputStream(File(outputFile)))
+  m.dump(FileOutputStream(File(parsedArgs.outputFilePath)))
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 }

@@ -5,6 +5,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * ------------------------------------------------------------------*/
 
+package analyze
+
 import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.sentence.RealSentence
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.SingleDateTime
@@ -24,22 +26,17 @@ import java.time.LocalDateTime
 /**
  * Analyze the morphology of a text.
  *
- * Command line arguments:
- *   1. The file path of the tokenizer serialized model.
- *   2. The file path of the serialized morphology dictionary.
+ * Launch with the '-h' option for help about the command line arguments.
  */
 fun main(args: Array<String>) {
 
-  require(args.size == 2) {
-    "Required 2 arguments: <tokenizer_model_filename> <morpho_dictionary_filename>."
-  }
+  val parsedArgs = CommandLineArguments(args)
 
-  val tokenizer: NeuralTokenizer = args[0].let {
+  val tokenizer: NeuralTokenizer = parsedArgs.tokenizerModelPath.let {
     println("Loading tokenizer model from '$it'...")
     NeuralTokenizer(NeuralTokenizerModel.load(FileInputStream(File(it))))
   }
-
-  val analyzer: MorphologicalAnalyzer = args[1].let {
+  val analyzer: MorphologicalAnalyzer = parsedArgs.dictionaryPath.let {
     println("Loading serialized dictionary from '$it'...")
     MorphologicalAnalyzer(dictionary = MorphologyDictionary.load(FileInputStream(File(it))))
   }
