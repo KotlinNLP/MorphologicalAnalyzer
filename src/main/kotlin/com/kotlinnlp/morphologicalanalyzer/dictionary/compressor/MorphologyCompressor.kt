@@ -102,7 +102,7 @@ class MorphologyCompressor : Serializable {
           lemma = it.lemma,
           pos = it.pos,
           properties = this.mapProperties(it.properties),
-          allowIncompleteProperties = it.pos.isSubTypeOf(Noun.Proper::class))
+          allowDefaultValues = it.pos.isSubTypeOf(Noun.Proper::class))
       })
     }
   }
