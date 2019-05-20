@@ -50,6 +50,15 @@ internal class CommandLineArguments(args: Array<String>) {
   ).default { "--" }
 
   /**
+   * Allow to assign default values to grammatical properties that are not specified.
+   */
+  val defaultProperties: Boolean by parser.flagging(
+    "-d",
+    "--default-properties",
+    help="allow to assign default values to grammatical properties that are not specified"
+  )
+
+  /**
    * Force parsing all arguments (only read ones are parsed by default).
    */
   init {

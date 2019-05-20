@@ -26,7 +26,8 @@ fun main(args: Array<String>) {
   println("Loading morphology dictionary in JSONL format from '${parsedArgs.inputFilePath}'...")
   val m = MorphologyDictionary.load(
     filename = parsedArgs.inputFilePath,
-    language = getLanguageByIso(parsedArgs.language))
+    language = getLanguageByIso(parsedArgs.language),
+    allowDefaultProperties = parsedArgs.defaultProperties)
   println("Elapsed time: %s".format(timer.formatElapsedTime()))
 
   println("\nNumber of elements in the dictionary: ${m.size} (+ ${m.alternativesCount} references).")
