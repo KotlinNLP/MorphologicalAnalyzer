@@ -24,7 +24,7 @@ import java.io.Serializable
  *
  * @param allowDefaultProperties allow to assign default values to grammatical properties that are not specified
  */
-class MorphologyCompressor(private val allowDefaultProperties: Boolean) : Serializable {
+internal class MorphologyCompressor(private val allowDefaultProperties: Boolean) : Serializable {
 
   companion object {
 
