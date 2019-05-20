@@ -21,8 +21,11 @@ import java.io.Serializable
 
 /**
  * The dictionary of morphologies that maps forms to morphologies.
+ *
+ * @property language the dictionary language
+ * @param allowDefaultProperties allow to assign default values to grammatical properties that are not specified
  */
-class MorphologyDictionary(val language: Language) : Serializable {
+class MorphologyDictionary(val language: Language, allowDefaultProperties: Boolean) : Serializable {
 
   companion object {
 
@@ -47,13 +50,18 @@ class MorphologyDictionary(val language: Language) : Serializable {
      *
      * @param filename the morphologies dictionary filename
      * @param language the language of the dictionary (needed to explode accents, default = unknown)
+     * @param allowDefaultProperties allow to assign default values to grammatical properties that are not specified
+     *                               (default = false)
      * @param verbose whether to print the reading progress (default = true)
      *
      * @return a new Morphology Dictionary
      */
-    fun load(filename: String, language: Language = Language.Unknown, verbose: Boolean = true): MorphologyDictionary {
+    fun load(filename: String,
+             language: Language = Language.Unknown,
+             allowDefaultProperties: Boolean = false,
+             verbose: Boolean = true): MorphologyDictionary {
 
-      val dictionary = MorphologyDictionary(language)
+      val dictionary = MorphologyDictionary(language = language, allowDefaultProperties = allowDefaultProperties)
 
       val jsonParser = Parser()
       val progress = ProgressIndicatorBar(getLinesCount(filename))
@@ -129,7 +137,7 @@ class MorphologyDictionary(val language: Language) : Serializable {
   /**
    * The compressor of morphologies.
    */
-  private val compressor = MorphologyCompressor()
+  private val compressor = MorphologyCompressor(allowDefaultProperties)
 
   /**
    * The map of forms to [Entry] objects.

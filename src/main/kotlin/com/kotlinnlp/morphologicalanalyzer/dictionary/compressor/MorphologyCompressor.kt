@@ -21,8 +21,10 @@ import java.io.Serializable
 
 /**
  * A helper that optimizes the memory load of the morphologies, mapping them to indices.
+ *
+ * @param allowDefaultProperties allow to assign default values to grammatical properties that are not specified
  */
-class MorphologyCompressor : Serializable {
+class MorphologyCompressor(private val allowDefaultProperties: Boolean) : Serializable {
 
   companion object {
 
@@ -102,7 +104,7 @@ class MorphologyCompressor : Serializable {
           lemma = it.lemma,
           pos = it.pos,
           properties = this.mapProperties(it.properties),
-          allowDefaultValues = it.pos.isSubTypeOf(Noun.Proper::class))
+          allowDefaultValues = this.allowDefaultProperties || it.pos.isSubTypeOf(Noun.Proper::class))
       })
     }
   }
