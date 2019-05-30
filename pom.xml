@@ -56,8 +56,8 @@
         <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <kotlin.version>1.3.31</kotlin.version>
-        <spek.version>1.1.5</spek.version>
-        <surfire.version>2.19.1</surfire.version>
+        <spek.version>2.0.5</spek.version>
+        <surfire.version>2.22.0</surfire.version>
         <dokka.version>0.9.16</dokka.version>
         <antlr4.version>4.7.1</antlr4.version>
         <klaxon.version>3.0.5</klaxon.version>
@@ -238,17 +238,16 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jetbrains.spek</groupId>
-            <artifactId>spek-api</artifactId>
+            <groupId>org.spekframework.spek2</groupId>
+            <artifactId>spek-dsl-jvm</artifactId>
             <version>${spek.version}</version>
-            <scope>test</scope>
+            <type>pom</type>
         </dependency>
 
         <dependency>
-            <groupId>org.jetbrains.spek</groupId>
-            <artifactId>spek-junit-platform-engine</artifactId>
+            <groupId>org.spekframework.spek2</groupId>
+            <artifactId>spek-runner-junit5</artifactId>
             <version>${spek.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>

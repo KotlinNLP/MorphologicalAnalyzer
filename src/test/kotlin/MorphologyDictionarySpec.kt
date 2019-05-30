@@ -17,11 +17,8 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -84,7 +81,7 @@ class MorphologyDictionarySpec : Spek({
 
     context("forms with one morphology") {
 
-      on("the 'form1' form") {
+      context("the 'form1' form") {
 
         val entry: Entry = dictionary["form1"]!!
 
@@ -129,7 +126,7 @@ class MorphologyDictionarySpec : Spek({
 
     context("forms with more morphologies") {
 
-      on("the 'form2' form") {
+      context("the 'form2' form") {
 
         val entry: Entry = dictionary["form2"]!!
 
@@ -187,7 +184,7 @@ class MorphologyDictionarySpec : Spek({
 
     context("multiple forms (multi-words expressions)") {
 
-      on("the 'form3.1 form3.2 form3.3' form") {
+      context("the 'form3.1 form3.2 form3.3' form") {
 
         val entry: Entry = dictionary["form3.1 form3.2 form3.3"]!!
 
@@ -218,7 +215,7 @@ class MorphologyDictionarySpec : Spek({
 
     context("forms with morphology containing multiple (exploding) properties") {
 
-      on("the 'form4' form") {
+      context("the 'form4' form") {
 
         val entry: Entry = dictionary["form4"]!!
 
@@ -362,7 +359,7 @@ class MorphologyDictionarySpec : Spek({
 
     context("forms with accentuated words") {
 
-      on("the 'form with_è accentuated' form") {
+      context("the 'form with_è accentuated' form") {
 
         val entry: Entry = dictionary["form with_è accentuated"]!!
 
@@ -385,7 +382,7 @@ class MorphologyDictionarySpec : Spek({
         }
       }
 
-      on("the querying the alternative forms of 'form with_è accentuated'") {
+      context("the querying the alternative forms of 'form with_è accentuated'") {
 
         val expectedMorpho = listOf(Morphology(Adverb.Modal(lemma = "lemma10", oov = false, degree = Degree.Base)))
 
@@ -408,7 +405,7 @@ class MorphologyDictionarySpec : Spek({
         }
       }
 
-      on("the 'only_è' form") {
+      context("the 'only_è' form") {
 
         val entry: Entry = dictionary["only_è"]!!
 
@@ -435,7 +432,7 @@ class MorphologyDictionarySpec : Spek({
         }
       }
 
-      on("the querying the alternative forms of 'only_è'") {
+      context("the querying the alternative forms of 'only_è'") {
 
         val expectedMorpho = listOf(Morphology(Adverb.Modal(lemma = "lemma11", oov = false, degree = Degree.Base)))
 

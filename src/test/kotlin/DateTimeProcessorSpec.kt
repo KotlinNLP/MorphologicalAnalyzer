@@ -9,11 +9,8 @@ import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.datetime.DateTimeProcessor
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.context
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import utils.SimpleTokenizer
 import utils.TestDateTimes
 import kotlin.test.assertEquals
@@ -29,7 +26,7 @@ class DateTimeProcessorSpec : Spek({
 
   describe("a DateTimeProcessor") {
 
-    TestDateTimes.tests.forEach { lang, testGroups ->
+    TestDateTimes.tests.forEach { (lang, testGroups) ->
       testGroups.forEach { (testType, tests) ->
 
         context("[%s] %s".format(lang, testType)) {
@@ -38,7 +35,7 @@ class DateTimeProcessorSpec : Spek({
 
           tests.forEach { (text, expectedDateTime) ->
 
-            on("text: '$text'") {
+            context("text: '$text'") {
 
               val tokens: List<RealToken> = SimpleTokenizer.tokenize(text)
               val dateTimes: List<DateTime> = processor.findDateTimes(text = text, tokens = tokens)
