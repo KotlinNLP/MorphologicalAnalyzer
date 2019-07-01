@@ -62,7 +62,30 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  fun findNumbers(text: String, tokens: List<RealToken>, mode: String = "SLL+LL", offset: Int = 0): List<Number> {
+  fun findNumbers(text: String,
+                          tokens: List<RealToken>,
+                          mode: String = "SLL+LL",
+                          offset: Int = 0): List<Number>  =
+    this.privateFindNumbers(
+      text = text,
+      tokens = tokens.mapIndexed { i, t -> IndexedValue(index = i, value = t) },
+      mode = mode,
+      offset = offset)
+
+  /**
+   * Process the input text searching for numeric expressions.
+   *
+   * @param text the text to process
+   * @param tokens the list of tokens that compose the input text
+   * @param mode the Antlr parsing mode to use
+   * @param offset the offset of the text in the containing text (default 0)
+   *
+   * @return the list of number tokens found
+   */
+  internal fun privateFindNumbers(text: String,
+                                 tokens: List<IndexedValue<RealToken>>,
+                                 mode: String = "SLL+LL",
+                                 offset: Int = 0): List<Number> {
 
     var split = false
     var fallback = false
@@ -123,13 +146,13 @@ class NumbersProcessor(
    *
    * @return the list of number tokens found
    */
-  private fun findNumbersWithSplitParsing(text: String, tokens: List<RealToken>, offset: Int): List<Number> {
+  private fun findNumbersWithSplitParsing(text: String, tokens: List<IndexedValue<RealToken>>, offset: Int): List<Number> {
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val chunkFinder = ChunkFinder(parserClass = getParserClass(), debug = this.debug)
 
     return chunkFinder.find(lexer.allTokens as List<Token>).flatMap { (chunkText, chunkOffset) ->
-      findNumbers(text = chunkText, tokens = tokens, offset = offset + chunkOffset)
+      privateFindNumbers(text = chunkText, tokens = tokens, offset = offset + chunkOffset)
     }
   }
 
@@ -139,7 +162,7 @@ class NumbersProcessor(
    *
    * @return the listener for the current language
    */
-  private fun buildListener(tokens: List<RealToken>, offset: Int): ListenerCommon {
+  private fun buildListener(tokens: List<IndexedValue<RealToken>>, offset: Int): ListenerCommon {
 
     val listenerClass: KClass<*> = when (this.language) {
       Language.English -> ListenerEN::class

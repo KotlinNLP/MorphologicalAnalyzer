@@ -38,7 +38,7 @@ internal interface ListenerCommon {
   /**
    * The list of tokens that compose the input text.
    */
-  val tokens: List<RealToken>
+  val tokens: List<IndexedValue<RealToken>>
 
   /**
    * The offset of the input text in the containing text.
@@ -180,12 +180,12 @@ internal interface ListenerCommon {
       this.helper.spaceSplitterRegex.findAll(numericExpr).toList().flatMap { match ->
 
         val matchOffset: Int = this.offset + exprOffset + match.groups[1]!!.range.start
-        val matchTokenOffset: Int = this.tokens.first { it.position.end >= matchOffset }.position.index
-        val subTokens: List<RealToken> = this.tokens.subList(matchTokenOffset, this.tokens.size)
+        val matchTokenOffset: Int = this.tokens.first { it.value.position.end >= matchOffset }.index
+        val subTokens: List<IndexedValue<RealToken>> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
         debugPrint("Processing subexpression '${match.groupValues[1]}'")
 
-        this.processor.findNumbers(text = match.groupValues[1], tokens = subTokens, offset = matchOffset)
+        this.processor.privateFindNumbers(text = match.groupValues[1], tokens = subTokens, offset = matchOffset)
       }
 
     } else {
@@ -1147,8 +1147,8 @@ internal interface ListenerCommon {
     val (integer, decimal) = this.getNumberComponents(ctx)
 
     return Number(
-      startToken = this.tokens.first { (it.position.end - this.offset) >= ctx.start.startIndex }.position.index,
-      endToken = this.tokens.first { (it.position.end - this.offset) >= ctx.stop.stopIndex }.position.index,
+      startToken = this.tokens.first { (it.value.position.end - this.offset) >= ctx.start.startIndex }.index,
+      endToken = this.tokens.first { (it.value.position.end - this.offset) >= ctx.stop.stopIndex }.index,
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),

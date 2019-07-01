@@ -31,7 +31,7 @@ import org.antlr.v4.runtime.ParserRuleContext
 internal class ListenerIT(
   override val langParams: LanguageParams,
   override val processor: NumbersProcessor,
-  override val tokens: List<RealToken>,
+  override val tokens: List<IndexedValue<RealToken>>,
   override val offset: Int,
   override val debug: Boolean = false,
   override val enableSubexpressions: Boolean = true
