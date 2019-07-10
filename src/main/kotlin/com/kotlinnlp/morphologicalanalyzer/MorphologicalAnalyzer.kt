@@ -7,7 +7,6 @@
 
 package com.kotlinnlp.morphologicalanalyzer
 
-import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.morphology.MorphologicalAnalysis
 import com.kotlinnlp.linguisticdescription.morphology.Morphologies
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
@@ -93,12 +92,12 @@ class MorphologicalAnalyzer(
   /**
    * Whether the [NumbersProcessor] is available, or not.
    */
-  private val isNumbersProcessorAvailable: Boolean = this.language in setOf(Language.English, Language.Italian)
+  private val isNumbersProcessorAvailable: Boolean = this.language in NumbersProcessor.AVAILABLE_LANGUAGES
 
   /**
    * Whether the [DateTimeProcessor] is available, or not.
    */
-  private val isDateTimeProcessorAvailable: Boolean = this.language in setOf(Language.English, Language.Italian)
+  private val isDateTimeProcessorAvailable: Boolean = this.language in DateTimeProcessor.AVAILABLE_LANGUAGES
 
   /**
    * The processor of date-time expressions.
