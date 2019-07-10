@@ -30,7 +30,7 @@ fragment Y : [Yy] ;
 fragment Z : [Zz] ;
 
 fragment AA : [ÀÁàá] | A APEX ;
-fragment EE : [ÈÉèé] | E APEX ;
+fragment EE : [ÈÉËèéë] | E APEX ;
 fragment II : [ÌÍìí] | I APEX ;
 fragment OO : [ÒÓòó] | O APEX ;
 fragment UU : [ÙÚùú] | U APEX ;
