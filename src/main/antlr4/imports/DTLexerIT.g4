@@ -65,7 +65,7 @@ WEEKEND      : F I N E WS WEEK ;
 DAY          : G I O R N (O | I) ;
 HOUR         : O R (A | E) ;
 HALF_HOUR    : M E Z Z APEX? WS? HOUR ;
-QUARTER_HOUR : Q U A R T (O | I) WS D APEX? WS HOUR ;
+QUARTER_HOUR : Q U A R T (O | I) WS D (APEX | APEX? WS) HOUR ; // flexible for mispellings
 MIN          : M I N U T (O | I) ;
 SEC          : S E C ; // 'secondo' is also an ordinal number
 
