@@ -27,7 +27,10 @@ class DateTimeProcessor(private val language: Language) {
     /**
      * The set of available languages.
      */
-    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian)
+    val AVAILABLE_LANGUAGES: Set<Language> = setOf(
+      Language.English,
+      Language.Italian,
+      Language.French)
   }
 
   /**
@@ -79,6 +82,7 @@ class DateTimeProcessor(private val language: Language) {
   private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
     Language.English -> LexerEN(charStream)
     Language.Italian -> LexerIT(charStream)
+    Language.French -> LexerFR(charStream)
     else -> throw RuntimeException("Lexer not available for language '${this.language}'")
   }
 

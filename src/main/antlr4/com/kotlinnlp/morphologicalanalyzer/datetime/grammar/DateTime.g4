@@ -31,7 +31,7 @@ interval
 interval_from : interval_expr_from text_sep interval_datetime_from ;
 interval_to   : interval_expr_to text_sep interval_datetime_to ;
 
-interval_expr_from : FROM | AFTER ;
+interval_expr_from : FROM | AFTER | OF ;
 interval_expr_to   : TO | AT | BEFORE ;
 
 interval_datetime_from : single_datetime | interval_offset_from ;
