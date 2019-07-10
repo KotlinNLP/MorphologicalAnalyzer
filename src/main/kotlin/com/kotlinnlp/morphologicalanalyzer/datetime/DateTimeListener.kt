@@ -493,7 +493,7 @@ internal class DateTimeListener(private val tokens: List<RealToken>, private val
    *
    * @param ctx the context of the 'offset_neg_prefix' rule that is being parsed
    */
-  override fun exitOffset_neg_prefix(ctx: DateTimeParser.Offset_neg_suffixContext) {
+  override fun exitOffset_neg_prefix(ctx: DateTimeParser.Offset_neg_prefixContext) {
 
     this.dateTimeBuilder.positiveOffset = false
   }
