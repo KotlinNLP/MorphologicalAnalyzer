@@ -22,6 +22,14 @@ import org.antlr.v4.runtime.tree.*
  */
 class DateTimeProcessor(private val language: Language) {
 
+  companion object {
+
+    /**
+     * The set of available languages.
+     */
+    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian)
+  }
+
   /**
    * Get the date-times recognized in a given text.
    *

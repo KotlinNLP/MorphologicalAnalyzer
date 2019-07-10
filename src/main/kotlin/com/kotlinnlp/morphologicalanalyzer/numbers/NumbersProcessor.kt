@@ -37,6 +37,14 @@ class NumbersProcessor(
   private val debug: Boolean = false
 ) {
 
+  companion object {
+
+    /**
+     * The set of available languages.
+     */
+    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian)
+  }
+
   /**
    * Print a debug message if debug is enabled.
    *
