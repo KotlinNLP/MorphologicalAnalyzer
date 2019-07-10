@@ -3,8 +3,7 @@ grammar DTDateOffset;
 import DTLexerEN, DTDate, DTOffset;
 
 date_offset
-    : date_offset_date_ref WS (OF WS)? offset
-    | date_offset_date_ref WS FROM WS offset
+    : date_offset_date_ref WS ((FROM | OF) WS)? offset
     | offset WS? EN_POSSESSIVE WS date_offset_date_ref
     | offset WS date_offset_time_ref // e.g. "tomorrow evening"
     | date_offset_tonight
