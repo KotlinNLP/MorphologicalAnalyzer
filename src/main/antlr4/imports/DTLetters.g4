@@ -33,4 +33,4 @@ fragment AA : [ÀÁÂàáâ] | A APEX ;
 fragment EE : [ÈÉËèéë] | E APEX ;
 fragment II : [ÌÍìí] | I APEX ;
 fragment OO : [ÒÓòó] | O APEX ;
-fragment UU : [ÙÚùú] | U APEX ;
+fragment UU : [ÙÚÛùúû] | U APEX ;
