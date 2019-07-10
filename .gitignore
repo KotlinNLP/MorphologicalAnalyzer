@@ -1,3 +1,6 @@
+### Antlr ###
+src/main/antlr4/**/*.tokens
+
 ### Intellij ###
 .idea/
 /out/
