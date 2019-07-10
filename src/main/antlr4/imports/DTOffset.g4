@@ -7,10 +7,14 @@ offset
     | offset_pos_prefix WS offset_numerable
     | offset_ref WS offset_double_suffix
     | offset_numerable WS (offset_pos_suffix | offset_neg_suffix)
-    | special_offset
+    | fixed_expr_offset
     ;
 
-special_offset : now | today | yesterday | tomorrow | day_after_tomorrow | day_before_yesterday ;
+// -----
+// -- Fixed expressions
+// -----
+
+fixed_expr_offset : now | today | yesterday | tomorrow | day_after_tomorrow | day_before_yesterday ;
 
 now
     : NOW
@@ -22,8 +26,6 @@ yesterday            : YESTERDAY ;
 tomorrow             : TOMORROW ;
 day_after_tomorrow   : DAY_AFTER_TOMORROW ;
 day_before_yesterday : DAY_BEFORE_YESTERDAY ;
-
-offset_numerable : offset_units WS offset_ref ;
 
 // -----
 // -- Offset Reference
@@ -43,6 +45,8 @@ offset_single_zero_prefix : THIS ; // a prefix that means implicitly an offset o
 offset_single_pos_prefix  : NEXT ; // a prefix that means implicitly a positive offset of 1 unit (+1)
 offset_single_neg_prefix  : LAST | PREV | PAST ; // a prefix that means implicitly a negative offset of 1 unit (-1)
 
+offset_pos_prefix : IN ;
+
 // -----
 // -- Suffix
 // -----
@@ -58,12 +62,8 @@ offset_neg_suffix : AGO ;
 // -- Units
 // -----
 
+offset_numerable : offset_units WS offset_ref ;
+
 offset_units : offset_units_digits | offset_units_str ;
 offset_units_digits : n_0_9999 ;
 offset_units_str : ns_all ;
-
-// -----
-// -- Prefix
-// -----
-
-offset_pos_prefix : IN ;
