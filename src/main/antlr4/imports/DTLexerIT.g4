@@ -61,7 +61,7 @@ DAY_BEFORE_YESTERDAY : L APEX? WS? A L T R O WS YESTERDAY ;
 YEAR         : A N N (O | I) ;
 MONTH        : M E S (E | I) ;
 WEEK         : S E T T I M A N (A | E) ;
-WEEKEND      : F I N E WS WEEK ;
+WEEKEND      : F I N E WS WEEK | W E E K DASH? E N D S? ;
 DAY          : G I O R N (O | I) ;
 HOUR         : O R (A | E) ;
 HALF_HOUR    : M E Z Z APEX? WS? HOUR ;
