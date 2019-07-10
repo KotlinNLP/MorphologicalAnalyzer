@@ -28,6 +28,7 @@ NEXT : P R O S S I M VOCAL_SUFFIX ;
 PAST : P A S S A T VOCAL_SUFFIX ;
 
 AGO : F (A | AA | A APEX) ; // "fà" and "fa'" are two common errors
+AGO_PREFIX : NOT_DEFINED ;
 HENCE : (A WS P A R T I R E)? D A WS A D E S S O ;
 
 AFTER : D O P O WS THE ;

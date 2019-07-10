@@ -25,6 +25,7 @@ NEXT : N E X T | C O M I N (APEX | G)? ;
 PAST : P A S T ;
 
 AGO : A G O ;
+AGO_PREFIX : NOT_DEFINED ;
 HENCE : H E N C E ;
 
 AFTER : A F T E R ;
