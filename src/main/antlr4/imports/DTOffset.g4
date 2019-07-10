@@ -4,7 +4,7 @@ import DTLexerEN, DTDate, DTTime;
 
 offset
     : offset_single_prefix WS offset_ref
-    | offset_pos_prefix WS offset_numerable
+    | (offset_pos_prefix | offset_neg_prefix) WS offset_numerable
     | offset_ref WS offset_double_suffix
     | offset_numerable WS (offset_pos_suffix | offset_neg_suffix)
     | fixed_expr_offset
@@ -46,6 +46,7 @@ offset_single_pos_prefix  : NEXT ; // a prefix that means implicitly a positive 
 offset_single_neg_prefix  : LAST | PREV | PAST ; // a prefix that means implicitly a negative offset of 1 unit (-1)
 
 offset_pos_prefix : IN ;
+offset_neg_prefix : AGO_PREFIX ;
 
 // -----
 // -- Suffix
