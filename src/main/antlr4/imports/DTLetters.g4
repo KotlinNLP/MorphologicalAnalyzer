@@ -29,7 +29,7 @@ fragment X : [Xx] ;
 fragment Y : [Yy] ;
 fragment Z : [Zz] ;
 
-fragment AA : [ÀÁàá] | A APEX ;
+fragment AA : [ÀÁÂàáâ] | A APEX ;
 fragment EE : [ÈÉËèéë] | E APEX ;
 fragment II : [ÌÍìí] | I APEX ;
 fragment OO : [ÒÓòó] | O APEX ;
