@@ -57,9 +57,9 @@ private var execution = 0
 fun main(args: Array<String>) {
 
   //  timing()
-  //  debugging()
-  //  test_grammar()
-  //  example()
+  //debugging()
+  test_grammar()
+  example()
   timing2(bigstr_SLL_EN, language = "en")
   //    tokens(odd_situations, language = "en")
   //    tokens(bigstr_EN, language = "en")
