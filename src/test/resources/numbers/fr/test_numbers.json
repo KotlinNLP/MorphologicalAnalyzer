@@ -1323,5 +1323,553 @@
         "start": 24
       }
     ]
+  },
+  {
+    "text": "120,3",
+    "tokens": [
+      {
+        "value": 120.3,
+        "asWord": "Cent vingt virgule trois"
+      }
+    ]
+  },
+  {
+    "text": "120.345.123",
+    "tokens": [
+      {
+        "value": 120345123,
+        "asWord": "cent vingt millions trois cent quarante-cinq mille cent vingt-trois"
+      }
+    ]
+  },
+  {
+    "text": "120.345.123,3",
+    "tokens": [
+      {
+        "value": 120345123.3,
+        "asWord": "cent vingt millions trois cent quarante-cinq mille cent vingt-trois virgule trois"
+      }
+    ]
+  },
+  {
+    "text": "centoventi virgola quattromiladue",
+    "tokens": [
+      {
+        "value": 120.4002,
+        "asWord": "cent vingt virgule quatre mille deux"
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt"
+      },
+      {
+        "value": 4002,
+        "asWord": "quatre mille deux",
+        "original": "quatre mille deux",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "  cent vingt virgola quatre mille deux cents",
+    "tokens": [
+      {
+        "value": 120.42,
+        "asWord": "cent vingt virgule quarante-deux",
+        "original": "cent vingt virgule quatre mille deux cents",
+        "start": 2
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt",
+        "start": 2
+      },
+      {
+        "value": 4200,
+        "asWord": "quatre mille deux cents",
+        "original": "quatre mille deux cents",
+        "start": 21
+      }
+    ]
+  },
+  {
+    "text": "abc cent vingt virgule quinze def",
+    "tokens": [
+      {
+        "value": 120.15,
+        "asWord": "cent vingt virgule quinze",
+        "original": "cent vingt virgule quinze",
+        "start": 4
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt",
+        "start": 4
+      },
+      {
+        "value": 15,
+        "asWord": "quinze",
+        "original": "quinze",
+        "start": 23
+      }
+    ]
+  },
+  {
+    "text": "cent vingt virgule sept huit trois zéro deux",
+    "tokens": [
+      {
+        "value": 120.78302,
+        "asWord": "cent vingt virgule sept huit trois zéro deux"
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt"
+      },
+      {
+        "value": 7,
+        "asWord": "sept",
+        "original": "sept",
+        "start": 19
+      },
+      {
+        "value": 8,
+        "asWord": "huit",
+        "original": "huit",
+        "start": 25
+      },
+      {
+        "value": 3,
+        "asWord": "trois",
+        "original": "trois",
+        "start": 30
+      },
+      {
+        "value": 0,
+        "asWord": "zéro",
+        "original": "zéro",
+        "start": 34
+      },
+      {
+        "value": 2,
+        "asWord": "deux",
+        "original": "deux",
+        "start": 39
+      }
+    ]
+  },
+  {
+    "text": "cent vingt virgule sept huit trois",
+    "tokens": [
+      {
+        "value": 120.783,
+        "asWord": "cent vingt virgule sept huit trois"
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt"
+      },
+      {
+        "value": 7,
+        "asWord": "sept",
+        "original": "sept",
+        "start": 19
+      },
+      {
+        "value": 8,
+        "asWord": "huit",
+        "original": "huit",
+        "start": 25
+      },
+      {
+        "value": 3,
+        "asWord": "trois",
+      "original": "trois",
+        "start": 30
+      }
+    ]
+  },
+  {
+    "text": "120,4200",
+    "tokens": [
+      {
+        "value": 120.42,
+        "asWord": "cent vingt virgule quatre deux"
+      }
+    ]
+  },
+  {
+    "text": "120.345.23,3",
+    "tokens": [
+      {
+        "value": 120345,
+        "asWord": "cent vingt mille trois cent quarante-cinq",
+        "original": "120.345"
+      },
+      {
+        "value": 23.3,
+        "asWord": "vingt-trois virgule trois",
+        "original": "23,3",
+        "start": 8
+      }
+    ]
+  },
+  {
+    "text": "m5s",
+    "tokens": []
+  },
+  {
+    "text": "abc def",
+    "tokens": []
+  },
+  {
+    "text": "chacun",
+    "tokens": []
+  },
+  {
+    "text": "centre",
+    "tokens": [],
+    "comment": "Solve bug that appeared due to skipped characters in the grammatic, here the 'r' would be skipped and so the number 'cento' would be recognized"
+  },
+  {
+    "text": "Immédiatement après sa formation, le Soleil a emprunté une orbite presque circulaire autour du centre de la Voie Lactée, à une distance moyenne d’environ 26.000 a.l. le Soleil emploie, compte tenu de la masse, environ 10 milliards d’années pour épuiser complètement l’hydrogène de son noyau entre environ 5 milliards d’années, le Soleil entrera dans une phase de forte instabilité dont l’expansion provoquera un refroidissement du gaz K)",
+    "tokens": [
+      
+      {
+        "value": 26000,
+        "asWord": "vingt-six mille",
+        "original": "26.000",
+        "start": 140
+      },
+      {
+        "value": 10000000000,
+        "asWord": "dix milliards",
+        "original": "10 milliards",
+        "start": 198
+      },
+      {
+        "value": 10,
+        "asWord": "dix",
+        "original": "10",
+        "start": 198
+      },
+      {
+        "value": 5000000000,
+        "asWord": "cinq milliards",
+        "original": "5 millards",
+        "start": 281
+      },
+      {
+        "value": 5,
+        "asWord": "cinq",
+        "original": "5",
+        "start": 281
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "un",
+        "start": 371
+      }
+    ]
+  },
+  {
+    "text": "Trente-huit millions 5 cent vingt-huit mille 9 cent 67",
+    "tokens": [
+      {
+        "value": 38528967,
+        "asWord": "trente-huit millions cinq cent vingt-huit mille neuf cent soixante-sept"
+      },
+      {
+        "value": 38,
+        "asWord": "trente-huit",
+        "original": "trente-huit"
+      },
+      {
+        "value": 5,
+        "asWord": "cinq",
+        "original": "5",
+        "start": 18
+      },
+      {
+        "value": 100,
+        "asWord": "cent",
+        "original": "cent",
+        "start": 20
+      },
+      {
+        "value": 28,
+        "asWord": "vingt-huit",
+        "original": "vingt-huit",
+        "start": 26
+      },
+      {
+        "value": 9,
+        "asWord": "neuf",
+        "original": "9",
+        "start": 40
+      },
+      {
+        "value": 100,
+        "asWord": "cent",
+        "original": "cent",
+        "start": 42
+      },
+      {
+        "value": 67,
+        "asWord": "soixante-sept",
+        "original": "67",
+        "start": 48
+      }
+    ]
+  },
+  {
+    "text": "due milioni di bilioni",
+    "tokens": [
+      {
+        "value": 2000000000000000000,
+        "asWord": "duetrilioni"
+      },
+      {
+        "value": 2,
+        "asWord": "due",
+        "original": "due"
+      }
+    ]
+  },
+  {
+    "text": "deux billions de millions",
+    "tokens": [
+      {
+        "value": 2000000000000000000,
+        "asWord": "deux trillions"
+      },
+      {
+        "value": 2,
+        "asWord": "deux",
+        "original": "deux"
+      }
+    ]
+  },
+  {
+    "text": "un billion de millions",
+    "tokens": [
+      {
+        "value": 1000000000000000000,
+        "asWord": "un trillion"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "un"
+      }
+    ]
+  },
+  {
+    "text": "999999 biliardi 999 bilioni 999 miliardi 999 milioni 999999",
+    "tokens": [
+      {
+        "value": 999999999999999999999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf trillions neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf billions neuf cent quatre-vingt-dix-neuf milliards neuf cent quatre-vingt-dix-neuf millions neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf"
+      },
+      {
+        "value": 999999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf",
+        "original": "999999"
+      },
+      {
+        "value": 999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf",
+        "original": "999",
+        "start": 16
+      },
+      {
+        "value": 999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf",
+        "original": "999",
+        "start": 28
+      },
+      {
+        "value": 999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf",
+        "original": "999",
+        "start": 41
+      },
+      {
+        "value": 999999,
+        "asWord": "neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf",
+        "original": "999999",
+        "start": 53
+      }
+    ]
+  },
+  {
+    "text": "cent vingt virgule 37",
+    "tokens": [
+      {
+        "value": 120.37,
+        "asWord": "cent vingt virgule trente-sept"
+      },
+      {
+        "value": 120,
+        "asWord": "cent vingt",
+        "original": "cent vingt"
+      },
+      {
+        "value": 37,
+        "asWord": "trente-sept",
+        "original": "37",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "1274 billions 234",
+    "tokens": [
+      {
+        "value": 1274000000000234,
+        "asWord": "un billiard deux cent soixante-quatorze billions deux cent trente-quatre"
+      },
+      {
+        "value": 1274,
+        "asWord": "mille deux cent soixante-quatorze",
+        "original": "1274"
+      },
+      {
+        "value": 234,
+        "asWord": "deux cent trente-quatre",
+        "original": "234",
+        "start": 13
+      }
+    ]
+  },
+  {
+    "text": "1274 miliardi 234",
+    "tokens": [
+      {
+        "value": 1274000000234,
+        "asWord": "un billion deux cent soixante-quatorze milliards deux cent trente-quatre"
+      },
+      {
+        "value": 1274,
+        "asWord": "mille deux cent soixante-quatorze",
+        "original": "1274"
+      },
+      {
+        "value": 234,
+        "asWord": "deux cent trente-quatre",
+        "original": "234",
+        "start": 14
+      }
+    ]
+  },
+  {
+    "text": "1 virgule 12",
+    "tokens": [
+      {
+        "value": 1.12,
+        "asWord": "un virgule deuze"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "1"
+      },
+      {
+        "value": 12,
+        "asWord": "deuze",
+        "original": "12",
+        "start": 10
+      }
+    ]
+  },
+  {
+    "text": "1 virgule un zéro deux",
+    "tokens": [
+      {
+        "value": 1.102,
+        "asWord": "un virgule un zéro deux"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "1"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "un",
+        "start": 10
+      },
+      {
+        "value": 0,
+        "asWord": "zéro",
+        "original": "zéro",
+        "start": 14
+      },
+      {
+        "value": 2,
+        "asWord": "deux",
+        "original": "deux",
+        "start": 19
+      }
+    ]
+  },
+  {
+    "text": "1 virgule zéro deux",
+    "tokens": [
+      {
+        "value": 1.02,
+        "asWord": "un virgule zéro deux"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "1"
+      },
+      {
+        "value": 0,
+        "asWord": "zéro",
+        "original": "zéro",
+        "start": 10
+      },
+      {
+        "value": 2,
+        "asWord": "deux",
+        "original": "deux",
+        "start": 15
+      }
+    ]
+  },
+  {
+    "text": "1 virgule un 2",
+    "tokens": [
+      {
+        "value": 1.1,
+        "asWord": "un virgule un",
+        "original": "1 virgule un"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "1"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "un",
+        "start": 10
+      },
+      {
+        "value": 2,
+        "asWord": "deux",
+        "original": "2",
+        "start": 14
+      }
+    ]
   }
 ]
