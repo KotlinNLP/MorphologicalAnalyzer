@@ -174,7 +174,7 @@
         "value": 47,
         "asWord": "quarante-sept",
         "original": "47",
-        "start": 8
+        "start": 7
       }
     ]
   },
@@ -200,7 +200,7 @@
         "value": 7,
         "asWord": "sept",
         "original": "7",
-        "start": 8
+        "start": 7
       }
     ]
   },
@@ -226,13 +226,13 @@
         "value": 40,
         "asWord": "quarante",
         "original": "quarante",
-        "start": 8
+        "start": 7
       },
       {
         "value": 7,
         "asWord": "sept",
         "original": "7",
-        "start": 17
+        "start": 16
       }
     ]
   },
@@ -258,13 +258,13 @@
         "value": 47,
         "asWord": "quarante-sept",
         "original": "47",
-        "start": 8
+        "start": 7
       },
       {
         "value": 22,
         "asWord": "vingt-deux",
         "original": "vingt-deux",
-        "start": 16
+        "start": 15
       }
     ]
   },
@@ -290,7 +290,7 @@
         "value": 47,
         "asWord": "quarante-sept",
         "original": "47",
-        "start": 8
+        "start": 7
       },
       {
         "value": 100,
@@ -302,7 +302,7 @@
         "value": 22,
         "asWord": "vingt-deux",
         "original": "22",
-        "start": 27
+        "start": 21
       }
     ]
   },
@@ -328,7 +328,7 @@
         "value": 47,
         "asWord": "quarante-sept",
         "original": "47",
-        "start": 8
+        "start": 7
       },
       {
         "value": 300,
@@ -340,7 +340,7 @@
         "value": 22,
         "asWord": "vingt-deux",
         "original": "22",
-        "start": 25
+        "start": 27
       }
     ]
   },
@@ -360,7 +360,7 @@
         "value": 100,
         "asWord": "cent",
         "original": "cent",
-        "start": 4
+        "start": 5
       },
       {
         "value": 30,
@@ -393,13 +393,13 @@
         "value": 100,
         "asWord": "cents",
         "original": "cents",
-        "start": 4
+        "start": 5
       },
       {
         "value": 34,
         "asWord": "trente-quatre",
         "original": "trente-quatre",
-        "start": 11
+        "start": 12
       }
     ]
   },
@@ -419,7 +419,7 @@
         "value": 100,
         "asWord": "cent",
         "original": "cent",
-        "start": 4
+        "start": 5
       },
       {
         "value": 30,
@@ -431,7 +431,7 @@
         "value": 4,
         "asWord": "quatre",
         "original": "quatre",
-        "start": 22
+        "start": 23
       }
     ]
   },
@@ -658,7 +658,7 @@
         "value": 800,
         "asWord": "huit cents",
         "original": "huit cents",
-        "start": 15
+        "start": 16
       }
     ]
   },
@@ -678,7 +678,7 @@
         "value": 800,
         "asWord": "huit cents",
         "original": "huit cents",
-        "start": 17
+        "start": 18
       }
     ]
   },
@@ -756,7 +756,7 @@
     "tokens": [
       {
         "value": 3000,
-        "asWord": "Trois mille"
+        "asWord": "trois mille"
       },
       {
         "value": 3,
@@ -806,7 +806,7 @@
         "value": 99000,
         "asWord": "quatre-vingt-dix-neuf mille",
         "original": "99000",
-        "start": 16
+        "start": 20
       }
     ]
   },
@@ -826,7 +826,7 @@
         "value": 99,
         "asWord": "quatre-vingt-dix-neuf",
         "original": "99",
-        "start": 16
+        "start": 20
       }
     ]
   },
@@ -896,7 +896,7 @@
         "value": 245000,
         "asWord": "deux cent quarante-cinq mille",
         "original": "245000",
-        "start": 10
+        "start": 11
       }
     ]
   },
@@ -916,7 +916,7 @@
         "value": 245,
         "asWord": "deux cent quarante-cinq",
         "original": "245",
-        "start": 10
+        "start": 11
       }
     ]
   },
@@ -954,7 +954,7 @@
 		    "value": 826002,
         "asWord": "uit cent vingt-six mille deux",
         "original": "826002",
-        "start": 12
+        "start": 13
       }
     ]
   },
@@ -983,7 +983,7 @@
     "tokens": [
       {
         "value": 1826000007,
-        "asWord": "Un milliard huit cent vingt-six millions sept"
+        "asWord": "un milliard huit cent vingt-six millions sept"
       }
     ]
   },
@@ -1153,16 +1153,16 @@
         "value": 327,
         "asWord": "trois cent vingt-sept",
         "original": "trois-cent-vingt-sept",
-        "start": 24
+        "start": 26
       }
     ]
   },
   {
-    "text": "Six mille billions trois cent vingt-sept virgule soixante-douze",
+    "text": "six mille billions trois cent vingt-sept virgule soixante-douze",
     "tokens": [
       {
         "value": 6000000000000327.72,
-        "asWord": "Six mille billions trois cent vingt-sept virgule soixante-douze"
+        "asWord": "six mille billions trois cent vingt-sept virgule soixante-douze"
       },
       {
         "value": 6,
@@ -1173,13 +1173,13 @@
         "value": 327,
         "asWord": "trois cent vingt-sept",
         "original": "trois cent vingt-sept",
-        "start": 24
+        "start": 19
       },
       {
         "value": 72,
         "asWord": "soixante-douze",
         "original": "soixante-douze",
-        "start": 51
+        "start": 49
       }
     ]
   },
@@ -1191,21 +1191,16 @@
         "asWord": "mille trillions cent vingt-sept"
       },
       {
-        "value": 1,
-        "asWord": "un",
-        "original": "un"
-      },
-      {
         "value": 100,
         "asWord": "cent",
         "original": "cent",
-        "start": 34
+        "start": 37
       },
       {
         "value": 27,
         "asWord": "vingt-sept",
         "original": "27",
-        "start": 40
+        "start": 42
       }
     ]
   },
@@ -1320,7 +1315,7 @@
         "value": 327,
         "asWord": "trois cent vingt-sept",
         "original": "trois cent vingt-sept",
-        "start": 24
+        "start": 26
       }
     ]
   },
@@ -1352,7 +1347,7 @@
     ]
   },
   {
-    "text": "centoventi virgola quattromiladue",
+    "text": "cent vingt virgule quatre mille deux",
     "tokens": [
       {
         "value": 120.4002,
@@ -1367,12 +1362,12 @@
         "value": 4002,
         "asWord": "quatre mille deux",
         "original": "quatre mille deux",
-        "start": 19
+        "start": 29
       }
     ]
   },
   {
-    "text": "  cent vingt virgola quatre mille deux cents",
+    "text": "  cent vingt virgule quatre mille deux cents",
     "tokens": [
       {
         "value": 120.42,
@@ -1439,25 +1434,25 @@
         "value": 8,
         "asWord": "huit",
         "original": "huit",
-        "start": 25
+        "start": 24
       },
       {
         "value": 3,
         "asWord": "trois",
         "original": "trois",
-        "start": 30
+        "start": 29
       },
       {
         "value": 0,
         "asWord": "zéro",
         "original": "zéro",
-        "start": 34
+        "start": 35
       },
       {
         "value": 2,
         "asWord": "deux",
         "original": "deux",
-        "start": 39
+        "start": 40
       }
     ]
   },
@@ -1477,19 +1472,19 @@
         "value": 7,
         "asWord": "sept",
         "original": "sept",
-        "start": 19
+        "start": 18
       },
       {
         "value": 8,
         "asWord": "huit",
         "original": "huit",
-        "start": 25
+        "start": 23
       },
       {
         "value": 3,
         "asWord": "trois",
       "original": "trois",
-        "start": 30
+        "start": 28
       }
     ]
   },
@@ -1533,7 +1528,7 @@
   {
     "text": "centre",
     "tokens": [],
-    "comment": "Solve bug that appeared due to skipped characters in the grammatic, here the 'r' would be skipped and so the number 'cento' would be recognized"
+    "comment": "Solve bug that appeared due to skipped characters in the grammatic, here the 'r' would be skipped and so the number 'cent' would be recognized"
   },
   {
     "text": "Immédiatement après sa formation, le Soleil a emprunté une orbite presque circulaire autour du centre de la Voie Lactée, à une distance moyenne d’environ 26.000 a.l. le Soleil emploie, compte tenu de la masse, environ 10 milliards d’années pour épuiser complètement l’hydrogène de son noyau entre environ 5 milliards d’années, le Soleil entrera dans une phase de forte instabilité dont l’expansion provoquera un refroidissement du gaz K)",
@@ -1543,42 +1538,42 @@
         "value": 26000,
         "asWord": "vingt-six mille",
         "original": "26.000",
-        "start": 140
+        "start": 154
       },
       {
         "value": 10000000000,
         "asWord": "dix milliards",
         "original": "10 milliards",
-        "start": 198
+        "start": 218
       },
       {
         "value": 10,
         "asWord": "dix",
         "original": "10",
-        "start": 198
+        "start": 218
       },
       {
         "value": 5000000000,
         "asWord": "cinq milliards",
         "original": "5 millards",
-        "start": 281
+        "start": 305
       },
       {
         "value": 5,
         "asWord": "cinq",
         "original": "5",
-        "start": 281
+        "start": 305
       },
       {
         "value": 1,
         "asWord": "un",
         "original": "un",
-        "start": 371
+        "start": 409
       }
     ]
   },
   {
-    "text": "Trente-huit millions 5 cent vingt-huit mille 9 cent 67",
+    "text": "trente-huit millions 5 cent vingt-huit mille 9 cent 67",
     "tokens": [
       {
         "value": 38528967,
@@ -1593,37 +1588,37 @@
         "value": 5,
         "asWord": "cinq",
         "original": "5",
-        "start": 18
+        "start": 21
       },
       {
         "value": 100,
         "asWord": "cent",
         "original": "cent",
-        "start": 20
+        "start": 23
       },
       {
         "value": 28,
         "asWord": "vingt-huit",
         "original": "vingt-huit",
-        "start": 26
+        "start": 28
       },
       {
         "value": 9,
         "asWord": "neuf",
         "original": "9",
-        "start": 40
+        "start": 45
       },
       {
         "value": 100,
         "asWord": "cent",
         "original": "cent",
-        "start": 42
+        "start": 50
       },
       {
         "value": 67,
         "asWord": "soixante-sept",
         "original": "67",
-        "start": 48
+        "start": 55
       }
     ]
   },
@@ -1670,7 +1665,7 @@
     ]
   },
   {
-    "text": "999999 biliardi 999 bilioni 999 miliardi 999 milioni 999999",
+    "text": "999999 billiards 999 billions 999 milliards 999 millions 999999",
     "tokens": [
       {
         "value": 999999999999999999999,
@@ -1685,25 +1680,25 @@
         "value": 999,
         "asWord": "neuf cent quatre-vingt-dix-neuf",
         "original": "999",
-        "start": 16
+        "start": 17
       },
       {
         "value": 999,
         "asWord": "neuf cent quatre-vingt-dix-neuf",
         "original": "999",
-        "start": 28
+        "start": 30
       },
       {
         "value": 999,
         "asWord": "neuf cent quatre-vingt-dix-neuf",
         "original": "999",
-        "start": 41
+        "start": 44
       },
       {
         "value": 999999,
         "asWord": "neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf",
         "original": "999999",
-        "start": 53
+        "start": 57
       }
     ]
   },
@@ -1743,7 +1738,7 @@
         "value": 234,
         "asWord": "deux cent trente-quatre",
         "original": "234",
-        "start": 13
+        "start": 14
       }
     ]
   },
@@ -1809,13 +1804,13 @@
         "value": 0,
         "asWord": "zéro",
         "original": "zéro",
-        "start": 14
+        "start": 13
       },
       {
         "value": 2,
         "asWord": "deux",
         "original": "deux",
-        "start": 19
+        "start": 18
       }
     ]
   },
@@ -1868,7 +1863,7 @@
         "value": 2,
         "asWord": "deux",
         "original": "2",
-        "start": 14
+        "start": 13
       }
     ]
   }
