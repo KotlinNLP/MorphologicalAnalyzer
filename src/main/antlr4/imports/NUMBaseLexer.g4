@@ -62,6 +62,12 @@ fragment X : [Xx] ;
 fragment Y : [Yy] ;
 fragment Z : [Zz] ;
 
+fragment AA : [ÀÁÂàáâ] ;
+fragment EE : [ÈÉËèéë] ;
+fragment II : [ÌÍìí] ;
+fragment OO : [ÒÓòó] ;
+fragment UU : [ÙÚÛùúû] ;
+
 // -----
 // -- Other
 // -----
