@@ -14,6 +14,7 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerCommon
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerEN
+import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerFR
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerIT
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
@@ -42,7 +43,7 @@ class NumbersProcessor(
     /**
      * The set of available languages.
      */
-    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian)
+    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian, Language.French)
   }
 
   /**
@@ -175,6 +176,7 @@ class NumbersProcessor(
     val listenerClass: KClass<*> = when (this.language) {
       Language.English -> ListenerEN::class
       Language.Italian -> ListenerIT::class
+      Language.French -> ListenerFR::class
       else -> throw RuntimeException("Listener not available for language '${this.language}'")
     }
 

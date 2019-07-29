@@ -57,10 +57,10 @@ private var execution = 0
 fun main(args: Array<String>) {
 
   //  timing()
-  //debugging()
-  test_grammar()
-  example()
-  timing2(bigstr_SLL_EN, language = "en")
+  debugging()
+  //test_grammar()
+  //example()
+  //timing2(bigstr_SLL_EN, language = "en")
   //    tokens(odd_situations, language = "en")
   //    tokens(bigstr_EN, language = "en")
   //    tokens("due miliardi di miliardi and padding after.", language = "it")
@@ -172,7 +172,7 @@ private fun debugging() {
   val str = """two hundred one"""
 
   val numbersProcessor = NumbersProcessor(getLanguageByIso("en"))
-  val res = numbersProcessor.findNumbers(text = str, tokens = SimpleTokenizer.tokenize(str), mode = "SLL")
+  val res = numbersProcessor.findNumbers(text = str, tokens = SimpleTokenizer.tokenize(str), mode = "SLL+LL")
 
   println(res)
 }
