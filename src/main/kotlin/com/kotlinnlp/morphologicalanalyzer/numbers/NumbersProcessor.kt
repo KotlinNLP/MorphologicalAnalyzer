@@ -203,6 +203,7 @@ class NumbersProcessor(
     return when (this.language) {
       Language.English -> NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
       Language.Italian -> NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
+      Language.French -> NumbersFRParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
       else -> throw RuntimeException("Parser not available for language '${this.language}'")
     }
   }
@@ -215,6 +216,7 @@ class NumbersProcessor(
   private fun getParserClass(): KClass<out Parser> = when (this.language) {
     Language.English -> NumbersENParser::class
     Language.Italian -> NumbersITParser::class
+    Language.French -> NumbersFRParser::class
     else -> throw RuntimeException("Parser not available for language '${this.language}'")
   }
 
@@ -226,6 +228,7 @@ class NumbersProcessor(
   private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
     Language.English -> LexerEN(charStream)
     Language.Italian -> LexerIT(charStream)
+    Language.French -> LexerFR(charStream)
     else -> throw RuntimeException("Lexer not available for language '${this.language}'")
   }
 
