@@ -628,7 +628,7 @@ internal interface ListenerCommon {
       }
     }
 
-    if (units.length == 2){
+    if (units.length == 2 && tens.isNotEmpty()){
       units = units.last().toString()
       tens = (tens.toInt() + 1).toString()
     }
