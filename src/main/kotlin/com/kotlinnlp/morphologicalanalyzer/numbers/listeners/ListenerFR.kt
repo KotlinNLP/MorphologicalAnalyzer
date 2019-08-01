@@ -10,7 +10,7 @@ package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
-import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersFRBaseListener
+import NumbersFRBaseListener
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersFRParser
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
 import org.antlr.v4.runtime.ParserRuleContext
@@ -589,14 +589,6 @@ internal class ListenerFR(
    * @param ctx the context of the 'w_90' rule just parsed
    */
   override fun exitW_90(ctx: NumbersFRParser.W_90Context) = super<ListenerCommon>.exitW_90(ctx as ParserRuleContext)
-
-  /**
-   * The listener of the 'exit n_tens_80' event.
-   *
-   * @param ctx the context of the 'n_tens_80' rule just parsed
-   */
-  override fun exitN_tens_80(ctx: NumbersFRParser.N_tens_80Context) =
-    super<ListenerCommon>.exitN_tens_80(ctx as ParserRuleContext)
 
   /**
    * The listener of the 'exit d_unit' event.

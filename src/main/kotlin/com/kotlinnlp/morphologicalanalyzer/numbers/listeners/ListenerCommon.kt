@@ -628,6 +628,11 @@ internal interface ListenerCommon {
       }
     }
 
+    if (units.length == 2){
+      units = units.last().toString()
+      tens = (tens.toInt() + 1).toString()
+    }
+
     this.setTreeValue(ctx as ParseTree, type = "D_10_99", value = "%s%s".format(tens, units))
   }
 
@@ -649,6 +654,11 @@ internal interface ListenerCommon {
         "W_tens" -> tens = it.second
         "W_unit" -> units = it.second
       }
+    }
+
+    if (units.length == 2){
+      units = units.last().toString()
+      tens = (tens.toInt() + 1).toString()
     }
 
     this.setTreeValue(ctx as ParseTree, type = "D_1_99", value = "%s%s".format(tens, units))

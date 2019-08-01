@@ -28,6 +28,7 @@ W_30           : T R E N T E;
 W_40           : Q U A R A N T E;
 W_50           : C I N Q U A N T E;
 W_60           : S O I X A N T E;
+W_80           : W_4 HYPEN W_20;
 W_S            : S;
 W_HUNDRED      : C E N T W_S?;
 W_THOUSAND     : M I L L E;
