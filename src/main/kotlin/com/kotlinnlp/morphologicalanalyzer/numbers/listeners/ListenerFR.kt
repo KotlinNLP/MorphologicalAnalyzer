@@ -10,7 +10,7 @@ package com.kotlinnlp.morphologicalanalyzer.numbers.listeners
 import com.kotlinnlp.linguisticdescription.sentence.token.RealToken
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.NumbersProcessor
-import NumbersFRBaseListener
+import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersFRBaseListener
 import com.kotlinnlp.morphologicalanalyzer.numbers.grammar.NumbersFRParser
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.helpers.ListenerCommonHelper
 import org.antlr.v4.runtime.ParserRuleContext
@@ -589,6 +589,20 @@ internal class ListenerFR(
    * @param ctx the context of the 'w_90' rule just parsed
    */
   override fun exitW_90(ctx: NumbersFRParser.W_90Context) = super<ListenerCommon>.exitW_90(ctx as ParserRuleContext)
+
+  /**
+   * The listener of the 'exit W_ws_hypen' event.
+   *
+   * @param ctx the context of the 'W_ws_hypen' rule just parsed
+   */
+  override fun exitW_ws_hypen(ctx: NumbersFRParser.W_ws_hypenContext) {}
+
+  /**
+   * The listener of the 'exit W_ws_hypen' event.
+   *
+   * @param ctx the context of the 'W_ws_hypen' rule just parsed
+   */
+  override fun enterW_ws_hypen(ctx: NumbersFRParser.W_ws_hypenContext) {}
 
   /**
    * The listener of the 'exit d_unit' event.
