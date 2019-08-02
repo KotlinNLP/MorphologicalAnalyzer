@@ -17,7 +17,7 @@ import org.antlr.v4.runtime.ParserRuleContext
 
 /**
  * Listen to ANTLR parser events and handle them.
- * Specific for English language (en).
+ * Specific for French language (fr).
  *
  * @property langParams language-specific parameters
  * @property processor a numbers processor to process sub-expressions
