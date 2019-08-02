@@ -82,7 +82,7 @@ object TestNumbers {
   private fun getPaddingTests(jsonObj: JsonObject, paddingBefore: String, paddingAfter: String): List<Test> {
 
     val text: String = jsonObj.string("text")!!
-    val allPaddedText: String =  text//paddingBefore + text + paddingAfter
+    val allPaddedText: String =  paddingBefore + text + paddingAfter
 
     return listOf(
       this.buildTest(jsonObj, originalText = text, text = text + paddingAfter, offset = 0),
