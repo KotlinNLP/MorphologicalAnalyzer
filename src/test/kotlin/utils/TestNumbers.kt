@@ -38,7 +38,7 @@ object TestNumbers {
   /**
    * The list of supported test languages.
    */
-  private val supportedLanguages: List<String> = listOf("en", "it", "fr")
+  private val supportedLanguages: List<String> = listOf("fr")
 
   /**
    * List of test groups associated by language.
@@ -82,7 +82,7 @@ object TestNumbers {
   private fun getPaddingTests(jsonObj: JsonObject, paddingBefore: String, paddingAfter: String): List<Test> {
 
     val text: String = jsonObj.string("text")!!
-    val allPaddedText: String = paddingBefore + text + paddingAfter
+    val allPaddedText: String =  text//paddingBefore + text + paddingAfter
 
     return listOf(
       this.buildTest(jsonObj, originalText = text, text = text + paddingAfter, offset = 0),

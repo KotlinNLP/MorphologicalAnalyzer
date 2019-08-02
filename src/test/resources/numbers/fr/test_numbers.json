@@ -125,6 +125,17 @@
     "tokens": [
       {
         "value": 21
+      },
+      {
+        "value": 20,
+        "asWord": "vingt",
+        "original": "vingt"
+      },
+      {
+        "value": 1,
+        "asWord": "un",
+        "original": "un",
+        "start": 9
       }
     ]
   },
@@ -133,7 +144,10 @@
     "tokens": [
       {
         "value": 287
-      }
+      },
+      {"asWord" : "deux", "original" : "deux", "value" : 2}, 
+      {"asWord" : "cent", "original" : "cent", "value" : 100,  "start": 5}, 
+      {"asWord" : "quatre-vingt-sept", "original" : "quatre-vingt-sept", "value" : 87,  "start": 10}
     ]
   },
   {
@@ -141,7 +155,8 @@
     "tokens": [
       {
         "value": 340
-      }
+      },
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3}, {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start":6}, {"asWord" : "quarante",  "original" : "quarante",  "value" : 40,"start":11}
     ]
   },
   {
@@ -149,7 +164,8 @@
     "tokens": [
       {
         "value": 347
-      }
+      },
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3}, {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start":6}, {"asWord" : "quarante-sept",  "original" : "quarante-sept",  "value" : 47,"start":11}
     ]
   },
   {
@@ -205,67 +221,17 @@
     ]
   },
   {
-    "text": "3 cent quarante 7",
-    "tokens": [
-      {
-        "value": 347,
-        "asWord": "trois cent quarante-sept"
-      },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 2
-      },
-      {
-        "value": 40,
-        "asWord": "quarante",
-        "original": "quarante",
-        "start": 7
-      },
-      {
-        "value": 7,
-        "asWord": "sept",
-        "original": "7",
-        "start": 16
-      }
-    ]
-  },
-  {
     "text": "3 cent 47 mille vingt-deux",
     "tokens": [
       {
         "value": 347022,
         "asWord": "trois cent quarante-sept mille vingt-deux"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 2
-      },
-      {
-        "value": 47,
-        "asWord": "quarante-sept",
-        "original": "47",
-        "start": 7
-      },
-      {
-        "value": 22,
-        "asWord": "vingt-deux",
-        "original": "vingt-deux",
-        "start": 15
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 2}, 
+      {"asWord" : "quarante-sept",  "original" : "47",  "value" : 47, "start": 7}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 10}, 
+      {"asWord" : "vingt-deux",  "original" : "vingt-deux",  "value" : 22, "start": 16}
     ]
   },
   {
@@ -275,35 +241,12 @@
         "value": 347122,
         "asWord": "trois cent quarante-sept mille cent vingt-deux"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 2
-      },
-      {
-        "value": 47,
-        "asWord": "quarante-sept",
-        "original": "47",
-        "start": 7
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 16
-      },
-      {
-        "value": 22,
-        "asWord": "vingt-deux",
-        "original": "22",
-        "start": 21
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100,"start": 2}, 
+      {"asWord" : "quarante-sept",  "original" : "47",  "value" : 47, "start": 7}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 10}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 16}, 
+      {"asWord" : "vingt-deux",  "original" : "22",  "value" : 22, "start": 21}
     ]
   },
   {
@@ -313,39 +256,17 @@
         "value": 347322,
         "asWord": "trois cent quarante-sept mille trois cent vingt-deux"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 2
-      },
-      {
-        "value": 47,
-        "asWord": "quarante-sept",
-        "original": "47",
-        "start": 7
-      },
-      {
-        "value": 300,
-        "asWord": "trois cent",
-        "original": "trois cent",
-        "start": 16
-      },
-      {
-        "value": 22,
-        "asWord": "vingt-deux",
-        "original": "22",
-        "start": 27
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 2}, 
+      {"asWord" : "quarante-sept",  "original" : "47",  "value" : 47, "start": 7}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 10}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 16}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 22}, 
+      {"asWord" : "vingt-deux",  "original" : "22",  "value" : 22, "start": 27}
     ]
   },
   {
-    "text": "deux cent trente quatre",
+    "text": "deux cent trente-quatre",
     "tokens": [
       {
         "value": 234,
@@ -363,16 +284,10 @@
         "start": 5
       },
       {
-        "value": 30,
-        "asWord": "trente",
-        "original": "trente",
+        "value": 34,
+        "asWord": "trente-quatre",
+        "original": "trente-quatre",
         "start": 10
-      },
-      {
-        "value": 4,
-        "asWord": "quatre",
-        "original": "quatre",
-        "start": 17
       }
     ]
   },
@@ -410,29 +325,11 @@
         "value": 230004,
         "asWord": "deux cent trente mille quatre"
       },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "deux"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 5
-      },
-      {
-        "value": 30,
-        "asWord": "trente",
-        "original": "trente",
-        "start": 10
-      },
-      {
-        "value": 4,
-        "asWord": "quatre",
-        "original": "quatre",
-        "start": 23
-      }
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5}, 
+      {"asWord" : "trente",  "original" : "trente",  "value" : 30, "start": 10}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 17}, 
+      {"asWord" : "quatre",  "original" : "quatre",  "value" : 4, "start": 23}
     ]
   },
   {
@@ -448,7 +345,9 @@
     "tokens": [
       {
         "value": 1003
-      }
+      },
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000},
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 6}
     ]
   },
   {
@@ -456,7 +355,11 @@
     "tokens": [
       {
         "value": 1203
-      }
+      },
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 6}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 11}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 16}
     ]
   },
   {
@@ -464,7 +367,10 @@
     "tokens": [
       {
         "value": 6001
-      }
+      },
+      {"asWord" : "six",  "original" : "six",  "value" : 6}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 4}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 10}
     ]
   },
   {
@@ -472,7 +378,10 @@
     "tokens": [
       {
         "value": 6011
-      }
+      },
+      {"asWord" : "six",  "original" : "six",  "value" : 6}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 4}, 
+      {"asWord" : "onze",  "original" : "onze",  "value" : 11, "start": 10}
     ]
   },
   {
@@ -489,7 +398,11 @@
     "tokens": [
       {
         "value": 37041
-      }
+      },
+      {"asWord" : "trente-sept",  "original" : "Trente-sept",  "value" : 37}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 12}, 
+      {"asWord" : "quarante",  "original" : "quarante",  "value" : 40, "start": 18}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 30}
     ]
   },
   {
@@ -497,7 +410,10 @@
     "tokens": [
       {
         "value": 37049
-      }
+      },
+      {"asWord" : "trente-sept",  "original" : "Trente-sept",  "value" : 37}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 12}, 
+      {"asWord" : "quarante-neuf",  "original" : "quarante-neuf",  "value" : 49, "start": 18}
     ]
   },
   {
@@ -513,7 +429,10 @@
     "tokens": [
       {
         "value": 100012
-      }
+      },
+       {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+       {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 5}, 
+       {"asWord" : "douze",  "original" : "douze",  "value" : 12, "start": 11}
     ]
   },
   {
@@ -521,7 +440,12 @@
     "tokens": [
       {
         "value": 100970
-      }
+      },
+      {"asWord" : "cent",  "original" : "Cent",  "value" : 100}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 5}, 
+      {"asWord" : "neuf",  "original" : "neuf",  "value" : 9, "start": 11}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 16}, 
+      {"asWord" : "soixante-dix",  "original" : "soixante-dix",  "value" : 70, "start": 21}
     ]
   },
   {
@@ -537,7 +461,10 @@
     "tokens": [
       {
         "value": 188000
-      }
+      },
+      {"asWord" : "cent",  "original" : "Cent",  "value" : 100}, 
+      {"asWord" : "quatre-vingt-huit",  "original" : "quatre-vingt-huit",  "value" : 88, "start": 5}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 23}
     ]
   },
   {
@@ -545,7 +472,11 @@
     "tokens": [
       {
         "value": 101003
-      }
+      },
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 5}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 8}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 14}
     ]
   },
   {
@@ -553,7 +484,10 @@
     "tokens": [
       {
         "value": 112000
-      }
+      },
+       {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+       {"asWord" : "douze",  "original" : "douze",  "value" : 12, "start": 5}, 
+       {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 11}
     ]
   },
   {
@@ -561,7 +495,10 @@
     "tokens": [
       {
         "value": 200000
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 10}
     ]
   },
   {
@@ -569,7 +506,11 @@
     "tokens": [
       {
         "value": 237000
-      }
+      },
+       {"asWord" : "deux",  "original" : "Deux",  "value" : 2}, 
+       {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5},
+       {"asWord" : "trente-sept",  "original" : "trente-sept",  "value" : 37, "start": 10}, 
+       {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 22}
     ]
   },
   {
@@ -577,7 +518,12 @@
     "tokens": [
       {
         "value": 237015
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5}, 
+      {"asWord" : "trente-sept",  "original" : "trente-sept",  "value" : 37, "start": 10}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 22}, 
+      {"asWord" : "quinze",  "original" : "quinze",  "value" : 15, "start": 28}
     ]
   },
   {
@@ -594,7 +540,10 @@
     "tokens": [
       {
         "value": 1001001
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 11}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 17}
     ]
   },
   {
@@ -602,7 +551,12 @@
     "tokens": [
       {
         "value": 1800002
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 11}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 16}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 21}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 27}
     ]
   },
   {
@@ -630,7 +584,12 @@
     "tokens": [
       {
         "value": 3800002
-      }
+      },
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 15}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 20}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 25}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 31}
     ]
   },
   {
@@ -639,7 +598,14 @@
       {
         "value": 287800002,
         "asWord": "deux cent quatre-vingt-sept millions huit cent mille deux"
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5}, 
+      {"asWord" : "quatre-vingt-sept",  "original" : "quatre-vingt-sept",  "value" : 87, "start": 10}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 37}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 42}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 47}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 53}
     ]
   },
   {
@@ -649,17 +615,9 @@
         "value": 227000000800,
         "asWord": "Deux cent vingt-sept milliards huit cents"
       },
-      {
-        "value": 227000,
-        "asWord": "Deux cent vingt-sept mille",
-        "original": "227000"
-      },
-      {
-        "value": 800,
-        "asWord": "huit cents",
-        "original": "huit cents",
-        "start": 16
-      }
+      {"asWord" : "deux cents vingt-sept mille",  "original" : "227000",  "value" : 227000}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 16}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 21}
     ]
   },
   {
@@ -669,17 +627,9 @@
         "value": 227000000000800,
         "asWord": "Deux cent vingt-sept billions huit cents"
       },
-      {
-        "value": 227000,
-        "asWord": "Deux cent vingt-sept mille",
-        "original": "227.000"
-      },
-      {
-        "value": 800,
-        "asWord": "huit cents",
-        "original": "huit cents",
-        "start": 18
-      }
+    {"asWord" : "deux cents vingt-sept mille",  "original" : "227.000",  "value" : 227000}, 
+    {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 18}, 
+    {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 23}
     ]
   },
   {
@@ -687,7 +637,13 @@
     "tokens": [
       {
         "value": 200837000
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 5}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 20}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 25}, 
+      {"asWord" : "trente-sept",  "original" : "trente-sept",  "value" : 37, "start": 30}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 42}
     ]
   },
   {
@@ -695,7 +651,14 @@
     "tokens": [
       {
         "value": 200837002
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 5}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 20}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 25}, 
+      {"asWord" : "trente-sept",  "original" : "trente-sept",  "value" : 37, "start": 30}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 42}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 48}
     ]
   },
   {
@@ -703,52 +666,29 @@
     "tokens": [
       {
         "value": 200099000
-      }
+      },
+      {"asWord" : "deux",  "original" : "Deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 5}, 
+      {"asWord" : "quatre-vingt-dix-neuf",  "original" : "quatre-vingt-dix-neuf",  "value" : 99, "start": 20}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 42}
     ]
   },
   {
     "text": "3cents",
-    "tokens": [
-	  {
-        "value": 300,
-        "asWord": "trois cents"
-      }
-    ]
+    "tokens": []
   },
   {
     "text": "vingt 2",
     "tokens": [
-      {
-        "value": 22,
-        "asWord": "vingt-deux"
-      },
-      {
-        "value": 20,
-        "asWord": "vingt",
-        "original": "vingt"
-      },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "2",
-        "start": 6
-      }
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20}, 
+      {"asWord" : "deux",  "original" : "2",  "value" : 2, "start": 6}
     ]
   },
   {
     "text": "11 cents",
     "tokens": [
-      {
-        "value": 11,
-        "asWord": "onze",
-        "original": "11"
-      },
-      {
-        "value": 100,
-        "asWord": "cents",
-        "original": "cents",
-        "start": 3
-      }
+     {"asWord" : "onze",  "original" : "11",  "value" : 11}, 
+     {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 3}
     ]
   },
   {
@@ -758,11 +698,8 @@
         "value": 3000,
         "asWord": "trois mille"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 2}
     ]
   },
   {
@@ -772,11 +709,8 @@
         "value": 123000,
         "asWord": "cent vingt-trois mille"
       },
-      {
-        "value": 123,
-        "asWord": "cent vingt-trois",
-        "original": "123"
-      }
+     {"asWord" : "cent vingt-trois",  "original" : "123",  "value" : 123}, 
+     {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 4}
     ]
   },
   {
@@ -786,7 +720,8 @@
         "value": 1234,
         "asWord": "mille deux cent trente-quatre",
         "original": "1234"
-      }
+      },
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 5}
     ]
   },
   {
@@ -797,17 +732,9 @@
         "asWord": "deux cents millions quatre-vingt-dix-neuf mille",
         "original": "deux cents millions 99000"
       },
-      {
-        "value": 200000000,
-        "asWord": "deux cents millions",
-        "original": "deux cents millions"
-      },
-      {
-        "value": 99000,
-        "asWord": "quatre-vingt-dix-neuf mille",
-        "original": "99000",
-        "start": 20
-      }
+     {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+     {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 5}, 
+     {"asWord" : "quatre-vingt-dix-neuf mille",  "original" : "99000",  "value" : 99000, "start": 20}
     ]
   },
   {
@@ -817,17 +744,9 @@
         "value": 200000099,
         "asWord": "deux cents millions quatre-vingt-dix-neuf"
       },
-      {
-        "value": 200000000,
-        "asWord": "deux cents millions",
-        "original": "deux cents millions"
-      },
-      {
-        "value": 99,
-        "asWord": "quatre-vingt-dix-neuf",
-        "original": "99",
-        "start": 20
-      }
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 5}, 
+      {"asWord" : "quatre-vingt-dix-neuf",  "original" : "99",  "value" : 99, "start": 20}
     ]
   },
   {
@@ -836,7 +755,10 @@
       {
         "value": 1000103,
         "asWord": "un million cent trois"
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 11}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 16}
     ]
   },
   {
@@ -845,7 +767,11 @@
       {
         "value": 1103000,
         "asWord": "un million cent trois mille"
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 11}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 16}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 22}
     ]
   },
   {
@@ -854,7 +780,13 @@
       {
         "value": 1103800,
         "asWord": "un million cent trois mille huit cents"
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 11}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 16}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 22}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 28}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 33}
     ]
   },
   {
@@ -877,7 +809,13 @@
       {
         "value": 999999000000,
         "asWord": "neuf cent quatre-vingt-dix-neuf milliards neuf cent quatre-vingt-dix-neuf millions"
-      }
+      },
+      {"asWord" : "neuf",  "original" : "neuf",  "value" : 9}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 5}, 
+      {"asWord" : "quatre-vingt-dix-neuf",  "original" : "quatre-vingt-dix-neuf",  "value" : 99, "start": 10}, 
+      {"asWord" : "neuf",  "original" : "neuf",  "value" : 9, "start": 42}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 47}, 
+      {"asWord" : "quatre-vingt-dix-neuf",  "original" : "quatre-vingt-dix-neuf",  "value" : 99, "start": 52}
     ]
   },
   {
@@ -887,17 +825,8 @@
         "value": 3245000,
         "asWord": "trois millions deux cent quarante-cinq mille"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 245000,
-        "asWord": "deux cent quarante-cinq mille",
-        "original": "245000",
-        "start": 11
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "deux cents quarante-cinq mille",  "original" : "245000",  "value" : 245000, "start": 11}
     ]
   },
   {
@@ -907,17 +836,9 @@
         "value": 3245000,
         "asWord": "trois millions deux cent quarante-cinq mille"
       },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "3"
-      },
-      {
-        "value": 245,
-        "asWord": "deux cent quarante-cinq",
-        "original": "245",
-        "start": 11
-      }
+      {"asWord" : "trois",  "original" : "3",  "value" : 3}, 
+      {"asWord" : "deux cents quarante-cinq",  "original" : "245",  "value" : 245, "start": 11}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 15}
     ]
   },
   {
@@ -945,17 +866,8 @@
         "value": 1000826002,
         "asWord": "un milliard huit cent vingt-six mille deux"
       },
-      {
-      	"value": 1,
-        "asWord": "uno",
-        "original": "un"
-      },
-      {
-		    "value": 826002,
-        "asWord": "uit cent vingt-six mille deux",
-        "original": "826002",
-        "start": 13
-      }
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "huit cents vingt-six mille deux",  "original" : "826002",  "value" : 826002, "start": 12}
     ]
   },
   {
@@ -965,17 +877,8 @@
         "value": 1000826002,
         "asWord": "un milliard huit cent vingt-six mille deux"
       },
-      {
-      	"value": 1,
-        "asWord": "un",
-        "original": "un"
-      },
-      {
-		    "value": 826002,
-        "asWord": "huit cent vingt-six mille deux",
-        "original": "826.002",
-        "start": 12
-      }
+     {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+     {"asWord" : "huit cents vingt-six mille deux",  "original" : "826.002",  "value" : 826002, "start": 12}
     ]
   },
   {
@@ -984,7 +887,12 @@
       {
         "value": 1826000007,
         "asWord": "un milliard huit cent vingt-six millions sept"
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 12}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 17}, 
+      {"asWord" : "vingt-six",  "original" : "vingt-six",  "value" : 26, "start": 22}, 
+      {"asWord" : "sept",  "original" : "sept",  "value" : 7, "start": 41}
     ]
   },
   {
@@ -992,7 +900,8 @@
     "tokens": [
       {
         "value": 1000000000
-      }
+      },
+       {"asWord" : "un",  "original" : "un",  "value" : 1}
     ]
   },
   {
@@ -1000,7 +909,9 @@
     "tokens": [
       {
         "value": 1100000000
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 12}
     ]
   },
   {
@@ -1008,7 +919,10 @@
     "tokens": [
       {
         "value": 1110000000
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 12}, 
+      {"asWord" : "dix",  "original" : "dix",  "value" : 10, "start": 17}
     ]
   },
   {
@@ -1016,7 +930,10 @@
     "tokens": [
       {
         "value": 1111000000
-      }
+      },
+      {"asWord" : "un",  "original" : "un",  "value" : 1}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 12}, 
+      {"asWord" : "onze",  "original" : "onze",  "value" : 11, "start": 17}
     ]
   },
   {
@@ -1144,17 +1061,8 @@
         "value": 6000000000000327,
         "asWord": "six mille billions trois cent vingt-sept"
       },
-      {
-        "value": 6,
-        "asWord": "six",
-        "original": "six"
-      },
-      {
-        "value": 327,
-        "asWord": "trois cent vingt-sept",
-        "original": "trois-cent-vingt-sept",
-        "start": 26
-      }
+      {"asWord" : "six",  "original" : "six",  "value" : 6}, 
+      {"asWord" : "trois cents vingt-sept",  "original" : "trois-cent-vingt-sept",  "value" : 327, "start": 26}
     ]
   },
   {
@@ -1164,44 +1072,12 @@
         "value": 6000000000000327.72,
         "asWord": "six mille billions trois cent vingt-sept virgule soixante-douze"
       },
-      {
-        "value": 6,
-        "asWord": "six",
-        "original": "six"
-      },
-      {
-        "value": 327,
-        "asWord": "trois cent vingt-sept",
-        "original": "trois cent vingt-sept",
-        "start": 19
-      },
-      {
-        "value": 72,
-        "asWord": "soixante-douze",
-        "original": "soixante-douze",
-        "start": 49
-      }
-    ]
-  },
-  {
-    "text": "mille milions de milions de miliards cent 27",
-    "tokens": [
-      {
-        "value": 1000000000000000000127,
-        "asWord": "mille trillions cent vingt-sept"
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 37
-      },
-      {
-        "value": 27,
-        "asWord": "vingt-sept",
-        "original": "27",
-        "start": 42
-      }
+      {"asWord" : "six",  "original" : "six",  "value" : 6}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 4}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 19}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 25}, 
+      {"asWord" : "vingt-sept",  "original" : "vingt-sept",  "value" : 27, "start": 30}, 
+      {"asWord" : "soixante-douze",  "original" : "soixante-douze",  "value" : 72, "start": 49}
     ]
   },
   {
@@ -1209,7 +1085,9 @@
     "tokens": [
       {
         "value": 2000000022
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "vingt-deux",  "original" : "vingt-deux",  "value" : 22, "start": 15}
     ]
   },
   {
@@ -1217,7 +1095,9 @@
     "tokens": [
       {
         "value": 2000000002
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 15}
     ]
   },
   {
@@ -1225,7 +1105,8 @@
     "tokens": [
       {
         "value": 2000000000
-      }
+      },
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}
     ]
   },
   {
@@ -1233,7 +1114,8 @@
     "tokens": [
       {
         "value": 12000000000
-      }
+      },
+      {"asWord" : "douze",  "original" : "douze",  "value" : 12}
     ]
   },
   {
@@ -1241,7 +1123,9 @@
     "tokens": [
       {
         "value": 112000000000
-      }
+      },
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "douze",  "original" : "douze",  "value" : 12, "start": 5}
     ]
   },
   {
@@ -1251,11 +1135,8 @@
         "value": 2000000000000,
         "asWord": "deux billions"
       },
-      {
-        "value": 2000,
-        "asWord": "deux mille",
-        "original": "deux mille"
-      }
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 5}
     ]
   },
   {
@@ -1296,7 +1177,12 @@
     "tokens": [
       {
         "value": 78000000000800003
-      }
+      },
+      {"asWord" : "soixante-dix-huit",  "original" : "Soixante-dix-huit",  "value" : 78}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 28}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 33}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 38}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 44}
     ]
   },
   {
@@ -1306,17 +1192,10 @@
         "value": 6000000000000327,
         "asWord": "six billiards trois cent vingt-sept"
       },
-      {
-        "value": 6,
-        "asWord": "six",
-        "original": "six"
-      },
-      {
-        "value": 327,
-        "asWord": "trois cent vingt-sept",
-        "original": "trois cent vingt-sept",
-        "start": 26
-      }
+      {"asWord" : "six",  "original" : "six",  "value" : 6}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 26}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 32}, 
+      {"asWord" : "vingt-sept",  "original" : "vingt-sept",  "value" : 27, "start": 37}
     ]
   },
   {
@@ -1353,17 +1232,11 @@
         "value": 120.4002,
         "asWord": "cent vingt virgule quatre mille deux"
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt"
-      },
-      {
-        "value": 4002,
-        "asWord": "quatre mille deux",
-        "original": "quatre mille deux",
-        "start": 29
-      }
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 5}, 
+      {"asWord" : "quatre",  "original" : "quatre",  "value" : 4, "start": 19}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 26}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 32}
     ]
   },
   {
@@ -1375,18 +1248,12 @@
         "original": "cent vingt virgule quatre mille deux cents",
         "start": 2
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt",
-        "start": 2
-      },
-      {
-        "value": 4200,
-        "asWord": "quatre mille deux cents",
-        "original": "quatre mille deux cents",
-        "start": 21
-      }
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 2}, 
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 7}, 
+      {"asWord" : "quatre",  "original" : "quatre",  "value" : 4, "start": 21}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 28}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 34}, 
+      {"asWord" : "cent",  "original" : "cents",  "value" : 100, "start": 39}
     ]
   },
   {
@@ -1398,18 +1265,9 @@
         "original": "cent vingt virgule quinze",
         "start": 4
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt",
-        "start": 4
-      },
-      {
-        "value": 15,
-        "asWord": "quinze",
-        "original": "quinze",
-        "start": 23
-      }
+     {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 4}, 
+     {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 9}, 
+     {"asWord" : "quinze",  "original" : "quinze",  "value" : 15, "start": 23}
     ]
   },
   {
@@ -1419,41 +1277,13 @@
         "value": 120.78302,
         "asWord": "cent vingt virgule sept huit trois zéro deux"
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt"
-      },
-      {
-        "value": 7,
-        "asWord": "sept",
-        "original": "sept",
-        "start": 19
-      },
-      {
-        "value": 8,
-        "asWord": "huit",
-        "original": "huit",
-        "start": 24
-      },
-      {
-        "value": 3,
-        "asWord": "trois",
-        "original": "trois",
-        "start": 29
-      },
-      {
-        "value": 0,
-        "asWord": "zéro",
-        "original": "zéro",
-        "start": 35
-      },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "deux",
-        "start": 40
-      }
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 5}, 
+      {"asWord" : "sept",  "original" : "sept",  "value" : 7, "start": 19}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 24}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 29}, 
+      {"asWord" : "zero",  "original" : "zéro",  "value" : 0, "start": 35}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 40}
     ]
   },
   {
@@ -1463,29 +1293,11 @@
         "value": 120.783,
         "asWord": "cent vingt virgule sept huit trois"
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt"
-      },
-      {
-        "value": 7,
-        "asWord": "sept",
-        "original": "sept",
-        "start": 18
-      },
-      {
-        "value": 8,
-        "asWord": "huit",
-        "original": "huit",
-        "start": 23
-      },
-      {
-        "value": 3,
-        "asWord": "trois",
-      "original": "trois",
-        "start": 28
-      }
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 5}, 
+      {"asWord" : "sept",  "original" : "sept",  "value" : 7, "start": 19}, 
+      {"asWord" : "huit",  "original" : "huit",  "value" : 8, "start": 24}, 
+      {"asWord" : "trois",  "original" : "trois",  "value" : 3, "start": 29} 
     ]
   },
   {
@@ -1534,42 +1346,12 @@
     "text": "Immédiatement après sa formation, le Soleil a emprunté une orbite presque circulaire autour du centre de la Voie Lactée, à une distance moyenne d’environ 26.000 a.l. le Soleil emploie, compte tenu de la masse, environ 10 milliards d’années pour épuiser complètement l’hydrogène de son noyau entre environ 5 milliards d’années, le Soleil entrera dans une phase de forte instabilité dont l’expansion provoquera un refroidissement du gaz K)",
     "tokens": [
       
-      {
-        "value": 26000,
-        "asWord": "vingt-six mille",
-        "original": "26.000",
-        "start": 154
-      },
-      {
-        "value": 10000000000,
-        "asWord": "dix milliards",
-        "original": "10 milliards",
-        "start": 218
-      },
-      {
-        "value": 10,
-        "asWord": "dix",
-        "original": "10",
-        "start": 218
-      },
-      {
-        "value": 5000000000,
-        "asWord": "cinq milliards",
-        "original": "5 millards",
-        "start": 305
-      },
-      {
-        "value": 5,
-        "asWord": "cinq",
-        "original": "5",
-        "start": 305
-      },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "un",
-        "start": 409
-      }
+      {"asWord" : "vingt-six mille",  "original" : "26.000",  "value" : 26000, "start": 154}, 
+      {"asWord" : "dix milliards",  "original" : "10 milliards",  "value" : 10000000000, "start": 218}, 
+      {"asWord" : "dix",  "original" : "10",  "value" : 10, "start": 218}, 
+      {"asWord" : "cinq milliards",  "original" : "5 milliards",  "value" : 5000000000, "start": 305}, 
+      {"asWord" : "cinq",  "original" : "5",  "value" : 5, "start": 305}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 409}
     ]
   },
   {
@@ -1579,61 +1361,14 @@
         "value": 38528967,
         "asWord": "trente-huit millions cinq cent vingt-huit mille neuf cent soixante-sept"
       },
-      {
-        "value": 38,
-        "asWord": "trente-huit",
-        "original": "trente-huit"
-      },
-      {
-        "value": 5,
-        "asWord": "cinq",
-        "original": "5",
-        "start": 21
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 23
-      },
-      {
-        "value": 28,
-        "asWord": "vingt-huit",
-        "original": "vingt-huit",
-        "start": 28
-      },
-      {
-        "value": 9,
-        "asWord": "neuf",
-        "original": "9",
-        "start": 45
-      },
-      {
-        "value": 100,
-        "asWord": "cent",
-        "original": "cent",
-        "start": 50
-      },
-      {
-        "value": 67,
-        "asWord": "soixante-sept",
-        "original": "67",
-        "start": 55
-      }
-    ]
-  },
-  {
-    "text": "due milioni di bilioni",
-    "tokens": [
-      {
-        "value": 2000000000000000000,
-        "asWord": "duetrilioni"
-      },
-      {
-        "value": 2,
-        "asWord": "due",
-        "original": "due"
-      }
+      {"asWord" : "trente-huit",  "original" : "trente-huit",  "value" : 38}, 
+      {"asWord" : "cinq",  "original" : "5",  "value" : 5, "start": 21}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 23}, 
+      {"asWord" : "vingt-huit",  "original" : "vingt-huit",  "value" : 28, "start": 28}, 
+      {"asWord" : "un mille",  "original" : "mille",  "value" : 1000, "start": 39}, 
+      {"asWord" : "neuf",  "original" : "9",  "value" : 9, "start": 45}, 
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100, "start": 47}, 
+      {"asWord" : "soixante-sept",  "original" : "67",  "value" : 67, "start": 52}
     ]
   },
   {
@@ -1671,35 +1406,11 @@
         "value": 999999999999999999999,
         "asWord": "neuf cent quatre-vingt-dix-neuf trillions neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf billions neuf cent quatre-vingt-dix-neuf milliards neuf cent quatre-vingt-dix-neuf millions neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf"
       },
-      {
-        "value": 999999,
-        "asWord": "neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf",
-        "original": "999999"
-      },
-      {
-        "value": 999,
-        "asWord": "neuf cent quatre-vingt-dix-neuf",
-        "original": "999",
-        "start": 17
-      },
-      {
-        "value": 999,
-        "asWord": "neuf cent quatre-vingt-dix-neuf",
-        "original": "999",
-        "start": 30
-      },
-      {
-        "value": 999,
-        "asWord": "neuf cent quatre-vingt-dix-neuf",
-        "original": "999",
-        "start": 44
-      },
-      {
-        "value": 999999,
-        "asWord": "neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-dix-neuf",
-        "original": "999999",
-        "start": 57
-      }
+      {"asWord" : "neuf cents quatre-vingt-dix-neuf mille neuf cents quatre-vingt-dix-neuf",  "original" : "999999",  "value" : 999999}, 
+      {"asWord" : "neuf cents quatre-vingt-dix-neuf",  "original" : "999",  "value" : 999, "start": 17}, 
+      {"asWord" : "neuf cents quatre-vingt-dix-neuf",  "original" : "999",  "value" : 999, "start": 30}, 
+      {"asWord" : "neuf cents quatre-vingt-dix-neuf",  "original" : "999",  "value" : 999, "start": 44}, 
+      {"asWord" : "neuf cents quatre-vingt-dix-neuf mille neuf cents quatre-vingt-dix-neuf",  "original" : "999999",  "value" : 999999, "start": 57}
     ]
   },
   {
@@ -1709,17 +1420,9 @@
         "value": 120.37,
         "asWord": "cent vingt virgule trente-sept"
       },
-      {
-        "value": 120,
-        "asWord": "cent vingt",
-        "original": "cent vingt"
-      },
-      {
-        "value": 37,
-        "asWord": "trente-sept",
-        "original": "37",
-        "start": 19
-      }
+      {"asWord" : "cent",  "original" : "cent",  "value" : 100}, 
+      {"asWord" : "vingt",  "original" : "vingt",  "value" : 20, "start": 5}, 
+      {"asWord" : "trente-sept",  "original" : "37",  "value" : 37, "start": 19}
     ]
   },
   {
@@ -1729,37 +1432,8 @@
         "value": 1274000000000234,
         "asWord": "un billiard deux cent soixante-quatorze billions deux cent trente-quatre"
       },
-      {
-        "value": 1274,
-        "asWord": "mille deux cent soixante-quatorze",
-        "original": "1274"
-      },
-      {
-        "value": 234,
-        "asWord": "deux cent trente-quatre",
-        "original": "234",
-        "start": 14
-      }
-    ]
-  },
-  {
-    "text": "1274 miliardi 234",
-    "tokens": [
-      {
-        "value": 1274000000234,
-        "asWord": "un billion deux cent soixante-quatorze milliards deux cent trente-quatre"
-      },
-      {
-        "value": 1274,
-        "asWord": "mille deux cent soixante-quatorze",
-        "original": "1274"
-      },
-      {
-        "value": 234,
-        "asWord": "deux cent trente-quatre",
-        "original": "234",
-        "start": 14
-      }
+      {"asWord" : "un mille deux cents soixante-quatorze",  "original" : "1274",  "value" : 1274}, 
+      {"asWord" : "deux cents trente-quatre",  "original" : "234",  "value" : 234, "start": 14}
     ]
   },
   {
@@ -1769,17 +1443,8 @@
         "value": 1.12,
         "asWord": "un virgule deuze"
       },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "1"
-      },
-      {
-        "value": 12,
-        "asWord": "deuze",
-        "original": "12",
-        "start": 10
-      }
+      {"asWord" : "un",  "original" : "1",  "value" : 1}, 
+      {"asWord" : "douze",  "original" : "12",  "value" : 12, "start": 10}
     ]
   },
   {
@@ -1789,29 +1454,10 @@
         "value": 1.102,
         "asWord": "un virgule un zéro deux"
       },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "1"
-      },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "un",
-        "start": 10
-      },
-      {
-        "value": 0,
-        "asWord": "zéro",
-        "original": "zéro",
-        "start": 13
-      },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "deux",
-        "start": 18
-      }
+      {"asWord" : "un",  "original" : "1",  "value" : 1}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 10}, 
+      {"asWord" : "zero",  "original" : "zéro",  "value" : 0, "start": 13}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 18}
     ]
   },
   {
@@ -1821,23 +1467,9 @@
         "value": 1.02,
         "asWord": "un virgule zéro deux"
       },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "1"
-      },
-      {
-        "value": 0,
-        "asWord": "zéro",
-        "original": "zéro",
-        "start": 10
-      },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "deux",
-        "start": 15
-      }
+      {"asWord" : "un",  "original" : "1",  "value" : 1}, 
+      {"asWord" : "zero",  "original" : "zéro",  "value" : 0, "start": 10}, 
+      {"asWord" : "deux",  "original" : "deux",  "value" : 2, "start": 15}
     ]
   },
   {
@@ -1848,23 +1480,9 @@
         "asWord": "un virgule un",
         "original": "1 virgule un"
       },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "1"
-      },
-      {
-        "value": 1,
-        "asWord": "un",
-        "original": "un",
-        "start": 10
-      },
-      {
-        "value": 2,
-        "asWord": "deux",
-        "original": "2",
-        "start": 13
-      }
+      {"asWord" : "un",  "original" : "1",  "value" : 1}, 
+      {"asWord" : "un",  "original" : "un",  "value" : 1, "start": 10}, 
+      {"asWord" : "deux",  "original" : "2",  "value" : 2, "start": 13}
     ]
   }
 ]
