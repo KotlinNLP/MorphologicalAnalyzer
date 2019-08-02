@@ -41,9 +41,11 @@ object NumbersProcessorSpec : Spek({
               assertEquals(testNumber.value, number.value)
             }
 
-//            it("should match the word representation for the number n. ${i+1}") {
-//              assertEquals(testNumber.asWord, number.asWord)
-//            }
+            if (lang in setOf("it", "en")) { // TODO: implement and test the functionality for French
+              it("should match the word representation for the number n. ${i + 1}") {
+                assertEquals(testNumber.asWord, number.asWord)
+              }
+            }
 
             it("should match the original string for the number n. ${i+1}") {
               assertEquals(testNumber.original, number.original)
