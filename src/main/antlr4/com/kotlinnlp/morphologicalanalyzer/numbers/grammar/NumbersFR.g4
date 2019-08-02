@@ -21,7 +21,7 @@ n_tens_30    : (w_30 w_ws_hypen AND w_ws_hypen w_1 | w_30 HYPEN w_2 | w_30 HYPEN
 n_tens_40    : (w_40 w_ws_hypen AND w_ws_hypen w_1 | w_40 HYPEN w_2 | w_40 HYPEN w_3 | w_40 HYPEN w_4 | w_40 HYPEN w_5 | w_40 HYPEN w_6 | w_40 HYPEN w_7 | w_40 HYPEN w_8 | w_40 HYPEN w_9 | w_40 w_ws_hypen AND w_ws_hypen d_unit | w_40 );
 n_tens_50    : (w_50 w_ws_hypen AND w_ws_hypen w_1 | w_50 HYPEN w_2 | w_50 HYPEN w_3 | w_50 HYPEN w_4 | w_50 HYPEN w_5 | w_50 HYPEN w_6 | w_50 HYPEN w_7 | w_50 HYPEN w_8 | w_50 HYPEN w_9 | w_50 w_ws_hypen AND w_ws_hypen d_unit | w_50 );
 n_tens_60    : (w_60 w_ws_hypen AND w_ws_hypen w_1 | w_60 HYPEN w_2 | w_60 HYPEN w_3 | w_60 HYPEN w_4 | w_60 HYPEN w_5 | w_60 HYPEN w_6 | w_60 HYPEN w_7 | w_60 HYPEN w_8 | w_60 HYPEN w_9 | w_60 w_ws_hypen AND w_ws_hypen d_unit | w_60 );
-n_tens_70    : (w_60 w_ws_hypen AND w_ws_hypen w_11 | w_60 HYPEN w_12 | w_60 HYPEN w_13 | w_60 HYPEN w_14 | w_60 HYPEN w_15 | w_60 HYPEN w_16 | w_60 HYPEN w_17 | w_60 w_18 | w_60 HYPEN w_19 | w_60 HYPEN w_10);
+n_tens_70    : (w_60 w_ws_hypen AND w_ws_hypen w_11 | w_60 HYPEN w_12 | w_60 HYPEN w_13 | w_60 HYPEN w_14 | w_60 HYPEN w_15 | w_60 HYPEN w_16 | w_60 HYPEN w_17 | w_60 HYPEN w_18 | w_60 HYPEN w_19 | w_60 HYPEN w_10);
 n_tens_80    : (w_80 HYPEN w_1 | w_80 HYPEN w_2 | w_80 HYPEN w_3 | w_80 HYPEN w_4 | w_80 HYPEN w_5 | w_80 HYPEN w_6 | w_80 HYPEN w_7 | w_80 HYPEN w_8 | w_80 HYPEN w_9 | w_80 w_ws_hypen AND w_ws_hypen d_unit | w_80 W_S);
 n_tens_90    : (w_80 HYPEN w_11 | w_80 HYPEN w_12 | w_80 HYPEN w_13 | w_80 HYPEN w_14 | w_80 HYPEN w_15 | w_80 HYPEN w_16 | w_80 HYPEN w_17 | w_80 HYPEN w_18 | w_80 HYPEN w_19 | w_80 HYPEN w_10);
 
