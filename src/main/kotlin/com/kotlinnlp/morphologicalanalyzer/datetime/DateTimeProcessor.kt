@@ -14,6 +14,9 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.DateTime
 import org.antlr.v4.runtime.*
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.*
+import kotlin.reflect.KClass
+import kotlin.reflect.full.isSubtypeOf
+import kotlin.reflect.full.starProjectedType
 
 /**
  * A text processor that recognizes date-time expressions in it.
@@ -25,12 +28,18 @@ class DateTimeProcessor(private val language: Language) {
   companion object {
 
     /**
+     * Associate the available languages to the related lexer [KClass].
+     */
+    private val lexersMap: Map<Language, KClass<out Lexer>> = mapOf(
+      Language.English to LexerEN::class,
+      Language.Italian to LexerIT::class,
+      Language.French to LexerFR::class
+    )
+
+    /**
      * The set of available languages.
      */
-    val AVAILABLE_LANGUAGES: Set<Language> = setOf(
-      Language.English,
-      Language.Italian,
-      Language.French)
+    val AVAILABLE_LANGUAGES: Set<Language> = this.lexersMap.keys
   }
 
   /**
@@ -79,11 +88,14 @@ class DateTimeProcessor(private val language: Language) {
    *
    * @return an ANTLR DateTime lexer for the given language
    */
-  private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
-    Language.English -> LexerEN(charStream)
-    Language.Italian -> LexerIT(charStream)
-    Language.French -> LexerFR(charStream)
-    else -> throw RuntimeException("Lexer not available for language '${this.language}'")
+  private fun buildLexer(charStream: CharStream): Lexer {
+
+    val lexerClass: KClass<out Lexer> = lexersMap[this.language]
+      ?: throw RuntimeException("Lexer not available for language '${this.language}'")
+
+    return lexerClass.constructors
+      .first { it.parameters.size == 1 && it.parameters.single().type.isSubtypeOf(CharStream::class.starProjectedType) }
+      .call(charStream)
   }
 
   /**

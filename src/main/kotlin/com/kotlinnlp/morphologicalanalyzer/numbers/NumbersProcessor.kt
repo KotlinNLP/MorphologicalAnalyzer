@@ -21,9 +21,10 @@ import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeListener
 import org.antlr.v4.runtime.tree.ParseTreeWalker
 import kotlin.reflect.KClass
-import kotlin.reflect.full.primaryConstructor
 import org.antlr.v4.runtime.BailErrorStrategy
 import org.antlr.v4.runtime.misc.ParseCancellationException
+import java.lang.reflect.InvocationTargetException
+import kotlin.reflect.full.*
 
 /**
  * A text processor to recognize numeric expressions.
@@ -41,9 +42,44 @@ class NumbersProcessor(
   companion object {
 
     /**
+     * Associate the available languages to the related parser [KClass].
+     */
+    private val parsersMap: Map<Language, KClass<out Parser>> = mapOf(
+      Language.English to NumbersENParser::class,
+      Language.Italian to NumbersITParser::class,
+      Language.French to NumbersFRParser::class
+    )
+
+    /**
+     * Associate the available languages to the related lexer [KClass].
+     */
+    private val lexersMap: Map<Language, KClass<out Lexer>> = mapOf(
+      Language.English to LexerEN::class,
+      Language.Italian to LexerIT::class,
+      Language.French to LexerFR::class
+    )
+
+    /**
+     * Associate the available languages to the related listener [KClass].
+     */
+    private val listenersMap: Map<Language, KClass<*>> = mapOf(
+      Language.English to ListenerEN::class,
+      Language.Italian to ListenerIT::class,
+      Language.French to ListenerFR::class
+    )
+
+    /**
      * The set of available languages.
      */
-    val AVAILABLE_LANGUAGES: Set<Language> = setOf(Language.English, Language.Italian, Language.French)
+    val AVAILABLE_LANGUAGES: Set<Language> = this.listenersMap.keys
+
+    /**
+     * Check requirements.
+     */
+    init {
+      require(this.parsersMap.keys.containsAll(this.lexersMap.keys))
+      require(this.parsersMap.keys.containsAll(this.listenersMap.keys))
+    }
   }
 
   /**
@@ -72,9 +108,9 @@ class NumbersProcessor(
    * @return the list of number tokens found
    */
   fun findNumbers(text: String,
-                          tokens: List<RealToken>,
-                          mode: String = "SLL+LL",
-                          offset: Int = 0): List<Number>  =
+                  tokens: List<RealToken>,
+                  mode: String = "SLL+LL",
+                  offset: Int = 0): List<Number>  =
     this.privateFindNumbers(
       text = text,
       tokens = tokens.mapIndexed { i, t -> IndexedValue(index = i, value = t) },
@@ -92,9 +128,9 @@ class NumbersProcessor(
    * @return the list of number tokens found
    */
   internal fun privateFindNumbers(text: String,
-                                 tokens: List<IndexedValue<RealToken>>,
-                                 mode: String = "SLL+LL",
-                                 offset: Int = 0): List<Number> {
+                                  tokens: List<IndexedValue<RealToken>>,
+                                  mode: String = "SLL+LL",
+                                  offset: Int = 0): List<Number> {
 
     var split = false
     var fallback = false
@@ -158,7 +194,10 @@ class NumbersProcessor(
   private fun findNumbersWithSplitParsing(text: String, tokens: List<IndexedValue<RealToken>>, offset: Int): List<Number> {
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
-    val chunkFinder = ChunkFinder(parserClass = getParserClass(), debug = this.debug)
+    val chunkFinder = ChunkFinder(
+      parserClass = parsersMap[this.language]
+        ?: throw RuntimeException("Parser not available for language '${this.language}'"),
+      debug = this.debug)
 
     return chunkFinder.find(lexer.allTokens as List<Token>).flatMap { (chunkText, chunkOffset) ->
       privateFindNumbers(text = chunkText, tokens = tokens, offset = offset + chunkOffset)
@@ -173,12 +212,8 @@ class NumbersProcessor(
    */
   private fun buildListener(tokens: List<IndexedValue<RealToken>>, offset: Int): ListenerCommon {
 
-    val listenerClass: KClass<*> = when (this.language) {
-      Language.English -> ListenerEN::class
-      Language.Italian -> ListenerIT::class
-      Language.French -> ListenerFR::class
-      else -> throw RuntimeException("Listener not available for language '${this.language}'")
-    }
+    val listenerClass: KClass<*> = listenersMap[this.language]
+      ?: throw RuntimeException("Listener not available for language '${this.language}'")
 
     return listenerClass.primaryConstructor!!.call(
       this.langParams,
@@ -199,25 +234,21 @@ class NumbersProcessor(
 
     val lexer: Lexer = this.buildLexer(charStream = CharStreams.fromString(text))
     val tokensStream = CommonTokenStream(lexer)
+    val parserClass: KClass<out Parser> = parsersMap[this.language]
+      ?: throw RuntimeException("Parser not available for language '${this.language}'")
+    val parser: Parser = parserClass.constructors
+      .first {
+        it.parameters.size == 1 && it.parameters.single().type.isSubtypeOf(TokenStream::class.starProjectedType)
+      }
+      .call(tokensStream)
 
-    return when (this.language) {
-      Language.English -> NumbersENParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-      Language.Italian -> NumbersITParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-      Language.French -> NumbersFRParser(tokensStream).apply { if(SLL) this.enableSLL() }.root()
-      else -> throw RuntimeException("Parser not available for language '${this.language}'")
+    if (SLL) parser.enableSLL()
+
+    return try {
+      parser::class.declaredMemberFunctions.first { it.name == "root" }.call(parser) as ParserRuleContext // parser.root()
+    } catch (e: InvocationTargetException) {
+      throw e.targetException // using the reflection the exceptions are wrapped into an InvocationTargetException
     }
-  }
-
-  /**
-   * Get the parser class for the current language
-   *
-   * @return the parser class corresponding to the current language
-   */
-  private fun getParserClass(): KClass<out Parser> = when (this.language) {
-    Language.English -> NumbersENParser::class
-    Language.Italian -> NumbersITParser::class
-    Language.French -> NumbersFRParser::class
-    else -> throw RuntimeException("Parser not available for language '${this.language}'")
   }
 
   /**
@@ -225,11 +256,14 @@ class NumbersProcessor(
    *
    * @return an ANTLR Numbers lexer for the given language
    */
-  private fun buildLexer(charStream: CharStream): Lexer = when (this.language) {
-    Language.English -> LexerEN(charStream)
-    Language.Italian -> LexerIT(charStream)
-    Language.French -> LexerFR(charStream)
-    else -> throw RuntimeException("Lexer not available for language '${this.language}'")
+  private fun buildLexer(charStream: CharStream): Lexer {
+
+    val lexerClass: KClass<out Lexer> = lexersMap[this.language]
+      ?: throw RuntimeException("Lexer not available for language '${this.language}'")
+
+    return lexerClass.constructors
+      .first { it.parameters.size == 1 && it.parameters.single().type.isSubtypeOf(CharStream::class.starProjectedType) }
+      .call(charStream)
   }
 
   /**
