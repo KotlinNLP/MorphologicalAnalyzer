@@ -49,7 +49,7 @@ generic_time_expr
 
 generic_time : morning | noon | afternoon | evening | night ;
 
-morning : MORNING ;
+morning : MORNING | TOMORROW ; // 'tomorrow' is a special case for the Spanish language
 noon : NOON ;
 afternoon : AFTERNOON ;
 evening : EVENING ;

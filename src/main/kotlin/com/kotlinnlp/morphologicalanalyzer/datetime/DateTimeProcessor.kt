@@ -33,7 +33,8 @@ class DateTimeProcessor(private val language: Language) {
     private val lexersMap: Map<Language, KClass<out Lexer>> = mapOf(
       Language.English to LexerEN::class,
       Language.Italian to LexerIT::class,
-      Language.French to LexerFR::class
+      Language.French to LexerFR::class,
+      Language.Spanish to LexerES::class
     )
 
     /**
