@@ -44,7 +44,7 @@ ten_pref  : (w_2 | w_3 | w_4 | w_5 | w_6 | w_7 | w_8 | w_9);
 d_ten_pref: (D_2 | D_3 | D_4 | D_5 | D_6 | D_7 | D_8 | D_9);
 
 // from 100 to 999
-hundred: (ten_pref WS?| d_ten_pref WS?)? (W_HUNDRED | w_hundred_100 | w_hundred_200 | w_hundred_300 | w_hundred_400 | w_hundred_500 | w_hundred_600 | w_hundred_700 | w_hundred_800 | w_hundred_900) (WS? (n_1_99 | max_2_digits))?;
+hundred: (W_HUNDRED | (ten_pref WS?| d_ten_pref WS?)? w_hundred_100 | w_hundred_200 | w_hundred_300 | w_hundred_400 | w_hundred_500 | w_hundred_600 | w_hundred_700 | w_hundred_800 | w_hundred_900) (WS? (n_1_99 | max_2_digits))?;
 
 // from 1000 to 99999
 thousand: W_THOUSAND (WS? n_1_999)?
