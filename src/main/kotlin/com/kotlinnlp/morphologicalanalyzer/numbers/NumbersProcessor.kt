@@ -14,6 +14,7 @@ import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParams
 import com.kotlinnlp.morphologicalanalyzer.numbers.languageparams.LanguageParamsFactory
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerCommon
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerEN
+import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerES
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerFR
 import com.kotlinnlp.morphologicalanalyzer.numbers.listeners.ListenerIT
 import org.antlr.v4.runtime.*
@@ -47,7 +48,8 @@ class NumbersProcessor(
     private val parsersMap: Map<Language, KClass<out Parser>> = mapOf(
       Language.English to NumbersENParser::class,
       Language.Italian to NumbersITParser::class,
-      Language.French to NumbersFRParser::class
+      Language.French to NumbersFRParser::class,
+      Language.Spanish to NumbersESParser::class
     )
 
     /**
@@ -56,7 +58,8 @@ class NumbersProcessor(
     private val lexersMap: Map<Language, KClass<out Lexer>> = mapOf(
       Language.English to LexerEN::class,
       Language.Italian to LexerIT::class,
-      Language.French to LexerFR::class
+      Language.French to LexerFR::class,
+      Language.Spanish to LexerES::class
     )
 
     /**
@@ -65,7 +68,8 @@ class NumbersProcessor(
     private val listenersMap: Map<Language, KClass<*>> = mapOf(
       Language.English to ListenerEN::class,
       Language.Italian to ListenerIT::class,
-      Language.French to ListenerFR::class
+      Language.French to ListenerFR::class,
+      Language.Spanish to ListenerES::class
     )
 
     /**
