@@ -16,6 +16,7 @@ fragment K : [Kk] ;
 fragment L : [Ll] ;
 fragment M : [Mm] ;
 fragment N : [Nn] ;
+fragment NN : [Ññ] ;
 fragment O : [Oo] ;
 fragment P : [Pp] ;
 fragment Q : [Qq] ;
