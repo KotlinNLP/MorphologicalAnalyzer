@@ -689,6 +689,14 @@ internal interface ListenerCommon {
         "D_1_999" -> from0To999 = it.second
         "Hundred" -> max3Digits = it.second
         "Max_2_digits" -> from0To99 = it.second
+        "w_hundred_200" -> tenPref = it.second
+        "w_hundred_300" -> tenPref = it.second
+        "w_hundred_400" -> tenPref = it.second
+        "w_hundred_500" -> tenPref = it.second
+        "w_hundred_600" -> tenPref = it.second
+        "w_hundred_700" -> tenPref = it.second
+        "w_hundred_800" -> tenPref = it.second
+        "w_hundred_900" -> tenPref = it.second
       }
     }
 
@@ -721,7 +729,15 @@ internal interface ListenerCommon {
         "D_ten_pref" -> tenPref = it.second
         "D_1_99" -> from0To99 = it.second
         "Max_2_digits" -> from0To99 = it.second
-        "N_tens_80" -> from0To99 = it.second // case with elided hundred prefix (valid of IT: 'centottanta')
+        "N_tens_80" -> from0To99 = it.second //// case with elided hundred prefix (valid of IT: 'centottanta')
+        "w_hundred_200" -> tenPref = it.second
+        "w_hundred_300" -> tenPref = it.second
+        "w_hundred_400" -> tenPref = it.second
+        "w_hundred_500" -> tenPref = it.second
+        "w_hundred_600" -> tenPref = it.second
+        "w_hundred_700" -> tenPref = it.second
+        "w_hundred_800" -> tenPref = it.second
+        "w_hundred_900" -> tenPref = it.second
       }
     }
 
@@ -908,6 +924,62 @@ internal interface ListenerCommon {
   }
 
   /**
+   * The listener of the 'exit w_hundred_200' event.
+   *
+   * @param ctx the context of the 'w_hundred_200' rule just parsed
+   */
+  fun exitW_hundred_200(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_200", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_300' event.
+   *
+   * @param ctx the context of the 'w_hundred_300' rule just parsed
+   */
+  fun exitW_hundred_300(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_300", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_400' event.
+   *
+   * @param ctx the context of the 'w_hundred_400' rule just parsed
+   */
+  fun exitW_hundred_400(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_400", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_500' event.
+   *
+   * @param ctx the context of the 'w_hundred_500' rule just parsed
+   */
+  fun exitW_hundred_500(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_500", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_600' event.
+   *
+   * @param ctx the context of the 'w_hundred_600' rule just parsed
+   */
+  fun exitW_hundred_600(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_600", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_700' event.
+   *
+   * @param ctx the context of the 'w_hundred_700' rule just parsed
+   */
+  fun exitW_hundred_700(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_700", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_800' event.
+   *
+   * @param ctx the context of the 'w_hundred_800' rule just parsed
+   */
+  fun exitW_hundred_800(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_800", value = "2")
+
+  /**
+   * The listener of the 'exit w_hundred_900' event.
+   *
+   * @param ctx the context of the 'w_hundred_900' rule just parsed
+   */
+  fun exitW_hundred_900(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "w_hundred_900", value = "2")
+
+  /**
    * The listener of the 'exit w_1' event.
    *
    * @param ctx the context of the 'w_1' rule just parsed
@@ -922,6 +994,13 @@ internal interface ListenerCommon {
   fun exitW_1_art(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "1")
 
   /**
+   * The listener of the 'exit w_1_acc' event.
+   *
+   * @param ctx the context of the 'w_1_acc' rule just parsed
+   */
+  fun exitW_1_acc(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "1")
+
+  /**
    * The listener of the 'exit w_2' event.
    *
    * @param ctx the context of the 'w_2' rule just parsed
@@ -929,11 +1008,25 @@ internal interface ListenerCommon {
   fun exitW_2(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "2")
 
   /**
+   * The listener of the 'exit w_2_acc' event.
+   *
+   * @param ctx the context of the 'w_2_acc' rule just parsed
+   */
+  fun exitW_2_acc(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "2")
+
+  /**
    * The listener of the 'exit w_3' event.
    *
    * @param ctx the context of the 'w_3' rule just parsed
    */
   fun exitW_3(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "3")
+
+  /**
+   * The listener of the 'exit w_3_acc' event.
+   *
+   * @param ctx the context of the 'w_3_acc' rule just parsed
+   */
+  fun exitW_3_acc(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "3")
 
   /**
    * The listener of the 'exit w_4' event.
@@ -955,6 +1048,13 @@ internal interface ListenerCommon {
    * @param ctx the context of the 'w_6' rule just parsed
    */
   fun exitW_6(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "6")
+
+  /**
+   * The listener of the 'exit w_6_acc' event.
+   *
+   * @param ctx the context of the 'w_6_acc' rule just parsed
+   */
+  fun exitW_6_acc(ctx: ParserRuleContext) = this.setTreeValue(ctx as ParseTree, type = "W_unit", value = "6")
 
   /**
    * The listener of the 'exit w_7' event.
