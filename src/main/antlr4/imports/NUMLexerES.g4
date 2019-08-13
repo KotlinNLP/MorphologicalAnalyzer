@@ -5,7 +5,7 @@ import NUMBaseLexer;
 W_A            : A;
 W_TOS          : T O S;
 W_TAS          : T A S;
-W_0            : Z E R O;
+W_0            : C E R O;
 W_1            : U N O;
 W_1_ART        : U N W_A?;
 W_1_ACC        : UU N;
