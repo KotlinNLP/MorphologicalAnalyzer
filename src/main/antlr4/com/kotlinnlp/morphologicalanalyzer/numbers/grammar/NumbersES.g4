@@ -23,21 +23,19 @@ w_hundred_900: W_HUNDRED_900;
 
 w_one_million: W_ONE_MILLION;
 w_million: W_MILLION;
-w_one_billion: W_ONE_BILLION;
 w_billion: W_BILLION;
 w_one_trillion: W_ONE_TRILLION;
 w_trillion: W_TRILLION;
-w_one_quadrillion: W_ONE_QUADRILLION;
 w_quadrillion: W_QUADRILLION;
 
 n_tens_20    : (w_20_pref w_1 | w_20_pref w_1_art | w_20_pref w_1_acc | w_20_pref w_2_acc | w_20_pref w_3_acc | w_20_pref w_4 | w_20_pref w_5 | w_20_pref w_6 | w_20_pref w_6_acc | w_20_pref w_7 | w_20_pref w_8 | w_20_pref w_9 | w_20 WS d_unit | w_20);
-n_tens_30    : (w_30 WS+ AND WS+ w_1 | w_30 WS+ AND WS+ w_1_art | w_30 WS+ AND WS+ w_2 | w_30 WS+ AND WS+ w_3 | w_30 WS+ AND WS+ w_4 | w_30 WS+ AND WS+ w_5 | w_30 WS+ AND WS+ w_6 | w_30 WS+ AND WS+ w_7 | w_30 WS+ AND WS+ w_8 | w_30 WS+ AND WS+ w_9 | w_30 AND WS+ d_unit | w_30);
-n_tens_40    : (w_40 WS+ AND WS+ w_1 | w_40 WS+ AND WS+ w_1_art | w_40 WS+ AND WS+ w_2 | w_40 WS+ AND WS+ w_3 | w_40 WS+ AND WS+ w_4 | w_40 WS+ AND WS+ w_5 | w_40 WS+ AND WS+ w_6 | w_40 WS+ AND WS+ w_7 | w_40 WS+ AND WS+ w_8 | w_40 WS+ AND WS+ w_9 | w_40 AND WS+ d_unit | w_40);
-n_tens_50    : (w_50 WS+ AND WS+ w_1 | w_50 WS+ AND WS+ w_1_art | w_50 WS+ AND WS+ w_2 | w_50 WS+ AND WS+ w_3 | w_50 WS+ AND WS+ w_4 | w_50 WS+ AND WS+ w_5 | w_50 WS+ AND WS+ w_6 | w_50 WS+ AND WS+ w_7 | w_50 WS+ AND WS+ w_8 | w_50 WS+ AND WS+ w_9 | w_50 AND WS+ d_unit | w_50);
-n_tens_60    : (w_60 WS+ AND WS+ w_1 | w_60 WS+ AND WS+ w_1_art | w_60 WS+ AND WS+ w_2 | w_60 WS+ AND WS+ w_3 | w_60 WS+ AND WS+ w_4 | w_60 WS+ AND WS+ w_5 | w_60 WS+ AND WS+ w_6 | w_60 WS+ AND WS+ w_7 | w_60 WS+ AND WS+ w_8 | w_60 WS+ AND WS+ w_9 | w_60 AND WS+ d_unit | w_60);
-n_tens_70    : (w_70 WS+ AND WS+ w_1 | w_70 WS+ AND WS+ w_1_art | w_70 WS+ AND WS+ w_2 | w_70 WS+ AND WS+ w_3 | w_70 WS+ AND WS+ w_4 | w_70 WS+ AND WS+ w_5 | w_70 WS+ AND WS+ w_6 | w_70 WS+ AND WS+ w_7 | w_70 WS+ AND WS+ w_8 | w_70 WS+ AND WS+ w_9 | w_70 AND WS+ d_unit | w_70);
-n_tens_80    : (w_80 WS+ AND WS+ w_1 | w_80 WS+ AND WS+ w_1_art | w_80 WS+ AND WS+ w_2 | w_80 WS+ AND WS+ w_3 | w_80 WS+ AND WS+ w_4 | w_80 WS+ AND WS+ w_5 | w_80 WS+ AND WS+ w_6 | w_80 WS+ AND WS+ w_7 | w_80 WS+ AND WS+ w_8 | w_80 WS+ AND WS+ w_9 | w_80 AND WS+ d_unit | w_80);
-n_tens_90    : (w_90 WS+ AND WS+ w_1 | w_90 WS+ AND WS+ w_1_art | w_90 WS+ AND WS+ w_2 | w_90 WS+ AND WS+ w_3 | w_90 WS+ AND WS+ w_4 | w_90 WS+ AND WS+ w_5 | w_90 WS+ AND WS+ w_6 | w_90 WS+ AND WS+ w_7 | w_90 WS+ AND WS+ w_8 | w_90 WS+ AND WS+ w_9 | w_90 AND WS+ d_unit | w_90);
+n_tens_30    : (w_30 WS+ AND WS+ w_1 | w_30 WS+ AND WS+ w_1_art | w_30 WS+ AND WS+ w_2 | w_30 WS+ AND WS+ w_3 | w_30 WS+ AND WS+ w_4 | w_30 WS+ AND WS+ w_5 | w_30 WS+ AND WS+ w_6 | w_30 WS+ AND WS+ w_7 | w_30 WS+ AND WS+ w_8 | w_30 WS+ AND WS+ w_9 | w_30 WS+ AND WS+ d_unit | w_30);
+n_tens_40    : (w_40 WS+ AND WS+ w_1 | w_40 WS+ AND WS+ w_1_art | w_40 WS+ AND WS+ w_2 | w_40 WS+ AND WS+ w_3 | w_40 WS+ AND WS+ w_4 | w_40 WS+ AND WS+ w_5 | w_40 WS+ AND WS+ w_6 | w_40 WS+ AND WS+ w_7 | w_40 WS+ AND WS+ w_8 | w_40 WS+ AND WS+ w_9 | w_40 WS+ AND WS+ d_unit | w_40);
+n_tens_50    : (w_50 WS+ AND WS+ w_1 | w_50 WS+ AND WS+ w_1_art | w_50 WS+ AND WS+ w_2 | w_50 WS+ AND WS+ w_3 | w_50 WS+ AND WS+ w_4 | w_50 WS+ AND WS+ w_5 | w_50 WS+ AND WS+ w_6 | w_50 WS+ AND WS+ w_7 | w_50 WS+ AND WS+ w_8 | w_50 WS+ AND WS+ w_9 | w_50 WS+ AND WS+ d_unit | w_50);
+n_tens_60    : (w_60 WS+ AND WS+ w_1 | w_60 WS+ AND WS+ w_1_art | w_60 WS+ AND WS+ w_2 | w_60 WS+ AND WS+ w_3 | w_60 WS+ AND WS+ w_4 | w_60 WS+ AND WS+ w_5 | w_60 WS+ AND WS+ w_6 | w_60 WS+ AND WS+ w_7 | w_60 WS+ AND WS+ w_8 | w_60 WS+ AND WS+ w_9 | w_60 WS+ AND WS+ d_unit | w_60);
+n_tens_70    : (w_70 WS+ AND WS+ w_1 | w_70 WS+ AND WS+ w_1_art | w_70 WS+ AND WS+ w_2 | w_70 WS+ AND WS+ w_3 | w_70 WS+ AND WS+ w_4 | w_70 WS+ AND WS+ w_5 | w_70 WS+ AND WS+ w_6 | w_70 WS+ AND WS+ w_7 | w_70 WS+ AND WS+ w_8 | w_70 WS+ AND WS+ w_9 | w_70 WS+ AND WS+ d_unit | w_70);
+n_tens_80    : (w_80 WS+ AND WS+ w_1 | w_80 WS+ AND WS+ w_1_art | w_80 WS+ AND WS+ w_2 | w_80 WS+ AND WS+ w_3 | w_80 WS+ AND WS+ w_4 | w_80 WS+ AND WS+ w_5 | w_80 WS+ AND WS+ w_6 | w_80 WS+ AND WS+ w_7 | w_80 WS+ AND WS+ w_8 | w_80 WS+ AND WS+ w_9 | w_80 WS+ AND WS+ d_unit | w_80);
+n_tens_90    : (w_90 WS+ AND WS+ w_1 | w_90 WS+ AND WS+ w_1_art | w_90 WS+ AND WS+ w_2 | w_90 WS+ AND WS+ w_3 | w_90 WS+ AND WS+ w_4 | w_90 WS+ AND WS+ w_5 | w_90 WS+ AND WS+ w_6 | w_90 WS+ AND WS+ w_7 | w_90 WS+ AND WS+ w_8 | w_90 WS+ AND WS+ w_9 | w_90 WS+ AND WS+ d_unit | w_90);
 
 w_unit    : (w_0 | w_1 | w_1_art | w_2 | w_3 | w_4 | w_5 | w_6 | w_7 | w_8 | w_9);
 ten_pref  : (w_2 | w_3 | w_4 | w_5 | w_6 | w_7 | w_8 | w_9);
@@ -63,14 +61,10 @@ million_prefix:
 ;
 
 billion:
-	(w_1_art | D_1) WS? w_one_billion (WS? (max_9_digits_with_div | n_1_999m | max_9_digits))? # one_billion
-	|
-	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_billion (WS? (max_9_digits_with_div | n_1_999m | max_9_digits))? # billions
+	(max_6_digits_with_div | max_6_digits | thousand) WS? w_million (WS? (max_9_digits_with_div | n_1_999m | max_9_digits))? # billions
 ;
 billion_prefix:
-	(w_1_art | D_1) WS? w_one_billion # one_billion_prefix
-	|
-	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_billion # billions_prefix
+	(max_6_digits_with_div | max_6_digits | thousand) WS? w_million # billions_prefix
 ;
 
 trillion:
@@ -82,15 +76,4 @@ trillion_prefix:
 	(w_1_art | D_1) WS? w_one_trillion # one_trillion_prefix
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_trillion # trillions_prefix
-;
-
-quadrillion:
-	(w_1_art | D_1) WS? w_one_quadrillion WS? n_1_999b? # one_quadrillion
-	|
-	(max_6_digits_with_div | n_1_999k | max_6_digits) WS w_quadrillion (WS? n_1_999b) # quadrillions
-;
-quadrillion_prefix:
-	(w_1_art | D_1) WS? w_one_quadrillion # one_quadrillion_prefix
-	|
-	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_quadrillion # quadrillions_prefix
 ;
