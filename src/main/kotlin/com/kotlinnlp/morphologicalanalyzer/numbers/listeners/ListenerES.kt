@@ -171,22 +171,6 @@ internal class ListenerES(
     super<ListenerCommon>.exitQuadrillions_prefix(ctx as ParserRuleContext)
 
   /**
-   * The listener of the 'exit one_billion' event.
-   *
-   * @param ctx the context of the 'one_billion' rule just parsed
-   */
-  override fun exitOne_billion(ctx: NumbersESParser.One_billionContext?) =
-    super<ListenerCommon>.exitOne_billion(ctx as ParserRuleContext)
-
-  /**
-   * The listener of the 'exit one_billion_prefix' event.
-   *
-   * @param ctx the context of the 'one_billion_prefix' rule just parsed
-   */
-  override fun exitOne_billion_prefix(ctx: NumbersESParser.One_billion_prefixContext?) =
-    super<ListenerCommon>.exitOne_billion_prefix(ctx as ParserRuleContext)
-
-  /**
    * The listener of the 'exit one_trillion' event.
    *
    * @param ctx the context of the 'one_trillion' rule just parsed
@@ -201,22 +185,6 @@ internal class ListenerES(
    */
   override fun exitOne_trillion_prefix(ctx: NumbersESParser.One_trillion_prefixContext?) =
     super<ListenerCommon>.exitOne_trillion_prefix(ctx as ParserRuleContext)
-
-  /**
-   * The listener of the 'exit one_quadrillion' event.
-   *
-   * @param ctx the context of the 'one_quadrillion' rule just parsed
-   */
-  override fun exitOne_quadrillion(ctx: NumbersESParser.One_quadrillionContext?) =
-    super<ListenerCommon>.exitOne_quadrillion(ctx as ParserRuleContext)
-
-  /**
-   * The listener of the 'exit one_quadrillion_prefix' event.
-   *
-   * @param ctx the context of the 'one_quadrillion_prefix' rule just parsed
-   */
-  override fun exitOne_quadrillion_prefix(ctx: NumbersESParser.One_quadrillion_prefixContext?) =
-    super<ListenerCommon>.exitOne_quadrillion_prefix(ctx as ParserRuleContext)
 
   /**
    * The listener of the 'exit n_1_999k' event.
