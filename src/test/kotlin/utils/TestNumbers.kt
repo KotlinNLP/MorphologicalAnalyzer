@@ -38,7 +38,7 @@ object TestNumbers {
   /**
    * The list of supported test languages.
    */
-  private val supportedLanguages: List<String> = listOf("es")
+  private val supportedLanguages: List<String> = listOf("en", "es", "fr", "it")
 
   /**
    * List of test groups associated by language.
