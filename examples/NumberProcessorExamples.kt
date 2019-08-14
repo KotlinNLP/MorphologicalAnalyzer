@@ -169,9 +169,8 @@ private fun test_sll(text: String, language: String) {
 
 private fun debugging() {
 
-  val str = """ Soixante-dix-neuf  """
-
-  val numbersProcessor = NumbersProcessor(getLanguageByIso("fr"), debug = true)
+  val str = """ 3cientos  """
+  val numbersProcessor = NumbersProcessor(getLanguageByIso("es"), debug = true)
   val res = numbersProcessor.findNumbers(text = str, tokens = SimpleTokenizer.tokenize(str), mode = "SLL+LL")
 
   println(res)
