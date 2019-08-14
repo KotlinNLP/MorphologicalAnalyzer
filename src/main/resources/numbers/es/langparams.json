@@ -1,7 +1,7 @@
 {
   "language": "es",
   "digitDecimalSeparator": ",",
-  "wordDecimalSeparator": "virgule",
+  "wordDecimalSeparator": "coma",
   "thousandSeparator": ".",
   "generatorFlags": {
     "elideDoubleVocal": false,

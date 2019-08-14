@@ -59,5 +59,5 @@ W_TRILLION     : B I L L O N E S;
 W_ONE_QUADRILLION : T R I L L O N;
 W_QUADRILLION : T R I L L O N E S;
 W_WORDDECDIV   : C O M A;
-W_WORDDECDIV_ALT   : P U N T O;
+W_OF           : D E;
 AND            : Y;
