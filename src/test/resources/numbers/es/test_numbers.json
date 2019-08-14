@@ -134,7 +134,9 @@
       {
         "value": 287
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "ochenta", "endToken" : 17, "original" : "ochenta", "startToken" : 11, "value" : 80}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}
+      {"asWord" : "doscientos",  "original" : "doscientos", "value" : 200}, 
+      {"asWord" : "ochenta",  "original" : "ochenta", "start" : 11, "value" : 80}, 
+      {"asWord" : "siete", "original" : "siete", "start" : 21, "value" : 7}
     ]
   },
   {
@@ -144,7 +146,7 @@
         "value": 287,
         "asWord": "doscientas ochenta y siete"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientas", "startToken" : 0, "value" : 200}, {"asWord" : "ochenta", "endToken" : 17, "original" : "ochenta", "startToken" : 11, "value" : 80}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}
+      {"asWord" : "doscientos", "original" : "doscientas", "start" : 0, "value" : 200}, {"asWord" : "ochenta",  "original" : "ochenta", "start" : 11, "value" : 80}, {"asWord" : "siete", "original" : "siete", "start" : 21, "value" : 7}
     ]
   },
   {
@@ -153,7 +155,7 @@
       {
         "value": 340
       },
-       {"asWord" : "trescientos", "endToken" : 10, "original" : "trescientos", "startToken" : 0, "value" : 300}, {"asWord" : "cuarenta", "endToken" : 19, "original" : "cuarenta", "startToken" : 12, "value" : 40}
+       {"asWord" : "trescientos", "original" : "trescientos", "start" : 0, "value" : 300}, {"asWord" : "cuarenta",  "original" : "cuarenta", "start" : 12, "value" : 40}
     ]
   },
   {
@@ -162,7 +164,7 @@
       {
         "value": 347
       },
-      {"asWord" : "trescientos", "endToken" : 10, "original" : "trescientos", "startToken" : 0, "value" : 300}, {"asWord" : "cuarenta", "endToken" : 19, "original" : "cuarenta", "startToken" : 12, "value" : 40}, {"asWord" : "siete", "endToken" : 27, "original" : "siete", "startToken" : 23, "value" : 7}
+      {"asWord" : "trescientos",  "original" : "trescientos", "start" : 0, "value" : 300}, {"asWord" : "cuarenta",  "original" : "cuarenta", "start" : 12, "value" : 40}, {"asWord" : "siete",  "original" : "siete", "start" : 23, "value" : 7}
     ]
   },
   {
@@ -172,7 +174,7 @@
         "value": 234,
         "asWord": "doscientos treinta y cuatro"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "treinta", "endToken" : 17, "original" : "treinta", "startToken" : 11, "value" : 30}, {"asWord" : "quatro", "endToken" : 26, "original" : "cuatro", "startToken" : 21, "value" : 4}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "treinta",  "original" : "treinta", "start" : 11, "value" : 30}, {"asWord" : "quatro",  "original" : "cuatro", "start" : 21, "value" : 4}
     ]
   },
   {
@@ -187,19 +189,19 @@
         "value": 34,
         "asWord": "treinta y cuatro",
         "original": "treinta y cuatro",
-        "start": 11
+        "start": 12
       },
       {
         "value": 30,
         "asWord": "treinta",
         "original": "treinta",
-        "start": 11
+        "start": 12
       },
       {
         "value": 4,
         "asWord": "cuatro",
         "original": "cuatro",
-        "start": 18
+        "start": 22
       }
     ]
   },
@@ -210,29 +212,7 @@
         "value": 230004,
         "asWord": "doscientos treinta mil cuatro"
       },
-      {
-        "value": 2,
-        "asWord": "dos",
-        "original": "dos"
-      },
-      {
-        "value": 100,
-        "asWord": "cien",
-        "original": "cientos",
-        "start": 4
-      },
-      {
-        "value": 30,
-        "asWord": "treinta",
-        "original": "treinta",
-        "start": 10
-      },
-      {
-        "value": 4,
-        "asWord": "cuatro",
-        "original": "cuatro",
-        "start": 22
-      }
+     {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "treinta",  "original" : "treinta", "start" : 11, "value" : 30}, {"asWord" : "uno mil",  "original" : "mil", "start" : 19, "value" : 1000}, {"asWord" : "quatro",  "original" : "cuatro", "start" : 23, "value" : 4}
     ]
   },
   {
@@ -249,7 +229,7 @@
       {
         "value": 1003
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "tres", "endToken" : 7, "original" : "tres", "startToken" : 4, "value" : 3}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "tres",  "original" : "tres", "start" : 4, "value" : 3}
     ]
   },
   {
@@ -258,7 +238,7 @@
       {
         "value": 1203
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 13, "original" : "doscientos", "startToken" : 4, "value" : 200}, {"asWord" : "tres", "endToken" : 18, "original" : "tres", "startToken" : 15, "value" : 3}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 4, "value" : 200}, {"asWord" : "tres",  "original" : "tres", "start" : 15, "value" : 3}
     ]
   },
   {
@@ -267,7 +247,7 @@
       {
         "value": 6001
       },
-      {"asWord" : "seis", "endToken" : 3, "original" : "seis", "startToken" : 0, "value" : 6}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}, {"asWord" : "uno", "endToken" : 11, "original" : "uno", "startToken" : 9, "value" : 1}
+      {"asWord" : "seis",  "original" : "seis", "start" : 0, "value" : 6}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}, {"asWord" : "uno",  "original" : "uno", "start" : 9, "value" : 1}
     ]
   },
   {
@@ -276,7 +256,7 @@
       {
         "value": 6011
       },
-      {"asWord" : "seis", "endToken" : 3, "original" : "seis", "startToken" : 0, "value" : 6}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}, {"asWord" : "once", "endToken" : 12, "original" : "once", "startToken" : 9, "value" : 11}
+      {"asWord" : "seis",  "original" : "seis", "start" : 0, "value" : 6}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}, {"asWord" : "once",  "original" : "once", "start" : 9, "value" : 11}
     ]
   },
   {
@@ -286,7 +266,7 @@
         "value": 21000,
         "asWord": "veintiún mil"
       },
-      {"asWord" : "veintiuno", "endToken" : 7, "original" : "veintiún", "startToken" : 0, "value" : 21}, {"asWord" : "uno mil", "endToken" : 11, "original" : "mil", "startToken" : 9, "value" : 1000}
+      {"asWord" : "veintiuno",  "original" : "veintiún", "start" : 0, "value" : 21}, {"asWord" : "uno mil",  "original" : "mil", "start" : 9, "value" : 1000}
     ]
   },
   {
@@ -295,7 +275,7 @@
       {
         "value": 37041
       },
-      {"asWord" : "treinta", "endToken" : 6, "original" : "treinta", "startToken" : 0, "value" : 30}, {"asWord" : "siete", "endToken" : 14, "original" : "siete", "startToken" : 10, "value" : 7}, {"asWord" : "uno mil", "endToken" : 18, "original" : "mil", "startToken" : 16, "value" : 1000}, {"asWord" : "cuarenta", "endToken" : 27, "original" : "cuarenta", "startToken" : 20, "value" : 40}, {"asWord" : "uno", "endToken" : 33, "original" : "uno", "startToken" : 31, "value" : 1}
+      {"asWord" : "treinta",  "original" : "treinta", "start" : 0, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 10, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 16, "value" : 1000}, {"asWord" : "cuarenta",  "original" : "cuarenta", "start" : 20, "value" : 40}, {"asWord" : "uno",  "original" : "uno", "start" : 31, "value" : 1}
     ]
   },
   {
@@ -304,7 +284,7 @@
       {
         "value": 37049
       },
-      {"asWord" : "treinta", "endToken" : 6, "original" : "treinta", "startToken" : 0, "value" : 30}, {"asWord" : "siete", "endToken" : 14, "original" : "siete", "startToken" : 10, "value" : 7}, {"asWord" : "uno mil", "endToken" : 18, "original" : "mil", "startToken" : 16, "value" : 1000}, {"asWord" : "cuarenta", "endToken" : 27, "original" : "cuarenta", "startToken" : 20, "value" : 40}, {"asWord" : "nueve", "endToken" : 35, "original" : "nueve", "startToken" : 31, "value" : 9}
+      {"asWord" : "treinta",  "original" : "treinta", "start" : 0, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 10, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 16, "value" : 1000}, {"asWord" : "cuarenta",  "original" : "cuarenta", "start" : 20, "value" : 40}, {"asWord" : "nueve",  "original" : "nueve", "start" : 31, "value" : 9}
     ]
   },
   {
@@ -313,7 +293,7 @@
       {
         "value": 100012
       },
-      {"asWord" : "cien", "endToken" : 3, "original" : "cien", "startToken" : 0, "value" : 100}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}, {"asWord" : "doce", "endToken" : 12, "original" : "doce", "startToken" : 9, "value" : 12}
+      {"asWord" : "cien",  "original" : "cien", "start" : 0, "value" : 100}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}, {"asWord" : "doce",  "original" : "doce", "start" : 9, "value" : 12}
     ]
   },
   {
@@ -322,7 +302,7 @@
       {
         "value": 100970
       },
-      {"asWord" : "cien", "endToken" : 3, "original" : "cien", "startToken" : 0, "value" : 100}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}, {"asWord" : "novecientos", "endToken" : 19, "original" : "novecientos", "startToken" : 9, "value" : 900}, {"asWord" : "setenta", "endToken" : 27, "original" : "setenta", "startToken" : 21, "value" : 70}
+      {"asWord" : "cien",  "original" : "cien", "start" : 0, "value" : 100}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}, {"asWord" : "novecientos",  "original" : "novecientos", "start" : 9, "value" : 900}, {"asWord" : "setenta",  "original" : "setenta", "start" : 21, "value" : 70}
     ]
   },
   {
@@ -332,7 +312,7 @@
         "value": 188000,
         "asWord": "ciento ochenta y ocho mil"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "ochenta", "endToken" : 13, "original" : "ochenta", "startToken" : 7, "value" : 80}, {"asWord" : "ocho", "endToken" : 20, "original" : "ocho", "startToken" : 17, "value" : 8}, {"asWord" : "uno mil", "endToken" : 24, "original" : "mil", "startToken" : 22, "value" : 1000}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "ochenta",  "original" : "ochenta", "start" : 7, "value" : 80}, {"asWord" : "ocho",  "original" : "ocho", "start" : 17, "value" : 8}, {"asWord" : "uno mil",  "original" : "mil", "start" : 22, "value" : 1000}
     ]
   },
   {
@@ -342,7 +322,7 @@
         "value": 101003,
         "asWord": "ciento un mil tres"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "uno", "endToken" : 8, "original" : "un", "startToken" : 7, "value" : 1}, {"asWord" : "uno mil", "endToken" : 12, "original" : "mil", "startToken" : 10, "value" : 1000}, {"asWord" : "tres", "endToken" : 17, "original" : "tres", "startToken" : 14, "value" : 3}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "uno",  "original" : "un", "start" : 7, "value" : 1}, {"asWord" : "uno mil",  "original" : "mil", "start" : 10, "value" : 1000}, {"asWord" : "tres",  "original" : "tres", "start" : 14, "value" : 3}
     ]
   },
   {
@@ -351,7 +331,7 @@
       {
         "value": 112000
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "doce", "endToken" : 10, "original" : "doce", "startToken" : 7, "value" : 12}, {"asWord" : "uno mil", "endToken" : 14, "original" : "mil", "startToken" : 12, "value" : 1000}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "doce",  "original" : "doce", "start" : 7, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 12, "value" : 1000}
     ]
   },
   {
@@ -360,7 +340,7 @@
       {
         "value": 200000
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "uno mil", "endToken" : 13, "original" : "mil", "startToken" : 11, "value" : 1000}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "uno mil",  "original" : "mil", "start" : 11, "value" : 1000}
     ]
   },
   {
@@ -369,7 +349,7 @@
       {
         "value": 237000
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "treinta", "endToken" : 17, "original" : "treinta", "startToken" : 11, "value" : 30}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}, {"asWord" : "uno mil", "endToken" : 29, "original" : "mil", "startToken" : 27, "value" : 1000}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "treinta",  "original" : "treinta", "start" : 11, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 21, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 27, "value" : 1000}
     ]
   },
   {
@@ -378,7 +358,7 @@
       {
         "value": 237015
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "treinta", "endToken" : 17, "original" : "treinta", "startToken" : 11, "value" : 30}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}, {"asWord" : "uno mil", "endToken" : 29, "original" : "mil", "startToken" : 27, "value" : 1000}, {"asWord" : "quince", "endToken" : 36, "original" : "quince", "startToken" : 31, "value" : 15}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "treinta",  "original" : "treinta", "start" : 11, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 21, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 27, "value" : 1000}, {"asWord" : "quince",  "original" : "quince", "start" : 31, "value" : 15}
     ]
   },
   {
@@ -388,7 +368,7 @@
         "value": 237015,
         "asWord": "doscientos treinta y siete mil quince"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientas", "startToken" : 0, "value" : 200}, {"asWord" : "treinta", "endToken" : 17, "original" : "treinta", "startToken" : 11, "value" : 30}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}, {"asWord" : "uno mil", "endToken" : 29, "original" : "mil", "startToken" : 27, "value" : 1000}, {"asWord" : "quince", "endToken" : 36, "original" : "quince", "startToken" : 31, "value" : 15}
+      {"asWord" : "doscientos",  "original" : "doscientas", "start" : 0, "value" : 200}, {"asWord" : "treinta",  "original" : "treinta", "start" : 11, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 21, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 27, "value" : 1000}, {"asWord" : "quince",  "original" : "quince", "start" : 31, "value" : 15}
     ]
   },
   {
@@ -397,7 +377,7 @@
       {
         "value": 1001001
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "uno mil", "endToken" : 12, "original" : "mil", "startToken" : 10, "value" : 1000}, {"asWord" : "uno", "endToken" : 16, "original" : "uno", "startToken" : 14, "value" : 1}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "uno mil",  "original" : "mil", "start" : 10, "value" : 1000}, {"asWord" : "uno",  "original" : "uno", "start" : 14, "value" : 1}
     ]
   },
   {
@@ -406,7 +386,7 @@
       {
         "value": 1800002
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "ochocientos", "endToken" : 20, "original" : "ochocientos", "startToken" : 10, "value" : 800}, {"asWord" : "uno mil", "endToken" : 24, "original" : "mil", "startToken" : 22, "value" : 1000}, {"asWord" : "dos", "endToken" : 28, "original" : "dos", "startToken" : 26, "value" : 2}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 10, "value" : 800}, {"asWord" : "uno mil",  "original" : "mil", "start" : 22, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 26, "value" : 2}
     ]
   },
   {
@@ -425,7 +405,7 @@
         "value": 822021,
         "asWord": "ochocientos veintidós mil veintiuno",
         "original": "822.021",
-        "start": 10
+        "start": 9
       }
     ]
   },
@@ -445,7 +425,7 @@
         "value": 822021,
         "asWord": "ochocientos veintidós mil veintiuno",
         "original": "822.021",
-        "start": 10
+        "start": 9
       }
     ]
   },
@@ -455,7 +435,7 @@
       {
         "value": 1000822,
         "asWord": "un millón ochocientos veintidós",
-        "original": "1 milione 822"
+        "original": "1 millón 822"
       },
       {
         "value": 1,
@@ -466,13 +446,13 @@
         "value": 822,
         "asWord": "ochocientos veintidós",
         "original": "822",
-        "start": 10
+        "start": 9
       },
       {
         "value": 2,
         "asWord": "dos",
         "original": "02",
-        "start": 14
+        "start": 13
       }
     ]
   },
@@ -482,7 +462,7 @@
       {
         "value": 3800082
       },
-      {"asWord" : "tres", "endToken" : 3, "original" : "tres", "startToken" : 0, "value" : 3}, {"asWord" : "ochocientos", "endToken" : 24, "original" : "ochocientos", "startToken" : 14, "value" : 800}, {"asWord" : "uno mil", "endToken" : 28, "original" : "mil", "startToken" : 26, "value" : 1000}, {"asWord" : "ochenta", "endToken" : 36, "original" : "ochenta", "startToken" : 30, "value" : 80}, {"asWord" : "dos", "endToken" : 42, "original" : "dos", "startToken" : 40, "value" : 2}
+      {"asWord" : "tres",  "original" : "tres", "start" : 0, "value" : 3}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 14, "value" : 800}, {"asWord" : "uno mil",  "original" : "mil", "start" : 26, "value" : 1000}, {"asWord" : "ochenta",  "original" : "ochenta", "start" : 30, "value" : 80}, {"asWord" : "dos",  "original" : "dos", "start" : 40, "value" : 2}
     ]
   },
   {
@@ -492,7 +472,7 @@
         "value": 287800002,
         "asWord": "doscientos ochenta y siete millones ochocientos mil dos"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "ochenta", "endToken" : 17, "original" : "ochenta", "startToken" : 11, "value" : 80}, {"asWord" : "siete", "endToken" : 25, "original" : "siete", "startToken" : 21, "value" : 7}, {"asWord" : "ochocientos", "endToken" : 46, "original" : "ochocientos", "startToken" : 36, "value" : 800}, {"asWord" : "uno mil", "endToken" : 50, "original" : "mil", "startToken" : 48, "value" : 1000}, {"asWord" : "dos", "endToken" : 54, "original" : "dos", "startToken" : 52, "value" : 2}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "ochenta",  "original" : "ochenta", "start" : 11, "value" : 80}, {"asWord" : "siete",  "original" : "siete", "start" : 21, "value" : 7}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 36, "value" : 800}, {"asWord" : "uno mil",  "original" : "mil", "start" : 48, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 52, "value" : 2}
     ]
   },
   {
@@ -502,7 +482,7 @@
         "value": 3800002,
         "asWord": "tres millones ochocientos mil dos"
       },
-      {"asWord" : "tres", "endToken" : 3, "original" : "tres", "startToken" : 0, "value" : 3}, {"asWord" : "ochocientos", "endToken" : 24, "original" : "ochocientos", "startToken" : 14, "value" : 800}, {"asWord" : "uno mil", "endToken" : 28, "original" : "mil", "startToken" : 26, "value" : 1000}, {"asWord" : "dos", "endToken" : 32, "original" : "dos", "startToken" : 30, "value" : 2}
+      {"asWord" : "tres",  "original" : "tres", "start" : 0, "value" : 3}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 14, "value" : 800}, {"asWord" : "uno mil",  "original" : "mil", "start" : 26, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 30, "value" : 2}
     ]
   },
   {
@@ -521,7 +501,7 @@
         "value": 800,
         "asWord": "ochocientos",
         "original": "ochocientos",
-        "start": 15
+        "start": 16
       }
     ]
   },
@@ -551,7 +531,7 @@
       {
         "value": 200837000
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "ochocientos", "endToken" : 30, "original" : "ochocientos", "startToken" : 20, "value" : 800}, {"asWord" : "treinta", "endToken" : 38, "original" : "treinta", "startToken" : 32, "value" : 30}, {"asWord" : "siete", "endToken" : 46, "original" : "siete", "startToken" : 42, "value" : 7}, {"asWord" : "uno mil", "endToken" : 50, "original" : "mil", "startToken" : 48, "value" : 1000}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 20, "value" : 800}, {"asWord" : "treinta",  "original" : "treinta", "start" : 32, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 42, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 48, "value" : 1000}
     ]
   },
   {
@@ -560,7 +540,7 @@
       {
         "value": 200837002
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "ochocientos", "endToken" : 30, "original" : "ochocientos", "startToken" : 20, "value" : 800}, {"asWord" : "treinta", "endToken" : 38, "original" : "treinta", "startToken" : 32, "value" : 30}, {"asWord" : "siete", "endToken" : 46, "original" : "siete", "startToken" : 42, "value" : 7}, {"asWord" : "uno mil", "endToken" : 50, "original" : "mil", "startToken" : 48, "value" : 1000}, {"asWord" : "dos", "endToken" : 54, "original" : "dos", "startToken" : 52, "value" : 2}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 20, "value" : 800}, {"asWord" : "treinta",  "original" : "treinta", "start" : 32, "value" : 30}, {"asWord" : "siete",  "original" : "siete", "start" : 42, "value" : 7}, {"asWord" : "uno mil",  "original" : "mil", "start" : 48, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 52, "value" : 2}
     ]
   },
   {
@@ -569,7 +549,7 @@
       {
         "value": 200099000
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "noventa", "endToken" : 26, "original" : "noventa", "startToken" : 20, "value" : 90}, {"asWord" : "nueve", "endToken" : 34, "original" : "nueve", "startToken" : 30, "value" : 9}, {"asWord" : "uno mil", "endToken" : 38, "original" : "mil", "startToken" : 36, "value" : 1000}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "noventa",  "original" : "noventa", "start" : 20, "value" : 90}, {"asWord" : "nueve",  "original" : "nueve", "start" : 30, "value" : 9}, {"asWord" : "uno mil",  "original" : "mil", "start" : 36, "value" : 1000}
     ]
   },
   {
@@ -588,7 +568,7 @@
         "value": 22,
         "asWord": "veintidós"
       },
-      {"asWord" : "dos", "endToken" : 7, "original" : "2", "startToken" : 7, "value" : 2}
+      {"asWord" : "dos",  "original" : "2", "start" : 7, "value" : 2}
     ]
   },
   {
@@ -608,13 +588,14 @@
     ]
   },
   {
-    "text": "3 mil ",
+    "text": "3 mil",
     "tokens": [
       {
         "value": 3000,
-        "asWord": "tres mil"
+        "asWord": "tres mil",
+        "original": "3 mil"
       },
-      {"asWord" : "tres", "endToken" : 0, "original" : "3", "startToken" : 0, "value" : 3}, {"asWord" : "uno mil", "endToken" : 4, "original" : "mil", "startToken" : 2, "value" : 1000}
+      {"asWord" : "tres",  "original" : "3", "start" : 0, "value" : 3}, {"asWord" : "uno mil",  "original" : "mil", "start" : 2, "value" : 1000}
     ]
   },
   {
@@ -624,7 +605,7 @@
         "value": 123000,
         "asWord": "ciento veintitrés mil"
       },
-      {"asWord" : "cien veintitrés", "endToken" : 2, "original" : "123", "startToken" : 0, "value" : 123}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}
+      {"asWord" : "cien veintitrés",  "original" : "123", "start" : 0, "value" : 123}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}
     ]
   },
   {
@@ -635,7 +616,7 @@
         "asWord": "mil doscientos treinta y cuatro",
         "original": "1234"
       },
-      {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}
     ]
   },
   {
@@ -646,7 +627,7 @@
         "asWord": "doscientos millones noventa y nueve mil",
         "original": "doscientos millones 99000"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "noventa y nueve mil", "endToken" : 24, "original" : "99000", "startToken" : 20, "value" : 99000}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "noventa y nueve mil",  "original" : "99000", "start" : 20, "value" : 99000}
      ]
   },
   {
@@ -656,7 +637,7 @@
         "value": 200000099,
         "asWord": "doscientos millones noventa y nueve"
       },
-      {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "noventa y nueve", "endToken" : 21, "original" : "99", "startToken" : 20, "value" : 99}
+      {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "noventa y nueve",  "original" : "99", "start" : 20, "value" : 99}
      ]
   },
   {
@@ -666,7 +647,7 @@
         "value": 200000099,
         "asWord": "doscientos millones"
       },
-     {"asWord" : "doscientos", "endToken" : 9, "original" : "doscientos", "startToken" : 0, "value" : 200}, {"asWord" : "noventa", "endToken" : 26, "original" : "noventa", "startToken" : 20, "value" : 90}, {"asWord" : "nueve", "endToken" : 28, "original" : "9", "startToken" : 28, "value" : 9}
+     {"asWord" : "doscientos",  "original" : "doscientos", "start" : 0, "value" : 200}, {"asWord" : "noventa",  "original" : "noventa", "start" : 20, "value" : 90}, {"asWord" : "nueve",  "original" : "9", "start" : 30, "value" : 9}
     ]
   },
   {
@@ -676,7 +657,7 @@
         "value": 1000103,
         "asWord": "un millón ciento tres"
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "cien", "endToken" : 15, "original" : "ciento", "startToken" : 10, "value" : 100}, {"asWord" : "tres", "endToken" : 20, "original" : "tres", "startToken" : 17, "value" : 3}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "cien",  "original" : "ciento", "start" : 10, "value" : 100}, {"asWord" : "tres",  "original" : "tres", "start" : 17, "value" : 3}
     ]
   },
   {
@@ -686,7 +667,7 @@
         "value": 1103000,
         "asWord": "un millón ciento tres mil"
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "cien", "endToken" : 15, "original" : "ciento", "startToken" : 10, "value" : 100}, {"asWord" : "tres", "endToken" : 20, "original" : "tres", "startToken" : 17, "value" : 3}, {"asWord" : "uno mil", "endToken" : 24, "original" : "mil", "startToken" : 22, "value" : 1000}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "cien",  "original" : "ciento", "start" : 10, "value" : 100}, {"asWord" : "tres",  "original" : "tres", "start" : 17, "value" : 3}, {"asWord" : "uno mil",  "original" : "mil", "start" : 22, "value" : 1000}
     ]
   },
   {
@@ -696,7 +677,7 @@
         "value": 1103800,
         "asWord": "un millón ciento tres mil ochocientos"
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "cien", "endToken" : 15, "original" : "ciento", "startToken" : 10, "value" : 100}, {"asWord" : "tres", "endToken" : 20, "original" : "tres", "startToken" : 17, "value" : 3}, {"asWord" : "uno mil", "endToken" : 24, "original" : "mil", "startToken" : 22, "value" : 1000}, {"asWord" : "ochocientos", "endToken" : 36, "original" : "ochocientos", "startToken" : 26, "value" : 800}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "cien",  "original" : "ciento", "start" : 10, "value" : 100}, {"asWord" : "tres",  "original" : "tres", "start" : 17, "value" : 3}, {"asWord" : "uno mil",  "original" : "mil", "start" : 22, "value" : 1000}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 26, "value" : 800}
     ]
   },
   {
@@ -720,7 +701,7 @@
         "value": 999999000000,
         "asWord": "novecientos noventa y nueve mil novecientos noventa y nueve millones"
       },
-      {"asWord" : "novecientos", "endToken" : 10, "original" : "novecientos", "startToken" : 0, "value" : 900}, {"asWord" : "noventa", "endToken" : 18, "original" : "noventa", "startToken" : 12, "value" : 90}, {"asWord" : "nueve", "endToken" : 26, "original" : "nueve", "startToken" : 22, "value" : 9}, {"asWord" : "uno mil", "endToken" : 30, "original" : "mil", "startToken" : 28, "value" : 1000}, {"asWord" : "novecientos", "endToken" : 42, "original" : "novecientos", "startToken" : 32, "value" : 900}, {"asWord" : "noventa", "endToken" : 50, "original" : "noventa", "startToken" : 44, "value" : 90}, {"asWord" : "nueve", "endToken" : 58, "original" : "nueve", "startToken" : 54, "value" : 9}
+      {"asWord" : "novecientos",  "original" : "novecientos", "start" : 0, "value" : 900}, {"asWord" : "noventa",  "original" : "noventa", "start" : 12, "value" : 90}, {"asWord" : "nueve",  "original" : "nueve", "start" : 22, "value" : 9}, {"asWord" : "uno mil",  "original" : "mil", "start" : 28, "value" : 1000}, {"asWord" : "novecientos",  "original" : "novecientos", "start" : 32, "value" : 900}, {"asWord" : "noventa",  "original" : "noventa", "start" : 44, "value" : 90}, {"asWord" : "nueve",  "original" : "nueve", "start" : 54, "value" : 9}
     ]
   },
   {
@@ -730,7 +711,7 @@
         "value": 3245000,
         "asWord": "tres millones doscientos cuarenta y cinco mil"
       },
-      {"asWord" : "tres", "endToken" : 0, "original" : "3", "startToken" : 0, "value" : 3}, {"asWord" : "doscientos cuarenta y cinco mil", "endToken" : 16, "original" : "245000", "startToken" : 11, "value" : 245000}
+      {"asWord" : "tres",  "original" : "3", "start" : 0, "value" : 3}, {"asWord" : "doscientos cuarenta y cinco mil",  "original" : "245000", "start" : 11, "value" : 245000}
      ]
   },
   {
@@ -740,7 +721,7 @@
         "value": 3245000,
         "asWord": "tres millones doscientos cuarenta y cinco mil"
       },
-     {"asWord" : "tres", "endToken" : 0, "original" : "3", "startToken" : 0, "value" : 3}, {"asWord" : "doscientos cuarenta y cinco", "endToken" : 13, "original" : "245", "startToken" : 11, "value" : 245}, {"asWord" : "uno mil", "endToken" : 17, "original" : "mil", "startToken" : 15, "value" : 1000}
+     {"asWord" : "tres",  "original" : "3", "start" : 0, "value" : 3}, {"asWord" : "doscientos cuarenta y cinco",  "original" : "245", "start" : 11, "value" : 245}, {"asWord" : "uno mil",  "original" : "mil", "start" : 15, "value" : 1000}
     ]
   },
   {
@@ -759,7 +740,7 @@
         "value": 1000826002,
         "asWord": "mil millones ochocientos veintiséis mil dos"
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "ochocientos", "endToken" : 23, "original" : "ochocientos", "startToken" : 13, "value" : 800}, {"asWord" : "veintiséis", "endToken" : 34, "original" : "veintiséis", "startToken" : 25, "value" : 26}, {"asWord" : "uno mil", "endToken" : 38, "original" : "mil", "startToken" : 36, "value" : 1000}, {"asWord" : "dos", "endToken" : 42, "original" : "dos", "startToken" : 40, "value" : 2}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 13, "value" : 800}, {"asWord" : "veintiséis",  "original" : "veintiséis", "start" : 25, "value" : 26}, {"asWord" : "uno mil",  "original" : "mil", "start" : 36, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 40, "value" : 2}
     ]
   },
   {
@@ -769,7 +750,7 @@
         "value": 1000826002,
         "asWord": "mil millones ochocientos veintiséis mil dos"
       },
-     {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "ochocientos veintiséis mil dos", "endToken" : 18, "original" : "826002", "startToken" : 13, "value" : 826002}
+     {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "ochocientos veintiséis mil dos",  "original" : "826002", "start" : 13, "value" : 826002}
     ]
   },
   {
@@ -779,7 +760,7 @@
         "value": 1000826002,
         "asWord": "mil millones ochocientos veintiséis mil dos"
       },
-     {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "ochocientos veintiséis mil dos", "endToken" : 19, "original" : "826.002", "startToken" : 13, "value" : 826002}
+     {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "ochocientos veintiséis mil dos",  "original" : "826.002", "start" : 13, "value" : 826002}
     ]
   },
   {
@@ -789,7 +770,7 @@
         "value": 1826000007,
         "asWord": "mil ochocientos veintiséis millones siete"
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "ochocientos", "endToken" : 14, "original" : "ochocientos", "startToken" : 4, "value" : 800}, {"asWord" : "veintiséis", "endToken" : 25, "original" : "veintiséis", "startToken" : 16, "value" : 26}, {"asWord" : "siete", "endToken" : 40, "original" : "siete", "startToken" : 36, "value" : 7}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 4, "value" : 800}, {"asWord" : "veintiséis",  "original" : "veintiséis", "start" : 16, "value" : 26}, {"asWord" : "siete",  "original" : "siete", "start" : 36, "value" : 7}
     ]
   },
   {
@@ -798,7 +779,7 @@
       {
         "value": 1000000000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}
     ]
   },
   {
@@ -807,7 +788,7 @@
       {
         "value": 1100000000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 7, "original" : "cien", "startToken" : 4, "value" : 100}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "cien", "start" : 4, "value" : 100}
     ]
   },
   {
@@ -816,7 +797,7 @@
       {
         "value": 1110000000
       },
-       {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "diez", "endToken" : 14, "original" : "diez", "startToken" : 11, "value" : 10}
+       {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "diez",  "original" : "diez", "start" : 11, "value" : 10}
     ]
   },
   {
@@ -825,7 +806,7 @@
       {
         "value": 1111000000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}
     ]
   },
   {
@@ -834,7 +815,7 @@
       {
         "value": 1111100000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 28, "original" : "cien", "startToken" : 25, "value" : 100}, {"asWord" : "uno mil", "endToken" : 32, "original" : "mil", "startToken" : 30, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "cien", "start" : 25, "value" : 100}, {"asWord" : "uno mil",  "original" : "mil", "start" : 30, "value" : 1000}
     ]
   },
   {
@@ -843,7 +824,7 @@
       {
         "value": 1111110000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 30, "original" : "ciento", "startToken" : 25, "value" : 100}, {"asWord" : "diez", "endToken" : 35, "original" : "diez", "startToken" : 32, "value" : 10}, {"asWord" : "uno mil", "endToken" : 39, "original" : "mil", "startToken" : 37, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "ciento", "start" : 25, "value" : 100}, {"asWord" : "diez",  "original" : "diez", "start" : 32, "value" : 10}, {"asWord" : "uno mil",  "original" : "mil", "start" : 37, "value" : 1000}
     ]
   },
   {
@@ -852,7 +833,7 @@
       {
         "value": 1111111000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 30, "original" : "ciento", "startToken" : 25, "value" : 100}, {"asWord" : "once", "endToken" : 35, "original" : "once", "startToken" : 32, "value" : 11}, {"asWord" : "uno mil", "endToken" : 39, "original" : "mil", "startToken" : 37, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "ciento", "start" : 25, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 32, "value" : 11}, {"asWord" : "uno mil",  "original" : "mil", "start" : 37, "value" : 1000}
     ]
   },
   {
@@ -861,7 +842,7 @@
       {
         "value": 1111111100
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 30, "original" : "ciento", "startToken" : 25, "value" : 100}, {"asWord" : "once", "endToken" : 35, "original" : "once", "startToken" : 32, "value" : 11}, {"asWord" : "uno mil", "endToken" : 39, "original" : "mil", "startToken" : 37, "value" : 1000}, {"asWord" : "cien", "endToken" : 44, "original" : "cien", "startToken" : 41, "value" : 100}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "ciento", "start" : 25, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 32, "value" : 11}, {"asWord" : "uno mil",  "original" : "mil", "start" : 37, "value" : 1000}, {"asWord" : "cien",  "original" : "cien", "start" : 41, "value" : 100}
     ]
   },
   {
@@ -870,7 +851,7 @@
       {
         "value": 1111111110
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 30, "original" : "ciento", "startToken" : 25, "value" : 100}, {"asWord" : "once", "endToken" : 35, "original" : "once", "startToken" : 32, "value" : 11}, {"asWord" : "uno mil", "endToken" : 39, "original" : "mil", "startToken" : 37, "value" : 1000}, {"asWord" : "cien", "endToken" : 46, "original" : "ciento", "startToken" : 41, "value" : 100}, {"asWord" : "diez", "endToken" : 51, "original" : "diez", "startToken" : 48, "value" : 10}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "ciento", "start" : 25, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 32, "value" : 11}, {"asWord" : "uno mil",  "original" : "mil", "start" : 37, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 41, "value" : 100}, {"asWord" : "diez",  "original" : "diez", "start" : 48, "value" : 10}
     ]
   },
   {
@@ -879,7 +860,7 @@
       {
         "value": 1111111111
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "once", "endToken" : 14, "original" : "once", "startToken" : 11, "value" : 11}, {"asWord" : "cien", "endToken" : 30, "original" : "ciento", "startToken" : 25, "value" : 100}, {"asWord" : "once", "endToken" : 35, "original" : "once", "startToken" : 32, "value" : 11}, {"asWord" : "uno mil", "endToken" : 39, "original" : "mil", "startToken" : 37, "value" : 1000}, {"asWord" : "cien", "endToken" : 46, "original" : "ciento", "startToken" : 41, "value" : 100}, {"asWord" : "once", "endToken" : 51, "original" : "once", "startToken" : 48, "value" : 11}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 11, "value" : 11}, {"asWord" : "cien",  "original" : "ciento", "start" : 25, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 32, "value" : 11}, {"asWord" : "uno mil",  "original" : "mil", "start" : 37, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 41, "value" : 100}, {"asWord" : "once",  "original" : "once", "start" : 48, "value" : 11}
     ]
   },
   {
@@ -888,7 +869,7 @@
       {
         "value": 2222222222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 17, "original" : "doscientos", "startToken" : 8, "value" : 200}, {"asWord" : "veintidós", "endToken" : 27, "original" : "veintidós", "startToken" : 19, "value" : 22}, {"asWord" : "doscientos", "endToken" : 47, "original" : "doscientos", "startToken" : 38, "value" : 200}, {"asWord" : "veintidós", "endToken" : 57, "original" : "veintidós", "startToken" : 49, "value" : 22}, {"asWord" : "uno mil", "endToken" : 61, "original" : "mil", "startToken" : 59, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 72, "original" : "doscientos", "startToken" : 63, "value" : 200}, {"asWord" : "veintidós", "endToken" : 82, "original" : "veintidós", "startToken" : 74, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 8, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 19, "value" : 22}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 38, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 49, "value" : 22}, {"asWord" : "uno mil",  "original" : "mil", "start" : 59, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 63, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 74, "value" : 22}
     ]
   },
   {
@@ -897,7 +878,7 @@
       {
         "value": 2022222222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "veintidós", "endToken" : 16, "original" : "veintidós", "startToken" : 8, "value" : 22}, {"asWord" : "doscientos", "endToken" : 36, "original" : "doscientos", "startToken" : 27, "value" : 200}, {"asWord" : "veintidós", "endToken" : 46, "original" : "veintidós", "startToken" : 38, "value" : 22}, {"asWord" : "uno mil", "endToken" : 50, "original" : "mil", "startToken" : 48, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 61, "original" : "doscientos", "startToken" : 52, "value" : 200}, {"asWord" : "veintidós", "endToken" : 71, "original" : "veintidós", "startToken" : 63, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 8, "value" : 22}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 27, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 38, "value" : 22}, {"asWord" : "uno mil",  "original" : "mil", "start" : 48, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 52, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 63, "value" : 22}
     ]
   },
   {
@@ -906,7 +887,7 @@
       {
         "value": 2002222222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "dos", "endToken" : 10, "original" : "dos", "startToken" : 8, "value" : 2}, {"asWord" : "doscientos", "endToken" : 30, "original" : "doscientos", "startToken" : 21, "value" : 200}, {"asWord" : "veintidós", "endToken" : 40, "original" : "veintidós", "startToken" : 32, "value" : 22}, {"asWord" : "uno mil", "endToken" : 44, "original" : "mil", "startToken" : 42, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 55, "original" : "doscientos", "startToken" : 46, "value" : 200}, {"asWord" : "veintidós", "endToken" : 65, "original" : "veintidós", "startToken" : 57, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 8, "value" : 2}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 21, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 32, "value" : 22}, {"asWord" : "uno mil",  "original" : "mil", "start" : 42, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 46, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 57, "value" : 22}
     ]
   },
   {
@@ -915,7 +896,7 @@
       {
         "value": 2000222222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 26, "original" : "doscientos", "startToken" : 17, "value" : 200}, {"asWord" : "veintidós", "endToken" : 36, "original" : "veintidós", "startToken" : 28, "value" : 22}, {"asWord" : "uno mil", "endToken" : 40, "original" : "mil", "startToken" : 38, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 51, "original" : "doscientos", "startToken" : 42, "value" : 200}, {"asWord" : "veintidós", "endToken" : 61, "original" : "veintidós", "startToken" : 53, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 17, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 28, "value" : 22}, {"asWord" : "uno mil",  "original" : "mil", "start" : 38, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 42, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 53, "value" : 22}
     ]
   },
   {
@@ -924,7 +905,7 @@
       {
         "value": 2000022222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "veintidós", "endToken" : 25, "original" : "veintidós", "startToken" : 17, "value" : 22}, {"asWord" : "uno mil", "endToken" : 29, "original" : "mil", "startToken" : 27, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 40, "original" : "doscientos", "startToken" : 31, "value" : 200}, {"asWord" : "veintidós", "endToken" : 50, "original" : "veintidós", "startToken" : 42, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 17, "value" : 22}, {"asWord" : "uno mil",  "original" : "mil", "start" : 27, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 31, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 42, "value" : 22}
     ]
   },
   {
@@ -933,7 +914,7 @@
       {
         "value": 2000002222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "dos", "endToken" : 19, "original" : "dos", "startToken" : 17, "value" : 2}, {"asWord" : "uno mil", "endToken" : 23, "original" : "mil", "startToken" : 21, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 34, "original" : "doscientos", "startToken" : 25, "value" : 200}, {"asWord" : "veintidós", "endToken" : 44, "original" : "veintidós", "startToken" : 36, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 17, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 21, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 25, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 36, "value" : 22}
     ]
   },
   {
@@ -942,7 +923,7 @@
       {
         "value": 2000000222
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 26, "original" : "doscientos", "startToken" : 17, "value" : 200}, {"asWord" : "veintidós", "endToken" : 36, "original" : "veintidós", "startToken" : 28, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 17, "value" : 200}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 28, "value" : 22}
     ]
   },
   {
@@ -966,7 +947,7 @@
         "value": 6000000000327,
         "asWord": "seis billones trescientos veintisiete"
       },
-     {"asWord" : "seis", "endToken" : 3, "original" : "seis", "startToken" : 0, "value" : 6}, {"asWord" : "trescientos", "endToken" : 36, "original" : "trescientos", "startToken" : 26, "value" : 300}, {"asWord" : "veintisiete", "endToken" : 48, "original" : "veintisiete", "startToken" : 38, "value" : 27}
+     {"asWord" : "seis",  "original" : "seis", "start" : 0, "value" : 6}, {"asWord" : "trescientos",  "original" : "trescientos", "start" : 26, "value" : 300}, {"asWord" : "veintisiete",  "original" : "veintisiete", "start" : 38, "value" : 27}
     ]
   },
   {
@@ -976,7 +957,7 @@
         "value": 6000000000327.72,
         "asWord": "seis billones trescientos veintisiete coma setenta y dos"
       },
-     {"asWord" : "seis", "endToken" : 3, "original" : "seis", "startToken" : 0, "value" : 6}, {"asWord" : "trescientos", "endToken" : 36, "original" : "trescientos", "startToken" : 26, "value" : 300}, {"asWord" : "veintisiete", "endToken" : 48, "original" : "veintisiete", "startToken" : 38, "value" : 27}, {"asWord" : "setenta", "endToken" : 61, "original" : "setenta", "startToken" : 55, "value" : 70}, {"asWord" : "dos", "endToken" : 67, "original" : "dos", "startToken" : 65, "value" : 2}
+     {"asWord" : "seis",  "original" : "seis", "start" : 0, "value" : 6}, {"asWord" : "trescientos",  "original" : "trescientos", "start" : 26, "value" : 300}, {"asWord" : "veintisiete",  "original" : "veintisiete", "start" : 38, "value" : 27}, {"asWord" : "setenta",  "original" : "setenta", "start" : 55, "value" : 70}, {"asWord" : "dos",  "original" : "dos", "start" : 65, "value" : 2}
     ]
   },
   {
@@ -986,7 +967,7 @@
         "value": 1000000000000127,
         "asWord": "mil billones ciento veintisiete"
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "cien", "endToken" : 18, "original" : "ciento", "startToken" : 13, "value" : 100}, {"asWord" : "veintisiete", "endToken" : 21, "original" : "27", "startToken" : 20, "value" : 27}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "cien",  "original" : "ciento", "start" : 13, "value" : 100}, {"asWord" : "veintisiete",  "original" : "27", "start" : 20, "value" : 27}
     ]
   },
   {
@@ -995,7 +976,7 @@
       {
         "value": 2000000022
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "veintidós", "endToken" : 25, "original" : "veintidós", "startToken" : 17, "value" : 22}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "veintidós",  "original" : "veintidós", "start" : 17, "value" : 22}
     ]
   },
   {
@@ -1004,7 +985,7 @@
       {
         "value": 2000000002
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "dos", "endToken" : 19, "original" : "dos", "startToken" : 17, "value" : 2}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 17, "value" : 2}
     ]
   },
   {
@@ -1013,7 +994,7 @@
       {
         "value": 2000000000
       },
-      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}
+      {"asWord" : "dos",  "original" : "dos", "start" : 0, "value" : 2}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}
     ]
   },
   {
@@ -1022,7 +1003,7 @@
       {
         "value": 12000000000
       },
-      {"asWord" : "doce", "endToken" : 3, "original" : "doce", "startToken" : 0, "value" : 12}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}
+      {"asWord" : "doce",  "original" : "doce", "start" : 0, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}
     ]
   },
   {
@@ -1031,7 +1012,7 @@
       {
         "value": 112000000000
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "doce", "endToken" : 10, "original" : "doce", "startToken" : 7, "value" : 12}, {"asWord" : "uno mil", "endToken" : 14, "original" : "mil", "startToken" : 12, "value" : 1000}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "doce",  "original" : "doce", "start" : 7, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 12, "value" : 1000}
     ]
   },
   {
@@ -1041,11 +1022,7 @@
         "value": 2000000000000,
         "asWord": "dos billones"
       },
-      {
-        "value": 2000,
-        "asWord": "dos mil",
-        "original": "dos mil"
-      }
+      {"asWord" : "dos", "endToken" : 2, "original" : "dos", "startToken" : 0, "value" : 2}
     ]
   },
   {
@@ -1063,7 +1040,7 @@
       {
         "value": 1212000000000
       },
-      {"asWord" : "uno", "endToken" : 1, "original" : "un", "startToken" : 0, "value" : 1}, {"asWord" : "doscientos", "endToken" : 19, "original" : "doscientos", "startToken" : 10, "value" : 200}, {"asWord" : "doce", "endToken" : 24, "original" : "doce", "startToken" : 21, "value" : 12}, {"asWord" : "uno mil", "endToken" : 28, "original" : "mil", "startToken" : 26, "value" : 1000}
+      {"asWord" : "uno",  "original" : "un", "start" : 0, "value" : 1}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 10, "value" : 200}, {"asWord" : "doce",  "original" : "doce", "start" : 21, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 26, "value" : 1000}
     ]
   },
   {
@@ -1072,7 +1049,7 @@
       {
         "value": 310212000000000
       },
-      {"asWord" : "trescientos", "endToken" : 10, "original" : "trescientos", "startToken" : 0, "value" : 300}, {"asWord" : "diez", "endToken" : 15, "original" : "diez", "startToken" : 12, "value" : 10}, {"asWord" : "doscientos", "endToken" : 35, "original" : "doscientos", "startToken" : 26, "value" : 200}, {"asWord" : "doce", "endToken" : 40, "original" : "doce", "startToken" : 37, "value" : 12}, {"asWord" : "uno mil", "endToken" : 44, "original" : "mil", "startToken" : 42, "value" : 1000}
+      {"asWord" : "trescientos",  "original" : "trescientos", "start" : 0, "value" : 300}, {"asWord" : "diez",  "original" : "diez", "start" : 12, "value" : 10}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 26, "value" : 200}, {"asWord" : "doce",  "original" : "doce", "start" : 37, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 42, "value" : 1000}
     ]
   },
   {
@@ -1081,7 +1058,7 @@
       {
         "value": 1000212000000000
       },
-      {"asWord" : "uno mil", "endToken" : 2, "original" : "mil", "startToken" : 0, "value" : 1000}, {"asWord" : "doscientos", "endToken" : 22, "original" : "doscientos", "startToken" : 13, "value" : 200}, {"asWord" : "doce", "endToken" : 27, "original" : "doce", "startToken" : 24, "value" : 12}, {"asWord" : "uno mil", "endToken" : 31, "original" : "mil", "startToken" : 29, "value" : 1000}
+      {"asWord" : "uno mil",  "original" : "mil", "start" : 0, "value" : 1000}, {"asWord" : "doscientos",  "original" : "doscientos", "start" : 13, "value" : 200}, {"asWord" : "doce",  "original" : "doce", "start" : 24, "value" : 12}, {"asWord" : "uno mil",  "original" : "mil", "start" : 29, "value" : 1000}
     ]
   },
   {
@@ -1090,7 +1067,7 @@
       {
         "value": 78000000000800003
       },
-      {"asWord" : "setenta", "endToken" : 6, "original" : "setenta", "startToken" : 0, "value" : 70}, {"asWord" : "ocho", "endToken" : 13, "original" : "ocho", "startToken" : 10, "value" : 8}, {"asWord" : "uno mil", "endToken" : 17, "original" : "mil", "startToken" : 15, "value" : 1000}, {"asWord" : "ochocientos", "endToken" : 38, "original" : "ochocientos", "startToken" : 28, "value" : 800}, {"asWord" : "uno mil", "endToken" : 42, "original" : "mil", "startToken" : 40, "value" : 1000}, {"asWord" : "tres", "endToken" : 47, "original" : "tres", "startToken" : 44, "value" : 3}
+      {"asWord" : "setenta",  "original" : "setenta", "start" : 0, "value" : 70}, {"asWord" : "ocho",  "original" : "ocho", "start" : 10, "value" : 8}, {"asWord" : "uno mil",  "original" : "mil", "start" : 15, "value" : 1000}, {"asWord" : "ochocientos",  "original" : "ochocientos", "start" : 28, "value" : 800}, {"asWord" : "uno mil",  "original" : "mil", "start" : 40, "value" : 1000}, {"asWord" : "tres",  "original" : "tres", "start" : 44, "value" : 3}
     ]
   },
   {
@@ -1100,7 +1077,7 @@
         "value": 6000000000000327,
         "asWord": "seis mil billones trescientos veintisiete"
       },
-      {"asWord" : "seis", "endToken" : 3, "original" : "seis", "startToken" : 0, "value" : 6}, {"asWord" : "uno mil", "endToken" : 7, "original" : "mil", "startToken" : 5, "value" : 1000}, {"asWord" : "trescientos", "endToken" : 28, "original" : "trescientos", "startToken" : 18, "value" : 300}, {"asWord" : "veintisiete", "endToken" : 40, "original" : "veintisiete", "startToken" : 30, "value" : 27}
+      {"asWord" : "seis",  "original" : "seis", "start" : 0, "value" : 6}, {"asWord" : "uno mil",  "original" : "mil", "start" : 5, "value" : 1000}, {"asWord" : "trescientos",  "original" : "trescientos", "start" : 18, "value" : 300}, {"asWord" : "veintisiete",  "original" : "veintisiete", "start" : 30, "value" : 27}
     ]
   },
   {
@@ -1137,7 +1114,7 @@
         "value": 120.4002,
         "asWord": "ciento veinte coma cuatro mil dos"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "veinte", "endToken" : 12, "original" : "veinte", "startToken" : 7, "value" : 20}, {"asWord" : "quatro", "endToken" : 24, "original" : "cuatro", "startToken" : 19, "value" : 4}, {"asWord" : "uno mil", "endToken" : 28, "original" : "mil", "startToken" : 26, "value" : 1000}, {"asWord" : "dos", "endToken" : 32, "original" : "dos", "startToken" : 30, "value" : 2}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 7, "value" : 20}, {"asWord" : "quatro",  "original" : "cuatro", "start" : 19, "value" : 4}, {"asWord" : "uno mil",  "original" : "mil", "start" : 26, "value" : 1000}, {"asWord" : "dos",  "original" : "dos", "start" : 30, "value" : 2}
     ]
   },
   {
@@ -1149,7 +1126,7 @@
         "original": "ciento veinte coma quince",
         "start": 4
       },
-      {"asWord" : "cien", "endToken" : 9, "original" : "ciento", "startToken" : 4, "value" : 100}, {"asWord" : "veinte", "endToken" : 16, "original" : "veinte", "startToken" : 11, "value" : 20}, {"asWord" : "quince", "endToken" : 28, "original" : "quince", "startToken" : 23, "value" : 15}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 4, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 11, "value" : 20}, {"asWord" : "quince",  "original" : "quince", "start" : 23, "value" : 15}
     ]
   },
   {
@@ -1159,7 +1136,7 @@
         "value": 120.78302,
         "asWord": "ciento veinte coma siete ocho tres cero dos"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "veinte", "endToken" : 12, "original" : "veinte", "startToken" : 7, "value" : 20}, {"asWord" : "siete", "endToken" : 23, "original" : "siete", "startToken" : 19, "value" : 7}, {"asWord" : "ocho", "endToken" : 28, "original" : "ocho", "startToken" : 25, "value" : 8}, {"asWord" : "tres", "endToken" : 33, "original" : "tres", "startToken" : 30, "value" : 3}, {"asWord" : "zero", "endToken" : 38, "original" : "cero", "startToken" : 35, "value" : 0}, {"asWord" : "dos", "endToken" : 42, "original" : "dos", "startToken" : 40, "value" : 2}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 7, "value" : 20}, {"asWord" : "siete",  "original" : "siete", "start" : 19, "value" : 7}, {"asWord" : "ocho",  "original" : "ocho", "start" : 25, "value" : 8}, {"asWord" : "tres",  "original" : "tres", "start" : 30, "value" : 3}, {"asWord" : "zero",  "original" : "cero", "start" : 35, "value" : 0}, {"asWord" : "dos",  "original" : "dos", "start" : 40, "value" : 2}
     ]
   },
   {
@@ -1169,7 +1146,7 @@
         "value": 120.783,
         "asWord": "ciento veinte coma seite ocho tres"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "veinte", "endToken" : 12, "original" : "veinte", "startToken" : 7, "value" : 20}, {"asWord" : "siete", "endToken" : 23, "original" : "siete", "startToken" : 19, "value" : 7}, {"asWord" : "ocho", "endToken" : 28, "original" : "ocho", "startToken" : 25, "value" : 8}, {"asWord" : "tres", "endToken" : 33, "original" : "tres", "startToken" : 30, "value" : 3}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 7, "value" : 20}, {"asWord" : "siete",  "original" : "siete", "start" : 19, "value" : 7}, {"asWord" : "ocho",  "original" : "ocho", "start" : 25, "value" : 8}, {"asWord" : "tres",  "original" : "tres", "start" : 30, "value" : 3}
     ]
   },
   {
@@ -1217,7 +1194,7 @@
   {
     "text": "El Sol inmediatamente después de su formación, asumió una órbita casi circular alrededor del centro de la Vía Láctea, a una distancia promedio de aproximadamente 26.000 a.l. El Sol emplea, considerando la masa, unos 10 mil millones de años para agotar completamente el hidrógeno en su núcleo entre aproximadamente 5 mil millones de años, el Sol entrará en una fase de fuerte inestabilidad, la expansión causará un enfriamiento del gas (hasta 3500 K)",
     "tokens": [
-      {"asWord" : "uno", "endToken" : 56, "original" : "una", "startToken" : 54, "value" : 1}, {"asWord" : "uno", "endToken" : 122, "original" : "una", "startToken" : 120, "value" : 1}, {"asWord" : "veintiséis mil", "endToken" : 167, "original" : "26.000", "startToken" : 162, "value" : 26000}, {"asWord" : "diez mil millones", "endToken" : 230, "original" : "10 mil millones", "startToken" : 216, "value" : 10000000000}, {"asWord" : "diez", "endToken" : 217, "original" : "10", "startToken" : 216, "value" : 10}, {"asWord" : "uno mil", "endToken" : 221, "original" : "mil", "startToken" : 219, "value" : 1000}, {"asWord" : "cinco mil millones", "endToken" : 327, "original" : "5 mil millones", "startToken" : 314, "value" : 5000000000}, {"asWord" : "cinco", "endToken" : 314, "original" : "5", "startToken" : 314, "value" : 5}, {"asWord" : "uno mil", "endToken" : 318, "original" : "mil", "startToken" : 316, "value" : 1000}, {"asWord" : "uno", "endToken" : 358, "original" : "una", "startToken" : 356, "value" : 1}, {"asWord" : "uno", "endToken" : 412, "original" : "un", "startToken" : 411, "value" : 1}, {"asWord" : "tres mil quinientos", "endToken" : 445, "original" : "3500", "startToken" : 442, "value" : 3500}
+      {"asWord" : "uno",  "original" : "una", "start" : 54, "value" : 1}, {"asWord" : "uno",  "original" : "una", "start" : 120, "value" : 1}, {"asWord" : "veintiséis mil",  "original" : "26.000", "start" : 162, "value" : 26000}, {"asWord" : "diez mil millones",  "original" : "10 mil millones", "start" : 216, "value" : 10000000000}, {"asWord" : "diez",  "original" : "10", "start" : 216, "value" : 10}, {"asWord" : "uno mil",  "original" : "mil", "start" : 219, "value" : 1000}, {"asWord" : "cinco mil millones",  "original" : "5 mil millones", "start" : 314, "value" : 5000000000}, {"asWord" : "cinco",  "original" : "5", "start" : 314, "value" : 5}, {"asWord" : "uno mil",  "original" : "mil", "start" : 316, "value" : 1000}, {"asWord" : "uno",  "original" : "una", "start" : 356, "value" : 1}, {"asWord" : "uno",  "original" : "un", "start" : 411, "value" : 1}, {"asWord" : "tres mil quinientos",  "original" : "3500", "start" : 442, "value" : 3500}
     ]
   },
   {
@@ -1239,7 +1216,8 @@
     "tokens": [
       {
         "value": 1000000000000,
-        "asWord": "un billón"
+        "asWord": "un billón",
+        "original": "un billón"
       },
       {
         "value": 1,
@@ -1255,35 +1233,13 @@
         "value": 999999999999999999999,
         "asWord": "novecientos noventa y nueve trillones novecientos noventa y nueve mil novecientos noventa y nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve"
       },
-      {
-        "value": 999,
-        "asWord": "novecientos noventa y nueve",
-        "original": "999",
-        "start": 16
-      },
-      {
-        "value": 999999,
-        "asWord": "novecientos noventa y nueve mil novecientos noventa y nueve",
-        "original": "999999"
-      },
-      {
-        "value": 999999,
-        "asWord": "novecientos noventa y nueve mil novecientos noventa y nueve",
-        "original": "999999",
-        "start": 53
-      },
-      {
-        "value": 999,
-        "asWord": "novecientos noventa y nueve",
-        "original": "999",
-        "start": 41
-      }
+     {"asWord" : "novecientos noventa y nueve",  "original" : "999", "start" : 0, "value" : 999}, {"asWord" : "novecientos noventa y nueve mil novecientos noventa y nueve",  "original" : "999999", "start" : 14, "value" : 999999}, {"asWord" : "novecientos noventa y nueve mil novecientos noventa y nueve",  "original" : "999999", "start" : 30, "value" : 999999}, {"asWord" : "novecientos noventa y nueve mil novecientos noventa y nueve",  "original" : "999999", "start" : 46, "value" : 999999}
     ]
   },
   {
     "text": "ciento veinte,37",
     "tokens": [
-      {"asWord" : "cien veinte", "endToken" : 12, "original" : "ciento veinte", "startToken" : 0, "value" : 120}, {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "veinte", "endToken" : 12, "original" : "veinte", "startToken" : 7, "value" : 20}, {"asWord" : "treinta y siete", "endToken" : 15, "original" : "37", "startToken" : 14, "value" : 37}
+      {"asWord" : "cien veinte",  "original" : "ciento veinte", "start" : 0, "value" : 120}, {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 7, "value" : 20}, {"asWord" : "treinta y siete",  "original" : "37", "start" : 14, "value" : 37}
     ]
   },
   {
@@ -1293,7 +1249,7 @@
         "value": 120.37,
         "asWord": "ciento veinte coma tres siete"
       },
-      {"asWord" : "cien", "endToken" : 5, "original" : "ciento", "startToken" : 0, "value" : 100}, {"asWord" : "veinte", "endToken" : 12, "original" : "veinte", "startToken" : 7, "value" : 20}, {"asWord" : "treinta y siete", "endToken" : 20, "original" : "37", "startToken" : 19, "value" : 37}
+      {"asWord" : "cien",  "original" : "ciento", "start" : 0, "value" : 100}, {"asWord" : "veinte",  "original" : "veinte", "start" : 7, "value" : 20}, {"asWord" : "treinta y siete",  "original" : "37", "start" : 19, "value" : 37}
     ]
   },
   {
@@ -1303,7 +1259,7 @@
         "value": 274000000234,
         "asWord": "un billón doscientos setenta y cuatro mil millones doscientos treinta y cuatro"
       },
-      {"asWord" : "doscientos setenta y quatro", "endToken" : 2, "original" : "274", "startToken" : 0, "value" : 274}, {"asWord" : "uno mil", "endToken" : 6, "original" : "mil", "startToken" : 4, "value" : 1000}, {"asWord" : "doscientos treinta y quatro", "endToken" : 19, "original" : "234", "startToken" : 17, "value" : 234}
+      {"asWord" : "doscientos setenta y quatro",  "original" : "274", "start" : 0, "value" : 274}, {"asWord" : "uno mil",  "original" : "mil", "start" : 4, "value" : 1000}, {"asWord" : "doscientos treinta y quatro",  "original" : "234", "start" : 17, "value" : 234}
     ]
   },
   {
@@ -1322,7 +1278,7 @@
         "value": 12,
         "asWord": "doce",
         "original": "12",
-        "start": 10
+        "start": 7
       }
     ]
   },
@@ -1342,19 +1298,19 @@
         "value": 1,
         "asWord": "uno",
         "original": "uno",
-        "start": 10
+        "start": 7
       },
       {
         "value": 0,
         "asWord": "cero",
         "original": "cero",
-        "start": 14
+        "start": 11
       },
       {
         "value": 2,
         "asWord": "dos",
         "original": "dos",
-        "start": 19
+        "start": 16
       }
     ]
   },
@@ -1374,13 +1330,13 @@
         "value": 0,
         "asWord": "cero",
         "original": "cero",
-        "start": 10
+        "start": 7
       },
       {
         "value": 2,
         "asWord": "dos",
         "original": "dos",
-        "start": 15
+        "start": 12
       }
     ]
   },
@@ -1401,13 +1357,13 @@
         "value": 1,
         "asWord": "uno",
         "original": "1",
-        "start": 10
+        "start": 7
       },
       {
         "value": 2,
         "asWord": "dos",
         "original": "2",
-        "start": 12
+        "start": 9
       }
     ]
   },
@@ -1428,13 +1384,13 @@
         "value": 1,
         "asWord": "uno",
         "original": "uno",
-        "start": 10
+        "start": 7
       },
       {
         "value": 2,
         "asWord": "dos",
         "original": "2",
-        "start": 14
+        "start": 11
       }
     ]
   }
