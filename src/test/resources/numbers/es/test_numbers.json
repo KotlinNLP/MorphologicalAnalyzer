@@ -1212,21 +1212,6 @@
     ]
   },
   {
-    "text": "un billón",
-    "tokens": [
-      {
-        "value": 1000000000000,
-        "asWord": "un billón",
-        "original": "un billón"
-      },
-      {
-        "value": 1,
-        "asWord": "uno",
-        "original": "un"
-      }
-    ]
-  },
-  {
     "text": "999 trillones 999999 billones 999999 millones 999999",
     "tokens": [
       {
