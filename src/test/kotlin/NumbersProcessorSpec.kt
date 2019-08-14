@@ -30,6 +30,11 @@ object NumbersProcessorSpec : Spek({
           val processor = NumbersProcessor(getLanguageByIso(lang))
           val numbers: List<Number> =
             processor.findNumbers(text = test.text, tokens = SimpleTokenizer.tokenize(test.text), mode = "split")
+          if (test.tokens[0].value != numbers[0].value || test.tokens.size != numbers.size) {
+            println("------------------------")
+            println(test.tokens)
+            println(Klaxon().toJsonString(numbers))
+          }
 
           it("should contain %d elements".format(test.tokens.size)) {
             assertEquals(test.tokens.size, numbers.size)

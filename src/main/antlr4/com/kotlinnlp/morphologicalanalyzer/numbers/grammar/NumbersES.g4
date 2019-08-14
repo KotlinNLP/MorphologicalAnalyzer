@@ -23,12 +23,10 @@ w_hundred_900: W_HUNDRED_900;
 
 w_one_million: W_ONE_MILLION;
 w_million: W_MILLION;
-w_billion: W_BILLION;
 w_one_trillion: W_ONE_TRILLION;
 w_trillion: W_TRILLION;
-w_quadrillion: W_QUADRILLION;
 
-n_tens_20    : (w_20_pref w_1 | w_20_pref w_1_art | w_20_pref w_1_acc | w_20_pref w_2_acc | w_20_pref w_3_acc | w_20_pref w_4 | w_20_pref w_5 | w_20_pref w_6 | w_20_pref w_6_acc | w_20_pref w_7 | w_20_pref w_8 | w_20_pref w_9 | w_20 WS d_unit | w_20);
+n_tens_20    : (w_20_pref w_1 | w_20_pref w_1_art | w_20_pref w_1_acc | w_20_pref w_2_acc | w_20_pref w_3_acc | w_20_pref w_4 | w_20_pref w_5 | w_20_pref w_6 | w_20_pref w_6_acc | w_20_pref w_7 | w_20_pref w_8 | w_20_pref w_9 | w_20_pref WS+ d_unit | w_20);
 n_tens_30    : (w_30 WS+ AND WS+ w_1 | w_30 WS+ AND WS+ w_1_art | w_30 WS+ AND WS+ w_2 | w_30 WS+ AND WS+ w_3 | w_30 WS+ AND WS+ w_4 | w_30 WS+ AND WS+ w_5 | w_30 WS+ AND WS+ w_6 | w_30 WS+ AND WS+ w_7 | w_30 WS+ AND WS+ w_8 | w_30 WS+ AND WS+ w_9 | w_30 WS+ AND WS+ d_unit | w_30);
 n_tens_40    : (w_40 WS+ AND WS+ w_1 | w_40 WS+ AND WS+ w_1_art | w_40 WS+ AND WS+ w_2 | w_40 WS+ AND WS+ w_3 | w_40 WS+ AND WS+ w_4 | w_40 WS+ AND WS+ w_5 | w_40 WS+ AND WS+ w_6 | w_40 WS+ AND WS+ w_7 | w_40 WS+ AND WS+ w_8 | w_40 WS+ AND WS+ w_9 | w_40 WS+ AND WS+ d_unit | w_40);
 n_tens_50    : (w_50 WS+ AND WS+ w_1 | w_50 WS+ AND WS+ w_1_art | w_50 WS+ AND WS+ w_2 | w_50 WS+ AND WS+ w_3 | w_50 WS+ AND WS+ w_4 | w_50 WS+ AND WS+ w_5 | w_50 WS+ AND WS+ w_6 | w_50 WS+ AND WS+ w_7 | w_50 WS+ AND WS+ w_8 | w_50 WS+ AND WS+ w_9 | w_50 WS+ AND WS+ d_unit | w_50);
@@ -58,13 +56,6 @@ million_prefix:
 	(w_1_art | D_1) WS? w_one_million # one_million_prefix
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_million # millions_prefix
-;
-
-billion:
-	(max_6_digits_with_div | max_6_digits | thousand) WS? w_million (WS? (max_9_digits_with_div | n_1_999m | max_9_digits))? # billions
-;
-billion_prefix:
-	(max_6_digits_with_div | max_6_digits | thousand) WS? w_million # billions_prefix
 ;
 
 trillion:

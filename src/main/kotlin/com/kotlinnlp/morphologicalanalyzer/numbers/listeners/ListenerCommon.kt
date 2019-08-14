@@ -250,34 +250,22 @@ internal interface ListenerCommon {
     val accumulator = AnnotationsAccumulator()
     var prefix: String? = null
     var millions = "000000000"
-    var thousand = false
 
     this.visitParseTree(accumulator = accumulator, ctx = ctx as ParserRuleContext)
 
     accumulator.forEachAnnotation {
 
       when (it.first) {
-        "Thousand" -> {
-          prefix = it.second
-          thousand = true
-        }
         "D_1_999k" -> prefix = it.second
         "Max_6_digits" -> prefix = it.second
         "D_1_999m" -> millions = it.second
         "Max_9_digits" -> if(prefix == null) prefix = it.second else millions = it.second
       }
     }
-    if (!thousand)
       this.setTreeValue(
         ctx as ParseTree,
         type = "Billions",
         value = "%d%09d".format(prefix!!.toLong(), millions.toLong()))
-    else
-      this.setTreeValue(
-        ctx as ParseTree,
-        type = "Billions",
-        value = "%d%06d".format(prefix!!.toLong(), millions.toLong()))
-
   }
 
   /**

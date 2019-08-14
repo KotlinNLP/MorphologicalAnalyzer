@@ -52,11 +52,11 @@ W_HUNDRED      : C I E N;
 W_THOUSAND     : M I L;
 W_ONE_MILLION  : M I L L OO N;
 W_MILLION      : M I L L O N E S;
-W_ONE_BILLION  : M I L L A R D O;
-W_BILLION      : M I L L A R D E S;
+W_ONE_BILLION  : M I L L A R D O; // rare
+W_BILLION      : M I L L A R D E S; // rare
 W_ONE_TRILLION : B I L L OO N;
 W_TRILLION     : B I L L O N E S;
-W_ONE_QUADRILLION : T R I L L O N;
+W_ONE_QUADRILLION : T R I L L O N; // TODO: include quadrillions
 W_QUADRILLION : T R I L L O N E S;
 W_WORDDECDIV   : C O M A;
 W_OF           : D E;
