@@ -156,7 +156,7 @@ n_1_999i: billion | n_1_999m;
 // TRILLION (b)
 // from 1b to (999i999m999k999)b 999i999m999k999
 trillion:
-	(w_1 | w_1_art | D_1) WS? w_one_trillion WS? n_1_999i? # one_trillion
+	(w_1 | w_1_art | D_1) WS? w_one_trillion (WS? n_1_999i)? # one_trillion
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_trillion (WS? n_1_999i)? # trillions
 ;
@@ -172,7 +172,7 @@ n_1_999b: trillion | n_1_999i;
 // QUADRILLION (B)
 // from 1B to (999b999i999m999k999)B 999b999i999m999k999
 quadrillion:
-	(w_1 | w_1_art | D_1) WS? w_one_quadrillion WS? n_1_999b? # one_quadrillion
+	(w_1 | w_1_art | D_1) WS? w_one_quadrillion (WS? n_1_999b)? # one_quadrillion
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_quadrillion (WS? n_1_999b)? # quadrillions
 ;

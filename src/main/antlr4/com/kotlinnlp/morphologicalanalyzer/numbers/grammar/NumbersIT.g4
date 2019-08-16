@@ -60,7 +60,7 @@ billion_prefix:
 ;
 
 trillion: 
-	(w_1_art | D_1) WS? w_one_trillion WS? n_1_999i? # one_trillion
+	(w_1_art | D_1) WS? w_one_trillion (WS? (n_1_999i))? # one_trillion
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_trillion (WS? n_1_999i)? # trillions
 ;                    
@@ -71,7 +71,7 @@ trillion_prefix:
 ;
 
 quadrillion:
-	(w_1_art | D_1) WS? w_one_quadrillion WS? n_1_999b? # one_quadrillion
+	(w_1_art | D_1) WS? w_one_quadrillion (WS? (n_1_999b))? # one_quadrillion
 	|
 	(max_6_digits_with_div | n_1_999k | max_6_digits) WS? w_quadrillion (WS? n_1_999b)? # quadrillions
 ;

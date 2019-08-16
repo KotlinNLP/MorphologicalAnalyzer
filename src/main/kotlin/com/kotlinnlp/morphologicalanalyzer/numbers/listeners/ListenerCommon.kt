@@ -1271,7 +1271,7 @@ internal interface ListenerCommon {
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),
-      original = ctx.text.trim()
+      original = ctx.text
     )
   }
 
