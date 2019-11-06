@@ -208,6 +208,8 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   }
 
   /**
+   * TODO: make parameter lemma a vararg in order to allow a search with more components
+   *
    * @param lemma a lemma
    *
    * @return all the entries with single morphologies having the given lemma
