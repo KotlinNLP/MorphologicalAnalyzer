@@ -8,6 +8,8 @@
 package com.kotlinnlp.morphologicalanalyzer.dictionary
 
 import com.beust.klaxon.*
+import com.google.common.collect.BiMap
+import com.google.common.collect.HashBiMap
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.linguisticdescription.morphology.Morphology
 import com.kotlinnlp.morphologicalanalyzer.dictionary.compressor.MorphologyCompressor
@@ -71,6 +73,8 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
         val entryObj = jsonParser.parse(StringBuilder(line)) as JsonObject
         val morphologies: List<JsonObject> = entryObj.array("morpho")!!
         val uniqueForm: String = getForms(entryObj).joinToString(separator = " ") { it.normalize() }
+
+        dictionary.mapFormByLemmas(uniqueForm = uniqueForm, lemmas = morphologies.map { it.string("lemma")!! })
 
         dictionary.addEntry(
           uniqueForm = uniqueForm,
@@ -152,6 +156,16 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   private val morphologyMap = mutableMapOf<String, String>()
 
   /**
+   * The bi-map of all the forms.
+   */
+  private val formsBiMap: BiMap<String, Int> = HashBiMap.create()
+
+  /**
+   * The map of lemmas to the sets of possible forms (as indices of the dictionary).
+   */
+  private val lemmasMap = mutableMapOf<String, MutableSet<Int>>()
+
+  /**
    * The list of multi-words.
    */
   private val multiWords = mutableListOf<String>()
@@ -192,6 +206,26 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
       null
     }
   }
+
+  /**
+   * @param lemma a lemma
+   *
+   * @return all the entries with single morphologies having the given lemma
+   */
+  fun getByLemma(lemma: String): List<Entry> = this.lemmasMap[lemma]?.mapNotNull { formIndex ->
+
+    val form: String = this.formsBiMap.inverse().getValue(formIndex)
+    val entry: Entry = this[form]!!
+    val morphologies: List<Morphology> = entry.morphologies.filter {
+      it.type == Morphology.Type.Single && it.components.single().lemma == lemma
+    }
+
+    if (morphologies.isNotEmpty())
+      entry.copy(morphologies = morphologies)
+    else
+      null
+
+  } ?: listOf()
 
   /**
    * Get the multi-words in which the given [word] is involved.
@@ -242,6 +276,19 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
       this.size++
       morphologyString
     }
+  }
+
+  /**
+   * Map the lemmas of a given form.
+   *
+   * @param uniqueForm a dictionary form
+   * @param lemmas a list of lemmas of the given form
+   */
+  private fun mapFormByLemmas(uniqueForm: String, lemmas: List<String>) {
+
+    val formIndex: Int = this.formsBiMap.getOrPut(uniqueForm) { this.formsBiMap.size }
+
+    lemmas.forEach { this.lemmasMap.getOrPut(it) { mutableSetOf() }.add(formIndex) }
   }
 
   /**
