@@ -140,7 +140,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   private val compressor = MorphologyCompressor(allowDefaultProperties)
 
   /**
-   * The map of forms to [Entry] objects.
+   * The map of forms to encoded entries.
    */
   private val morphologyMap = mutableMapOf<String, String>()
 
