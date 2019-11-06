@@ -69,12 +69,12 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
       forEachLine(filename) { line ->
 
         val entryObj = jsonParser.parse(StringBuilder(line)) as JsonObject
+        val morphologies: List<JsonObject> = entryObj.array("morpho")!!
+        val uniqueForm: String = getForms(entryObj).joinToString(separator = " ") { it.normalize() }
 
         dictionary.addEntry(
-          forms = getForms(entryObj),
-          encodedMorphologies = entryObj.array<JsonObject>("morpho")!!.map {
-            dictionary.compressor.encodeMorphology(it)
-          })
+          uniqueForm = uniqueForm,
+          encodedMorphologies = morphologies.map { dictionary.compressor.encodeMorphology(it) })
 
         if (verbose) progress.tick()
       }
@@ -114,6 +114,13 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
 
       listOf(entryObj.string("form")!!)
     }
+
+    /**
+     * Normalize this string to search it in the dictionary.
+     *
+     * @return a new normalized string
+     */
+    private fun String.normalize(): String = this.toLowerCase().replace(APOSTROPHES_REGEX, "'")
   }
 
   /**
@@ -175,7 +182,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
       val forms: List<String> = form.split(" ")
       val morphologies = mutableListOf<Morphology>()
 
-      encodedEntry.split("\t").forEach { it ->
+      encodedEntry.split("\t").forEach {
         morphologies.addAll(this.compressor.decodeMorphology(morphologyEntryCodes = it.split(',')))
       }
 
@@ -222,12 +229,11 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   /**
    * Add a new entry to the morphology map or add new [encodedMorphologies] to it if already present.
    *
-   * @param forms the list of forms of the entry
+   * @param uniqueForm the unique form of the entry
    * @param encodedMorphologies the encoded morphologies of the entry, given from the [compressor]
    */
-  private fun addEntry(forms: List<String>, encodedMorphologies: List<Long>) {
+  private fun addEntry(uniqueForm: String, encodedMorphologies: List<Long>) {
 
-    val uniqueForm: String = forms.joinToString(separator = " ") { it.normalize() }
     val morphologyString: String = encodedMorphologies.joinToString(separator = ",")
 
     this.morphologyMap[uniqueForm] = if (uniqueForm in this.morphologyMap) {
@@ -291,11 +297,4 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
    * @return a boolean indicating whether the given [form] references another one
    */
   private fun isReference(form: String): Boolean = this.morphologyMap.getValue(form).startsWith(REF_PREFIX)
-
-  /**
-   * Normalize this string to search it in the dictionary.
-   *
-   * @return a new normalized string
-   */
-  private fun String.normalize(): String = this.toLowerCase().replace(APOSTROPHES_REGEX, "'")
 }
