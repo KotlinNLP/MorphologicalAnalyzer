@@ -38,12 +38,12 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
     /**
      * The prefix used to define morphologies by reference.
      */
-    const val REF_PREFIX = "REF:"
+    internal const val REF_PREFIX = "REF:"
 
     /**
      * A regular expression that matches all the alternative apostrophes chars.
      */
-    val APOSTROPHES_REGEX = Regex("[‘’´`❜❛]")
+    private val APOSTROPHES_REGEX = Regex("[‘’´`❜❛]")
 
     /**
      * Load a [MorphologyDictionary] from the JSONL file with the given [filename].
