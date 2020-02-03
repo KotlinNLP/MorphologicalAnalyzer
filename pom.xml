@@ -64,7 +64,6 @@
         <antlr4.version>4.7.1</antlr4.version>
         <klaxon.version>3.0.5</klaxon.version>
         <linguisticdescription.version>0.12.2</linguisticdescription.version>
-        <utils.version>2.1.4</utils.version>
     </properties>
 
     <repositories>
@@ -272,12 +271,6 @@
             <groupId>com.kotlinnlp</groupId>
             <artifactId>linguisticdescription</artifactId>
             <version>${linguisticdescription.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.kotlinnlp</groupId>
-            <artifactId>utils</artifactId>
-            <version>${utils.version}</version>
         </dependency>
     </dependencies>
 
