@@ -1,4 +1,4 @@
-# MorphologicalAnalyzer [![GitHub version](https://badge.fury.io/gh/KotlinNLP%2FMorphologicalAnalyzer.svg)](https://badge.fury.io/gh/KotlinNLP%2FMorphologicalAnalyzer) [![Build Status](https://travis-ci.org/KotlinNLP/MorphologicalAnalyzer.svg?branch=master)](https://travis-ci.org/KotlinNLP/MorphologicalAnalyzer)
+# MorphologicalAnalyzer [![Maven Central](https://img.shields.io/maven-central/v/com.kotlinnlp/morphologicalanalyzer.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.kotlinnlp%22%20AND%20a:%22morphologicalanalyzer%22) [![Build Status](https://travis-ci.org/KotlinNLP/MorphologicalAnalyzer.svg?branch=master)](https://travis-ci.org/KotlinNLP/MorphologicalAnalyzer)
 
 MorphologicalAnalyzer is a Kotlin library designed to support morphological analysis of a text.
 
