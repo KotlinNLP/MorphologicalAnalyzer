@@ -111,7 +111,7 @@ object TestDateTimes {
     val simpleResFilename: String = Paths.get(File.separator, "datetime", langCode, formattedResName).toString()
 
     val inputStream: InputStream = this.javaClass.getResourceAsStream(simpleResFilename)
-    val jsonList: JsonArray<*> = Parser().parse(inputStream) as JsonArray<*>
+    val jsonList: JsonArray<*> = Klaxon().parseJsonArray(inputStream.reader())
 
     return jsonList.flatMap { it as JsonObject
 

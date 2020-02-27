@@ -65,12 +65,12 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
 
       val dictionary = MorphologyDictionary(language = language, allowDefaultProperties = allowDefaultProperties)
 
-      val jsonParser = Parser()
+      val jsonParser = Klaxon()
       val progress = ProgressIndicatorBar(getLinesCount(filename))
 
       forEachLine(filename) { line ->
 
-        val entryObj = jsonParser.parse(StringBuilder(line)) as JsonObject
+        val entryObj = jsonParser.parseJsonObject(line.reader())
         val morphologies: List<JsonObject> = entryObj.array("morpho")!!
         val uniqueForm: String = getForms(entryObj).joinToString(separator = " ") { it.normalize() }
 

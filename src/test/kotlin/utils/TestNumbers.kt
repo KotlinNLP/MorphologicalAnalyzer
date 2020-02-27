@@ -57,7 +57,7 @@ object TestNumbers {
     val resPath: String = Paths.get(File.separator, "numbers", langCode, "test_numbers.json").toString()
     val inputStream: InputStream = this.javaClass.getResourceAsStream(resPath)
 
-    val jsonList = Parser().parse(inputStream) as JsonArray<*>
+    val jsonList: JsonArray<*> = Klaxon().parseJsonArray(inputStream.reader())
 
     return jsonList.flatMap { it as JsonObject
 

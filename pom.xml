@@ -62,7 +62,7 @@
         <surfire.version>2.22.0</surfire.version>
         <dokka.version>0.9.16</dokka.version>
         <antlr4.version>4.7.1</antlr4.version>
-        <klaxon.version>3.0.5</klaxon.version>
+        <klaxon.version>5.2</klaxon.version>
         <linguisticdescription.version>0.12.2</linguisticdescription.version>
     </properties>
 

@@ -9,7 +9,7 @@ package com.kotlinnlp.morphologicalanalyzer.dictionary
 
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
+import com.beust.klaxon.Klaxon
 import com.kotlinnlp.linguisticdescription.language.Language
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
 import java.io.File
@@ -38,7 +38,7 @@ internal class AccentsHelper(language: Language, private val verbose: Boolean = 
     private fun loadAccentsRegexList(): Map<String, List<Pair<Regex, String>>> {
 
       val inputStream: InputStream = Charsets.javaClass.getResourceAsStream(File.separator + "accents_regex.json")
-      val regexObj: JsonObject = Parser().parse(inputStream) as JsonObject
+      val regexObj: JsonObject = Klaxon().parseJsonObject(inputStream.reader())
 
       return regexObj.mapValues { (_, regexList) -> regexList as JsonArray<*>
         regexList.map { obj -> obj as JsonObject
