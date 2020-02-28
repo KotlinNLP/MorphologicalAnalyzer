@@ -8,6 +8,7 @@
 package com.kotlinnlp.morphologicalanalyzer.numbers
 
 import com.kotlinnlp.linguisticdescription.sentence.properties.TokensRange
+import com.kotlinnlp.utils.JSONSerializable
 
 /**
  * Represents a numeric expression recognized.
@@ -24,4 +25,4 @@ data class Number(
   val value: kotlin.Number,
   val asWord: String,
   val original: String
-) : TokensRange
+) : TokensRange, JSONSerializable
