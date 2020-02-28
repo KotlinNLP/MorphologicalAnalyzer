@@ -144,6 +144,26 @@ class MorphologicalAnalyzer(
   }
 
   /**
+   * Find date-time expressions in a sentence.
+   *
+   * @param sentence the sentence
+   *
+   * @return the date-time expressions found in the given sentence
+   */
+  fun findDateTimes(sentence: RealSentence<RealToken>): List<DateTime> =
+    this.buildDateTimes(text = sentence.buildText(), sentence = sentence)
+
+  /**
+   * Find numerical expressions in a sentence.
+   *
+   * @param sentence the sentence
+   *
+   * @return the numerical expressions found in the given sentence
+   */
+  fun findNumbers(sentence: RealSentence<RealToken>): List<Number> =
+    this.buildNumbers(text = sentence.buildText(), sentence = sentence)
+
+  /**
    * @param tokens the list of input tokens
    * @param singleNumbers the list of single-word numbers
    *
