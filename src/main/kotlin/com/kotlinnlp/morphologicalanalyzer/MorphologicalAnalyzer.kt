@@ -128,8 +128,8 @@ class MorphologicalAnalyzer(
     val dateTimes: List<DateTime>
 
     sentence.buildText().let { text ->
-      numbers = this.buildNumbers(text = text, sentence = sentence)
-      dateTimes = this.buildDateTimes(text = text, sentence = sentence)
+      numbers = this.findNumbers(text = text, sentence = sentence)
+      dateTimes = this.findDateTimes(text = text, sentence = sentence)
     }
 
     return MorphologicalAnalysis(
@@ -151,7 +151,7 @@ class MorphologicalAnalyzer(
    * @return the date-time expressions found in the given sentence
    */
   fun findDateTimes(sentence: RealSentence<RealToken>): List<DateTime> =
-    this.buildDateTimes(text = sentence.buildText(), sentence = sentence)
+    this.findDateTimes(text = sentence.buildText(), sentence = sentence)
 
   /**
    * Find numerical expressions in a sentence.
@@ -161,7 +161,7 @@ class MorphologicalAnalyzer(
    * @return the numerical expressions found in the given sentence
    */
   fun findNumbers(sentence: RealSentence<RealToken>): List<Number> =
-    this.buildNumbers(text = sentence.buildText(), sentence = sentence)
+    this.findNumbers(text = sentence.buildText(), sentence = sentence)
 
   /**
    * @param tokens the list of input tokens
@@ -191,9 +191,9 @@ class MorphologicalAnalyzer(
    * @param text the text reconstructed from the sentence
    * @param sentence the sentence
    *
-   * @return the list of recognized date-times
+   * @return the date-time expressions found in the text
    */
-  private fun buildDateTimes(text: String, sentence: RealSentence<RealToken>) : List<DateTime> =
+  private fun findDateTimes(text: String, sentence: RealSentence<RealToken>) : List<DateTime> =
     this.dateTimeProcessor
       ?.findDateTimes(text = text, tokens = sentence.tokens, offset = sentence.position.start)
       ?: listOf()
@@ -202,9 +202,9 @@ class MorphologicalAnalyzer(
    * @param text the text reconstructed from the sentence
    * @param sentence the sentence
    *
-   * @return the list of recognized numbers
+   * @return the numerical expressions found in the text
    */
-  private fun buildNumbers(text: String, sentence: RealSentence<RealToken>) : List<Number> =
+  private fun findNumbers(text: String, sentence: RealSentence<RealToken>) : List<Number> =
     this.numbersProcessor
       ?.findNumbers(text = text, tokens = sentence.tokens, offset = sentence.position.start)
       ?: listOf()
