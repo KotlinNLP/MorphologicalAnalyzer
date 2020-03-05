@@ -17,7 +17,7 @@ import com.kotlinnlp.utils.JSONSerializable
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
  * @property value the numeric value
  * @property asWord the standard representation of the number in letters
- * @property original the original string containing the number
+ * @property original the original string representing the number
  */
 data class Number(
   override val startToken: Int,
