@@ -90,8 +90,8 @@ object TestDateTimes {
    */
   init {
 
-    this.tests = this.supportedLanguages.associate { lang ->
-      lang to this.supportedTypes.map { type ->
+    this.tests = this.supportedLanguages.associateWith { lang ->
+      this.supportedTypes.map { type ->
         TestGroup(type = type, tests = loadTests(type = type, langCode = lang))
       }
     }
@@ -163,6 +163,8 @@ object TestDateTimes {
   /**
    * Build a [Test].
    *
+   * Note: as simplification, the text is intended to be tokenized by chars, so that tokens and chars are equivalent.
+   *
    * @param jsonObj the JSON object of the test
    * @param type the test type
    * @param text the text of the test
@@ -197,6 +199,8 @@ object TestDateTimes {
   private fun buildDate(jsonObj: JsonObject, start: Int, end: Int) = Date(
     startToken = start,
     endToken = end,
+    startChar = start,
+    endChar = end,
     day = jsonObj.int("D"),
     weekDay = jsonObj.int("week-D"),
     month = jsonObj.int("M"),
@@ -219,6 +223,8 @@ object TestDateTimes {
   private fun buildTime(jsonObj: JsonObject, start: Int, end: Int) = Time(
     startToken = start,
     endToken = end,
+    startChar = start,
+    endChar = end,
     hour = jsonObj.int("h"),
     min = jsonObj.int("m"),
     sec = jsonObj.int("s"),
@@ -241,6 +247,8 @@ object TestDateTimes {
   private fun buildDateTime(jsonObj: JsonObject, start: Int, end: Int) = DateTimeSimple(
     startToken = start,
     endToken = end,
+    startChar = start,
+    endChar = end,
     date = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start),
     time = this.buildInnerTime(jsonObj = jsonObj.obj("time")!!, offset = start)
   )
@@ -263,17 +271,19 @@ object TestDateTimes {
       "date" -> Offset.Date(
         startToken = start,
         endToken = end,
+        startChar = start,
+        endChar = end,
         units = units,
         value = this.buildInnerDate(jsonObj = jsonObj.obj("date")!!, offset = start)
       )
-      "hour" -> Offset.Hours(startToken = start, endToken = end, units = units)
-      "min" -> Offset.Minutes(startToken = start, endToken = end, units = units)
-      "sec" -> Offset.Seconds(startToken = start, endToken = end, units = units)
-      "day" -> Offset.Days(startToken = start, endToken = end, units = units)
-      "week" -> Offset.Weeks(startToken = start, endToken = end, units = units)
-      "weekend" -> Offset.Weekends(startToken = start, endToken = end, units = units)
-      "month" -> Offset.Months(startToken = start, endToken = end, units = units)
-      "year" -> Offset.Years(startToken = start, endToken = end, units = units)
+      "hour" -> Offset.Hours(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "min" -> Offset.Minutes(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "sec" -> Offset.Seconds(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "day" -> Offset.Days(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "week" -> Offset.Weeks(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "weekend" -> Offset.Weekends(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "month" -> Offset.Months(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
+      "year" -> Offset.Years(startToken = start, endToken = end, startChar = start, endChar = end, units = units)
       else -> throw RuntimeException("Invalid offset type: $type")
     }
   }
@@ -290,6 +300,8 @@ object TestDateTimes {
   private fun buildDateOffset(jsonObj: JsonObject, start: Int, end: Int) = DateOffset(
     startToken = start,
     endToken = end,
+    startChar = start,
+    endChar = end,
     dateTime = this.getInnerDateTime(jsonObj = jsonObj, offset = start),
     offset = this.buildInnerOffset(jsonObj = jsonObj.obj("offset")!!, offset = start)
   )
@@ -315,14 +327,20 @@ object TestDateTimes {
       "date" -> DateOrdinal.Date(
         startToken = start,
         endToken = end,
+        startChar = start,
+        endChar = end,
         position = pos,
         dateTime = refDateTime,
         value = this.buildInnerDate(jsonObj = jsonObj.obj("date-unit")!!, offset = start)
       )
-      "day" -> DateOrdinal.Day(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
-      "week" -> DateOrdinal.Week(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
-      "weekend" -> DateOrdinal.Weekend(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
-      "month" -> DateOrdinal.Month(startToken = start, endToken = end, position = pos, dateTime = refDateTime)
+      "day" -> DateOrdinal.Day(
+        startToken = start, endToken = end, startChar = start, endChar = end, position = pos, dateTime = refDateTime)
+      "week" -> DateOrdinal.Week(
+        startToken = start, endToken = end, startChar = start, endChar = end, position = pos, dateTime = refDateTime)
+      "weekend" -> DateOrdinal.Weekend(
+        startToken = start, endToken = end, startChar = start, endChar = end, position = pos, dateTime = refDateTime)
+      "month" -> DateOrdinal.Month(
+        startToken = start, endToken = end, startChar = start, endChar = end, position = pos, dateTime = refDateTime)
       else -> throw RuntimeException("Invalid ordinal unit: $type")
     }
   }
@@ -347,9 +365,12 @@ object TestDateTimes {
     }
 
     return when {
-      from != null && to != null -> CloseInterval(startToken = start, endToken = end, from = from, to = to)
-      from != null -> OpenToInterval(startToken = start, endToken = end, from = from)
-      to != null -> OpenFromInterval(startToken = start, endToken = end, to = to)
+      from != null && to != null ->
+        CloseInterval(startToken = start, endToken = end, startChar = start, endChar = end, from = from, to = to)
+      from != null ->
+        OpenToInterval(startToken = start, endToken = end, startChar = start, endChar = end, from = from)
+      to != null ->
+        OpenFromInterval(startToken = start, endToken = end, startChar = start, endChar = end, to = to)
       else -> throw RuntimeException("Missing 'from' or 'to' interval properties.")
     }
   }
