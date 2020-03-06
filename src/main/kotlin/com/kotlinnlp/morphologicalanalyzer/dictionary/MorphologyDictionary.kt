@@ -90,7 +90,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
           .explodeByAccents(dictionary.morphologyMap)
       }
 
-      if (verbose) println("Setting multi-words expressions...")
+      if (verbose) println("Setting multi-word expressions...")
       dictionary.setMultiWords()
 
       return dictionary
@@ -140,7 +140,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
     private set
 
   /**
-   * The number of multi-words expressions in the dictionary (excluding the references).
+   * The number of multi-word expressions in the dictionary (excluding the references).
    */
   var multiwordsCount: Int = 0
     private set
@@ -176,7 +176,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   private val startMultiWordsMap = mutableMapOf<String, MutableList<Int>>()
 
   /**
-   * The map of forms to the multi-words expressions in which they are involved.
+   * The map of forms to the multi-word expressions in which they are involved.
    */
   private val wordsToMultiWords = mutableMapOf<String, MutableList<Int>>()
 
@@ -306,9 +306,9 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
   }
 
   /**
-   * Add a multi-words expression with the given [form].
+   * Add a multi-word expression with the given [form].
    *
-   * @param form the form of the multi-words expression
+   * @param form the form of the multi-word expression
    */
   private fun addMultiWord(form: String) {
 
@@ -333,7 +333,7 @@ class MorphologyDictionary(val language: Language, allowDefaultProperties: Boole
    * @param indices a list of indices
    * @param includeAlternatives whether the alternative forms must be included in the returned list
    *
-   * @return the list of multi-words expression that are mapped to the given [indices]
+   * @return the list of multi-word expression that are mapped to the given [indices]
    */
   private fun indicesToMultiWords(indices: List<Int>, includeAlternatives: Boolean): List<String> =
     indices

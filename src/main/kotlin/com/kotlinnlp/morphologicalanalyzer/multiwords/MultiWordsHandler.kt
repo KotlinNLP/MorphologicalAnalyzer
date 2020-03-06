@@ -49,12 +49,12 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
   }
 
   /**
-   * Get the list of multi-words expressions that start with the token at the given index of the [tokens] list.
+   * Get the list of multi-word expressions that start with the token at the given index of the [tokens] list.
    *
    * @param tokens a list of input tokens
    * @param tokenIndex the index of the currently focused token (within the [tokens] list)
    *
-   * @return a list of multi-words expressions (empty if no one has been found)
+   * @return a list of multi-word expressions (empty if no one has been found)
    */
   private fun getValidMultiWords(tokens: List<RealToken>, tokenIndex: Int): List<String> {
 

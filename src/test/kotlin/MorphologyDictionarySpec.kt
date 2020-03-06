@@ -182,7 +182,7 @@ class MorphologyDictionarySpec : Spek({
       }
     }
 
-    context("multiple forms (multi-words expressions)") {
+    context("multiple forms (multi-word expressions)") {
 
       context("the 'form3.1 form3.2 form3.3' form") {
 

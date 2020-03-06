@@ -180,9 +180,9 @@ class MorphologicalAnalyzer(
 
   /**
    * @param tokens the list of input tokens
-   * @param multiWordsNumbers the list of multi-words numbers
+   * @param multiWordsNumbers the list of multi-word numbers
    *
-   * @return the list of multi-words morphologies
+   * @return the list of multi-word morphologies
    */
   private fun buildMultiWords(tokens: List<RealToken>, multiWordsNumbers: List<Number>): List<MultiWords> =
     MultiWordsHandler(this.dictionary).getMultiWordsMorphologies(tokens) + multiWordsNumbers.toMultiWords()

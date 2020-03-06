@@ -86,7 +86,7 @@ private fun printAnalysis(tokens: List<RealToken>, analysis: MorphologicalAnalys
   println("\n*** Tokens ***\n")
   printTokens(tokens = tokens, analysis = analysis)
 
-  println("\n*** Multi-words expressions ***\n")
+  println("\n*** Multi-word expressions ***\n")
   printMultiWords(tokens = tokens, analysis = analysis)
 
   println("\n*** Date-time expressions ***\n")
@@ -108,7 +108,7 @@ private fun printTokens(tokens: List<RealToken>, analysis: MorphologicalAnalysis
 }
 
 /**
- * Print the multi-words morphologies.
+ * Print the multi-word morphologies.
  *
  * @param tokens the list of tokens
  * @param analysis the morphological analysis of the [tokens]
