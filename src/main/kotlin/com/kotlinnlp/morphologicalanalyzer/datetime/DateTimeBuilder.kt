@@ -175,8 +175,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
   fun buildDate(): Date {
 
     val date = Date(
-      startToken = this.dateTokens.start,
-      endToken = this.dateTokens.endInclusive,
+      startToken = this.dateTokens.first,
+      endToken = this.dateTokens.last,
       day = this.day,
       weekDay = this.weekDay,
       month = this.month,
@@ -201,8 +201,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
   fun buildTime(): Time {
 
     val time = Time(
-      startToken = this.timeTokens.start,
-      endToken = this.timeTokens.endInclusive,
+      startToken = this.timeTokens.first,
+      endToken = this.timeTokens.last,
       hour = this.hour,
       min = this.min,
       sec = this.sec,
@@ -225,8 +225,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    *
    */
   fun buildDateTimeSimple() = DateTimeSimple(
-    startToken = this.dateTimeSimpleTokens.start,
-    endToken = this.dateTimeSimpleTokens.endInclusive,
+    startToken = this.dateTimeSimpleTokens.first,
+    endToken = this.dateTimeSimpleTokens.last,
     date = this.buildDate(),
     time = this.buildTime()
   )
@@ -236,8 +236,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildOffset(): Offset {
 
-    val start: Int = this.offsetTokens.start
-    val end: Int = this.offsetTokens.endInclusive
+    val start: Int = this.offsetTokens.first
+    val end: Int = this.offsetTokens.last
 
     val unitsFactor: Int = if (this.positiveOffset) 1 else -1
     val units: Int = unitsFactor * this.offsetLength
@@ -256,8 +256,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    *
    */
   fun buildDateOffset() = DateOffset(
-    startToken = this.dateOffsetTokens.start,
-    endToken = this.dateOffsetTokens.endInclusive,
+    startToken = this.dateOffsetTokens.first,
+    endToken = this.dateOffsetTokens.last,
     dateTime = this.dateOffsetDateTimeRef,
     offset = this.buildOffset()
   )
@@ -267,8 +267,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildDateOrdinal(): DateOrdinal {
 
-    val start: Int = this.dateOrdinalTokens.start
-    val end: Int = this.dateOrdinalTokens.endInclusive
+    val start: Int = this.dateOrdinalTokens.first
+    val end: Int = this.dateOrdinalTokens.last
 
     val pos: DateOrdinal.Position = if (this.ordinalPosition > 0)
       DateOrdinal.Position.Ordinal(count = this.ordinalPosition)
@@ -286,8 +286,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildInterval(): Interval {
 
-    val start: Int = this.intervalTokens.start
-    val end: Int = this.intervalTokens.endInclusive
+    val start: Int = this.intervalTokens.first
+    val end: Int = this.intervalTokens.last
 
     val from: SingleDateTime? = this.intervalFromDateTime
     val to: SingleDateTime? = this.intervalToDateTime
