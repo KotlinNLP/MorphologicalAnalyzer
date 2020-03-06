@@ -15,6 +15,8 @@ import com.kotlinnlp.utils.JSONSerializable
  *
  * @property startToken the index of the first token of this numeric expression, within the input tokens list
  * @property endToken the index of the last token of this numeric expression, within the input tokens list
+ * @property startToken the index of the first char of this numeric expression
+ * @property endToken the index of the last char of this numeric expression
  * @property value the numeric value
  * @property asWord the standard representation of the number in letters
  * @property original the original string representing the number
@@ -22,6 +24,8 @@ import com.kotlinnlp.utils.JSONSerializable
 data class Number(
   override val startToken: Int,
   override val endToken: Int,
+  override val startChar: Int,
+  override val endChar: Int,
   val value: kotlin.Number,
   val asWord: String,
   val original: String
