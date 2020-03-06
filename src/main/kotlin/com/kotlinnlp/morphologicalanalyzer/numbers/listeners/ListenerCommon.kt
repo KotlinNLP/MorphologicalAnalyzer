@@ -179,7 +179,7 @@ internal interface ListenerCommon {
 
       this.helper.spaceSplitterRegex.findAll(numericExpr).toList().flatMap { match ->
 
-        val matchOffset: Int = this.offset + exprOffset + match.groups[1]!!.range.start
+        val matchOffset: Int = this.offset + exprOffset + match.groups[1]!!.range.first
         val matchTokenOffset: Int = this.tokens.first { it.value.position.end >= matchOffset }.index
         val subTokens: List<IndexedValue<RealToken>> = this.tokens.subList(matchTokenOffset, this.tokens.size)
 
@@ -1265,9 +1265,18 @@ internal interface ListenerCommon {
 
     val (integer, decimal) = this.getNumberComponents(ctx)
 
+    val startTk: IndexedValue<RealToken> = this.tokens.first {
+      (it.value.position.end - this.offset) >= ctx.start.startIndex
+    }
+    val endTk: IndexedValue<RealToken> = this.tokens.first {
+      (it.value.position.end - this.offset) >= ctx.stop.stopIndex
+    }
+
     return Number(
-      startToken = this.tokens.first { (it.value.position.end - this.offset) >= ctx.start.startIndex }.index,
-      endToken = this.tokens.first { (it.value.position.end - this.offset) >= ctx.stop.stopIndex }.index,
+      startToken = startTk.index,
+      endToken = endTk.index,
+      startChar = startTk.value.position.start,
+      endChar = endTk.value.position.end,
       value = decimal?.let { "$integer.$decimal".toDouble() }
         ?: integer.let { it.toIntOrNull() ?: it.toLongOrNull() ?: it.toBigInteger() } as kotlin.Number,
       asWord = this.helper.digitToWordConverter.convert(integer = integer, decimal = decimal),

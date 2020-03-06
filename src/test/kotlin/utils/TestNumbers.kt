@@ -43,7 +43,7 @@ object TestNumbers {
   /**
    * List of test groups associated by language.
    */
-  val tests: Map<String, List<Test>> = this.supportedLanguages.associate { it to loadTests(langCode = it) }
+  val tests: Map<String, List<Test>> = this.supportedLanguages.associateWith { loadTests(langCode = it) }
 
   /**
    * Load tests of a given type and language from the resources.
@@ -121,11 +121,16 @@ object TestNumbers {
   private fun buildNumber(jsonObj: JsonObject, originalText: String, offset: Int): Number {
 
     val originalStr: String = jsonObj.string("original") ?: originalText
+
+    // Note: as simplification, the text is intended to be tokenized by chars, so that tokens and chars are equivalent.
     val start: Int = offset + (jsonObj.int("start") ?: 0)
+    val end: Int = start + originalStr.lastIndex
 
     return Number(
       startToken = start,
-      endToken = start + originalStr.lastIndex,
+      endToken = end,
+      startChar = start,
+      endChar = end,
       value = jsonObj.getValue("value") as kotlin.Number,
       asWord = jsonObj.string("asWord") ?: originalStr,
       original = originalStr
