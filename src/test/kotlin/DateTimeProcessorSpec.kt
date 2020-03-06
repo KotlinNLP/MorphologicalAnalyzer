@@ -47,7 +47,7 @@ class DateTimeProcessorSpec : Spek({
                 }
 
                 it("should return the expected DateTime object") {
-                  assertEquals(expectedDateTime, dateTimes.first())
+                  assertEquals(expectedDateTime, dateTimes.single())
                 }
 
               } else {
