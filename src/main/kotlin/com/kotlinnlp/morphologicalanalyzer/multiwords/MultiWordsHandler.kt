@@ -27,13 +27,19 @@ internal class MultiWordsHandler(private val dictionary: MorphologyDictionary) {
 
     val morphologies = mutableListOf<MultiWords>()
 
-    (0 until tokens.size).forEach { tokenIndex ->
+    tokens.indices.forEach { tokenIndex ->
 
       this.getValidMultiWords(tokens = tokens, tokenIndex = tokenIndex).forEach { multiWord ->
+
+        val startToken: Int = tokenIndex
+        val endToken: Int = tokenIndex + multiWord.getNumOfSpaces()
+
         morphologies.add(
           MultiWords(
-            startToken = tokenIndex,
-            endToken = tokenIndex + multiWord.getNumOfSpaces(),
+            startToken = startToken,
+            endToken = endToken,
+            startChar = tokens[startToken].position.start,
+            endChar = tokens[endToken].position.end,
             morphologies = this.dictionary[multiWord]!!.morphologies)
         )
       }

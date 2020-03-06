@@ -177,6 +177,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
     val date = Date(
       startToken = this.dateTokens.first,
       endToken = this.dateTokens.last,
+      startChar = this.tokens[this.dateTokens.first].position.start,
+      endChar = this.tokens[this.dateTokens.last].position.end,
       day = this.day,
       weekDay = this.weekDay,
       month = this.month,
@@ -203,6 +205,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
     val time = Time(
       startToken = this.timeTokens.first,
       endToken = this.timeTokens.last,
+      startChar = this.tokens[this.timeTokens.first].position.start,
+      endChar = this.tokens[this.timeTokens.last].position.end,
       hour = this.hour,
       min = this.min,
       sec = this.sec,
@@ -227,6 +231,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
   fun buildDateTimeSimple() = DateTimeSimple(
     startToken = this.dateTimeSimpleTokens.first,
     endToken = this.dateTimeSimpleTokens.last,
+    startChar = this.tokens[this.dateTimeSimpleTokens.first].position.start,
+    endChar = this.tokens[this.dateTimeSimpleTokens.last].position.end,
     date = this.buildDate(),
     time = this.buildTime()
   )
@@ -236,15 +242,25 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildOffset(): Offset {
 
-    val start: Int = this.offsetTokens.first
-    val end: Int = this.offsetTokens.last
+    val startTk: Int = this.offsetTokens.first
+    val endTk: Int = this.offsetTokens.last
+
+    val startCh: Int = this.tokens[startTk].position.start
+    val endCh: Int = this.tokens[endTk].position.end
 
     val unitsFactor: Int = if (this.positiveOffset) 1 else -1
     val units: Int = unitsFactor * this.offsetLength
 
     val offset: Offset = this.offsetDateRef?.let {
-      Offset.Date(startToken = start, endToken = end, units = units, value = it)
-    } ?: DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first().call(start, end, units) as Offset
+      Offset.Date(
+        startToken = startTk,
+        endToken = endTk,
+        startChar = startCh,
+        endChar = endCh,
+        units = units,
+        value = it)
+    } ?: DateUnit.toOffsetClasses.getValue(this.dateUnit!!).constructors.first()
+      .call(startTk, endTk, startCh, endCh, units) as Offset
 
     this.offsetDateRef = null
     this.dateUnit = null
@@ -258,6 +274,8 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
   fun buildDateOffset() = DateOffset(
     startToken = this.dateOffsetTokens.first,
     endToken = this.dateOffsetTokens.last,
+    startChar = this.tokens[this.dateOffsetTokens.first].position.start,
+    endChar = this.tokens[this.dateOffsetTokens.last].position.end,
     dateTime = this.dateOffsetDateTimeRef,
     offset = this.buildOffset()
   )
@@ -267,8 +285,11 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildDateOrdinal(): DateOrdinal {
 
-    val start: Int = this.dateOrdinalTokens.first
-    val end: Int = this.dateOrdinalTokens.last
+    val startTk: Int = this.dateOrdinalTokens.first
+    val endTk: Int = this.dateOrdinalTokens.last
+
+    val startCh: Int = this.tokens[startTk].position.start
+    val endCh: Int = this.tokens[endTk].position.end
 
     val pos: DateOrdinal.Position = if (this.ordinalPosition > 0)
       DateOrdinal.Position.Ordinal(count = this.ordinalPosition)
@@ -276,9 +297,16 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
       DateOrdinal.Position.Last()
 
     return this.ordinalDateUnit?.let {
-      DateOrdinal.Date(startToken = start, endToken = end, position = pos, dateTime = ordinalDateTimeRef, value = it)
+      DateOrdinal.Date(
+        startToken = startTk,
+        endToken = endTk,
+        startChar = startCh,
+        endChar = endCh,
+        position = pos,
+        dateTime = ordinalDateTimeRef,
+        value = it)
     } ?: DateUnit.toDateOrdinalClasses.getValue(this.dateUnit!!).constructors.first()
-      .call(start, end, pos, this.ordinalDateTimeRef) as DateOrdinal
+      .call(startTk, endTk, startCh, endCh, pos, this.ordinalDateTimeRef) as DateOrdinal
   }
 
   /**
@@ -286,16 +314,22 @@ internal class DateTimeBuilder(private val tokens: List<RealToken>, private val 
    */
   fun buildInterval(): Interval {
 
-    val start: Int = this.intervalTokens.first
-    val end: Int = this.intervalTokens.last
+    val startTk: Int = this.intervalTokens.first
+    val endTk: Int = this.intervalTokens.last
+
+    val startCh: Int = this.tokens[startTk].position.start
+    val endCh: Int = this.tokens[endTk].position.end
 
     val from: SingleDateTime? = this.intervalFromDateTime
     val to: SingleDateTime? = this.intervalToDateTime
 
     return when {
-      from != null && to != null -> CloseInterval(startToken = start, endToken = end, from = from, to = to)
-      from != null -> OpenToInterval(startToken = start, endToken = end, from = from)
-      to != null -> OpenFromInterval(startToken = start, endToken = end, to = to)
+      from != null && to != null -> CloseInterval(
+        startToken = startTk, endToken = endTk, startChar = startCh, endChar = endCh, from = from, to = to)
+      from != null -> OpenToInterval(
+        startToken = startTk, endToken = endTk, startChar = startCh, endChar = endCh, from = from)
+      to != null -> OpenFromInterval(
+        startToken = startTk, endToken = endTk, startChar = startCh, endChar = endCh, to = to)
       else -> throw RuntimeException("Missing 'from' or 'to' date-time to build an interval.")
     }
   }

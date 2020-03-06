@@ -218,6 +218,8 @@ class MorphologicalAnalyzer(
     MultiWords(
       startToken = it.startToken,
       endToken = it.endToken,
+      startChar = it.startChar,
+      endChar = it.endChar,
       morphologies = listOf(buildNumberMorpho(lemma = it.asWord, numericForm = it.value)))
   }
 
