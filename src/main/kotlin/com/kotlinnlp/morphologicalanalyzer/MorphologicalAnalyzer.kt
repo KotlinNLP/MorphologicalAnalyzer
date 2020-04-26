@@ -42,11 +42,6 @@ class MorphologicalAnalyzer(
   companion object {
 
     /**
-     * A regex that matches a punctuation token.
-     */
-    private val punctRegex = Regex("^[….,;:#!?|/\\\\$%&=~*\\-–_\"“”″‘'`^()<>«»\\[\\]{}]+$")
-
-    /**
      * Build the default morphology for punctuation tokens.
      *
      * @param form the form of the token
@@ -246,7 +241,7 @@ class MorphologicalAnalyzer(
     val morphologies: MutableList<Morphology> = dictionaryEntry?.morphologies?.toMutableList() ?: mutableListOf()
 
     when {
-      token.isPunct() -> morphologies.add(buildPunctMorpho(token.form))
+      token.isPunct -> morphologies.add(buildPunctMorpho(token.form))
       numberToken != null ->
         morphologies.add(buildNumberMorpho(lemma = numberToken.asWord, numericForm = numberToken.value))
     }
@@ -256,11 +251,6 @@ class MorphologicalAnalyzer(
 
     return Morphologies(morphologies)
   }
-
-  /**
-   * @return true if this token contains a punctuation form, otherwise false
-   */
-  private fun RealToken.isPunct(): Boolean = punctRegex.matches(this.form)
 
   /**
    * @return true if the first char of this token form is upper case, otherwise false
