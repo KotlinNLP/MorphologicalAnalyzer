@@ -10,6 +10,7 @@ package serialize
 import com.kotlinnlp.linguisticdescription.language.getLanguageByIso
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
 import com.kotlinnlp.utils.Timer
+import com.xenomachina.argparser.mainBody
 import java.io.File
 import java.io.FileOutputStream
 
@@ -18,7 +19,7 @@ import java.io.FileOutputStream
  *
  * Launch with the '-h' option for help about the command line arguments.
  */
-fun main(args: Array<String>) {
+fun main(args: Array<String>) = mainBody {
 
   val parsedArgs = CommandLineArguments(args)
   val timer = Timer()
