@@ -9,9 +9,8 @@ package utils
 
 import com.beust.klaxon.*
 import com.kotlinnlp.morphologicalanalyzer.numbers.Number
-import java.io.File
+import com.kotlinnlp.utils.getResourceAsStream
 import java.io.InputStream
-import java.nio.file.Paths
 
 /**
  * Contains list of numbers tests.
@@ -43,7 +42,7 @@ object TestNumbers {
   /**
    * List of test groups associated by language.
    */
-  val tests: Map<String, List<Test>> = this.supportedLanguages.associate { it to loadTests(langCode = it) }
+  val tests: Map<String, List<Test>> = this.supportedLanguages.associateWith { loadTests(langCode = it) }
 
   /**
    * Load tests of a given type and language from the resources.
@@ -54,9 +53,7 @@ object TestNumbers {
    */
   private fun loadTests(langCode: String): List<Test> {
 
-    val resPath: String = Paths.get(File.separator, "numbers", langCode, "test_numbers.json").toString()
-    val inputStream: InputStream = this.javaClass.getResourceAsStream(resPath)
-
+    val inputStream: InputStream = getResourceAsStream("numbers/$langCode/test_numbers.json")
     val jsonList = Parser().parse(inputStream) as JsonArray<*>
 
     return jsonList.flatMap { it as JsonObject

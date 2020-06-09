@@ -17,9 +17,9 @@ import com.kotlinnlp.linguisticdescription.morphology.properties.*
 import com.kotlinnlp.linguisticdescription.morphology.properties.Number
 import com.kotlinnlp.morphologicalanalyzer.dictionary.Entry
 import com.kotlinnlp.morphologicalanalyzer.dictionary.MorphologyDictionary
+import com.kotlinnlp.utils.getResource
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -33,7 +33,7 @@ class MorphologyDictionarySpec : Spek({
   describe("a MorphologyDictionary") {
 
     val dictionary: MorphologyDictionary = MorphologyDictionary.load(
-      filename = Charsets.javaClass.getResource(File.separator + "test_dictionary.jsonl").file,
+      filename = getResource("test_dictionary.jsonl").file,
       language = Language.Italian)
 
     context("loading") {

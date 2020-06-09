@@ -9,9 +9,8 @@ package com.kotlinnlp.morphologicalanalyzer.numbers.languageparams
 
 import com.beust.klaxon.Klaxon
 import com.kotlinnlp.linguisticdescription.language.Language
-import java.io.File
+import com.kotlinnlp.utils.getResourceAsStream
 import java.io.InputStream
-import java.nio.file.Paths
 
 /**
  * The [LanguageParams] factory.
@@ -39,10 +38,6 @@ internal object LanguageParamsFactory {
    *
    * @return the input stream of the JSON file with the params for the given language
    */
-  private fun getJsonStream(language: Language): InputStream {
-
-    val resPath: String = Paths.get(File.separator, "numbers", language.isoCode, "langparams.json").toString()
-
-    return LanguageParamsFactory.javaClass.getResourceAsStream(resPath)
-  }
+  private fun getJsonStream(language: Language): InputStream =
+    getResourceAsStream("numbers/${language.isoCode}/langparams.json")
 }

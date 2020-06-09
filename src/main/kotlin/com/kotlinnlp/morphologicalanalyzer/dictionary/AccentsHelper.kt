@@ -11,8 +11,8 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.kotlinnlp.linguisticdescription.language.Language
+import com.kotlinnlp.utils.getResourceAsStream
 import com.kotlinnlp.utils.progressindicator.ProgressIndicatorBar
-import java.io.File
 import java.io.InputStream
 
 /**
@@ -37,7 +37,7 @@ internal class AccentsHelper(language: Language, private val verbose: Boolean = 
      */
     private fun loadAccentsRegexList(): Map<String, List<Pair<Regex, String>>> {
 
-      val inputStream: InputStream = Charsets.javaClass.getResourceAsStream(File.separator + "accents_regex.json")
+      val inputStream: InputStream = getResourceAsStream("accents_regex.json")
       val regexObj: JsonObject = Parser().parse(inputStream) as JsonObject
 
       return regexObj.mapValues { (_, regexList) -> regexList as JsonArray<*>

@@ -14,9 +14,8 @@ import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.Interval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenFromInterval
 import com.kotlinnlp.linguisticdescription.sentence.properties.datetime.intervals.OpenToInterval
-import java.io.File
+import com.kotlinnlp.utils.getResourceAsStream
 import java.io.InputStream
-import java.nio.file.Paths
 import java.util.*
 
 /**
@@ -90,8 +89,8 @@ object TestDateTimes {
    */
   init {
 
-    this.tests = this.supportedLanguages.associate { lang ->
-      lang to this.supportedTypes.map { type ->
+    this.tests = this.supportedLanguages.associateWith { lang ->
+      this.supportedTypes.map { type ->
         TestGroup(type = type, tests = loadTests(type = type, langCode = lang))
       }
     }
@@ -108,9 +107,8 @@ object TestDateTimes {
   private fun loadTests(type: String, langCode: String): List<Test> {
 
     val formattedResName: String = this.RES_UNFORMATTED.format(type)
-    val simpleResFilename: String = Paths.get(File.separator, "datetime", langCode, formattedResName).toString()
+    val inputStream: InputStream = getResourceAsStream("datetime/$langCode/$formattedResName")
 
-    val inputStream: InputStream = this.javaClass.getResourceAsStream(simpleResFilename)
     val jsonList: JsonArray<*> = Parser().parse(inputStream) as JsonArray<*>
 
     return jsonList.flatMap { it as JsonObject
