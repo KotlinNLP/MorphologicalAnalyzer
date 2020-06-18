@@ -17,7 +17,7 @@ Try some examples running the files in the `examples` folder.
 <dependency>
     <groupId>com.kotlinnlp</groupId>
     <artifactId>morphologicalanalyzer</artifactId>
-    <version>0.4.6</version>
+    <version>0.4.7</version>
 </dependency>
 ```
 
