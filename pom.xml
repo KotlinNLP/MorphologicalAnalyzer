@@ -63,7 +63,7 @@
         <dokka.version>0.9.16</dokka.version>
         <antlr4.version>4.7.1</antlr4.version>
         <klaxon.version>5.2</klaxon.version>
-        <linguisticdescription.version>0.12.2</linguisticdescription.version>
+        <linguisticdescription.version>0.12.3</linguisticdescription.version>
     </properties>
 
     <repositories>
